@@ -1,12 +1,43 @@
+## Java
 *.class
+dist
+download
+push.sh
+remotebuild.py
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+## Gradle
+/.gradle
+/build
+/eclipse
+/gradlew.bat
 
-# Package Files #
-*.jar
-*.war
-*.ear
+## ForgeGradle
+/run
+/out
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+## IDEA
+*.iml
+*.ipr
+*.iws
+
+## Eclipse
+/.settings
+/.metadata
+/.classpath
+/.project
+/bin
+/.idea
+/client/
+/Server/
+/classes/
+## misc
+TCDEOBF.jar*
+
+## OS Cache Files
+*.DS_Store
+_MACOSX
+Thumbs.db
+
+## Misc. Unnecessary Files
+*.log
+*.lck
