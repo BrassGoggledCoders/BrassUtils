@@ -35,3 +35,9 @@ I intended for this mod to be very similar to the original Geartooth suggestion,
   * Strange particles encircle this statue.
   * Atop the totem pole is a chest with goodies.
   * This is the only place where you can find the Ender Gloves.
+
+### Note to Team Members
+warlordjones: if you're working on the model, you can being on that; you can also begin adding enchantments. <br/>
+Snurly: you already know what you're doing. ;) <br/>
+Rongmario: you can help warlordjones with the Enchantments. Possibly totem work + generation. <br/>
+Surseance: creating the ender item and determining how to make it fancy.
