@@ -33,7 +33,7 @@ import endergloves.common.lib.LibInfo;
 @SideOnly(Side.CLIENT)
 public class ModelEnderGlove extends ModelBiped
 {
-	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "models/modelglove");
+	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
 	
 	public ModelRenderer eye;
 	public ModelRenderer eye2;
@@ -59,7 +59,7 @@ public class ModelEnderGlove extends ModelBiped
 
 		eye = new ModelRenderer(this, 44, 0);
 		eye.addBox(0F, 0F, 0F, 4, 4, 4);
-		eye.setRotationPoint(6F, 6F, 0F);
+		//eye.setRotationPoint(6F, 6F, 0F);
 
 		eye2 = new ModelRenderer(this, 36, 10);
 		eye2.addBox(0F, 0F, 0F, 2, 2, 6);
@@ -139,6 +139,7 @@ public class ModelEnderGlove extends ModelBiped
 		wrist = new ModelRenderer(this, 0, 0);
 		wrist.addBox(0F, 0F, 0F, 5, 3, 4);
 
+		/*
 		this.bipedRightArm.addChild(eye);
 		this.bipedRightArm.addChild(eye2);
 		this.bipedRightArm.addChild(eye3);
@@ -154,7 +155,7 @@ public class ModelEnderGlove extends ModelBiped
 		this.bipedRightArm.addChild(palm);
 		this.bipedRightArm.addChild(palm2);
 		this.bipedRightArm.addChild(thumb);
-		this.bipedRightArm.addChild(wrist);
+		this.bipedRightArm.addChild(wrist);*/
 	}
 
 	//@Override
@@ -167,12 +168,23 @@ public class ModelEnderGlove extends ModelBiped
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.gloveTex);
 		GL11.glPushMatrix();
-
 		float scale = 0.0625F;
-		eye.render(scale);
+		
+		eye.render(-0.0625F);
+		//eye.offsetX = -1.0121212F;
+		//eye.rotateAngleY = 45F;
+		//eye.offsetZ = -0.3F;
+		//eye.rotateAngleX = -8F;
+	
 		eye2.render(scale);
+		eye2.offsetX = -1.0121212F;
+		
 		eye3.render(scale);
+		eye3.offsetX = -1.0121212F;
+		
 		eyebase.render(scale);
+		eyebase.offsetX = -1.0121212F;
+		
 		finger.render(scale);
 		finger2.render(scale);
 		finger3.render(scale);
