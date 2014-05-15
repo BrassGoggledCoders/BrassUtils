@@ -73,11 +73,11 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
 					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
 
-					GL11.glTranslatef(8, 0, 0.0F);
-					float scale = 0.9F;
+					GL11.glTranslatef(8, 0, 0);
+					float scale = 1.9F;
 					GL11.glScalef(scale, scale, scale);
 					float angle = mc.theWorld.getWorldTime() * 11.6F;
-					GL11.glRotatef(angle, 0, 0.5F, 0);
+					GL11.glRotatef(angle, 0 - 0.5F, 0 - 0.5F, 0);
 
 					if (is != null)
 					{
