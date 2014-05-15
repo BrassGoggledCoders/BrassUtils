@@ -9,7 +9,10 @@
  */
 package endergloves.common.config;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
+import endergloves.common.item.ItemEnderGlove;
+import endergloves.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -28,11 +31,11 @@ public class ConfigItems
 
 	public static void initializeItems()
 	{
-		
+		itemEnderGlove = new ItemEnderGlove().setUnlocalizedName("enderglove");
 	}
 	
 	public static void registerItems()
 	{
-		
+		GameRegistry.registerItem(itemEnderGlove, "ItemEnderGlove", LibInfo.ID);
 	}
 }

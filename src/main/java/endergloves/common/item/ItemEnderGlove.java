@@ -11,14 +11,22 @@ package endergloves.common.item;
 
 import java.util.Set;
 
-import endergloves.common.EnderGloves;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
+
+import com.google.common.collect.Sets;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import endergloves.common.EnderGloves;
+import endergloves.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -27,14 +35,18 @@ import net.minecraft.world.World;
  */
 public class ItemEnderGlove extends ItemTool
 {
-	protected Item.ToolMaterial toolMat;
-	protected Set<Block> blocksEffectiveAgainst;
-
-	public ItemEnderGlove(float damageVsEntity, Item.ToolMaterial toolMat, Set blockSet)
+	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerIcons(IIconRegister ir)
 	{
-		super(damageVsEntity, toolMat, blockSet);
-		this.toolMat = toolMat;
-		this.blocksEffectiveAgainst = blockSet;
+		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "temp");
+	}
+
+	public ItemEnderGlove()
+	{
+		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
 		this.setCreativeTab(EnderGloves.tabEG);
 	}
 

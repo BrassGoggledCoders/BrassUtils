@@ -20,6 +20,8 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import endergloves.common.config.Config;
+import endergloves.common.config.ConfigBlocks;
+import endergloves.common.config.ConfigItems;
 import endergloves.common.lib.CreativeTabEG;
 import endergloves.common.lib.LibInfo;
 
@@ -65,8 +67,8 @@ public class EnderGloves
 		
 		Config.save();
 		
-		//ConfigBlocks.init();
-		//ConfigItems.init();
+		ConfigBlocks.init();
+		ConfigItems.init();
 	}
 	
 	@Mod.EventHandler

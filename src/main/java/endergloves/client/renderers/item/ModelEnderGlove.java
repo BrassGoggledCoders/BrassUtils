@@ -16,18 +16,25 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import endergloves.common.item.ItemEnderGlove;
+import endergloves.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
  *
  */
+@SideOnly(Side.CLIENT)
 public class ModelEnderGlove extends ModelBiped
 {
+	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "models/modelglove");
+	
 	public ModelRenderer eye;
 	public ModelRenderer eye2;
 	public ModelRenderer eye3;
@@ -158,7 +165,7 @@ public class ModelEnderGlove extends ModelBiped
 		
 		ItemEnderGlove wand = (ItemEnderGlove)is.getItem();
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-		//Minecraft.getMinecraft().renderEngine.bindTexture(wand.getRod(is).getTexture());
+		Minecraft.getMinecraft().renderEngine.bindTexture(this.gloveTex);
 		GL11.glPushMatrix();
 
 		float scale = 0.0625F;

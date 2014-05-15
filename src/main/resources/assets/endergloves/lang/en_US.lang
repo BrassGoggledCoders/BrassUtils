@@ -10,6 +10,7 @@ enchantment.flametouch=Flame Touch
 tile.endertotem=Ender Totem
 
 # Items
+item.enderglove=Ender Glove
 
 # Tab
 itemGroup.endergloves=EnderGloves

@@ -9,7 +9,10 @@
  */
 package endergloves.client;
 
+import net.minecraftforge.client.MinecraftForgeClient;
+import endergloves.client.renderers.item.ItemEnderGloveRenderer;
 import endergloves.common.CommonProxy;
+import endergloves.common.config.ConfigItems;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -21,6 +24,6 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerDisplayInformation()
 	{
-		
+		MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove, new ItemEnderGloveRenderer());
 	}
 }
