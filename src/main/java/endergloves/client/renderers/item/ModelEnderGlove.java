@@ -140,22 +140,23 @@ public class ModelEnderGlove extends ModelBiped
 		wrist = new ModelRenderer(this, 0, 0);
 		wrist.addBox(0F, 0F, 0F, 5, 3, 4);
 
-		//this.eye.addChild(this.eye);
+		this.eye.addChild(this.eye);
 		this.eye.addChild(this.eye2);
 		this.eye.addChild(this.eye3);
-		this.finger.addChild(this.finger2);
-		this.finger.addChild(this.finger3);
-		this.finger.addChild(this.finger4);
-		this.lfinger.addChild(this.lfinger2);
-		this.lfinger.addChild(this.lfinger3);
-		this.lfinger.addChild(this.lfinger4);
+		//this.finger.addChild(this.finger2);
+		//this.finger.addChild(this.finger3);
+		//this.finger.addChild(this.finger4);
+		//this.lfinger.addChild(this.lfinger2);
+		//this.lfinger.addChild(this.lfinger3);
+		//this.lfinger.addChild(this.lfinger4);
 		
 		this.palm.addChild(this.palm2);
-		this.palm.addChild(this.thumb);
-		this.palm.addChild(this.wrist);
-		this.palm.addChild(this.eyebase);
-		this.palm.addChild(this.finger);
-		this.palm.addChild(this.lfinger);
+		//this.palm.addChild(this.thumb);
+		//this.palm.addChild(this.wrist);
+		//this.palm.addChild(this.eyebase);
+		//this.palm.addChild(this.finger);
+		//this.palm.addChild(this.lfinger);
+		this.palm.addChild(this.bipedRightArm);
 	}
 
 	//@Override
@@ -164,10 +165,9 @@ public class ModelEnderGlove extends ModelBiped
 		if (RenderManager.instance.renderEngine == null) 
 			return;
 		
-		ItemEnderGlove wand = (ItemEnderGlove)is.getItem();
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.gloveTex);
-		GL11.glPushMatrix();
+		
 		float scale = 0.0625F;
 		
 		eye.render(scale);
@@ -176,34 +176,33 @@ public class ModelEnderGlove extends ModelBiped
 		//eye.offsetZ = -0.3F;
 		//eye.rotateAngleX = -8F;
 	
-		eye2.render(scale);
-		eye2.offsetX = -1.0121212F;
+		//eye2.render(scale);
+		//eye2.offsetX = -1.0121212F;
 		
-		eye3.render(scale);
-		eye3.offsetX = -1.0121212F;
+		//eye3.render(scale);
+		//eye3.offsetX = -1.0121212F;
 		
-		eyebase.render(scale);
-		eyebase.offsetX = -1.0121212F;
+		//eyebase.render(scale);
+		//eyebase.offsetX = -1.0121212F;
 		
-		GL11.glRotatef(-15, 1, 0, 0);
-        GL11.glTranslatef(3, 0, 8);
-        GL11.glScalef(1 / 1.5F, 1 / 1.5F, 1 / 1.5F);
+		//GL11.glRotatef(-15, 1, 0, 0);
+        //GL11.glTranslatef(3, 0, 8);
+        //GL11.glScalef(1 / 1.5F, 1 / 1.5F, 1 / 1.5F);
         
-		finger.render(scale);
-		finger2.render(scale);
-		finger3.render(scale);
-		finger4.render(scale);
-		lfinger.render(scale);
-		lfinger2.render(scale);
-		lfinger3.render(scale);
-		lfinger4.render(scale);
-		lthumb.render(scale);
+		//finger.render(scale);
+		//finger2.render(scale);
+		//finger3.render(scale);
+		//finger4.render(scale);
+		//lfinger.render(scale);
+		//lfinger2.render(scale);
+		//lfinger3.render(scale);
+		//lfinger4.render(scale);
+		//lthumb.render(scale);
 		palm.render(scale);
 		palm2.render(scale);
-		thumb.render(scale);
-		wrist.render(scale);
 		
-		GL11.glPopMatrix();
+		//thumb.render(scale);
+		//wrist.render(scale);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
