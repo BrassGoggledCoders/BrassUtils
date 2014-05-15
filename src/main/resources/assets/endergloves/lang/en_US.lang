@@ -5,12 +5,12 @@ enchantment.spelunker=Spelunker
 enchantment.teleport=Teleport
 enchantment.creative=EG Creative
 enchantment.flametouch=Flame Touch
-
+#
 # Blocks
-tile.endertotem=Ender Totem
-
+tile.endertotem.name=Ender Totem
+#
 # Items
-item.enderglove=Ender Glove
-
+item.enderglove.name=Ender Glove
+#
 # Tab
 itemGroup.endergloves=EnderGloves
