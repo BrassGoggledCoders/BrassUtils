@@ -44,6 +44,12 @@ public class ItemEnderGlove extends ItemTool
 	}
 
 	@Override
+	public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker) // I think that's the right order xD
+	{	
+		return false;
+	}
+
+	@Override
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
 		super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
@@ -52,8 +58,21 @@ public class ItemEnderGlove extends ItemTool
 		return true;
 	}
 
-	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+	@Override
+	public boolean getIsRepairable(ItemStack is1, ItemStack is2)
 	{
 		return false;
+	}
+
+	@Override
+	public int getHarvestLevel(ItemStack is, String toolClass)
+	{
+		return 0;
+	}
+
+	@Override
+	public float getDigSpeed(ItemStack is, Block block, int metadata)
+	{
+		return 0.0F;
 	}
 }
