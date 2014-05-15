@@ -62,7 +62,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	{
 		switch (type)
 		{
-			case EQUIPPED_FIRST_PERSON:
+			case EQUIPPED_FIRST_PERSON: 
 			{
 				Minecraft mc = Minecraft.getMinecraft();
 				EntityPlayer player = mc.thePlayer;
@@ -73,15 +73,17 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
 					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
 
-					GL11.glTranslatef(0, 1, 0);
-					float scale = 2.0F;
+					GL11.glTranslatef(8, 0, 0.0F);
+					float scale = 0.9F;
 					GL11.glScalef(scale, scale, scale);
+					float angle = mc.theWorld.getWorldTime() * 11.6F;
+					GL11.glRotatef(angle, 0, 0.5F, 0);
 
 					if (is != null)
 					{
 						mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
 						int renderPass = 0;
-						float angle = 360.0F / mc.theWorld.rand.nextFloat() * 10;
+						
 						
 						do {
 							IIcon icon = Items.ender_eye.getIcon(item, renderPass);
@@ -93,7 +95,6 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 								float minV = icon.getMinV();
 								float maxV = icon.getMaxV();
 								ItemRenderer.renderItemIn2D(Tessellator.instance, maxU, minV, minU, maxV, icon.getIconWidth(), icon.getIconHeight(), 1.0F / 16.0F);
-								GL11.glRotatef(angle, 0, 1, 0);
 								GL11.glColor3f(1.0F, 1.0F, 1.0F);
 							}
 
