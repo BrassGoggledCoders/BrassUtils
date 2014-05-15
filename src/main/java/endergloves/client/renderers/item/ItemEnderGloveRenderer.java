@@ -40,6 +40,8 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 		{
 			case EQUIPPED_FIRST_PERSON:
 				return true;
+			case EQUIPPED:
+				return true;
 			default:
 				return false;
 		}
@@ -56,11 +58,11 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	{
 		switch (type)
 		{
-			case EQUIPPED_FIRST_PERSON:
+			case EQUIPPED:
 			{
 				GL11.glPushMatrix();
 				float scale = 1.4F;
-				//GL11.glScalef(scale, scale, scale);
+				GL11.glScalef(scale, scale, scale);
 				Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 				this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 				GL11.glPopMatrix();
