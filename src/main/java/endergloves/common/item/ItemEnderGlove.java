@@ -70,6 +70,13 @@ public class ItemEnderGlove extends ItemTool
 
 		return true;
 	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+    public boolean isFull3D()
+    {
+        return true;
+    }
 
 	@Override
 	public boolean getIsRepairable(ItemStack is1, ItemStack is2)

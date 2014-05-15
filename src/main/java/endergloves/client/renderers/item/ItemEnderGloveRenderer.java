@@ -10,13 +10,16 @@
 package endergloves.client.renderers.item;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
 import endergloves.common.item.ItemEnderGlove;
+import endergloves.common.lib.LibInfo;
 
 /**
  * The ItemRenderer for the ender glove item.
@@ -27,12 +30,24 @@ import endergloves.common.item.ItemEnderGlove;
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {
-	private ModelEnderGlove modelGlove = new ModelEnderGlove();
+	private ModelEnderGlove modelGlove;
+	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
+
+	public ItemEnderGloveRenderer()
+	{
+		this.modelGlove = new ModelEnderGlove();
+	}
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
-		return true;
+		switch (type)
+		{
+			case EQUIPPED:
+				return true;
+			default:
+				return false;
+		}
 	}
 
 	@Override
@@ -44,44 +59,17 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
-		Minecraft mc = Minecraft.getMinecraft();
-
-		if ((item == null) || (!(item.getItem() instanceof ItemEnderGlove)))
-			return;
-
-		ItemEnderGlove glove = (ItemEnderGlove)item.getItem();
-		EntityLivingBase wielder = null;
-
-		if ((type == IItemRenderer.ItemRenderType.EQUIPPED) || (type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON))
-			wielder = (EntityLivingBase)data[1];
-
-		GL11.glPushMatrix();
-
-		if (type != IItemRenderer.ItemRenderType.INVENTORY) 
+		switch (type)
 		{
-			if (type == IItemRenderer.ItemRenderType.ENTITY)
+			case EQUIPPED:
 			{
-				GL11.glTranslated(0.0D, 1.0D, 0.0D);
+				GL11.glPushMatrix();
+				Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+				this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+				GL11.glPopMatrix();
 			}
-			else 
-			{
-				GL11.glTranslated(0.5D, 1.5D, 0.5D);
-			
-				if (type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON)
-					GL11.glScaled(1.0D, 1.1D, 1.0D);
-			}
+			default:
+				break;
 		}
-		else 
-		{
-			GL11.glRotatef(66.0F, 0.0F, 0.0F, 1.0F);
-			GL11.glTranslated(0.0D, 0.6D, 0.0D);
-		}
-		
-		GL11.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
-	    GL11.glEnable(3042);
-	    GL11.glBlendFunc(770, 771);
-	    this.modelGlove.render(item);
-	    GL11.glDisable(3042);
-	    GL11.glPopMatrix();
 	}
 }
