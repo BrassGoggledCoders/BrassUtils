@@ -30,20 +30,15 @@ import endergloves.common.lib.LibInfo;
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {
-	private ModelEnderGlove modelGlove;
+	private ModelEnderGlove modelGlove = new ModelEnderGlove();
 	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
-
-	public ItemEnderGloveRenderer()
-	{
-		this.modelGlove = new ModelEnderGlove();
-	}
 
 	@Override
 	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		switch (type)
 		{
-			case EQUIPPED:
+			case EQUIPPED_FIRST_PERSON:
 				return true;
 			default:
 				return false;
@@ -53,7 +48,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
-		return helper != IItemRenderer.ItemRendererHelper.BLOCK_3D;
+		return true;
 	}
 
 	@Override
@@ -61,9 +56,11 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	{
 		switch (type)
 		{
-			case EQUIPPED:
+			case EQUIPPED_FIRST_PERSON:
 			{
 				GL11.glPushMatrix();
+				float scale = 1.4F;
+				//GL11.glScalef(scale, scale, scale);
 				Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 				this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 				GL11.glPopMatrix();

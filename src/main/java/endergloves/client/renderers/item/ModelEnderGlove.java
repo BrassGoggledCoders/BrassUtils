@@ -124,6 +124,24 @@ public class ModelEnderGlove extends ModelBase
 	public void render(Entity entity, float f1, float f2, float f3, float f4, float f5, float f6)
 	{
 		super.render(entity, f1, f2, f3, f4, f5, f6);
+		this.setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
+		eye.render(f6);
+		eye2.render(f6);
+		eye3.render(f6);
+		eyebase.render(f6);
+		finger.render(f6);
+		finger2.render(f6);
+		finger3.render(f6);
+		finger4.render(f6);
+		lfinger.render(f6);
+		lfinger2.render(f6);
+		lfinger3.render(f6);
+		lfinger4.render(f6);
+		lthumb.render(f6);
+		palm.render(f6);
+		palm2.render(f6);
+		thumb.render(f6);
+		wrist.render(f6);
 	}
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
@@ -131,5 +149,11 @@ public class ModelEnderGlove extends ModelBase
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
+	}
+	
+	@Override
+	public void setRotationAngles(float f1, float f2, float f3, float f4, float f5, float f6, Entity entity)
+	{
+		super.setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
 	}
 }

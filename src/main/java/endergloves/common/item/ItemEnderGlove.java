@@ -36,13 +36,6 @@ import endergloves.common.lib.LibInfo;
 public class ItemEnderGlove extends ItemTool
 {
 	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IIconRegister ir)
-	{
-		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "temp");
-	}
 
 	public ItemEnderGlove()
 	{
