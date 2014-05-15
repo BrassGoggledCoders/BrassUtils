@@ -1,3 +1,11 @@
+# Enchantments
+enchantment.affluency=Affluency
+enchantment.artisan=Artisan
+enchantment.spelunker=Spelunker
+enchantment.teleport=Teleport
+enchantment.creative=EG Creative
+enchantment.flametouch=Flame Touch
+
 # Blocks
 tile.endertotem=Ender Totem
 
