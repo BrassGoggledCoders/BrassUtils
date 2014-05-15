@@ -16,6 +16,7 @@ import net.minecraft.enchantment.EnchantmentDurability;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -167,14 +168,14 @@ public class InventoryHelper
 	 * Determines if a specific item is in the player's inventory.
 	 * 
 	 * @param player - the player with the inventory to check
-	 * @param is - the item stack to look for
+	 * @param item - the item stack to look for
 	 * @return - the slot in which the specified item sits
 	 */
-	public static int isInPlayerInventory(EntityPlayer player, ItemStack is)
+	public static int isInPlayerInventory(EntityPlayer player, Item item)
 	{
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
-			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].isItemEqual(is)))
+			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].getItem() == item))
 				return slot;
 		}
 
