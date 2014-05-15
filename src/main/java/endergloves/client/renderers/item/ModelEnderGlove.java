@@ -17,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
@@ -139,23 +140,22 @@ public class ModelEnderGlove extends ModelBiped
 		wrist = new ModelRenderer(this, 0, 0);
 		wrist.addBox(0F, 0F, 0F, 5, 3, 4);
 
-		/*
-		this.bipedRightArm.addChild(eye);
-		this.bipedRightArm.addChild(eye2);
-		this.bipedRightArm.addChild(eye3);
-		this.bipedRightArm.addChild(eyebase);
-		this.bipedRightArm.addChild(finger);
-		this.bipedRightArm.addChild(finger2);
-		this.bipedRightArm.addChild(finger3);
-		this.bipedRightArm.addChild(finger4);
-		this.bipedRightArm.addChild(lfinger);
-		this.bipedRightArm.addChild(lfinger2);
-		this.bipedRightArm.addChild(lfinger3);
-		this.bipedRightArm.addChild(lfinger4);
-		this.bipedRightArm.addChild(palm);
-		this.bipedRightArm.addChild(palm2);
-		this.bipedRightArm.addChild(thumb);
-		this.bipedRightArm.addChild(wrist);*/
+		//this.eye.addChild(this.eye);
+		this.eye.addChild(this.eye2);
+		this.eye.addChild(this.eye3);
+		this.finger.addChild(this.finger2);
+		this.finger.addChild(this.finger3);
+		this.finger.addChild(this.finger4);
+		this.lfinger.addChild(this.lfinger2);
+		this.lfinger.addChild(this.lfinger3);
+		this.lfinger.addChild(this.lfinger4);
+		
+		this.palm.addChild(this.palm2);
+		this.palm.addChild(this.thumb);
+		this.palm.addChild(this.wrist);
+		this.palm.addChild(this.eyebase);
+		this.palm.addChild(this.finger);
+		this.palm.addChild(this.lfinger);
 	}
 
 	//@Override
@@ -170,7 +170,7 @@ public class ModelEnderGlove extends ModelBiped
 		GL11.glPushMatrix();
 		float scale = 0.0625F;
 		
-		eye.render(-0.0625F);
+		eye.render(scale);
 		//eye.offsetX = -1.0121212F;
 		//eye.rotateAngleY = 45F;
 		//eye.offsetZ = -0.3F;
@@ -185,6 +185,10 @@ public class ModelEnderGlove extends ModelBiped
 		eyebase.render(scale);
 		eyebase.offsetX = -1.0121212F;
 		
+		GL11.glRotatef(-15, 1, 0, 0);
+        GL11.glTranslatef(3, 0, 8);
+        GL11.glScalef(1 / 1.5F, 1 / 1.5F, 1 / 1.5F);
+        
 		finger.render(scale);
 		finger2.render(scale);
 		finger3.render(scale);
