@@ -10,8 +10,8 @@
 package endergloves.common;
 
 import java.io.File;
-import java.util.logging.Level;
 
+import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -20,6 +20,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import endergloves.common.config.Config;
+import endergloves.common.lib.CreativeTabEG;
 import endergloves.common.lib.LibInfo;
 
 /**
@@ -38,6 +39,8 @@ public class EnderGloves
 	
 	public File directory;
 	
+	public static CreativeTabs tabEG = new CreativeTabEG(CreativeTabs.getNextID(), "endergloves");
+	
 	@Mod.EventHandler
 	public void foreplay(FMLPreInitializationEvent event)
 	{
@@ -52,18 +55,24 @@ public class EnderGloves
 		} 
 		catch (Exception e)
 		{
-			FMLLog.log(Level.SEVERE, e, "EnderGloves could not load its config file!", new Object[0]);
+			FMLLog.severe("EnderGloves could not load its config file!", new Object[0]); //(Level.SEVERE, e, "EnderGloves could not load its config file!", new Object[0]);
 		}
 		finally 
 		{
-			
+			if (Config.config != null)
+				Config.save();
 		}
+		
+		Config.save();
+		
+		//ConfigBlocks.init();
+		//ConfigItems.init();
 	}
 	
 	@Mod.EventHandler
 	public void orgasm(FMLInitializationEvent event)
 	{
-		
+		proxy.registerDisplayInformation();
 	}
 	
 	@Mod.EventHandler
