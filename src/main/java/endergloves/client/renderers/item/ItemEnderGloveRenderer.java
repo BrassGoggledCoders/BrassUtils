@@ -18,6 +18,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -66,6 +67,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 			{
 				Minecraft mc = Minecraft.getMinecraft();
 				EntityPlayer player = mc.thePlayer;
+				World world = mc.theWorld;
 
 				if (player.inventory.hasItem(Items.ender_eye))
 				{
@@ -76,7 +78,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glTranslatef(8, 0, 0);
 					float scale = 1.9F;
 					GL11.glScalef(scale, scale, scale);
-					float angle = mc.theWorld.getWorldTime() * 11.6F;
+					float angle = world.getWorldTime() * 11.6F;
 					GL11.glRotatef(angle, 0 - 0.5F, 0 - 0.5F, 0);
 
 					if (is != null)
