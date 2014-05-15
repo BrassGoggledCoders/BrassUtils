@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "EnderGloves",
+  "name": "EnderGloves",
+  "description": "The power of the End in your fist.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authors": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["warlordjones", "Surseance", "Rongmario", "Snurly"],
+  "credits": "The Mojam team: thanks for the amazing competition.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
