@@ -27,4 +27,22 @@ public class TotemWorldGenerator implements IWorldGenerator
 	{
 
 	}
+
+	private boolean generateEnderTotem(World world, Random random, int chunkX, int chunkY, int chunkZ)
+	{
+		int posX = chunkX * 16 + random.nextInt(15);
+		int posZ = chunkZ * 16 + random.nextInt(15); // Should these values be changed?
+
+		int posY = world.provider.dimensionId == -1 ?
+
+				return false;
+	}
+
+	public int getFirstUncoveredY(World world, int x, int z)
+	{
+		for (int y = 5; !world.isAirBlock(x, y + 1, z); y++)
+		{
+			return y;
+		}
+	}
 }

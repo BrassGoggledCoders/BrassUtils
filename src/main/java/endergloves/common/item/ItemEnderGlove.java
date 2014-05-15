@@ -14,6 +14,7 @@ import java.util.Set;
 import endergloves.common.EnderGloves;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
@@ -74,5 +75,11 @@ public class ItemEnderGlove extends ItemTool
 	public float getDigSpeed(ItemStack is, Block block, int metadata)
 	{
 		return 0.0F;
+	}
+
+	@Override
+	public EnumRarity getRarity(ItemStack is)
+	{
+		return EnumRarity.epic; // Might change this to 'rare'
 	}
 }
