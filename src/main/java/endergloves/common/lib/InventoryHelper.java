@@ -106,7 +106,7 @@ public class InventoryHelper
 		}
 	}
 	
-	private static int getNonFilledStack(IInventory inventory, ItemStack is) 
+	public static int getNonFilledStack(IInventory inventory, ItemStack is) 
 	{
 		for (int slot = 0; slot < inventory.getSizeInventory(); slot++) 
 		{
@@ -125,7 +125,7 @@ public class InventoryHelper
 		return -1;
 	}
 
-	private static int getFirstEmptySlot(IInventory inventory, ItemStack is)
+	public static int getFirstEmptySlot(IInventory inventory, ItemStack is)
 	{
 		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
 		{

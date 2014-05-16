@@ -9,6 +9,7 @@
  */
 package endergloves.common.item;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -75,8 +76,12 @@ public class ItemEnderGlove extends ItemTool
 	{
 		super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
+		//ItemStack drop = block.get
 		
-		InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(block));
+		if ((InventoryHelper.getFirstEmptySlot(enderInv, new ItemStack(block)) != -1) && (InventoryHelper.getNonFilledStack(enderInv, new ItemStack(block)) != -1))
+			InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(block));
+		else
+			Utils.sendMessageToPlayer((EntityPlayer)entityLiving, "Oh noes! No room in your Ender Chest!", ((EntityPlayer)entityLiving).getDisplayName());
 		
 		return true;
 	}
