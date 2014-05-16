@@ -12,6 +12,8 @@ package endergloves.common;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -23,6 +25,7 @@ import endergloves.common.config.Config;
 import endergloves.common.config.ConfigBlocks;
 import endergloves.common.config.ConfigItems;
 import endergloves.common.lib.CreativeTabEG;
+import endergloves.common.lib.EventHandlerWorld;
 import endergloves.common.lib.LibInfo;
 
 /**
@@ -42,6 +45,8 @@ public class EnderGloves
 	public File directory;
 	
 	public static CreativeTabs tabEG = new CreativeTabEG(CreativeTabs.getNextID(), "endergloves");
+	
+	public EventHandlerWorld worldEventHandler;
 	
 	@Mod.EventHandler
 	public void foreplay(FMLPreInitializationEvent event)
@@ -64,6 +69,11 @@ public class EnderGloves
 			if (Config.config != null)
 				Config.save();
 		}
+		
+		this.worldEventHandler = new EventHandlerWorld();
+		
+		FMLCommonHandler.instance().bus().register(this.worldEventHandler);
+		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
 		
 		Config.save();
 		

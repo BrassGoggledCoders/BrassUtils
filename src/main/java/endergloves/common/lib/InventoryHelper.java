@@ -32,6 +32,13 @@ public class InventoryHelper
 		return player.getInventoryEnderChest();
 	}
 
+	/**
+	 * @author MightyPork, from PowerCraft
+	 * 
+	 * @param inventory
+	 * @param is
+	 * @return
+	 */
 	public static boolean addItemStackToInventory(IInventory inventory, ItemStack is)
 	{
 		if (!is.isItemDamaged()) 
@@ -59,6 +66,13 @@ public class InventoryHelper
 		return false;
 	}
 	
+	/**
+	 * @author MightyPork, from PowerCraft
+	 * 
+	 * @param inventory
+	 * @param is
+	 * @return
+	 */
 	private static int storePartially(IInventory inventory, ItemStack is)
 	{
 		Item id = is.getItem();
@@ -106,6 +120,13 @@ public class InventoryHelper
 		}
 	}
 	
+	/**
+	 * @author MightyPork, from PowerCraft
+	 * 
+	 * @param inventory
+	 * @param is
+	 * @return
+	 */
 	public static int getNonFilledStack(IInventory inventory, ItemStack is) 
 	{
 		for (int slot = 0; slot < inventory.getSizeInventory(); slot++) 

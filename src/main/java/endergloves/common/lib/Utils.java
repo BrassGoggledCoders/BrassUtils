@@ -9,10 +9,16 @@
  */
 package endergloves.common.lib;
 
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.InventoryEnderChest;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.world.World;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -24,14 +30,19 @@ public class Utils
 	public static void sendMessage(EntityPlayer player, String message)
 	{
 		IChatComponent chat = new ChatComponentText(message);
-		player.addChatMessage(chat);
+		
+		if (!player.worldObj.isRemote)
+			player.addChatMessage(chat);
 	}
 	
-	public static void sendMessageToPlayer(EntityPlayer player, String message, String playerName)
+	public static ItemStack getDroppedItemStack(World world, EntityLivingBase entityLiving, Block block, int x, int y, int z)
 	{
-		IChatComponent chat = new ChatComponentText("[" + player.getDisplayName() + "] " + message);
+		List<ItemStack>drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(entityLiving));
 		
-		if (player.getDisplayName().equals(playerName))
-			player.addChatMessage(chat);
-	}	
+		
+		ItemStack is = (ItemStack)drops.get(0);
+		//System.out.println(is.getDisplayName());
+		
+		return is;
+	}
 }

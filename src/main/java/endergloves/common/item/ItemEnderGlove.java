@@ -45,6 +45,7 @@ public class ItemEnderGlove extends ItemTool
 {
 	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
 	public static boolean hasFired = false;
+	public static boolean destroyedWithGloves = false;
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -71,20 +72,20 @@ public class ItemEnderGlove extends ItemTool
 		return false;
 	}
 
-	// TODO: Need to grab the blocks drop here...
 	@Override
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
-		super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
-		//ItemStack drop = (block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0)).;
-		
-		if ((InventoryHelper.getFirstEmptySlot(enderInv, new ItemStack(block)) != -1) && (InventoryHelper.getNonFilledStack(enderInv, new ItemStack(block)) != -1))
-			InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(block));
-		else
-			Utils.sendMessageToPlayer((EntityPlayer)entityLiving, "Oh noes! No room in your Ender Chest!", ((EntityPlayer)entityLiving).getDisplayName());
-		
-		return true;
+		ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
+
+		//System.out.println("Woof!");
+		InventoryHelper.addItemStackToInventory(enderInv, drops);
+		//destroyedWithGloves = true;
+
+		//if (InventoryHelper.addItemStackToInventory(enderInv, drops) == true)
+		//	Utils.sendMessage((EntityPlayer)entityLiving, "Oh noes! No room in your Ender Chest!");
+
+		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -109,33 +110,12 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public float getDigSpeed(ItemStack is, Block block, int metadata)
 	{
-		return 2.0F;
+		return 1.3F;
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack is)
 	{
 		return EnumRarity.epic; 
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player)
-	{
-		if (!world.isRemote)
-		{
-			ChunkPosition chunkPos = world.findClosestStructure("Stronghold", (int)player.posX, (int)player.posY, (int)player.posZ);
-
-			if (chunkPos != null)
-			{
-				EntityEnderEye enderEye = new EntityEnderEye(world, player.posX, player.posY + 1.62D - (double)player.yOffset, player.posZ);
-				enderEye.moveTowards((double)chunkPos.chunkPosX, chunkPos.chunkPosY, (double)chunkPos.chunkPosZ);
-				world.spawnEntityInWorld(enderEye);
-				world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-				world.playAuxSFXAtEntity((EntityPlayer)null, 1002, (int)player.posX, (int)player.posY, (int)player.posZ, 0);
-				this.hasFired = true;
-			}
-		}
-		
-		return is;
 	}
 }
