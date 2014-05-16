@@ -9,7 +9,7 @@
  */
 package endergloves.common.lib;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
@@ -26,7 +26,7 @@ public class EventHandlerWorld
 	@SubscribeEvent
 	public void harvestDrops(BlockEvent.HarvestDropsEvent event)
 	{	
-		List<ItemStack> drops = event.drops;
+		ArrayList<ItemStack> drops = event.drops;
 		
 		if (event.harvester.inventory.getCurrentItem().getItem() == ConfigItems.itemEnderGlove)
 			drops.clear();

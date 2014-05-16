@@ -9,7 +9,7 @@
  */
 package endergloves.common.lib;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -37,14 +37,9 @@ public class Utils
 
 	public static ItemStack getDroppedItemStack(World world, EntityLivingBase entityLiving, Block block, int x, int y, int z)
 	{
-		List<ItemStack>drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(entityLiving));
-		ItemStack is = null;
-		
-		for (int size = 0; size < drops.size(); size++)
-		{
-			is = (ItemStack)drops.get(size);
-		}
-		
+		ArrayList<ItemStack>drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(entityLiving));
+		ItemStack is = (ItemStack)drops.get(0);
+
 		return is;
 	}
 }
