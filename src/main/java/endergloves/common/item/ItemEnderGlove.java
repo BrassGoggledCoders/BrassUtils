@@ -14,11 +14,16 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityEnderEye;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -26,16 +31,19 @@ import com.google.common.collect.Sets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import endergloves.common.EnderGloves;
+import endergloves.common.lib.InventoryHelper;
 import endergloves.common.lib.LibInfo;
+import endergloves.common.lib.Utils;
 
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
  *
  */
-public class ItemEnderGlove extends ItemTool
+public class ItemEnderGlove extends ItemTool 
 {
 	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
+	public static boolean hasFired = false;
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -43,7 +51,7 @@ public class ItemEnderGlove extends ItemTool
 	{
 		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "temp");
 	}
-	
+
 	public ItemEnderGlove()
 	{
 		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
@@ -66,17 +74,19 @@ public class ItemEnderGlove extends ItemTool
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
 		super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
-
-
+		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
+		
+		enderInv.setInventorySlotContents(1, new ItemStack(block, 0));
+		
 		return true;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
-    public boolean isFull3D()
-    {
-        return true;
-    }
+	public boolean isFull3D()
+	{
+		return true;
+	}
 
 	@Override
 	public boolean getIsRepairable(ItemStack is1, ItemStack is2)
@@ -87,18 +97,39 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public int getHarvestLevel(ItemStack is, String toolClass)
 	{
-		return 0;
+		return Items.stone_pickaxe.getHarvestLevel(is, toolClass);
 	}
 
 	@Override
 	public float getDigSpeed(ItemStack is, Block block, int metadata)
 	{
-		return 0.0F;
+		return 2.0F;
 	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack is)
 	{
-		return EnumRarity.epic; // Might change this to 'rare'
+		return EnumRarity.epic; 
+	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player)
+	{
+		if (!world.isRemote)
+		{
+			ChunkPosition chunkPos = world.findClosestStructure("Stronghold", (int)player.posX, (int)player.posY, (int)player.posZ);
+
+			if (chunkPos != null)
+			{
+				EntityEnderEye enderEye = new EntityEnderEye(world, player.posX, player.posY + 1.62D - (double)player.yOffset, player.posZ);
+				enderEye.moveTowards((double)chunkPos.chunkPosX, chunkPos.chunkPosY, (double)chunkPos.chunkPosZ);
+				world.spawnEntityInWorld(enderEye);
+				world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+				world.playAuxSFXAtEntity((EntityPlayer)null, 1002, (int)player.posX, (int)player.posY, (int)player.posZ, 0);
+				this.hasFired = true;
+			}
+		}
+		
+		return is;
 	}
 }

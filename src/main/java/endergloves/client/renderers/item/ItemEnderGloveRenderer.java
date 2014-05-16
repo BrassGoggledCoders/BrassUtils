@@ -23,6 +23,7 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
+import endergloves.common.item.ItemEnderGlove;
 import endergloves.common.lib.InventoryHelper;
 import endergloves.common.lib.LibInfo;
 
@@ -66,43 +67,23 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 			case EQUIPPED_FIRST_PERSON: 
 			{
 				Minecraft mc = Minecraft.getMinecraft();
-				EntityPlayer player = mc.thePlayer;
-				World world = mc.theWorld;
 
-				if (player.inventory.hasItem(Items.ender_eye))
+				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
 					GL11.glPushMatrix();
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
 					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
-
-					GL11.glTranslatef(8, 0, 0);
-					float scale = 1.9F;
-					GL11.glScalef(scale, scale, scale);
-					float angle = world.getWorldTime() * 11.6F;
-					GL11.glRotatef(angle, 0 - 0.5F, 0 - 0.5F, 0);
-
-					if (is != null)
+					
+					if (!ItemEnderGlove.hasFired)
 					{
-						mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
-						int renderPass = 0;
-						
-						
-						do {
-							IIcon icon = Items.ender_eye.getIcon(item, renderPass);
-
-							if (icon != null)
-							{
-								float minU = icon.getMinU();
-								float maxU = icon.getMaxU();
-								float minV = icon.getMinV();
-								float maxV = icon.getMaxV();
-								ItemRenderer.renderItemIn2D(Tessellator.instance, maxU, minV, minU, maxV, icon.getIconWidth(), icon.getIconHeight(), 1.0F / 16.0F);
-								GL11.glColor3f(1.0F, 1.0F, 1.0F);
-							}
-
-							renderPass++;
-						} 
-						while (renderPass < is.getItem().getRenderPasses(is.getItemDamage()));
+						this.renderEnderEye(item, is);
+					}
+					else if (ItemEnderGlove.hasFired)
+					{
+						for (int timer = 0; timer < mc.theWorld.getWorldTime() + 10; timer++)
+						{
+							ItemEnderGlove.hasFired = false;
+						}
 					}
 
 					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
@@ -112,6 +93,39 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 			}
 			default:
 				break;
+		}
+	}
+	
+	private void renderEnderEye(ItemStack item, ItemStack is)
+	{
+		Minecraft mc = Minecraft.getMinecraft();
+		
+		GL11.glTranslatef(8, 0, 0);
+		float scale = 1.9F;
+		GL11.glScalef(scale, scale, scale);
+		float angle = mc.theWorld.getWorldTime() * 11.6F;
+		GL11.glRotatef(angle, 0 - 0.5F, 0 - 0.5F, 0);
+
+		if (is != null)
+		{
+			mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
+			int renderPass = 0;
+			
+			do {
+				IIcon icon = Items.ender_eye.getIcon(item, renderPass);
+
+				if (icon != null)
+				{
+					float minU = icon.getMinU();
+					float maxU = icon.getMaxU();
+					float minV = icon.getMinV();
+					float maxV = icon.getMaxV();
+					ItemRenderer.renderItemIn2D(Tessellator.instance, maxU, minV, minU, maxV, icon.getIconWidth(), icon.getIconHeight(), 1.0F / 16.0F);
+					GL11.glColor3f(1.0F, 1.0F, 1.0F);
+				}
+
+				renderPass++;
+			} while (renderPass < is.getItem().getRenderPasses(is.getItemDamage()));
 		}
 	}
 }

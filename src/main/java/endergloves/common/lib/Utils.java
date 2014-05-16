@@ -34,10 +34,4 @@ public class Utils
 		if (player.getDisplayName().equals(playerName))
 			player.addChatMessage(chat);
 	}	
-	
-	@Deprecated
-	public static InventoryEnderChest getPlayerEnderChest(EntityPlayer player)
-	{
-		return player.getInventoryEnderChest();
-	}
 }
