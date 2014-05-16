@@ -11,12 +11,9 @@ package endergloves.common.lib;
 
 import java.util.Random;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentDurability;
-import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -36,12 +33,109 @@ public class InventoryHelper
 		return player.getInventoryEnderChest();
 	}
 
-	public static boolean addItemToEnderInventory(ItemStack is)
+	public static boolean addItemStackToInventory(IInventory inv, ItemStack is)
 	{
+		if (!is.isItemDamaged()) 
+		{
+			int stackSize;
+			do 
+			{
+				stackSize = is.stackSize;
+				is.stackSize = storePartialItemStack(inv, is);
+			}
+			while (is.stackSize > 0 && is.stackSize < stackSize);
+			
+			return is.stackSize < stackSize;
+		}
+		
+		int slot = getFirstEmptySlot(inv, is);
+		
+		if (slot >= 0) 
+		{
+			inv.setInventorySlotContents(slot, ItemStack.copyItemStack(is));
+			is.stackSize = 0;
+			return true;
+		}
 		
 		return false;
-	}	
+	}
 	
+	private static int storePartialItemStack(IInventory inventory, ItemStack is)
+	{
+		Item id = is.getItem();
+		int size = is.stackSize;
+
+		if (is.getMaxStackSize() == 1) // Not stackable
+		{
+			int freeSlot = getFirstEmptySlot(inventory, is);
+			
+			if (freeSlot < 0)
+				return size;
+			
+			if (inventory.getStackInSlot(freeSlot) == null)
+				inventory.setInventorySlotContents(freeSlot, ItemStack.copyItemStack(is));
+			
+			return 0;
+		}
+
+		int targetSlot = getStackWithFreeSpace(inventory, is);
+		if (targetSlot < 0) {
+			targetSlot = getFirstEmptySlot(inventory, is);
+		}
+
+		if (targetSlot < 0) {
+			return size;
+		}
+
+		if (inventory.getStackInSlot(targetSlot) == null) {
+			inventory.setInventorySlotContents(targetSlot, new ItemStack(id, 0, is.getItemDamage()));
+		}
+
+		int canStore = size;
+		if (canStore > inventory.getStackInSlot(targetSlot).getMaxStackSize() - inventory.getStackInSlot(targetSlot).stackSize) {
+			canStore = inventory.getStackInSlot(targetSlot).getMaxStackSize() - inventory.getStackInSlot(targetSlot).stackSize;
+		}
+		if (canStore > inventory.getInventoryStackLimit() - inventory.getStackInSlot(targetSlot).stackSize) {
+			canStore = inventory.getInventoryStackLimit() - inventory.getStackInSlot(targetSlot).stackSize;
+		}
+		if (canStore == 0) {
+			return size;
+		} else {
+			size -= canStore;
+			inventory.getStackInSlot(targetSlot).stackSize += canStore;
+			return size;
+		}
+	}
+	
+	private static int getStackWithFreeSpace(IInventory inv, ItemStack itemstack) {
+
+		for (int slot = 0; slot < inv.getSizeInventory(); slot++) 
+		{
+
+			ItemStack stackAt = inv.getStackInSlot(slot);
+			if (stackAt != null && stackAt.itemID == itemstack.itemID && stackAt.isStackable() && stackAt.stackSize < stackAt.getMaxStackSize()
+					&& stackAt.stackSize < inv.getInventoryStackLimit()
+					&& (!stackAt.getHasSubtypes() || stackAt.getItemDamage() == itemstack.getItemDamage())) {
+				return slot;
+			}
+		}
+
+		return -1;
+	}
+
+	private static int getFirstEmptySlot(IInventory inventory, ItemStack is)
+	{
+		for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+		{
+			if (inventory.getStackInSlot(slot) == null)
+			{
+				return slot;
+			}
+		}
+
+		return -1;
+	}
+
 	/**
 	 * Determines if a specific item is in the player's inventory.
 	 * 
