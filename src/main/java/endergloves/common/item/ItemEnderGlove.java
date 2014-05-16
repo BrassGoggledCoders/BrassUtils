@@ -76,7 +76,7 @@ public class ItemEnderGlove extends ItemTool
 		super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
 		
-		InventoryHelper.addItemStackToEnderInv(enderInv, new ItemStack(block, 0));
+		InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(block));
 		
 		return true;
 	}
