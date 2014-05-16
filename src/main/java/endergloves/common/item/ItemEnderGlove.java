@@ -71,12 +71,13 @@ public class ItemEnderGlove extends ItemTool
 		return false;
 	}
 
+	// TODO: Need to grab the blocks drop here...
 	@Override
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
 		super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
-		//ItemStack drop = block.get
+		//ItemStack drop = (block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0)).;
 		
 		if ((InventoryHelper.getFirstEmptySlot(enderInv, new ItemStack(block)) != -1) && (InventoryHelper.getNonFilledStack(enderInv, new ItemStack(block)) != -1))
 			InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(block));

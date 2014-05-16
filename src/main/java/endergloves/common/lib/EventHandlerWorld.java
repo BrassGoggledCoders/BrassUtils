@@ -9,6 +9,10 @@
  */
 package endergloves.common.lib;
 
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.world.BlockEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
@@ -16,5 +20,9 @@ package endergloves.common.lib;
  */
 public class EventHandlerWorld
 {
-
+	@SubscribeEvent
+	public void blockDropped(BlockEvent.HarvestDropsEvent event)
+	{
+		//ItemStack drops = event.drops.contains(o));
+	}
 }
