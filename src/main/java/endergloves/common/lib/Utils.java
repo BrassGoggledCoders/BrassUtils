@@ -38,8 +38,13 @@ public class Utils
 	public static ItemStack getDroppedItemStack(World world, EntityLivingBase entityLiving, Block block, int x, int y, int z)
 	{
 		ArrayList<ItemStack>drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(entityLiving));
-		ItemStack is = (ItemStack)drops.get(0);
-
-		return is;
+		ItemStack is1 = null;
+		
+		for (int size = 0; size < drops.size(); size++)
+		{
+			is1 = (ItemStack)drops.get(size);
+		}
+		
+		return is1;
 	}
 }

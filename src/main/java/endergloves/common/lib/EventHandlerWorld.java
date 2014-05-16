@@ -26,11 +26,10 @@ public class EventHandlerWorld
 	@SubscribeEvent
 	public void harvestDrops(BlockEvent.HarvestDropsEvent event)
 	{	
-		ArrayList<ItemStack> drops = event.drops;
+		ItemStack drops = Utils.getDroppedItemStack(event.world, event.harvester, event.block, event.x, event.y, event.z).copy();
 		
 		if (event.harvester.inventory.getCurrentItem().getItem() == ConfigItems.itemEnderGlove)
-			drops.clear();
-		else
-			return;
+			//event.drops.clear();
+			event.dropChance = 0.0F;
 	}
 }
