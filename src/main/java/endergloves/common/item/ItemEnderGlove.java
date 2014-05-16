@@ -44,8 +44,6 @@ import endergloves.common.lib.Utils;
 public class ItemEnderGlove extends ItemTool 
 {
 	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
-	public static boolean hasFired = false;
-	public static boolean destroyedWithGloves = false;
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -77,13 +75,7 @@ public class ItemEnderGlove extends ItemTool
 	{
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
 		ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
-
-		//System.out.println("Woof!");
 		InventoryHelper.addItemStackToInventory(enderInv, drops);
-		//destroyedWithGloves = true;
-
-		//if (InventoryHelper.addItemStackToInventory(enderInv, drops) == true)
-		//	Utils.sendMessage((EntityPlayer)entityLiving, "Oh noes! No room in your Ender Chest!");
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 	}

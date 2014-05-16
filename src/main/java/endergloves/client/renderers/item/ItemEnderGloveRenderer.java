@@ -73,19 +73,8 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glPushMatrix();
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
 					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
-					
-					if (!ItemEnderGlove.hasFired)
-					{
-						this.renderEnderEye(item, is);
-					}
-					else if (ItemEnderGlove.hasFired)
-					{
-						for (int timer = 0; timer < mc.theWorld.getWorldTime() + 10; timer++)
-						{
-							ItemEnderGlove.hasFired = false;
-						}
-					}
 
+					this.renderEnderEye(item, is);
 					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 					//this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 					GL11.glPopMatrix();
@@ -95,11 +84,11 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 				break;
 		}
 	}
-	
+
 	private void renderEnderEye(ItemStack item, ItemStack is)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
-		
+
 		GL11.glTranslatef(8, 0, 0);
 		float scale = 1.9F;
 		GL11.glScalef(scale, scale, scale);
@@ -110,7 +99,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 		{
 			mc.renderEngine.bindTexture(TextureMap.locationItemsTexture);
 			int renderPass = 0;
-			
+
 			do {
 				IIcon icon = Items.ender_eye.getIcon(item, renderPass);
 

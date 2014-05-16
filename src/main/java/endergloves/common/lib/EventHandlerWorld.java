@@ -9,13 +9,12 @@
  */
 package endergloves.common.lib;
 
-import com.apple.concurrent.Dispatch.Priority;
+import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import endergloves.common.config.ConfigItems;
-import endergloves.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -26,17 +25,12 @@ public class EventHandlerWorld
 {
 	@SubscribeEvent
 	public void harvestDrops(BlockEvent.HarvestDropsEvent event)
-	{
-		boolean shouldDrop = ItemEnderGlove.destroyedWithGloves;
-
-		System.out.println("Well!");
+	{	
+		List<ItemStack> drops = event.drops;
 		
-		if (event.harvester.inventory.getCurrentItem().getItem().equals(ConfigItems.itemEnderGlove))
-		{
-			if (!shouldDrop)
-				event.drops.clear();
-			else
-				return;
-		}
+		if (event.harvester.inventory.getCurrentItem().getItem() == ConfigItems.itemEnderGlove)
+			drops.clear();
+		else
+			return;
 	}
 }

@@ -24,9 +24,7 @@ import net.minecraft.item.ItemStack;
  *
  */
 public class InventoryHelper
-{
-	//private static Random random = new Random();
-	
+{	
 	public static InventoryEnderChest getPlayerEnderChest(EntityPlayer player)
 	{
 		return player.getInventoryEnderChest();

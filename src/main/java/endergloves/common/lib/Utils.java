@@ -30,18 +30,20 @@ public class Utils
 	public static void sendMessage(EntityPlayer player, String message)
 	{
 		IChatComponent chat = new ChatComponentText(message);
-		
+
 		if (!player.worldObj.isRemote)
 			player.addChatMessage(chat);
 	}
-	
+
 	public static ItemStack getDroppedItemStack(World world, EntityLivingBase entityLiving, Block block, int x, int y, int z)
 	{
 		List<ItemStack>drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(entityLiving));
+		ItemStack is = null;
 		
-		
-		ItemStack is = (ItemStack)drops.get(0);
-		//System.out.println(is.getDisplayName());
+		for (int size = 0; size < drops.size(); size++)
+		{
+			is = (ItemStack)drops.get(size);
+		}
 		
 		return is;
 	}
