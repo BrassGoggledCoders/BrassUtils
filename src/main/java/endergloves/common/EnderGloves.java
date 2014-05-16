@@ -72,7 +72,6 @@ public class EnderGloves
 		
 		this.worldEventHandler = new EventHandlerWorld();
 		
-		//FMLCommonHandler.instance().bus().register(this.worldEventHandler);
 		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
 		
 		Config.save();
