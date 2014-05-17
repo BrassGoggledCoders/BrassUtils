@@ -11,7 +11,7 @@ package endergloves.common.lib;
 
 import java.util.Random;
 
-import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
@@ -28,21 +28,13 @@ public class EventHandlerEntity
 	@SubscribeEvent
 	public void itemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
-		int slot = random.nextInt(8);
+		IInventory craft = event.craftMatrix;
+		int randomSlot = random.nextInt(8);
 
-		if (event.craftMatrix.getStackInSlot(slot) != null)
+		if (craft.getStackInSlot(randomSlot) != null)
 		{
-			ItemStack stackInSlot = event.craftMatrix.getStackInSlot(slot);
-
-			if (stackInSlot != null)
-			{
-				ItemStack result = new ItemStack(stackInSlot.copy().getItem(), 1);
-				
-				if (stackInSlot.isItemDamaged())
-					result.damageItem(stackInSlot.getItemDamage(), event.player);
-				
-				event.craftMatrix.setInventorySlotContents(slot, result);
-			}
-		}      
+			ItemStack result = new ItemStack(craft.getStackInSlot(randomSlot).getItem(), 2);
+			craft.setInventorySlotContents(randomSlot, result);
+		}   
 	}
 }
