@@ -13,6 +13,7 @@ import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -72,8 +73,8 @@ public class EnderGloves
 
 		this.entityEventHandler = new EventHandlerEntity();
 		this.worldEventHandler = new EventHandlerWorld();
+		FMLCommonHandler.instance().bus().register(this.entityEventHandler);
 		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
-		MinecraftForge.EVENT_BUS.register(this.entityEventHandler);
 		//GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 0);
 
 		Config.save();

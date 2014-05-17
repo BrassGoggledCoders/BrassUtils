@@ -9,11 +9,12 @@
  */
 package endergloves.common.lib;
 
-import net.minecraft.enchantment.EnchantmentHelper;
+import java.util.Random;
+
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
-import endergloves.common.config.Config;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -22,17 +23,26 @@ import endergloves.common.config.Config;
  */
 public class EventHandlerEntity
 {
+	Random random = new Random();
+
 	@SubscribeEvent
 	public void itemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
-		ItemStack currentItem = event.player.inventory.getCurrentItem();
-		ItemStack result = event.crafting;
-		
-		int artisanAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchArtisanId, currentItem);
-		
-		if (artisanAmount > 0)
+		int slot = random.nextInt(8);
+
+		if (event.craftMatrix.getStackInSlot(slot) != null)
 		{
-			result.copy().equals(new ItemStack(result.getItem(), 2));
-		}
+			ItemStack stackInSlot = event.craftMatrix.getStackInSlot(slot);
+
+			if (stackInSlot != null)
+			{
+				ItemStack result = new ItemStack(stackInSlot.copy().getItem(), 1);
+				
+				if (stackInSlot.isItemDamaged())
+					result.damageItem(stackInSlot.getItemDamage(), event.player);
+				
+				event.craftMatrix.setInventorySlotContents(slot, result);
+			}
+		}      
 	}
 }
