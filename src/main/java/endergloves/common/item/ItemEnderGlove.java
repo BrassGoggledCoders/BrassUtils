@@ -76,7 +76,7 @@ public class ItemEnderGlove extends ItemTool
 	{
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
 	
-		int flameTouch = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
+		int flameTouch = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is); 
 		ItemStack smeltableBlock = (new ItemStack(block));
 
 		if ((flameTouch > 0) && (Utils.isSmeltable(smeltableBlock)))
@@ -84,14 +84,16 @@ public class ItemEnderGlove extends ItemTool
 			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 			InventoryHelper.addItemStackToInventory(enderInv, drops);
 			EnderGloves.proxy.blockFlameFX(world, x, y, z, 4);
+			Utils.playSFX(world, x, y, z, "fire.ignite");
 		}
 		else
 		{
 			ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
 			InventoryHelper.addItemStackToInventory(enderInv, drops);
+			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 
-		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
+		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
 
 	@SideOnly(Side.CLIENT)

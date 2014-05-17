@@ -73,7 +73,7 @@ public class EnderGloves
 		this.worldEventHandler = new EventHandlerWorld();
 
 		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
-		GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 0);
+		//GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 0);
 
 		Config.save();
 

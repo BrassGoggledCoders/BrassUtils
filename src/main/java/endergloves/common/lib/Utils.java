@@ -56,6 +56,11 @@ public class Utils
 	{
 		return ((is == null) || (FurnaceRecipes.smelting().getSmeltingResult(is) == null)) ? false : true;
 	}
+	
+	public static void playSFX(World world, int x, int y, int z, String sound)
+	{
+		world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+	}
 
 	/*
 	\247# +
