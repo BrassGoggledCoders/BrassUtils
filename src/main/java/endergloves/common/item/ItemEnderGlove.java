@@ -77,10 +77,11 @@ public class ItemEnderGlove extends ItemTool
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
 	
 		int flameTouch = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
+		ItemStack smeltableBlock = (new ItemStack(block));
 
-		if (flameTouch > 0)
+		if ((flameTouch > 0) && (Utils.isSmeltable(smeltableBlock)))
 		{
-			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(block)).copy();
+			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 			InventoryHelper.addItemStackToInventory(enderInv, drops);
 		}
 		else

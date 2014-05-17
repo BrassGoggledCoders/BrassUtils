@@ -16,6 +16,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
@@ -49,5 +50,10 @@ public class Utils
 		}
 
 		return is;
+	}
+	
+	public static boolean isSmeltable(ItemStack is) 
+	{
+		return ((is == null) || (FurnaceRecipes.smelting().getSmeltingResult(is) == null)) ? false : true;
 	}
 }
