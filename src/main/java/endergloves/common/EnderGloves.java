@@ -12,7 +12,6 @@ package endergloves.common;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -20,13 +19,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import endergloves.common.config.Config;
 import endergloves.common.config.ConfigBlocks;
 import endergloves.common.config.ConfigItems;
 import endergloves.common.lib.CreativeTabEG;
 import endergloves.common.lib.EnderGloveWorldGenerator;
+import endergloves.common.lib.EventHandlerEntity;
 import endergloves.common.lib.EventHandlerWorld;
 import endergloves.common.lib.LibInfo;
 
@@ -44,6 +43,7 @@ public class EnderGloves
 	@Mod.Instance(LibInfo.ID)
 	public static EnderGloves instance;
 	public EnderGloveWorldGenerator worldGen;
+	public EventHandlerEntity entityEventHandler;
 	public EventHandlerWorld worldEventHandler;
 	public File directory;
 
@@ -70,9 +70,10 @@ public class EnderGloves
 				Config.save();
 		}
 
+		this.entityEventHandler = new EventHandlerEntity();
 		this.worldEventHandler = new EventHandlerWorld();
-
 		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
+		MinecraftForge.EVENT_BUS.register(this.entityEventHandler);
 		//GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 0);
 
 		Config.save();

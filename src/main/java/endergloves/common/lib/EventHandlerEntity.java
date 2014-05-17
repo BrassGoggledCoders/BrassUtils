@@ -9,6 +9,12 @@
  */
 package endergloves.common.lib;
 
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import endergloves.common.config.Config;
+
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
@@ -16,5 +22,17 @@ package endergloves.common.lib;
  */
 public class EventHandlerEntity
 {
-
+	@SubscribeEvent
+	public void itemCrafted(PlayerEvent.ItemCraftedEvent event)
+	{
+		ItemStack currentItem = event.player.inventory.getCurrentItem();
+		ItemStack result = event.crafting;
+		
+		int artisanAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchArtisanId, currentItem);
+		
+		if (artisanAmount > 0)
+		{
+			result.copy().equals(new ItemStack(result.getItem(), 2));
+		}
+	}
 }
