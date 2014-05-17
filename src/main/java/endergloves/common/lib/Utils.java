@@ -51,9 +51,36 @@ public class Utils
 
 		return is;
 	}
-	
+
 	public static boolean isSmeltable(ItemStack is) 
 	{
 		return ((is == null) || (FurnaceRecipes.smelting().getSmeltingResult(is) == null)) ? false : true;
 	}
+
+	/*
+	\247# +
+	
+	0: Black
+	1: Dark Blue
+	2: Dark Green
+	3: Dark Aqua
+	4: Dark Red
+	5: Purple
+	6: Gold
+	7: Light Grey
+	8: Dark Grey
+	9: Indigo
+	A: Light Green
+	B: Aqua
+	C: Pink
+	D: Pink
+	E: Yellow
+	F: White
+
+	K: Random Text
+	L: Bold
+	N: Underline
+	O: Italics
+	M: Strike-through
+	 */
 }

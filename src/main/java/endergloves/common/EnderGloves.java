@@ -12,19 +12,21 @@ package endergloves.common;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import endergloves.common.config.Config;
 import endergloves.common.config.ConfigBlocks;
 import endergloves.common.config.ConfigItems;
 import endergloves.common.lib.CreativeTabEG;
+import endergloves.common.lib.EnderGloveWorldGenerator;
 import endergloves.common.lib.EventHandlerWorld;
 import endergloves.common.lib.LibInfo;
 
@@ -33,29 +35,27 @@ import endergloves.common.lib.LibInfo;
  * <jmaeatmon@gmail.com>
  *
  */
-@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION) // @version: major, minor, revision
+@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION) // version: major, minor, revision
 public class EnderGloves
 {
-	@Mod.Instance(LibInfo.ID)
-	public static EnderGloves instance;
-	
 	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
 	public static CommonProxy proxy;
 	
-	public File directory;
-	
-	public static CreativeTabs tabEG = new CreativeTabEG(CreativeTabs.getNextID(), "endergloves");
-	
+	@Mod.Instance(LibInfo.ID)
+	public static EnderGloves instance;
+	public EnderGloveWorldGenerator worldGen;
 	public EventHandlerWorld worldEventHandler;
-	
+	public File directory;
+
+	public static CreativeTabs tabEG = new CreativeTabEG(CreativeTabs.getNextID(), "endergloves");
+
 	@Mod.EventHandler
 	public void foreplay(FMLPreInitializationEvent event)
 	{
 		event.getModMetadata().version = LibInfo.VERSION;
 		this.directory = event.getModConfigurationDirectory();
-		
-		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US"); // For the Creative Tab
-		
+
+		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US"); 
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
@@ -69,26 +69,24 @@ public class EnderGloves
 			if (Config.config != null)
 				Config.save();
 		}
-		
+
 		this.worldEventHandler = new EventHandlerWorld();
-		
+
 		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
-		
+		GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 5);
+
 		Config.save();
-		
+
 		ConfigBlocks.init();
 		ConfigItems.init();
 	}
-	
+
 	@Mod.EventHandler
 	public void orgasm(FMLInitializationEvent event)
 	{
 		proxy.registerDisplayInformation();
 	}
-	
+
 	@Mod.EventHandler
-	public void cuddling(FMLPostInitializationEvent event)
-	{
-		
-	}
+	public void cuddling(FMLPostInitializationEvent event) {}
 }
