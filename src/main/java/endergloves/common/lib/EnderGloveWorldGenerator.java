@@ -11,11 +11,10 @@ package endergloves.common.lib;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
+import endergloves.common.config.Config;
 import endergloves.common.config.ConfigBlocks;
 
 /**
@@ -25,6 +24,8 @@ import endergloves.common.config.ConfigBlocks;
  */
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
+	int totemsPerChunk = -1;
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -40,29 +41,45 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 			case 1:
 				break;
 			default:
-				this.generateTotem(world, random, x, z);
+				this.generateSurface(world, random, x, z);
 		}
+	} 
+
+	private boolean generateSurface(World world, Random random, int chunkX, int chunkZ)
+	{
+		for (int amount = 0; amount < this.totemsPerChunk; ++amount)
+        {
+            int x = chunkX + random.nextInt(16) + 8;
+            int z = chunkZ + random.nextInt(16) + 8;
+            
+            int y = random.nextInt(world.getHeightValue(x, z) * 2);
+            
+            this.generateTotem(world, random, x, y, z);
+        }
+
+		return true;
 	}
 
-	private boolean generateTotem(World world, Random random, int chunkX, int chunkZ)
+	private boolean generateTotem(World world, Random random, int x, int y, int z)
 	{
-		int x = chunkX + 8 * random.nextInt(16);
-		int z = chunkZ + 8 * random.nextInt(16);
+		//for (int rarity = 0; rarity < 10; ++rarity)
+		//{
+			//int posX = x + random.nextInt(8) - random.nextInt(8);
+			//int posY = y + random.nextInt(4) - random.nextInt(4);
+			//int posZ = z + random.nextInt(8) - random.nextInt(8);
 
-		int y = world.getHeightValue(x, z);
+			if (world.isAirBlock(x, y, z))
+			{
+				int maxHeight = 1 + random.nextInt(random.nextInt(3) + 1);
 
-		if (y > world.getActualHeight() + 1)
-			return false;
-		if ((world.getBlock(x, y, z) == Blocks.water) && (world.getBlock(x, y, z) == Blocks.leaves))
-			return false;
+				for (int height = 0; height < maxHeight; ++height)
+				{
+					world.setBlock(x, y + height, z, ConfigBlocks.blockEnderTotem, 0, 2);
+					System.out.println(x + "," + y + "," + z);
+				}
+			}
+		//}
 
-		int totemHeight = y + random.nextInt(2) + 3;
-
-		for (int yy = 0; yy < totemHeight; yy++)
-		{
-			world.setBlock(x, yy, z, ConfigBlocks.blockEnderTotem, 0, 3);
-		}
-
-		return false;
+		return true;
 	}
 }

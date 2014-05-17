@@ -29,6 +29,8 @@ import endergloves.common.lib.enchantment.EnchantmentTeleport;
 public class Config
 {
 	public static Configuration config;
+	public static final String CATEGORY_ENCH = "Enchantments";
+	public static int totemsPerChunk = 2;
 	
 	public static Enchantment enchAffluency = null;
 	public static Enchantment enchArtisan = null;
@@ -49,6 +51,10 @@ public class Config
 		config = new Configuration(file);
 		config.addCustomCategoryComment("Enchantments", "EnderGlove enchantments");
 		config.load();
+		
+		Property tpc = config.get("general", "totems_per_chunk", totemsPerChunk);
+	    tpc.comment = "The rarity of the Ender Totems. Setting it to 0 will remove Ender Totem generation.";
+	    totemsPerChunk = tpc.getInt();
 		
 		int enchIndex = 160;
 	
