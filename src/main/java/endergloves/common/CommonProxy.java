@@ -9,6 +9,8 @@
  */
 package endergloves.common;
 
+import net.minecraft.world.World;
+
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
@@ -17,4 +19,8 @@ package endergloves.common;
 public class CommonProxy
 {
 	public void registerDisplayInformation() {}
+	
+	public void blockSparkle(World world, int x, int y, int z, int count) {}
+	
+	public void blockFlameFX(World world, int x, int y, int z, int count) {}
 }

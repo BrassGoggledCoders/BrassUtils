@@ -9,10 +9,9 @@
  */
 package endergloves.client;
 
-import net.minecraftforge.client.MinecraftForgeClient;
-import endergloves.client.renderers.item.ItemEnderGloveRenderer;
+import net.minecraft.world.World;
+import endergloves.client.lib.UtilsFX;
 import endergloves.common.CommonProxy;
-import endergloves.common.config.ConfigItems;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -20,10 +19,22 @@ import endergloves.common.config.ConfigItems;
  *
  */
 public class ClientProxy extends CommonProxy
-{
+{ 
 	@Override
 	public void registerDisplayInformation()
 	{
 		//MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove, new ItemEnderGloveRenderer());
+	} 
+	
+	@Override
+	public void blockSparkle(World world, int x, int y, int z, int count)
+	{
+		UtilsFX.blockSparkle(world, x, y, z, count);
+	}
+	
+	@Override
+	public void blockFlameFX(World world, int x, int y, int z, int count)
+	{
+		UtilsFX.blockFlameFX(world, x, y, z, count);
 	}
 }

@@ -10,7 +10,6 @@
 package endergloves.common.lib;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import endergloves.common.item.ItemEnderGlove;

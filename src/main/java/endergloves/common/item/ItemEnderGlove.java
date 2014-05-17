@@ -83,6 +83,7 @@ public class ItemEnderGlove extends ItemTool
 		{
 			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 			InventoryHelper.addItemStackToInventory(enderInv, drops);
+			EnderGloves.proxy.blockFlameFX(world, x, y, z, 4);
 		}
 		else
 		{
@@ -109,7 +110,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public int getHarvestLevel(ItemStack is, String toolClass)
 	{
-		return Items.stone_pickaxe.getHarvestLevel(is, toolClass);
+		return Items.iron_pickaxe.getHarvestLevel(is, toolClass);
 	}
 
 	@Override
@@ -123,4 +124,10 @@ public class ItemEnderGlove extends ItemTool
 	{
 		return EnumRarity.epic; 
 	}
+	
+	@Override
+	public boolean onBlockStartBreak(ItemStack is, int x, int y, int z, EntityPlayer player)
+    {
+		return super.onBlockStartBreak(is, x, y, z, player);
+    }
 }
