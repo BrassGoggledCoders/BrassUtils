@@ -33,9 +33,17 @@ public class EventHandlerWorld
 	{	
 		EntityPlayer player = event.harvester;
 		
-		if ((event.drops != null) && (event.drops.size() > 0) && (player != null) && (player.inventory.getCurrentItem() != null) && (player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove))
+		if ((event.drops != null) && (event.drops.size() > 0) && (this.isCarryingGlove(player)))
 			event.drops.clear();
 		else
 			return;
+	}
+	
+	public boolean isCarryingGlove(EntityPlayer player)
+	{
+		if ((player != null) && (player.inventory.getCurrentItem() != null) && (player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove))
+			return true;
+		
+		return false;
 	}
 }

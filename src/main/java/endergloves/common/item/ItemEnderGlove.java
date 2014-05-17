@@ -9,13 +9,12 @@
  */
 package endergloves.common.item;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityEnderEye;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -24,7 +23,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.world.ChunkPosition;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -32,6 +31,7 @@ import com.google.common.collect.Sets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import endergloves.common.EnderGloves;
+import endergloves.common.config.Config;
 import endergloves.common.lib.InventoryHelper;
 import endergloves.common.lib.LibInfo;
 import endergloves.common.lib.Utils;
@@ -56,13 +56,14 @@ public class ItemEnderGlove extends ItemTool
 	{
 		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
 		this.setCreativeTab(EnderGloves.tabEG);
+		this.setNoRepair();
 	}
 
-	@Override
-	public float func_150893_a(ItemStack is, Block block) // getStrVsBlock
-	{
-		return this.blocksEffectiveAgainst.contains(block) ? this.efficiencyOnProperMaterial : 1.0F;
-	}
+	//@Override
+	//public float func_150893_a(ItemStack is, Block block) // getStrVsBlock
+	//{
+	//	return this.blocksEffectiveAgainst.contains(block) ? this.efficiencyOnProperMaterial : 1.0F;
+	//}
 
 	@Override
 	public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker) // I think that's the right order xD
@@ -74,8 +75,19 @@ public class ItemEnderGlove extends ItemTool
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
-		ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
-		InventoryHelper.addItemStackToInventory(enderInv, drops);
+	
+		int flameTouch = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
+
+		if (flameTouch > 0)
+		{
+			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(new ItemStack(block)).copy();
+			InventoryHelper.addItemStackToInventory(enderInv, drops);
+		}
+		else
+		{
+			ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
+			InventoryHelper.addItemStackToInventory(enderInv, drops);
+		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
 	}
@@ -88,9 +100,9 @@ public class ItemEnderGlove extends ItemTool
 	}
 
 	@Override
-	public boolean getIsRepairable(ItemStack is1, ItemStack is2)
-	{
-		return false;
+	public int getItemEnchantability()
+	{	
+		return this.toolMaterial.getEnchantability();
 	}
 
 	@Override

@@ -17,6 +17,7 @@ import net.minecraftforge.common.config.Property;
 import endergloves.common.lib.enchantment.EnchantmentAffluency;
 import endergloves.common.lib.enchantment.EnchantmentArtisan;
 import endergloves.common.lib.enchantment.EnchantmentCreative;
+import endergloves.common.lib.enchantment.EnchantmentFlameTouch;
 import endergloves.common.lib.enchantment.EnchantmentSpelunker;
 import endergloves.common.lib.enchantment.EnchantmentTeleport;
 
@@ -61,20 +62,25 @@ public class Config
 		enchArtisanId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
-		Property enchSpe = config.get("Enchantments", "ench_affluency", enchIndex++);
+		Property enchSpe = config.get("Enchantments", "ench_spelunker", enchIndex++);
 		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 4);
 		enchSpelunkerId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
-		Property enchTel = config.get("Enchantments", "ench_affluency", enchIndex++);
+		Property enchTel = config.get("Enchantments", "ench_teleport", enchIndex++);
 		enchTeleport = new EnchantmentTeleport(enchTel.getInt(), 4);
 		enchTeleportId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
-		Property enchOP = config.get("Enchantments", "ench_affluency", enchIndex++);
+		Property enchOP = config.get("Enchantments", "ench_creative", enchIndex++);
 		enchCreative = new EnchantmentCreative(enchOP.getInt(), 4);
 		enchCreativeId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
+		
+		Property enchFla = config.get("Enchantments", "ench_flametouch", enchIndex++);
+		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 4);
+		enchFlameTouchId = enchFla.getInt();
+		Enchantment.addToBookList(enchFlameTouch);
 		
 		config.save();
 	}

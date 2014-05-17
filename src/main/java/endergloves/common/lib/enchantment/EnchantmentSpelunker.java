@@ -19,9 +19,9 @@ import net.minecraft.enchantment.EnumEnchantmentType;
  */
 public class EnchantmentSpelunker extends Enchantment
 {
-	public EnchantmentSpelunker(int id, int something)
+	public EnchantmentSpelunker(int id, int rarity)
 	{
-		super(id, something, EnumEnchantmentType.all);
+		super(id, rarity, EnumEnchantmentType.all);
 		this.setName("spelunker");
 	}
 }

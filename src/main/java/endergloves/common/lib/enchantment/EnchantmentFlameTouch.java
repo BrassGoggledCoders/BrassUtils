@@ -5,35 +5,34 @@
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 14, 2014, 9:03:24 PM] 
+ * File created @[May 16, 2014, 7:27:41 PM] 
  */
 package endergloves.common.lib.enchantment;
 
-import endergloves.common.config.Config;
-import endergloves.common.item.ItemEnderGlove;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
+import endergloves.common.config.Config;
+import endergloves.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
  *
  */
-public class EnchantmentTeleport extends Enchantment
+public class EnchantmentFlameTouch extends Enchantment
 {
-	public EnchantmentTeleport(int id, int rarity)
+	public EnchantmentFlameTouch(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		this.setName("teleport");
+		this.setName("flametouch");
 	}
-	
+
 	@Override
 	public int getMinEnchantability(int level)
 	{
-		return 24;
+		return 21;
 	}
 
 	@Override
