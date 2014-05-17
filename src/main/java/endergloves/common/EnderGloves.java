@@ -35,7 +35,7 @@ import endergloves.common.lib.LibInfo;
  * <jmaeatmon@gmail.com>
  *
  */
-@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION) // version: major, minor, revision
+@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION) 
 public class EnderGloves
 {
 	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
@@ -73,7 +73,7 @@ public class EnderGloves
 		this.worldEventHandler = new EventHandlerWorld();
 
 		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
-		//GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 5);
+		GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 0);
 
 		Config.save();
 
