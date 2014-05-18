@@ -9,10 +9,12 @@
  */
 package endergloves.common.item;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
+import net.minecraftforge.event.world.BlockEvent;
 
 import com.google.common.collect.Sets;
 
@@ -79,15 +82,30 @@ public class ItemEnderGlove extends ItemTool
 	{
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
 
-		int flameTouch = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is); 
+		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
 		ItemStack smeltableBlock = (new ItemStack(block));
 
-		if ((flameTouch > 0) && (Utils.isSmeltable(smeltableBlock)))
+		if ((flameAmount > 0) && (Utils.isSmeltable(smeltableBlock)))
 		{
 			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 			InventoryHelper.addItemStackToInventory(enderInv, drops);
 			EnderGloves.proxy.blockFlameFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "fire.ignite");
+		}
+		else if (block.canSilkHarvest(world, (EntityPlayer)entityLiving, x, y, z, world.getBlockMetadata(x, y, z)) && (EnchantmentHelper.getSilkTouchModifier((EntityPlayer)entityLiving)))
+		{
+			ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
+			ItemStack drops = Utils.createStackedBlock(block, world.getBlockMetadata(x, y, z));
+
+			if (drops != null)
+				itemList.add(drops);
+
+			for (ItemStack stack : itemList)
+			{
+				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving), drops);
+				EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
+				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
+			}
 		}
 		else
 		{

@@ -11,11 +11,13 @@ package endergloves.common.lib;
 
 import java.util.List;
 
+import endergloves.common.item.ItemEnderGlove;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.server.MinecraftServer;
@@ -64,6 +66,27 @@ public class Utils
 		world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 	}
 
+	public static boolean isCarryingGlove(EntityPlayer player)
+	{
+		if ((player != null) && (player.inventory.getCurrentItem() != null) && (player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove))
+			return true;
+
+		return false;
+	}
+	
+	public static ItemStack createStackedBlock(Block block, int metadata)
+    {
+        int md = 0;
+        Item item = Item.getItemFromBlock(block);
+
+        if (item != null && item.getHasSubtypes())
+        {
+            md = metadata;
+        }
+
+        return new ItemStack(item, 1, md);
+    }
+	
 	/*
 	\247# +
 
