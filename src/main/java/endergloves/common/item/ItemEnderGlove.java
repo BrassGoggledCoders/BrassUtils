@@ -52,7 +52,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public void registerIcons(IIconRegister ir)
 	{
-		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "temp");
+		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderglove");
 	}
 
 	public ItemEnderGlove()

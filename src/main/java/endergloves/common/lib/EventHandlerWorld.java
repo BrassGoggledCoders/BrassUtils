@@ -9,7 +9,6 @@
  */
 package endergloves.common.lib;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import net.minecraft.entity.item.EntityItem;
@@ -58,18 +57,20 @@ public class EventHandlerWorld
 	@SubscribeEvent
 	public void playerDrops(PlayerDropsEvent event)
 	{
-		System.out.println("Woof!");
-		
-		ArrayList list = event.drops;
-		event.drops.
-		Iterator iterator = list.iterator();
+		Iterator iterator = event.drops.iterator();
 		
 		while (iterator.hasNext())
 		{
-			ItemStack is = (ItemStack)iterator.next();
+			EntityItem entItem = (EntityItem)iterator.next();
+			ItemStack is = entItem.getEntityItem();
 			
 			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
-				System.out.println("Something's happening!");
+			{
+				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.entityPlayer), is);
+				Utils.sendMessage(event.entityPlayer, "Your Ender Glove is safe!");
+				Utils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
+				entItem.setDead();
+			}
 		}
 	}
 	
