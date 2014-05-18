@@ -31,6 +31,7 @@ public class Config
 	public static Configuration config;
 	public static final String CATEGORY_ENCH = "Enchantments";
 	public static int totemsPerChunk = 2;
+	public static int artisanBonusChance = 3;
 	
 	public static Enchantment enchAffluency = null;
 	public static Enchantment enchArtisan = null;
@@ -55,6 +56,10 @@ public class Config
 		Property tpc = config.get("general", "totems_per_chunk", totemsPerChunk);
 	    tpc.comment = "The rarity of the Ender Totems. Setting it to 0 will remove Ender Totem generation.";
 	    totemsPerChunk = tpc.getInt();
+	    
+	    Property atc = config.get("general", "artisan_bonus_chance", artisanBonusChance);
+	    atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
+	    artisanBonusChance = atc.getInt();
 		
 		int enchIndex = 160;
 	
@@ -65,22 +70,22 @@ public class Config
 		
 		Property enchArt = config.get("Enchantments", "ench_artisan", enchIndex++);
 		enchArtisan = new EnchantmentArtisan(enchArt.getInt(), 4);
-		enchArtisanId = enchAff.getInt();
+		enchArtisanId = enchArt.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchSpe = config.get("Enchantments", "ench_spelunker", enchIndex++);
 		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 4);
-		enchSpelunkerId = enchAff.getInt();
+		enchSpelunkerId = enchSpe.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchTel = config.get("Enchantments", "ench_teleport", enchIndex++);
 		enchTeleport = new EnchantmentTeleport(enchTel.getInt(), 4);
-		enchTeleportId = enchAff.getInt();
+		enchTeleportId = enchTel.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchOP = config.get("Enchantments", "ench_creative", enchIndex++);
 		enchCreative = new EnchantmentCreative(enchOP.getInt(), 4);
-		enchCreativeId = enchAff.getInt();
+		enchCreativeId = enchOP.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchFla = config.get("Enchantments", "ench_flametouch", enchIndex++);

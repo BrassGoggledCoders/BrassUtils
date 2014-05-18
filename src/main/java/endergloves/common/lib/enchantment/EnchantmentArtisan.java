@@ -43,7 +43,7 @@ public class EnchantmentArtisan extends Enchantment
 	@Override
 	public int getMaxLevel()
 	{
-		return 3;
+		return 1;
 	}
 
 	@Override
