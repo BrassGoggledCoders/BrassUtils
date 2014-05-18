@@ -10,6 +10,7 @@
 package endergloves.common.item;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.block.Block;
@@ -59,6 +60,14 @@ public class ItemEnderGlove extends ItemTool
 		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
+	{
+		list.add("\2472The power of the End");
+		list.add("\2472in your hands!");
 	}
 
 	//@Override
