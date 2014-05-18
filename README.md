@@ -1,5 +1,4 @@
-EnderGloves for MC 1.7.2
-========================
+![](EnderGlove_logo_custom_ver.png)
 
 Based on [Geartooth's suggestion](http://www.minecraftforum.net/topic/1299856-ender-gloves/) 
 on the MCF, this mod is for the 4th Modjam.
