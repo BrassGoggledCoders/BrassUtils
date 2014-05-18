@@ -1,4 +1,4 @@
-![](EnderGlove_logo_custom_ver.png)
+![](https://copy.com/HNrV7k74CymKPRRc)
 
 Based on [Geartooth's suggestion](http://www.minecraftforum.net/topic/1299856-ender-gloves/) 
 on the MCF, this mod is for the 4th Modjam.
