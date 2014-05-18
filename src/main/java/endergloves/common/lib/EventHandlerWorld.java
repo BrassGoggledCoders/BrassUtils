@@ -9,10 +9,14 @@
  */
 package endergloves.common.lib;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.item.ItemTossEvent;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.item.ItemExpireEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import endergloves.common.item.ItemEnderGlove;
@@ -24,6 +28,8 @@ import endergloves.common.item.ItemEnderGlove;
  */
 public class EventHandlerWorld
 {
+	public static boolean timesUp = false;
+	
 	// TODO: The Ender Glove only places a single stack associated with a block into the Ender Chest.
 	// Thus, if I destroyed wheat with the Ender Glove, either the wheat OR the seeds will be placed
 	// into the chest, but not both. I hope to fix this issue by some later update. It is not very
@@ -50,16 +56,40 @@ public class EventHandlerWorld
 	}
 	
 	@SubscribeEvent
-	public void itemToss(ItemTossEvent event)
+	public void playerDrops(PlayerDropsEvent event)
+	{
+		System.out.println("Woof!");
+		
+		ArrayList list = event.drops;
+		event.drops.
+		Iterator iterator = list.iterator();
+		
+		while (iterator.hasNext())
+		{
+			ItemStack is = (ItemStack)iterator.next();
+			
+			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
+				System.out.println("Something's happening!");
+		}
+	}
+	
+	// TODO: Grab a better instance of the EntityPlayer here. Additionally, make it check that the
+	// thrower of the item is also the owner so as to go to the proper Ender chest inventory.
+	
+	//@SubscribeEvent
+	public void itemExpire(ItemExpireEvent event) 
 	{
 		EntityItem entItem = event.entityItem;
-		int age = entItem.getEntityData().getInteger("Lifespan");
+		String name = entItem.getEntityData().getString("Thrower");
 		
-		if ((entItem.getEntityItem() != null) && (entItem.getEntityItem().getItem() instanceof ItemEnderGlove) && (entItem.worldObj.getWorldTime() == age)) 
+		if ((entItem.getEntityItem() != null) && (entItem.getEntityItem().getItem() instanceof ItemEnderGlove)) 
 		{
-			InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.player), entItem.getEntityItem());
-			Utils.sendMessage(event.player, "Your Ender Glove is safe and sound!");
-			entItem.setDead();
+			this.timesUp = true;
+			event.setCanceled(true);
+		}
+		else
+		{
+			return;
 		}
 	}	
 }

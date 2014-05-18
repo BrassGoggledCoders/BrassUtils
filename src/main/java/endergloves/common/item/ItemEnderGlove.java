@@ -14,7 +14,9 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -32,6 +34,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import endergloves.common.EnderGloves;
 import endergloves.common.config.Config;
+import endergloves.common.lib.EventHandlerWorld;
 import endergloves.common.lib.InventoryHelper;
 import endergloves.common.lib.LibInfo;
 import endergloves.common.lib.Utils;
@@ -75,7 +78,7 @@ public class ItemEnderGlove extends ItemTool
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
-	
+
 		int flameTouch = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is); 
 		ItemStack smeltableBlock = (new ItemStack(block));
 
@@ -96,7 +99,7 @@ public class ItemEnderGlove extends ItemTool
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public boolean isFull3D()
@@ -127,16 +130,16 @@ public class ItemEnderGlove extends ItemTool
 	{
 		return EnumRarity.epic; 
 	}
-	
+
 	@Override
 	public boolean onBlockStartBreak(ItemStack is, int x, int y, int z, EntityPlayer player)
-    {
+	{
 		return super.onBlockStartBreak(is, x, y, z, player);
-    }
-	
+	}
+
 	@Override
 	public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player)
-    {
-        return true;
-    }
+	{
+		return true;
+	}
 }

@@ -15,8 +15,10 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
@@ -56,7 +58,7 @@ public class Utils
 	{
 		return ((is == null) || (FurnaceRecipes.smelting().getSmeltingResult(is) == null)) ? false : true;
 	}
-	
+
 	public static void playSFX(World world, int x, int y, int z, String sound)
 	{
 		world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
@@ -64,7 +66,7 @@ public class Utils
 
 	/*
 	\247# +
-	
+
 	0: Black
 	1: Dark Blue
 	2: Dark Green
