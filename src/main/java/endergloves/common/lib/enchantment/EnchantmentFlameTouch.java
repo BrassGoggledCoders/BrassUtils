@@ -27,6 +27,7 @@ public class EnchantmentFlameTouch extends Enchantment
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		this.setName("flametouch");
+		this.silkTouch.canApplyTogether(this);
 	}
 
 	@Override
@@ -62,6 +63,10 @@ public class EnchantmentFlameTouch extends Enchantment
 	@Override
 	public boolean canApplyTogether(Enchantment enchantment)
 	{
-		return (super.canApplyTogether(enchantment)) && ((enchantment.effectId != Enchantment.fortune.effectId) || (enchantment.effectId != Enchantment.silkTouch.effectId) || (enchantment.effectId != Config.enchAffluencyId));
-	}
+		if ((enchantment.effectId == Enchantment.silkTouch.effectId) || (enchantment.effectId == Enchantment.fortune.effectId))
+			return false;
+		else
+			return true;
+		//return super.canApplyTogether(enchantment);
+	}	
 }
