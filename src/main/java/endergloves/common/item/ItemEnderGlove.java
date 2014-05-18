@@ -14,11 +14,9 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.enchantment.Enchantment;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -29,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
-import net.minecraftforge.event.world.BlockEvent;
 
 import com.google.common.collect.Sets;
 
@@ -37,7 +34,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import endergloves.common.EnderGloves;
 import endergloves.common.config.Config;
-import endergloves.common.lib.EventHandlerWorld;
 import endergloves.common.lib.InventoryHelper;
 import endergloves.common.lib.LibInfo;
 import endergloves.common.lib.Utils;
@@ -61,7 +57,7 @@ public class ItemEnderGlove extends ItemTool
 	public ItemEnderGlove()
 	{
 		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
-		this.setCreativeTab(EnderGloves.tabEG);
+		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 	}
 
