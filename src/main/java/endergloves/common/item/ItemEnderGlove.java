@@ -90,12 +90,13 @@ public class ItemEnderGlove extends ItemTool
 		{
 			ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
 			InventoryHelper.addItemStackToInventory(enderInv, drops);
+			EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public boolean isFull3D()
@@ -131,5 +132,11 @@ public class ItemEnderGlove extends ItemTool
 	public boolean onBlockStartBreak(ItemStack is, int x, int y, int z, EntityPlayer player)
     {
 		return super.onBlockStartBreak(is, x, y, z, player);
+    }
+	
+	@Override
+	public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player)
+    {
+        return true;
     }
 }

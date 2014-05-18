@@ -9,7 +9,9 @@
  */
 package endergloves.common.lib;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import endergloves.common.item.ItemEnderGlove;
@@ -45,4 +47,18 @@ public class EventHandlerWorld
 		
 		return false;
 	}
+	
+	@SubscribeEvent
+	public void itemToss(ItemTossEvent event)
+	{
+		System.out.println("WOOF");
+		EntityItem entItem = event.entityItem;
+		
+		if ((entItem.getEntityItem() != null) && (entItem.getEntityItem().getItem() instanceof ItemEnderGlove) && (entItem.age > 4800)) 
+		{
+			InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.player), entItem.getEntityItem());
+			Utils.sendMessage(event.player, "Your Ender Glove is safe and sound!");
+			entItem.setDead();
+		}
+	}	
 }
