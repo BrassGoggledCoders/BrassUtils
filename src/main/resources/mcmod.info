@@ -8,8 +8,8 @@
   "url": "",
   "updateUrl": "",
   "authorList": ["warlordjones", "Surseance", "Rongmario", "Snurly"],
-  "credits": "The Mojam team: thanks for the amazing competition.",
-  "logoFile": "",
+  "credits": "Searge for Modjam, seanvanpelt2 for the logos.",
+  "logoFile": "EGLogo.png",
   "screenshots": [],
   "dependencies": []
 }

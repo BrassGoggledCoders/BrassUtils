@@ -19,6 +19,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import endergloves.common.config.Config;
 import endergloves.common.config.ConfigBlocks;
@@ -93,5 +94,11 @@ public class EnderGloves
 	@Mod.EventHandler
 	public void cuddling(FMLPostInitializationEvent event)
 	{
+	}
+	
+	@Mod.EventHandler
+	public void serverStarting(FMLServerStartingEvent event)
+	{
+		System.out.println("Initializing EnderGloves v" + LibInfo.VERSION + "...");
 	}
 }

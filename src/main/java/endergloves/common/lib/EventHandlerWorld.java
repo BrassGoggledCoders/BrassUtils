@@ -66,7 +66,7 @@ public class EventHandlerWorld
 			{
 				is.damageItem(1, event.entityPlayer);
 				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.entityPlayer), is);
-				Utils.sendMessage(event.entityPlayer, "Your Ender Glove is safe!");
+				Utils.sendMessage(event.entityPlayer, "\2475Your Ender Glove was succesfully put in your Ender Chest!");
 				Utils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
 			}
