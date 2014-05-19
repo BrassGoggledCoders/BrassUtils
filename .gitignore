@@ -30,8 +30,6 @@ remotebuild.py
 /client/
 /Server/
 /classes/
-## misc
-TCDEOBF.jar*
 
 ## OS Cache Files
 *.DS_Store
