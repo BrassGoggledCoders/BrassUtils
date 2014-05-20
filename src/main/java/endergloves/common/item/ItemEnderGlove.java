@@ -27,7 +27,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import com.google.common.collect.Sets;
 
@@ -61,13 +63,13 @@ public class ItemEnderGlove extends ItemTool
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
 	{
-		list.add("\2472The power of the End");
-		list.add("\2472in your hands!");
+		list.add("\247O\2472The power of the End");
+		list.add("\247O\2472in your hands!");
 	}
 
 	//@Override
@@ -85,43 +87,75 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
-		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving);
+		EntityPlayer player = (EntityPlayer)entityLiving;
+		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
+		int md = world.getBlockMetadata(x, y, z);
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
 		ItemStack smeltableBlock = (new ItemStack(block));
 
 		if ((flameAmount > 0) && (Utils.isSmeltable(smeltableBlock)))
 		{
+			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
-			InventoryHelper.addItemStackToInventory(enderInv, drops);
-			EnderGloves.proxy.blockFlameFX(world, x, y, z, 4);
-			Utils.playSFX(world, x, y, z, "fire.ignite");
-		}
-		else if (block.canSilkHarvest(world, (EntityPlayer)entityLiving, x, y, z, world.getBlockMetadata(x, y, z)) && (EnchantmentHelper.getSilkTouchModifier((EntityPlayer)entityLiving)))
-		{
-			ArrayList<ItemStack> itemList = new ArrayList<ItemStack>();
-			ItemStack drops = Utils.createStackedBlock(block, world.getBlockMetadata(x, y, z));
 
 			if (drops != null)
-				itemList.add(drops);
+				items.add(drops);
 
-			for (ItemStack stack : itemList)
+			for (ItemStack stack : items)
 			{
-				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest((EntityPlayer)entityLiving), drops);
+				InventoryHelper.addItemStackToInventory(enderInv, stack);
+				EnderGloves.proxy.blockFlameFX(world, x, y, z, 4);
+				Utils.playSFX(world, x, y, z, "fire.ignite");
+			}
+		}
+		else if (block.canSilkHarvest(world, player, x, y, z, md) && (EnchantmentHelper.getSilkTouchModifier(player)))
+		{
+			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+			ItemStack drops = Utils.createStackedBlock(block, md);
+
+			if (drops != null)
+				items.add(drops);
+
+			for (ItemStack stack : items) 
+			{
+				InventoryHelper.addItemStackToInventory(enderInv, stack);
 				EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
 				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 			}
 		}
 		else
 		{
-			ItemStack drops = Utils.getDroppedItemStack(world, entityLiving, block, x, y, z).copy(); // I dunno why, but you need a copy...
-			InventoryHelper.addItemStackToInventory(enderInv, drops);
-			EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
-			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
+			
+			for (ItemStack stack : items)
+			{
+				InventoryHelper.addItemStackToInventory(enderInv, stack);
+				//this.addBlockToChest(world, player, x, y, z, md, 1.0F, fortune);
+				EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
+				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
+			}
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
+
+	public void addBlockToChest(World world, EntityPlayer player, int x, int y, int z, int md, float chance, int enchantmentModifier)
+	{
+		Block block = world.getBlock(x, y, z);
+
+		if (!world.isRemote)
+		{
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, enchantmentModifier);
+
+			for (ItemStack item : items)
+			{
+				if (world.rand.nextFloat() <= chance)
+					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), item);//this.dropBlockAsItem(world, x, y, z, item);
+			}
+		}
+	}
+
 
 	@SideOnly(Side.CLIENT)
 	@Override

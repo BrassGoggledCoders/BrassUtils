@@ -9,21 +9,18 @@
  */
 package endergloves.common.lib;
 
-import java.util.List;
+import java.util.ArrayList;
 
-import endergloves.common.item.ItemEnderGlove;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
+import endergloves.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -40,20 +37,21 @@ public class Utils
 			player.addChatMessage(chat);
 	}
 
-	public static ItemStack getDroppedItemStack(World world, EntityLivingBase entityLiving, Block block, int x, int y, int z)
+	@Deprecated
+	public static ItemStack getDroppedItemStack(World world, EntityPlayer player, Block block, int x, int y, int z, int md)
 	{
-		List<ItemStack>drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), EnchantmentHelper.getFortuneModifier(entityLiving));
-		ItemStack is = null;
+		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
+		ItemStack drops = null;
 
-		if ((drops != null) && (drops.size() > 0))
+		if ((items != null) && (items.size() > 0))
 		{
-			for (int size = 0; size < drops.size(); size++)
+			for (int size = 0; size < items.size(); size++)
 			{
-				is = (ItemStack)drops.get(size);
+				drops = (ItemStack)items.get(size);
 			}
 		}
 
-		return is;
+		return drops;
 	}
 
 	public static boolean isSmeltable(ItemStack is) 
@@ -80,9 +78,7 @@ public class Utils
         Item item = Item.getItemFromBlock(block);
 
         if (item != null && item.getHasSubtypes())
-        {
             md = metadata;
-        }
 
         return new ItemStack(item, 1, md);
     }
