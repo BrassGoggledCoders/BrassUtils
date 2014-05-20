@@ -47,7 +47,7 @@ public class InventoryHelper
 				stackSize = is.stackSize;
 				is.stackSize = storePartially(inventory, is);
 			}
-			while (is.stackSize > 0 && is.stackSize < stackSize);
+			while ((is.stackSize > 0) && (is.stackSize < stackSize));
 			
 			return is.stackSize < stackSize;
 		}

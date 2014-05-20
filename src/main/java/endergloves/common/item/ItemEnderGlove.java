@@ -111,7 +111,7 @@ public class ItemEnderGlove extends ItemTool
 		}
 		else if (block.canSilkHarvest(world, player, x, y, z, md) && (EnchantmentHelper.getSilkTouchModifier(player)))
 		{
-			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, 0);//new ArrayList<ItemStack>();
 			ItemStack drops = Utils.createStackedBlock(block, md);
 
 			if (drops != null)
@@ -124,16 +124,28 @@ public class ItemEnderGlove extends ItemTool
 				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 			}
 		}
-		else
+		else if (EnchantmentHelper.getFortuneModifier(player) > 0)
 		{
 			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
-			
+			ItemStack drops = Utils.getDroppedItemStack(world, player, block, x, y, z, EnchantmentHelper.getFortuneModifier(player));
+
+			if (drops != null)
+				items.add(drops);
+
 			for (ItemStack stack : items)
 			{
 				InventoryHelper.addItemStackToInventory(enderInv, stack);
-				//this.addBlockToChest(world, player, x, y, z, md, 1.0F, fortune);
 				EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
 				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
+			}
+		}
+		else
+		{
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, 0);
+
+			for (ItemStack stack : items)
+			{
+				InventoryHelper.addItemStackToInventory(enderInv, stack);//this.dropBlockAsItem(world, x, y, z, item);
 			}
 		}
 

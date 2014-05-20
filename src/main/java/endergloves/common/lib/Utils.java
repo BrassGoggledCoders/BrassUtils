@@ -37,7 +37,7 @@ public class Utils
 			player.addChatMessage(chat);
 	}
 
-	@Deprecated
+	//@Deprecated
 	public static ItemStack getDroppedItemStack(World world, EntityPlayer player, Block block, int x, int y, int z, int md)
 	{
 		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
@@ -77,7 +77,7 @@ public class Utils
         int md = 0;
         Item item = Item.getItemFromBlock(block);
 
-        if (item != null && item.getHasSubtypes())
+        if ((item != null) && (item.getHasSubtypes()))
             md = metadata;
 
         return new ItemStack(item, 1, md);

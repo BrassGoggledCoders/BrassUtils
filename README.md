@@ -4,7 +4,7 @@ Based on [Geartooth's suggestion](http://www.minecraftforum.net/topic/1299856-en
 on the MCF, this mod is for the 4th Modjam.
 
 Twitter: https://twitter.com/surseance <br/> 
-Email: <jmaeatmon@gmail.com>
+Email: <surseance@autistici.org>
 
 ### License
 ![](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-1.png) <br/>
