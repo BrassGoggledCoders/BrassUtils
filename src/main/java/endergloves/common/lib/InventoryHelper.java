@@ -71,7 +71,7 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	private static int storePartially(IInventory inventory, ItemStack is)
+	public static int storePartially(IInventory inventory, ItemStack is)
 	{
 		Item id = is.getItem();
 		int size = is.stackSize;

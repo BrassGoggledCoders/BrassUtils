@@ -71,18 +71,18 @@ public class Utils
 
 		return false;
 	}
-	
+
 	public static ItemStack createStackedBlock(Block block, int metadata)
-    {
-        int md = 0;
-        Item item = Item.getItemFromBlock(block);
+	{
+		int md = 0;
+		Item item = Item.getItemFromBlock(block);
 
-        if ((item != null) && (item.getHasSubtypes()))
-            md = metadata;
+		if ((item != null) && (item.getHasSubtypes()))
+			md = metadata;
 
-        return new ItemStack(item, 1, md);
-    }
-	
+		return new ItemStack(item, 1, md);
+	}
+
 	/*
 	\247# +
 

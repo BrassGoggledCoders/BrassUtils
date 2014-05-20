@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -27,9 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeEventFactory;
 
 import com.google.common.collect.Sets;
 
@@ -87,6 +86,9 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
+		//player.addStat(StatList.mineBlockStatArray[block.getIdFromBlock(block)], 1);
+		//player.addExhaustion(0.025F);
+
 		EntityPlayer player = (EntityPlayer)entityLiving;
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
 		int md = world.getBlockMetadata(x, y, z);
@@ -111,9 +113,12 @@ public class ItemEnderGlove extends ItemTool
 		}
 		else if (block.canSilkHarvest(world, player, x, y, z, md) && (EnchantmentHelper.getSilkTouchModifier(player)))
 		{
-			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, 0);//new ArrayList<ItemStack>();
+			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 			ItemStack drops = Utils.createStackedBlock(block, md);
 
+			if (block instanceof BlockRedstoneOre)
+				InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(Blocks.redstone_ore, 1));
+			
 			if (drops != null)
 				items.add(drops);
 
@@ -145,29 +150,12 @@ public class ItemEnderGlove extends ItemTool
 
 			for (ItemStack stack : items)
 			{
-				InventoryHelper.addItemStackToInventory(enderInv, stack);//this.dropBlockAsItem(world, x, y, z, item);
+				InventoryHelper.addItemStackToInventory(enderInv, stack);
 			}
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
-
-	public void addBlockToChest(World world, EntityPlayer player, int x, int y, int z, int md, float chance, int enchantmentModifier)
-	{
-		Block block = world.getBlock(x, y, z);
-
-		if (!world.isRemote)
-		{
-			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, enchantmentModifier);
-
-			for (ItemStack item : items)
-			{
-				if (world.rand.nextFloat() <= chance)
-					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), item);//this.dropBlockAsItem(world, x, y, z, item);
-			}
-		}
-	}
-
 
 	@SideOnly(Side.CLIENT)
 	@Override
