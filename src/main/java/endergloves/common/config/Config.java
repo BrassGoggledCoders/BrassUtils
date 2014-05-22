@@ -64,17 +64,17 @@ public class Config
 		int enchIndex = 160;
 	
 		Property enchAff = config.get("Enchantments", "ench_affluency", enchIndex++);
-		enchAffluency = new EnchantmentAffluency(enchAff.getInt(), 4);
+		enchAffluency = new EnchantmentAffluency(enchAff.getInt(), 3);
 		enchAffluencyId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchArt = config.get("Enchantments", "ench_artisan", enchIndex++);
-		enchArtisan = new EnchantmentArtisan(enchArt.getInt(), 4);
+		enchArtisan = new EnchantmentArtisan(enchArt.getInt(), 2);
 		enchArtisanId = enchArt.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchSpe = config.get("Enchantments", "ench_spelunker", enchIndex++);
-		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 4);
+		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 2);
 		enchSpelunkerId = enchSpe.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
@@ -84,12 +84,12 @@ public class Config
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchOP = config.get("Enchantments", "ench_creative", enchIndex++);
-		enchCreative = new EnchantmentCreative(enchOP.getInt(), 4);
+		enchCreative = new EnchantmentCreative(enchOP.getInt(), 0);
 		enchCreativeId = enchOP.getInt();
 		Enchantment.addToBookList(enchAffluency);
 		
 		Property enchFla = config.get("Enchantments", "ench_flametouch", enchIndex++);
-		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 4);
+		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 3);
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 		

@@ -29,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -68,8 +69,8 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
 	{
-		list.add("\247O\2472The power of the End");
-		list.add("\247O\2472in your hands!");
+		list.add(EnumChatFormatting.ITALIC.GREEN + "The power of the End");
+		list.add(EnumChatFormatting.ITALIC.DARK_PURPLE + "in your hands!");
 	}
 
 	//@Override
@@ -114,7 +115,7 @@ public class ItemEnderGlove extends ItemTool
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 			ItemStack stack = null;
 
-			if (block instanceof BlockRedstoneOre) // Issue
+			if (block instanceof BlockRedstoneOre)
 				stack = Utils.createStackedBlock();
 			else
 				stack = Utils.createStackedBlock(block, md);
@@ -145,7 +146,7 @@ public class ItemEnderGlove extends ItemTool
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
 
-	private boolean handleTileEntities()
+	private boolean handleTileEntities() // TODO: Some handling for TileEntities
 	{
 		/*
 		TileEntityFurnace tileentityfurnace = (TileEntityFurnace)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);

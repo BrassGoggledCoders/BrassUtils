@@ -35,14 +35,6 @@ import endergloves.common.item.ItemEnderGlove;
  */
 public class EventHandlerWorld
 {
-	public static boolean timesUp = false;
-
-	// TODO: The Ender Glove only places a single stack associated with a block into the Ender Chest.
-	// Thus, if I destroyed wheat with the Ender Glove, either the wheat OR the seeds will be placed
-	// into the chest, but not both. I hope to fix this issue by some later update. It is not very
-	// pressing at the moment because it doesn't really affect game-play that much. (Why would you be
-	// destroying wheat with your Ender Glove anyway?)
-
 	@SubscribeEvent
 	public void harvestDrops(BlockEvent.HarvestDropsEvent event) 
 	{	
@@ -74,24 +66,4 @@ public class EventHandlerWorld
 			}
 		}
 	}
-
-	// TODO: Grab a better instance of the EntityPlayer here. Additionally, make it check that the
-	// thrower of the item is also the owner so as to go to the proper Ender chest inventory.
-
-	//@SubscribeEvent
-	public void itemExpire(ItemExpireEvent event) 
-	{
-		EntityItem entItem = event.entityItem;
-		String name = entItem.getEntityData().getString("Thrower");
-
-		if ((entItem.getEntityItem() != null) && (entItem.getEntityItem().getItem() instanceof ItemEnderGlove)) 
-		{
-			this.timesUp = true;
-			event.setCanceled(true);
-		}
-		else
-		{
-			return;
-		}
-	}	
 }
