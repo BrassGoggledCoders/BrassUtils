@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
@@ -39,7 +40,7 @@ public class EventHandlerWorld
 	public void harvestDrops(BlockEvent.HarvestDropsEvent event) 
 	{	
 		EntityPlayer player = event.harvester;
-		
+
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 		else
@@ -47,12 +48,21 @@ public class EventHandlerWorld
 	}
 
 	@SubscribeEvent
+	public void blockBreak(BlockEvent.BreakEvent event)
+	{
+		EntityPlayer player = event.getPlayer();
+		int affAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchAffluencyId, player.inventory.getCurrentItem());
+		int XP = event.getExpToDrop();
+		int affXP = XP + (affAmount * affAmount / 2);
+	
+		event.setExpToDrop(affXP);
+	}
+
+	@SubscribeEvent
 	public void playerDrops(PlayerDropsEvent event)
 	{
 		Iterator iterator = event.drops.iterator();
-
-		while (iterator.hasNext())
-		{
+		while (iterator.hasNext()) {
 			EntityItem entItem = (EntityItem)iterator.next();
 			ItemStack is = entItem.getEntityItem();
 
@@ -60,7 +70,7 @@ public class EventHandlerWorld
 			{
 				is.damageItem(1, event.entityPlayer);
 				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.entityPlayer), is);
-				Utils.sendMessage(event.entityPlayer, "\2475Your Ender Glove was succesfully put in your Ender Chest!");
+				Utils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + "Your Ender Glove was succesfully put in your Ender Chest!");
 				Utils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
 			}
