@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -82,6 +83,11 @@ public class Utils
 
 		return new ItemStack(item, 1, md);
 	}
+	
+	public static ItemStack createStackedBlock()
+    {
+        return new ItemStack(Blocks.redstone_ore);
+    }
 
 	/*
 	\247# +

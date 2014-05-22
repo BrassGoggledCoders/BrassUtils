@@ -18,12 +18,14 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.entity.item.ItemExpireEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import endergloves.common.EnderGloves;
+import endergloves.common.config.Config;
 import endergloves.common.item.ItemEnderGlove;
 
 /**
@@ -42,10 +44,10 @@ public class EventHandlerWorld
 	// destroying wheat with your Ender Glove anyway?)
 
 	@SubscribeEvent
-	public void harvestDrops(BlockEvent.HarvestDropsEvent event)
+	public void harvestDrops(BlockEvent.HarvestDropsEvent event) 
 	{	
 		EntityPlayer player = event.harvester;
-
+		
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 		else

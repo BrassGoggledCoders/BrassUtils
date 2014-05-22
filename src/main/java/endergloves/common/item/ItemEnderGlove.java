@@ -28,6 +28,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -86,75 +87,111 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
-		//player.addStat(StatList.mineBlockStatArray[block.getIdFromBlock(block)], 1);
-		//player.addExhaustion(0.025F);
-
 		EntityPlayer player = (EntityPlayer)entityLiving;
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
 		int md = world.getBlockMetadata(x, y, z);
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
-		ItemStack smeltableBlock = (new ItemStack(block));
+		ItemStack smeltableBlock = Utils.getDroppedItemStack(world, player, block, x, y, z, md);
 
 		if ((flameAmount > 0) && (Utils.isSmeltable(smeltableBlock)))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
+			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock);//.copy();
 
 			if (drops != null)
 				items.add(drops);
 
 			for (ItemStack stack : items)
 			{
-				InventoryHelper.addItemStackToInventory(enderInv, stack);
+				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
 				EnderGloves.proxy.blockFlameFX(world, x, y, z, 4);
-				Utils.playSFX(world, x, y, z, "fire.ignite");
+				Utils.playSFX(world, x, y, z, "fire.ignite"); 
 			}
 		}
-		else if (block.canSilkHarvest(world, player, x, y, z, md) && (EnchantmentHelper.getSilkTouchModifier(player)))
+		else if ((EnchantmentHelper.getSilkTouchModifier(player)) && (block.canSilkHarvest(world, player, x, y, z, md)))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-			ItemStack drops = Utils.createStackedBlock(block, md);
+			ItemStack stack = null;
 
-			if (block instanceof BlockRedstoneOre)
-				InventoryHelper.addItemStackToInventory(enderInv, new ItemStack(Blocks.redstone_ore, 1));
-			
-			if (drops != null)
-				items.add(drops);
+			if (block instanceof BlockRedstoneOre) // Issue
+				stack = Utils.createStackedBlock();
+			else
+				stack = Utils.createStackedBlock(block, md);
 
-			for (ItemStack stack : items) 
+			if (stack != null)
+				items.add(stack);
+
+			for (ItemStack drops : items)
 			{
-				InventoryHelper.addItemStackToInventory(enderInv, stack);
-				EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
-				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
-			}
-		}
-		else if (EnchantmentHelper.getFortuneModifier(player) > 0)
-		{
-			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
-			ItemStack drops = Utils.getDroppedItemStack(world, player, block, x, y, z, EnchantmentHelper.getFortuneModifier(player));
-
-			if (drops != null)
-				items.add(drops);
-
-			for (ItemStack stack : items)
-			{
-				InventoryHelper.addItemStackToInventory(enderInv, stack);
+				InventoryHelper.addItemStackToInventory(enderInv, drops);
 				EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
 				Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 			}
 		}
 		else
 		{
-			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, 0);
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
 
-			for (ItemStack stack : items)
+			for (ItemStack drops : items) // Get funky with it
 			{
-				InventoryHelper.addItemStackToInventory(enderInv, stack);
+				InventoryHelper.addItemStackToInventory(enderInv, drops);
 			}
+			
+			EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
+			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
-
+	
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
+	}
+
+	private boolean handleTileEntities()
+	{
+		/*
+		TileEntityFurnace tileentityfurnace = (TileEntityFurnace)p_149749_1_.getTileEntity(p_149749_2_, p_149749_3_, p_149749_4_);
+
+        if (tileentityfurnace != null)
+        {
+            for (int i1 = 0; i1 < tileentityfurnace.getSizeInventory(); ++i1)
+            {
+                ItemStack itemstack = tileentityfurnace.getStackInSlot(i1);
+
+                if (itemstack != null)
+                {
+                    float f = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
+                    float f1 = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
+                    float f2 = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
+
+                    while (itemstack.stackSize > 0)
+                    {
+                        int j1 = this.field_149933_a.nextInt(21) + 10;
+
+                        if (j1 > itemstack.stackSize)
+                        {
+                            j1 = itemstack.stackSize;
+                        }
+
+                        itemstack.stackSize -= j1;
+                        EntityItem entityitem = new EntityItem(p_149749_1_, (double)((float)p_149749_2_ + f), (double)((float)p_149749_3_ + f1), (double)((float)p_149749_4_ + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+
+                        if (itemstack.hasTagCompound())
+                        {
+                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                        }
+
+                        float f3 = 0.05F;
+                        entityitem.motionX = (double)((float)this.field_149933_a.nextGaussian() * f3);
+                        entityitem.motionY = (double)((float)this.field_149933_a.nextGaussian() * f3 + 0.2F);
+                        entityitem.motionZ = (double)((float)this.field_149933_a.nextGaussian() * f3);
+                        p_149749_1_.spawnEntityInWorld(entityitem);
+                    }
+                }
+            }
+
+            p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_, p_149749_5_);
+        }*/
+
+		return false;
 	}
 
 	@SideOnly(Side.CLIENT)
