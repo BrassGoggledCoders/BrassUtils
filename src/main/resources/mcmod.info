@@ -1,7 +1,7 @@
 [
 {
-  "modid": "EnderGloves",
-  "name": "EnderGloves",
+  "modid": "EnderGlove",
+  "name": "EnderGlove",
   "description": "The power of the End in your fist.",
   "version": "${version}",
   "mcversion": "${mcversion}",

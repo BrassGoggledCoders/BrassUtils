@@ -17,9 +17,9 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.2-1.1.0"
-group= "endergloves" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "EnderGloves"
+version = "1.7.2-1.1.1"
+group= "enderglove" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "EnderGlove"
 
 minecraft {
     version = "1.7.2-10.12.1.1073"
