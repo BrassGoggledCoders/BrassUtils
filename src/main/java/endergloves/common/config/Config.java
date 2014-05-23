@@ -71,22 +71,22 @@ public class Config
 		Property enchArt = config.get("Enchantments", "ench_artisan", enchIndex++);
 		enchArtisan = new EnchantmentArtisan(enchArt.getInt(), 2);
 		enchArtisanId = enchArt.getInt();
-		Enchantment.addToBookList(enchAffluency);
+		Enchantment.addToBookList(enchArtisan);
 		
 		Property enchSpe = config.get("Enchantments", "ench_spelunker", enchIndex++);
 		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 2);
 		enchSpelunkerId = enchSpe.getInt();
-		Enchantment.addToBookList(enchAffluency);
+		Enchantment.addToBookList(enchSpelunker);
 		
 		Property enchTel = config.get("Enchantments", "ench_teleport", enchIndex++);
 		enchTeleport = new EnchantmentTeleport(enchTel.getInt(), 4);
 		enchTeleportId = enchTel.getInt();
-		Enchantment.addToBookList(enchAffluency);
+		Enchantment.addToBookList(enchTeleport);
 		
 		Property enchOP = config.get("Enchantments", "ench_creative", enchIndex++);
 		enchCreative = new EnchantmentCreative(enchOP.getInt(), 0);
 		enchCreativeId = enchOP.getInt();
-		Enchantment.addToBookList(enchAffluency);
+		Enchantment.addToBookList(enchCreative);
 		
 		Property enchFla = config.get("Enchantments", "ench_flametouch", enchIndex++);
 		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 3);

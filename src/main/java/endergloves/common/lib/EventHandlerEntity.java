@@ -16,7 +16,9 @@ import java.util.Random;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import endergloves.common.config.Config;
@@ -32,7 +34,7 @@ public class EventHandlerEntity
 	public static boolean playerDead = false;
 	Random random = new Random();
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void itemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
 		ItemStack heldItem = event.player.inventory.getCurrentItem();
@@ -53,23 +55,6 @@ public class EventHandlerEntity
 					heldItem.damageItem(1, event.player);
 				}
 			}  
-		}
-	}
-	
-	//@SubscribeEvent
-	public void playerDrops(PlayerDropsEvent event)
-	{
-		System.out.println("Woof!");
-		
-		ArrayList list = event.drops;
-		Iterator iterator = list.iterator();
-		
-		while (iterator.hasNext())
-		{
-			ItemStack is = (ItemStack)iterator.next();
-			
-			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
-				System.out.println("Something's happening!");
 		}
 	}
 }

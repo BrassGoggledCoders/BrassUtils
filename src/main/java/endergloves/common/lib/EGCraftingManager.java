@@ -9,6 +9,12 @@
  */
 package endergloves.common.lib;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.registry.GameRegistry;
+import endergloves.common.config.ConfigItems;
+
 /**
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
@@ -16,5 +22,15 @@ package endergloves.common.lib;
  */
 public class EGCraftingManager
 {
-
+	public static void init()
+	{
+		GameRegistry.addRecipe(new ItemStack(ConfigItems.itemEnderGlove), new Object[] {
+			"EEE",
+			"LNL",
+			"LLL",
+			'L', Items.leather, 
+			'N', Items.nether_star, 
+			'E', Items.ender_eye
+		});
+	}
 }

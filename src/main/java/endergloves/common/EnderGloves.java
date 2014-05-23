@@ -24,6 +24,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import endergloves.common.config.Config;
 import endergloves.common.config.ConfigBlocks;
 import endergloves.common.config.ConfigItems;
+import endergloves.common.lib.EGCraftingManager;
 import endergloves.common.lib.EnderGloveWorldGenerator;
 import endergloves.common.lib.EventHandlerEntity;
 import endergloves.common.lib.EventHandlerWorld;
@@ -55,17 +56,13 @@ public class EnderGloves
 		event.getModMetadata().version = LibInfo.VERSION;
 		directory = event.getModConfigurationDirectory();
 
-		LanguageRegistry.instance().getStringLocalization(
-				"itemGroup.endergloves", "en_US");
+		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US");
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
 		} catch (Exception e)
 		{
-			FMLLog.severe("EnderGloves could not load its config file!",
-					new Object[0]); // (Level.SEVERE, e,
-									// "EnderGloves could not load its config file!",
-									// new Object[0]);
+			FMLLog.severe("EnderGloves could not load its config file!", new Object[0]); 
 		} finally
 		{
 			if (Config.config != null)
@@ -83,6 +80,7 @@ public class EnderGloves
 
 		ConfigBlocks.init();
 		ConfigItems.init();
+		EGCraftingManager.init();
 	}
 
 	@Mod.EventHandler
@@ -92,9 +90,7 @@ public class EnderGloves
 	}
 
 	@Mod.EventHandler
-	public void cuddling(FMLPostInitializationEvent event)
-	{
-	}
+	public void cuddling(FMLPostInitializationEvent event) {}
 	
 	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event)

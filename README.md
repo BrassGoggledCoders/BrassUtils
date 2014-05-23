@@ -1,7 +1,7 @@
 ![](https://copy.com/HNrV7k74CymKPRRc)
 
 Based on [Geartooth's suggestion](http://www.minecraftforum.net/topic/1299856-ender-gloves/) 
-on the MCF, this mod is for the 4th Modjam.
+on the Minecraft Forums, this mod was originally created for the 4th Modjam.
 
 Twitter: https://twitter.com/surseance <br/> 
 Email: <surseance@autistici.org>

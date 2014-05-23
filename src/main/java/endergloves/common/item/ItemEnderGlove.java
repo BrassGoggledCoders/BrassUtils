@@ -18,7 +18,9 @@ import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -28,8 +30,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -43,6 +47,8 @@ import endergloves.common.lib.LibInfo;
 import endergloves.common.lib.Utils;
 
 /**
+ * This class is the whole point of this mod.
+ * 
  * @author Surseance (Johnny Eatmon)
  * <jmaeatmon@gmail.com>
  *
@@ -63,14 +69,15 @@ public class ItemEnderGlove extends ItemTool
 		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
+		this.setMaxDamage(350);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
 	{
-		list.add(EnumChatFormatting.ITALIC.GREEN + "The power of the End");
-		list.add(EnumChatFormatting.ITALIC.DARK_PURPLE + "in your hands!");
+		list.add(EnumChatFormatting.GREEN + "The power of the End");
+		list.add(EnumChatFormatting.GREEN + "in your hands!");
 	}
 
 	//@Override
@@ -138,11 +145,11 @@ public class ItemEnderGlove extends ItemTool
 			{
 				InventoryHelper.addItemStackToInventory(enderInv, drops);
 			}
-			
+
 			EnderGloves.proxy.blockSparkle(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
-	
+
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving); 
 	}
 
@@ -188,4 +195,42 @@ public class ItemEnderGlove extends ItemTool
 	{
 		return true;
 	}
+
+	@Override
+	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player)
+	{
+		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
+
+		if (teleAmount > 0)
+		{
+            world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            is.damageItem(3, player); 
+            
+            if (!world.isRemote)
+                world.spawnEntityInWorld(new EntityEnderPearl(world, player));
+		}
+
+		return is;
+	}
+	
+	/* TODO: Might use this for a better, cleaner teleport
+	public static MovingObjectPosition getTargetBlock(World world, Entity entity, boolean flag)
+	{
+		float var4 = 1.0F;
+		float var5 = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * var4;
+		float var6 = entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * var4;
+		double var7 = entity.prevPosX + (entity.posX - entity.prevPosX) * var4;
+		double var9 = entity.prevPosY + (entity.posY - entity.prevPosY) * var4 + 1.62D - entity.yOffset;
+		double var11 = entity.prevPosZ + (entity.posZ - entity.prevPosZ) * var4;
+		Vec3 var13 = world.getWorldVec3Pool().getVecFromPool(var7, var9, var11);
+		float var14 = MathHelper.cos(-var6 * 0.01745329F - 3.141593F);
+		float var15 = MathHelper.sin(-var6 * 0.01745329F - 3.141593F);
+		float var16 = -MathHelper.cos(-var5 * 0.01745329F);
+		float var17 = MathHelper.sin(-var5 * 0.01745329F);
+		float var18 = var15 * var16;
+		float var20 = var14 * var16;
+		double var21 = 10.0D;
+		Vec3 var23 = var13.addVector(var18 * var21, var17 * var21, var20 * var21);
+		return world.rayTraceBlocks(var13, var23, flag);
+	}*/
 }
