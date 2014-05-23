@@ -1,15 +1,13 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft. 
+ * EnderGlove mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 14, 2014, 8:57:04 PM] 
+ * File created @[May 14, 2014, 8:57:04 PM]
  */
 package enderglove.common.lib.enchantment;
-
-import java.util.Random;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -18,8 +16,7 @@ import net.minecraft.item.ItemStack;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
 public class EnchantmentAffluency extends Enchantment
@@ -27,7 +24,7 @@ public class EnchantmentAffluency extends Enchantment
 	public EnchantmentAffluency(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		this.setName("affluency");
+		setName("affluency");
 	}
 
 	@Override
@@ -51,7 +48,8 @@ public class EnchantmentAffluency extends Enchantment
 	@Override
 	public boolean canApply(ItemStack is)
 	{
-		return ((is.getItem() instanceof ItemEnderGlove) || (is.getItem() instanceof ItemBook));
+		return is.getItem() instanceof ItemEnderGlove
+				|| is.getItem() instanceof ItemBook;
 	}
 
 	@Override

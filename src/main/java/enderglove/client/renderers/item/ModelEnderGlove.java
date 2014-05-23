@@ -1,32 +1,22 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft. 
+ * EnderGlove mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 15, 2014, 4:06:42 PM] 
+ * File created @[May 15, 2014, 4:06:42 PM]
  */
 package enderglove.client.renderers.item;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.opengl.GL11;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import enderglove.common.lib.LibInfo;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
 @SideOnly(Side.CLIENT)
@@ -52,7 +42,7 @@ public class ModelEnderGlove extends ModelBase
 
 	public ModelEnderGlove()
 	{
-		//super(scale, 0, 64, 128);
+		// super(scale, 0, 64, 128);
 		eye = new ModelRenderer(this, 44, 0);
 		eye.addBox(0F, 0F, 0F, 4, 4, 4);
 		eye.setRotationPoint(6F, 6F, 0F);
@@ -121,10 +111,11 @@ public class ModelEnderGlove extends ModelBase
 	}
 
 	@Override
-	public void render(Entity entity, float f1, float f2, float f3, float f4, float f5, float f6)
+	public void render(Entity entity, float f1, float f2, float f3, float f4,
+			float f5, float f6)
 	{
 		super.render(entity, f1, f2, f3, f4, f5, f6);
-		this.setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
+		setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
 		eye.render(f6);
 		eye2.render(f6);
 		eye3.render(f6);
@@ -150,9 +141,10 @@ public class ModelEnderGlove extends ModelBase
 		model.rotateAngleY = y;
 		model.rotateAngleZ = z;
 	}
-	
+
 	@Override
-	public void setRotationAngles(float f1, float f2, float f3, float f4, float f5, float f6, Entity entity)
+	public void setRotationAngles(float f1, float f2, float f3, float f4,
+			float f5, float f6, Entity entity)
 	{
 		super.setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
 	}

@@ -1,25 +1,23 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft. 
+ * EnderGlove mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 14, 2014, 9:03:24 PM] 
+ * File created @[May 14, 2014, 9:03:24 PM]
  */
 package enderglove.common.lib.enchantment;
 
-import enderglove.common.config.Config;
-import enderglove.common.item.ItemEnderGlove;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
+import enderglove.common.config.Config;
+import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
 public class EnchantmentTeleport extends Enchantment
@@ -27,9 +25,9 @@ public class EnchantmentTeleport extends Enchantment
 	public EnchantmentTeleport(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		this.setName("teleport");
+		setName("teleport");
 	}
-	
+
 	@Override
 	public int getMinEnchantability(int level)
 	{
@@ -51,7 +49,8 @@ public class EnchantmentTeleport extends Enchantment
 	@Override
 	public boolean canApply(ItemStack is)
 	{
-		return ((is.getItem() instanceof ItemEnderGlove) || (is.getItem() instanceof ItemBook));
+		return is.getItem() instanceof ItemEnderGlove
+				|| is.getItem() instanceof ItemBook;
 	}
 
 	@Override
@@ -63,6 +62,8 @@ public class EnchantmentTeleport extends Enchantment
 	@Override
 	public boolean canApplyTogether(Enchantment enchantment)
 	{
-		return (super.canApplyTogether(enchantment)) && ((enchantment.effectId != Enchantment.fortune.effectId) || (enchantment.effectId != Enchantment.silkTouch.effectId) || (enchantment.effectId != Config.enchAffluencyId));
+		return super.canApplyTogether(enchantment)
+				&& (enchantment.effectId != Enchantment.fortune.effectId
+						|| enchantment.effectId != Enchantment.silkTouch.effectId || enchantment.effectId != Config.enchAffluencyId);
 	}
 }

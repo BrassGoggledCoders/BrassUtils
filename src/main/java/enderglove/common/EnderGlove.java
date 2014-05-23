@@ -56,13 +56,15 @@ public class EnderGlove
 		event.getModMetadata().version = LibInfo.VERSION;
 		directory = event.getModConfigurationDirectory();
 
-		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US");
+		LanguageRegistry.instance().getStringLocalization(
+				"itemGroup.endergloves", "en_US");
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
 		} catch (Exception e)
 		{
-			FMLLog.severe("EnderGlove could not load its config file!", new Object[0]); 
+			FMLLog.severe("EnderGlove could not load its config file!",
+					new Object[0]);
 		} finally
 		{
 			if (Config.config != null)
@@ -90,11 +92,14 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void cuddling(FMLPostInitializationEvent event) {}
-	
+	public void cuddling(FMLPostInitializationEvent event)
+	{
+	}
+
 	@Mod.EventHandler
 	public void serverStarting(FMLServerStartingEvent event)
 	{
-		System.out.println("Initializing EnderGlove v" + LibInfo.VERSION + "...");
+		System.out.println("Initializing EnderGlove v" + LibInfo.VERSION
+				+ "...");
 	}
 }

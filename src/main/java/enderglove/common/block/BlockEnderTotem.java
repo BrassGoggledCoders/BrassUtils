@@ -1,11 +1,11 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft. 
+ * EnderGlove mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 14, 2014, 8:21:56 PM] 
+ * File created @[May 14, 2014, 8:21:56 PM]
  */
 package enderglove.common.block;
 
@@ -19,8 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.lib.LibInfo;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
 public class BlockEnderTotem extends BlockContainer
@@ -29,14 +28,14 @@ public class BlockEnderTotem extends BlockContainer
 	@Override
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		this.blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
+		blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
 	}
-	
+
 	public BlockEnderTotem()
 	{
 		super(Material.rock);
-		this.setHardness(3.5F);
-		this.setResistance(6.0F);
+		setHardness(3.5F);
+		setResistance(6.0F);
 	}
 
 	@Override

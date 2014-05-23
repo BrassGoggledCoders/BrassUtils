@@ -1,11 +1,11 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft. 
+ * EnderGlove mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 14, 2014, 8:27:09 PM] 
+ * File created @[May 14, 2014, 8:27:09 PM]
  */
 package enderglove.common.lib;
 
@@ -16,8 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
 public class CreativeTabEG extends CreativeTabs

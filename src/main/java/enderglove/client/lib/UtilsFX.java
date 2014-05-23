@@ -1,23 +1,23 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft. 
+ * EnderGlove mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 16, 2014, 10:46:05 PM] 
+ * File created @[May 16, 2014, 10:46:05 PM]
  */
 package enderglove.client.lib;
 
 import net.minecraft.client.particle.EntityFlameFX;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.FMLClientHandler;
+
 /**
- * @author Surseance (Johnny Eatmon)
- * <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
-public class UtilsFX 
+public class UtilsFX
 {
 	public static void blockSparkle(World world, int x, int y, int z, int count)
 	{
@@ -26,13 +26,13 @@ public class UtilsFX
 
 		for (; count < 10; ++count)
 		{
-			double startX = (double)(x + world.rand.nextFloat());
-			double startY = (double)(y + world.rand.nextFloat() * 1.0F);
-			double startZ = (double)(z + world.rand.nextFloat());
+			double startX = x + world.rand.nextFloat();
+			double startY = y + world.rand.nextFloat() * 1.0F;
+			double startZ = z + world.rand.nextFloat();
 
 			double endX = world.rand.nextGaussian() * 0.02D;
-			double endY = world.rand.nextGaussian() * 0.02D; 
-			double endZ = world.rand.nextGaussian() * 0.02D; 
+			double endY = world.rand.nextGaussian() * 0.02D;
+			double endZ = world.rand.nextGaussian() * 0.02D;
 
 			float randFloat = world.rand.nextFloat() * 0.6F + 0.4F;
 			float r, g, b;
@@ -40,10 +40,14 @@ public class UtilsFX
 			g *= 0.3F;
 			r *= 0.9F;
 
-			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ); 
+			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ,
+					endX, endY, endZ);
 			ef.setRBGColorF(r, g, b);
-			ef.setParticleTextureIndex(82); // I like the way the flames spread out, but I wanted the happyVillager particle texture
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
+			ef.setParticleTextureIndex(82); // I like the way the flames spread
+											// out, but I wanted the
+											// happyVillager particle texture
+			FMLClientHandler.instance().getClient().effectRenderer
+					.addEffect(ef);
 		}
 	}
 
@@ -51,16 +55,18 @@ public class UtilsFX
 	{
 		for (; count < 10; ++count)
 		{
-			double startX = (double)(x + world.rand.nextFloat());
-			double startY = (double)(y + world.rand.nextFloat() * 1.0F);
-			double startZ = (double)(z + world.rand.nextFloat());
+			double startX = x + world.rand.nextFloat();
+			double startY = y + world.rand.nextFloat() * 1.0F;
+			double startZ = z + world.rand.nextFloat();
 
 			double endX = world.rand.nextGaussian() * 0.02D;
 			double endY = world.rand.nextGaussian() * 0.02D;
 			double endZ = world.rand.nextGaussian() * 0.02D;
 
-			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
-			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
+			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ,
+					endX, endY, endZ);
+			FMLClientHandler.instance().getClient().effectRenderer
+					.addEffect(ef);
 		}
 	}
 }
