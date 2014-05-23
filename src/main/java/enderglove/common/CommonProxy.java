@@ -21,7 +21,7 @@ public class CommonProxy
 	{
 	}
 
-	public void blockSparkle(World world, int x, int y, int z, int count)
+	public void blockSparkleFX(World world, int x, int y, int z, int count)
 	{
 	}
 

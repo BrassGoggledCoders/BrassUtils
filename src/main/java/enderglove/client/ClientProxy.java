@@ -27,7 +27,7 @@ public class ClientProxy extends CommonProxy
 	}
 
 	@Override
-	public void blockSparkle(World world, int x, int y, int z, int count)
+	public void blockSparkleFX(World world, int x, int y, int z, int count)
 	{
 		UtilsFX.blockSparkle(world, x, y, z, count);
 	}

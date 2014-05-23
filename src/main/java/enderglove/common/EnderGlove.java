@@ -95,11 +95,4 @@ public class EnderGlove
 	public void cuddling(FMLPostInitializationEvent event)
 	{
 	}
-
-	@Mod.EventHandler
-	public void serverStarting(FMLServerStartingEvent event)
-	{
-		System.out.println("Initializing EnderGlove v" + LibInfo.VERSION
-				+ "...");
-	}
 }

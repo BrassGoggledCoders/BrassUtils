@@ -34,20 +34,12 @@ public class UtilsFX
 			double endY = world.rand.nextGaussian() * 0.02D;
 			double endZ = world.rand.nextGaussian() * 0.02D;
 
-			float randFloat = world.rand.nextFloat() * 0.6F + 0.4F;
-			float r, g, b;
-			r = g = b = 1.0F * randFloat;
-			g *= 0.3F;
-			r *= 0.9F;
-
-			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ,
-					endX, endY, endZ);
-			ef.setRBGColorF(r, g, b);
+			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
+			ef.setRBGColorF(0.45F, 0.0F, 0.35F);
 			ef.setParticleTextureIndex(82); // I like the way the flames spread
 											// out, but I wanted the
 											// happyVillager particle texture
-			FMLClientHandler.instance().getClient().effectRenderer
-					.addEffect(ef);
+			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
 		}
 	}
 
@@ -63,10 +55,8 @@ public class UtilsFX
 			double endY = world.rand.nextGaussian() * 0.02D;
 			double endZ = world.rand.nextGaussian() * 0.02D;
 
-			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ,
-					endX, endY, endZ);
-			FMLClientHandler.instance().getClient().effectRenderer
-					.addEffect(ef);
+			EntityFlameFX ef = new EntityFlameFX(world, startX, startY, startZ, endX, endY, endZ);
+			FMLClientHandler.instance().getClient().effectRenderer.addEffect(ef);
 		}
 	}
 }

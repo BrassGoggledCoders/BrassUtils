@@ -144,7 +144,7 @@ public class ItemEnderGlove extends ItemTool
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
 			}
 
-			EnderGlove.proxy.blockSparkle(world, x, y, z, 4);
+			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 		else
@@ -158,7 +158,7 @@ public class ItemEnderGlove extends ItemTool
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
 			}
 
-			EnderGlove.proxy.blockSparkle(world, x, y, z, 4);
+			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 
