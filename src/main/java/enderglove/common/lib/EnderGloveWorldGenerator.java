@@ -22,19 +22,15 @@ import enderglove.common.config.ConfigBlocks;
  */
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
-	int totemsPerChunk = -1;
 
 	@Override
-	public void generate( Random random,  int chunkX,
-			 int chunkZ,  World world,
-			 IChunkProvider chunkGenerator,
-			 IChunkProvider chunkProvider)
+	public void generate(Random random, int chunkX, int chunkZ, World world,
+			IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 		worldGeneration(world, random, chunkX, chunkZ);
 	}
 
-	private void worldGeneration( World world,  Random random,
-			 int x,  int z)
+	private void worldGeneration(World world, Random random, int x, int z)
 	{
 		switch (world.provider.dimensionId)
 		{
@@ -42,15 +38,13 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 			break;
 		case 1:
 			break;
-		default:
+		case 0:
 			generateSurface(world, random, x, z);
 		}
 	}
-
-	private boolean generateSurface( World world,  Random random,
-			 int chunkX,  int chunkZ)
+	private boolean generateSurface( World world,  Random random, int chunkX,  int chunkZ)
 	{
-		for (int amount = 0; amount < totemsPerChunk; ++amount)
+		for (int i = 0; i < 300/* Config.totemsPerChunk */; i++)
 		{
 			 int x = chunkX + random.nextInt(16) + 8;
 			 int z = chunkZ + random.nextInt(16) + 8;
@@ -59,10 +53,8 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 
 			generateTotem(world, random, x, y, z);
 		}
-
-		return true;
+		return false;
 	}
-
 	private boolean generateTotem( World world,  Random random,
 			 int x,  int y,  int z)
 	{
@@ -84,7 +76,7 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 			}
 		}
 		// }
-
 		return true;
+		// return true;
 	}
 }

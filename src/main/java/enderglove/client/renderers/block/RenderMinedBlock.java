@@ -1,11 +1,11 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGloves mod for Minecraft. 
+ * EnderGloves mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 25, 2014, 3:09:52 PM] 
+ * File created @[May 25, 2014, 3:09:52 PM]
  */
 package enderglove.client.renderers.block;
 

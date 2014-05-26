@@ -15,9 +15,9 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneOre;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderPearl;
@@ -28,14 +28,22 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
 
 import com.google.common.collect.Sets;
 
+import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
@@ -46,9 +54,8 @@ import enderglove.common.lib.LibInfo;
 import enderglove.common.lib.Utils;
 
 /**
- * This class is the whole point of this mod.
  *
- * @author Surseance (Johnny Eatmon) 
+ * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
  *
  */
@@ -259,7 +266,15 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-
+		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
+		if(player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
+		{
+			if(world.isAirBlock(x, y + 1, z))
+			{
+			world.setBlock(x, y + 1, z, Blocks.ender_chest);
+			player.inventory.consumeInventoryItem(ItemBlock.getItemFromBlock(Blocks.ender_chest));
+			}
+		}
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
 }

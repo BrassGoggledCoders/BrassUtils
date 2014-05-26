@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 @SideOnly(Side.CLIENT)
 public class ModelEnderGlove extends ModelBase

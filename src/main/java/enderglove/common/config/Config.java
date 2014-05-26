@@ -5,7 +5,7 @@
  * This mod is registered under the WTFPL v2.0. Please read the COPYING.WTFPL
  * file for more details.
  *
- * File created @[May 14, 2014, 8:10:36 PM]
+ * File created @[May 34, 2034, 8:30:36 PM]
  */
 package enderglove.common.config;
 
@@ -17,6 +17,7 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
+import enderglove.common.lib.enchantment.EnchantmentField;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
@@ -53,6 +54,8 @@ public class Config
 
 	public static int entMinedBlockId;
 
+	public static String line1, line2, line3;
+
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
@@ -67,7 +70,7 @@ public class Config
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
 
-		int enchIndex = 160;
+		int enchIndex = 360;
 
 		Property enchAff = config.get("Enchantments", "ench_affluency", enchIndex++);
 		enchAffluency = new EnchantmentAffluency(enchAff.getInt(), 3);
@@ -99,15 +102,26 @@ public class Config
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
-		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
-		//enchField = new EnchantmentField(enchEField.getInt(), 3);
+		Property enchEField = config.get("Enchantments",
+					"ench_enderfield", enchIndex++);
+		enchField = new EnchantmentField(enchEField.getInt(), 3);
 		enchFieldID = enchEField.getInt();
-		//Enchantment.addToBookList(enchFlameTouch);
+		Enchantment.addToBookList(enchField);
 
-		int eIdx = 210;
+		int eIdx = 230;
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 
+		Property rline1 = config.get("Recipe", "line_1", "EEE");
+		line1 = rline1.toString();
+		Property rline2 = config.get("Recipe", "line_2", "LNL");
+		line2 = rline2.toString();
+		Property rline3 = config.get("Recipe", "line_3", "LNL");
+		line3 = rline3.toString();
+		//Sorry about line wrap...
+        config.addCustomCategoryComment(
+                                        "Recipe",
+                                        "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
 		config.save();
 	}
 
