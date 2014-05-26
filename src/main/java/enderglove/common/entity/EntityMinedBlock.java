@@ -38,18 +38,11 @@ public class EntityMinedBlock extends Entity
 		this.scale = 0.9F;
 	}
 
-<<<<<<< HEAD
 	//public EntityMinedBlock(World world, double x, double y, double z, Block block)
 	//{
 	//	this(world, x, y, z, block, 0);
 	//}
-=======
-	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, float scale)
-	{
-		this(world, posX, posY, posZ, block, 0, scale);
-		EntityMinedBlock.scale = scale;
-	}
->>>>>>> FETCH_HEAD
+
 
 	public EntityMinedBlock(World world, double x, double y, double z, Block block, int md)
 	{
@@ -63,17 +56,10 @@ public class EntityMinedBlock extends Entity
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-<<<<<<< HEAD
 		this.prevPosX = x;
 		this.prevPosY = y;
 		this.prevPosZ = z;
 		this.scale = 0.9F;
-=======
-		this.prevPosX = posX;
-		this.prevPosY = posY;
-		this.prevPosZ = posZ;
-		EntityMinedBlock.scale = scale;
->>>>>>> FETCH_HEAD
 	}
 
 	@Override
@@ -104,17 +90,12 @@ public class EntityMinedBlock extends Entity
 			if (this.scale <= 0.0F)
 				this.setDead();
 		}
-<<<<<<< HEAD
 	}
 
 	@Override
 	public AxisAlignedBB getBoundingBox()
 	{
 		return null;
-=======
-
-		//this.scale = 0.9F;
->>>>>>> FETCH_HEAD
 	}
 
 	@Override
@@ -123,13 +104,8 @@ public class EntityMinedBlock extends Entity
 		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(this.block));
 		tagCompound.setInteger("TileID", Block.getIdFromBlock(this.block));
 		tagCompound.setByte("Data", (byte) this.metadata);
-<<<<<<< HEAD
-=======
-		tagCompound.setFloat("Scale", EntityMinedBlock.scale);
-
-		if (this.tagCompound != null)
-			tagCompound.setTag("TileEntityData", this.tagCompound);
->>>>>>> FETCH_HEAD
+		
+		tagCompound.setFloat("Scale", this.scale);
 	}
 
 	@Override
@@ -141,23 +117,7 @@ public class EntityMinedBlock extends Entity
 			this.block = Block.getBlockById(tagCompound.getByte("Tile") & 255);
 
 		this.metadata = tagCompound.getByte("Data") & 255;
-<<<<<<< HEAD
-=======
-
-		if (tagCompound.hasKey("TileEntityData", 10))
-			this.tagCompound = tagCompound.getCompoundTag("TileEntityData");
-
-		EntityMinedBlock.scale = tagCompound.getFloat("Scale");
-	}
-
-	@Override
-	public void addEntityCrashInfo(CrashReportCategory crc)
-	{
-		super.addEntityCrashInfo(crc);
-		crc.addCrashSection("Imitating block ID",
-				Integer.valueOf(Block.getIdFromBlock(this.block)));
-		crc.addCrashSection("Imitating block data", Integer.valueOf(this.metadata));
->>>>>>> FETCH_HEAD
+		this.scale = tagCompound.getFloat("Scale");
 	}
 
 	@SideOnly(Side.CLIENT)
