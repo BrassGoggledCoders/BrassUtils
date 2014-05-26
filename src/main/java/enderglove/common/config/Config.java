@@ -24,7 +24,7 @@ import enderglove.common.lib.enchantment.EnchantmentTeleport;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class Config
 {
@@ -53,79 +53,77 @@ public class Config
 
 	public static int entMinedBlockId;
 
-	public static String recipeLine1, recipeLine2, recipeLine3;
+	public static String line1, line2, line3;
 
 	public static void initialize(final File file)
 	{
 		config = new Configuration(file);
-		config.addCustomCategoryComment("Enchantments",
-				"EnderGlove enchantments");
 		config.load();
 
-		final Property tpc = config.get("general", "totems_per_chunk",
+		Property tpc = config.get("general", "totems_per_chunk",
 				totemsPerChunk);
 		tpc.comment = "The rarity of the Ender Totems. Setting it to 0 will remove Ender Totem generation.";
 		totemsPerChunk = tpc.getInt();
 
-		final Property atc = config.get("general", "artisan_bonus_chance",
+		Property atc = config.get("general", "artisan_bonus_chance",
 				artisanBonusChance);
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
 
 		int enchIndex = 360;
 
-		final Property enchAff = config.get("Enchantments", "ench_affluency",
+		Property enchAff = config.get("Enchantments", "ench_affluency",
 				enchIndex++);
 		enchAffluency = new EnchantmentAffluency(enchAff.getInt(), 3);
 		enchAffluencyId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
 
-		final Property enchArt = config.get("Enchantments", "ench_artisan",
+		 Property enchArt = config.get("Enchantments", "ench_artisan",
 				enchIndex++);
 		enchArtisan = new EnchantmentArtisan(enchArt.getInt(), 2);
 		enchArtisanId = enchArt.getInt();
 		Enchantment.addToBookList(enchArtisan);
 
-		final Property enchSpe = config.get("Enchantments", "ench_spelunker",
+		 Property enchSpe = config.get("Enchantments", "ench_spelunker",
 				enchIndex++);
 		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 2);
 		enchSpelunkerId = enchSpe.getInt();
 		Enchantment.addToBookList(enchSpelunker);
 
-		final Property enchTel = config.get("Enchantments", "ench_teleport",
+		 Property enchTel = config.get("Enchantments", "ench_teleport",
 				enchIndex++);
 		enchTeleport = new EnchantmentTeleport(enchTel.getInt(), 4);
 		enchTeleportId = enchTel.getInt();
 		Enchantment.addToBookList(enchTeleport);
 
-		final Property enchOP = config.get("Enchantments", "ench_creative",
+		 Property enchOP = config.get("Enchantments", "ench_creative",
 				enchIndex++);
 		enchCreative = new EnchantmentCreative(enchOP.getInt(), 0);
 		enchCreativeId = enchOP.getInt();
 		Enchantment.addToBookList(enchCreative);
 
-		final Property enchFla = config.get("Enchantments", "ench_flametouch",
+		 Property enchFla = config.get("Enchantments", "ench_flametouch",
 				enchIndex++);
 		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 3);
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
+		Property enchEField = config.get("Enchantments",
+					"ench_enderfield", enchIndex++);
+		enchField = new EnchantmentField(enchEField.getInt(), 3);
+		enchFieldID = enchEField.getInt();
+		Enchantment.addToBookList(enchField);
+
 		int eIdx = 230;
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 
-		final Property enchEField = config.get("Enchantments",
-				"ench_enderfield", enchIndex++);
-		enchField = new EnchantmentField(enchEField.getInt(), 3);
-		enchFieldID = enchEField.getInt();
-		Enchantment.addToBookList(enchFlameTouch);
-
-		final Property recipeLine1 = config.get("Recipe", "line_1", "EEE");
-		recipeLine1.comment = "Line 1";
-		final Property recipeLine2 = config.get("Recipe", "line_2", "LNL");
-		recipeLine2.comment = "Line 2";
-		final Property recipeLine3 = config.get("Recipe", "line_3", "LNL");
-		recipeLine3.comment = "Line 3";
+		Property rline1 = config.get("Recipe", "line_1", "EEE");
+		line1 = rline1.toString();
+		Property rline2 = config.get("Recipe", "line_2", "LNL");
+		line2 = rline2.toString();
+		Property rline3 = config.get("Recipe", "line_3", "LNL");
+		line3 = rline3.toString();
 		config.addCustomCategoryComment(
 				"Recipe",
 				"Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");

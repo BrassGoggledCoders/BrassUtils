@@ -33,7 +33,7 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION)
 public class EnderGlove
