@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class CommonProxy
 {
@@ -21,11 +21,13 @@ public class CommonProxy
 	{
 	}
 
-	public void blockSparkleFX(World world, int x, int y, int z, int count)
+	public void blockSparkleFX(final World world, final int x, final int y,
+			final int z, final int count)
 	{
 	}
 
-	public void blockFlameFX(World world, int x, int y, int z, int count)
+	public void blockFlameFX(final World world, final int x, final int y,
+			final int z, final int count)
 	{
 	}
 }

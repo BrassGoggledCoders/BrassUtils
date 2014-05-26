@@ -9,10 +9,9 @@
  */
 package enderglove.common.lib;
 
-
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class LibInfo
 {

@@ -13,7 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class TileEnderTotem extends TileEntity
 {

@@ -18,24 +18,24 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EnchantmentField extends Enchantment
 {
-	public EnchantmentField(int id, int rarity)
+	public EnchantmentField(final int id, final int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		setName("enderfield");
 	}
 
 	@Override
-	public int getMinEnchantability(int level)
+	public int getMinEnchantability(final int level)
 	{
 		return 24;
 	}
 
 	@Override
-	public int getMaxEnchantability(int level)
+	public int getMaxEnchantability(final int level)
 	{
 		return super.getMinEnchantability(level) + 50;
 	}
@@ -47,20 +47,20 @@ public class EnchantmentField extends Enchantment
 	}
 
 	@Override
-	public boolean canApply(ItemStack is)
+	public boolean canApply(final ItemStack is)
 	{
 		return is.getItem() instanceof ItemEnderGlove
 				|| is.getItem() instanceof ItemBook;
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack is)
+	public boolean canApplyAtEnchantingTable(final ItemStack is)
 	{
 		return canApply(is);
 	}
 
 	@Override
-	public boolean canApplyTogether(Enchantment enchantment)
+	public boolean canApplyTogether(final Enchantment enchantment)
 	{
 		return super.canApplyTogether(enchantment)
 				&& (enchantment.effectId != Config.enchTeleportId);

@@ -18,41 +18,44 @@ import enderglove.common.config.ConfigBlocks;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
 	int totemsPerChunk = -1;
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	public void generate(final Random random, final int chunkX,
+			final int chunkZ, final World world,
+			final IChunkProvider chunkGenerator,
+			final IChunkProvider chunkProvider)
 	{
 		worldGeneration(world, random, chunkX, chunkZ);
 	}
 
-	private void worldGeneration(World world, Random random, int x, int z)
+	private void worldGeneration(final World world, final Random random,
+			final int x, final int z)
 	{
 		switch (world.provider.dimensionId)
 		{
-			case -1:
-				break;
-			case 1:
-				break;
-			default:
-				generateSurface(world, random, x, z);
+		case -1:
+			break;
+		case 1:
+			break;
+		default:
+			generateSurface(world, random, x, z);
 		}
 	}
 
-	private boolean generateSurface(World world, Random random, int chunkX,
-			int chunkZ)
+	private boolean generateSurface(final World world, final Random random,
+			final int chunkX, final int chunkZ)
 	{
 		for (int amount = 0; amount < totemsPerChunk; ++amount)
 		{
-			int x = chunkX + random.nextInt(16) + 8;
-			int z = chunkZ + random.nextInt(16) + 8;
+			final int x = chunkX + random.nextInt(16) + 8;
+			final int z = chunkZ + random.nextInt(16) + 8;
 
-			int y = random.nextInt(world.getHeightValue(x, z) * 2);
+			final int y = random.nextInt(world.getHeightValue(x, z) * 2);
 
 			generateTotem(world, random, x, y, z);
 		}
@@ -60,18 +63,18 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 		return true;
 	}
 
-	private boolean generateTotem(World world, Random random, int x, int y,
-			int z)
+	private boolean generateTotem(final World world, final Random random,
+			final int x, final int y, final int z)
 	{
 		// for (int rarity = 0; rarity < 10; ++rarity)
-			// {
+		// {
 		// int posX = x + random.nextInt(8) - random.nextInt(8);
 		// int posY = y + random.nextInt(4) - random.nextInt(4);
 		// int posZ = z + random.nextInt(8) - random.nextInt(8);
 
 		if (world.isAirBlock(x, y, z))
 		{
-			int maxHeight = 1 + random.nextInt(random.nextInt(3) + 1);
+			final int maxHeight = 1 + random.nextInt(random.nextInt(3) + 1);
 
 			for (int height = 0; height < maxHeight; ++height)
 			{

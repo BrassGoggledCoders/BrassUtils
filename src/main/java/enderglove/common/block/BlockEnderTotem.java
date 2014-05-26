@@ -20,13 +20,13 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class BlockEnderTotem extends BlockContainer
 {
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerBlockIcons(IIconRegister ir)
+	public void registerBlockIcons(final IIconRegister ir)
 	{
 		blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
 	}
@@ -39,7 +39,7 @@ public class BlockEnderTotem extends BlockContainer
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int metadata)
+	public TileEntity createNewTileEntity(final World world, final int metadata)
 	{
 		return null;
 	}

@@ -32,7 +32,7 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION)
 public class EnderGlove
@@ -51,23 +51,26 @@ public class EnderGlove
 	// CreativeTabEG(CreativeTabs.getNextID(), "enderglove");
 
 	@Mod.EventHandler
-	public void foreplay(FMLPreInitializationEvent event)
+	public void foreplay(final FMLPreInitializationEvent event)
 	{
 		event.getModMetadata().version = LibInfo.VERSION;
 		directory = event.getModConfigurationDirectory();
 
-		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US");
+		LanguageRegistry.instance().getStringLocalization(
+				"itemGroup.endergloves", "en_US");
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
-		} catch (Exception e)
+		} catch (final Exception e)
 		{
 			FMLLog.severe("EnderGlove could not load its config file!",
 					new Object[0]);
 		} finally
 		{
 			if (Config.config != null)
+			{
 				Config.save();
+			}
 		}
 
 		entityEventHandler = new EventHandlerEntity();
@@ -85,13 +88,15 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void orgasm(FMLInitializationEvent event)
+	public void orgasm(final FMLInitializationEvent event)
 	{
 		proxy.registerDisplayInformation();
-		
+
 		ConfigEntities.init();
 	}
 
 	@Mod.EventHandler
-	public void cuddling(FMLPostInitializationEvent event) {}
+	public void cuddling(final FMLPostInitializationEvent event)
+	{
+	}
 }

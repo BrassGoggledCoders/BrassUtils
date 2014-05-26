@@ -17,11 +17,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class CreativeTabEG extends CreativeTabs
 {
-	public CreativeTabEG(int id, String name)
+	public CreativeTabEG(final int id, final String name)
 	{
 		super(id, name);
 	}

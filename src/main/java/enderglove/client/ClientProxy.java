@@ -17,29 +17,31 @@ import enderglove.common.CommonProxy;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
- * @author Surseance (Johnny Eatmon) 
- * Email: sursesance@autistici.org
- *
+ * @author Surseance (Johnny Eatmon) Email: sursesance@autistici.org
+ * 
  */
 public class ClientProxy extends CommonProxy
 {
 	@Override
 	public void registerDisplayInformation()
 	{
-		RenderingRegistry.registerEntityRenderingHandler(EntityMinedBlock.class, new RenderMinedBlock());
-		//RenderingRegistry.re
+		RenderingRegistry.registerEntityRenderingHandler(
+				EntityMinedBlock.class, new RenderMinedBlock());
+		// RenderingRegistry.re
 		// MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove,
 		// new ItemEnderGloveRenderer());
 	}
 
 	@Override
-	public void blockSparkleFX(World world, int x, int y, int z, int count)
+	public void blockSparkleFX(final World world, final int x, final int y,
+			final int z, final int count)
 	{
 		UtilsFX.blockSparkle(world, x, y, z, count);
 	}
 
 	@Override
-	public void blockFlameFX(World world, int x, int y, int z, int count)
+	public void blockFlameFX(final World world, final int x, final int y,
+			final int z, final int count)
 	{
 		UtilsFX.blockFlameFX(world, x, y, z, count);
 	}

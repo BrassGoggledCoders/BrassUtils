@@ -17,30 +17,31 @@ import net.minecraft.item.ItemStack;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class InventoryHelper
 {
 	/**
 	 * Grabs the Ender Chest inventory relative to a given player.
-	 *
+	 * 
 	 * @param p
 	 *            - the player that owns the Ender Inventory
 	 * @return - an instance of the InventoryEnderChest
 	 */
-	public static InventoryEnderChest getPlayerEnderChest(EntityPlayer p)
+	public static InventoryEnderChest getPlayerEnderChest(final EntityPlayer p)
 	{
 		return p.getInventoryEnderChest();
 	}
 
 	/**
 	 * @author MightyPork, from PowerCraft
-	 *
+	 * 
 	 * @param inv
 	 * @param is
 	 * @return
 	 */
-	public static boolean addItemStackToInventory(IInventory inv, ItemStack is)
+	public static boolean addItemStackToInventory(final IInventory inv,
+			final ItemStack is)
 	{
 		if (!is.isItemDamaged())
 		{
@@ -54,7 +55,7 @@ public class InventoryHelper
 			return is.stackSize < stackSize;
 		}
 
-		int slot = getFirstEmptySlot(inv, is);
+		final int slot = getFirstEmptySlot(inv, is);
 
 		if (slot >= 0)
 		{
@@ -68,26 +69,30 @@ public class InventoryHelper
 
 	/**
 	 * @author MightyPork, from PowerCraft
-	 *
+	 * 
 	 * @param inv
 	 * @param is
 	 * @return
 	 */
-	public static int storePartially(IInventory inv, ItemStack is)
+	public static int storePartially(final IInventory inv, final ItemStack is)
 	{
-		Item item = is.getItem();
+		final Item item = is.getItem();
 		int size = is.stackSize;
 
 		if (is.getMaxStackSize() == 1) // Not stackable
 		{
-			int freeSlot = getFirstEmptySlot(inv, is);
+			final int freeSlot = getFirstEmptySlot(inv, is);
 
 			if (freeSlot < 0)
+			{
 				return size;
+			}
 
 			if (inv.getStackInSlot(freeSlot) == null)
+			{
 				inv.setInventorySlotContents(freeSlot,
 						ItemStack.copyItemStack(is));
+			}
 
 			return 0;
 		}
@@ -95,24 +100,34 @@ public class InventoryHelper
 		int freeSlot = getNonFilledStack(inv, is);
 
 		if (freeSlot < 0)
+		{
 			freeSlot = getFirstEmptySlot(inv, is);
+		}
 		if (freeSlot < 0)
+		{
 			return size;
+		}
 
 		if (inv.getStackInSlot(freeSlot) == null)
+		{
 			inv.setInventorySlotContents(freeSlot,
 					new ItemStack(item, 0, is.getItemDamage()));
+		}
 
 		int canStore = size;
 
 		if (canStore > inv.getStackInSlot(freeSlot).getMaxStackSize()
 				- inv.getStackInSlot(freeSlot).stackSize)
+		{
 			canStore = inv.getStackInSlot(freeSlot).getMaxStackSize()
 					- inv.getStackInSlot(freeSlot).stackSize;
+		}
 		if (canStore > inv.getInventoryStackLimit()
 				- inv.getStackInSlot(freeSlot).stackSize)
+		{
 			canStore = inv.getInventoryStackLimit()
 					- inv.getStackInSlot(freeSlot).stackSize;
+		}
 
 		if (canStore == 0)
 		{
@@ -128,16 +143,16 @@ public class InventoryHelper
 
 	/**
 	 * @author MightyPork, from PowerCraft
-	 *
+	 * 
 	 * @param inv
 	 * @param is
 	 * @return
 	 */
-	public static int getNonFilledStack(IInventory inv, ItemStack is)
+	public static int getNonFilledStack(final IInventory inv, final ItemStack is)
 	{
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
-			ItemStack stackInSlot = inv.getStackInSlot(slot);
+			final ItemStack stackInSlot = inv.getStackInSlot(slot);
 
 			if (stackInSlot != null
 					&& stackInSlot.getItem() == is.getItem()
@@ -156,19 +171,21 @@ public class InventoryHelper
 
 	/**
 	 * Grabs the first empty slot that the item stack can be placed into.
-	 *
+	 * 
 	 * @param inv
 	 *            - the inventory to check
 	 * @param is
 	 *            - the item stack to put in the inventory
 	 * @return -1 if there is not slot available
 	 */
-	public static int getFirstEmptySlot(IInventory inv, ItemStack is)
+	public static int getFirstEmptySlot(final IInventory inv, final ItemStack is)
 	{
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
 			if (inv.getStackInSlot(slot) == null)
+			{
 				return slot;
+			}
 		}
 
 		return -1;
@@ -176,20 +193,23 @@ public class InventoryHelper
 
 	/**
 	 * Determines if a specific item is in the player's inventory.
-	 *
+	 * 
 	 * @param player
 	 *            - the player with the inventory to check
 	 * @param item
 	 *            - the item stack to look for
 	 * @return - the slot in which the specified item sits
 	 */
-	public static int isInPlayerInventory(EntityPlayer player, Item item)
+	public static int isInPlayerInventory(final EntityPlayer player,
+			final Item item)
 	{
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
 			if (player.inventory.mainInventory[slot] != null
 					&& player.inventory.mainInventory[slot].getItem() == item)
+			{
 				return slot;
+			}
 		}
 
 		return -1;
@@ -198,17 +218,19 @@ public class InventoryHelper
 	/**
 	 * Determines if the given inventory is empty by checking if it can add the
 	 * given item stack to the inventory.
-	 *
+	 * 
 	 * @param inv
 	 *            - the inventory to check
 	 * @param is
 	 *            - the item stack to put in the inventory
 	 * @return true if there's room for the item stack
 	 */
-	public static boolean isInvEmpty(IInventory inv, ItemStack is)
+	public static boolean isInvEmpty(final IInventory inv, final ItemStack is)
 	{
 		if (!addItemStackToInventory(inv, is))
+		{
 			return false;
+		}
 
 		return true;
 	}

@@ -14,11 +14,11 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EnchantmentCreative extends Enchantment
 {
-	public EnchantmentCreative(int id, int rarity)
+	public EnchantmentCreative(final int id, final int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		setName("creative");

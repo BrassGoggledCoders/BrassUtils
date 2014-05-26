@@ -25,30 +25,33 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class Utils
 {
 	/**
 	 * Hmm...I wonder what this method does? Indeed! It *does* spawn chickens!
-	 *
+	 * 
 	 * @param player
 	 *            - the player to send the message
 	 * @param message
 	 *            - the message to send
 	 */
-	public static void sendMessage(EntityPlayer player, String message)
+	public static void sendMessage(final EntityPlayer player,
+			final String message)
 	{
-		IChatComponent chat = new ChatComponentText(message);
+		final IChatComponent chat = new ChatComponentText(message);
 
 		if (!player.worldObj.isRemote)
+		{
 			player.addChatMessage(chat);
+		}
 	}
 
 	/**
 	 * Determines what a block's drops are without checking for fortune values
 	 * (useful for the Flame Touch enchantment).
-	 *
+	 * 
 	 * @param world
 	 *            - the world "Minecraftia"
 	 * @param player
@@ -65,10 +68,11 @@ public class Utils
 	 *            - block metadata
 	 * @return the block's drops
 	 */
-	public static ItemStack getDroppedItemStack(World world,
-			EntityPlayer player, Block block, int x, int y, int z, int md)
+	public static ItemStack getDroppedItemStack(final World world,
+			final EntityPlayer player, final Block block, final int x,
+			final int y, final int z, final int md)
 	{
-		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
+		final ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
 				EnchantmentHelper.getFortuneModifier(player));
 		ItemStack drops = null;
 
@@ -91,7 +95,7 @@ public class Utils
 	 *            - the item stack to check
 	 * @return false if it cannot be smelted
 	 */
-	public static boolean isSmeltable(ItemStack is)
+	public static boolean isSmeltable(final ItemStack is)
 	{
 		return is == null
 				|| FurnaceRecipes.smelting().getSmeltingResult(is) == null ? false
@@ -101,7 +105,7 @@ public class Utils
 	/**
 	 * Plays a sound at the given location. It's an ugly method, that's why I
 	 * moved it here.
-	 *
+	 * 
 	 * @param world
 	 *            - the world. What else?
 	 * @param x
@@ -113,7 +117,8 @@ public class Utils
 	 * @param sound
 	 *            - sound name
 	 */
-	public static void playSFX(World world, int x, int y, int z, String sound)
+	public static void playSFX(final World world, final int x, final int y,
+			final int z, final String sound)
 	{
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F,
 				world.rand.nextFloat() * 0.4F + 0.8F);
@@ -121,17 +126,19 @@ public class Utils
 
 	/**
 	 * Determines whether the player is wearing an instance of an Ender Glove.
-	 *
+	 * 
 	 * @param player
 	 *            - the player carrying the item
 	 * @return false if not carrying
 	 */
-	public static boolean isCarryingGlove(EntityPlayer player)
+	public static boolean isCarryingGlove(final EntityPlayer player)
 	{
 		if (player != null
 				&& player.inventory.getCurrentItem() != null
 				&& player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove)
+		{
 			return true;
+		}
 
 		return false;
 	}
@@ -139,20 +146,23 @@ public class Utils
 	/**
 	 * Creates a new item-based, metadata-inclusive item stack for the given
 	 * block and metadata. Relays the metadata to item subtypes.
-	 *
+	 * 
 	 * @param block
 	 *            - the block to be converted
 	 * @param metadata
 	 *            - the metadata > subtypes
 	 * @return new item stack
 	 */
-	public static ItemStack createStackedBlock(Block block, int metadata)
+	public static ItemStack createStackedBlock(final Block block,
+			final int metadata)
 	{
 		int md = 0;
-		Item item = Item.getItemFromBlock(block);
+		final Item item = Item.getItemFromBlock(block);
 
 		if (item != null && item.getHasSubtypes())
+		{
 			md = metadata;
+		}
 
 		return new ItemStack(item, 1, md);
 	}
@@ -160,7 +170,7 @@ public class Utils
 	/**
 	 * Only used for BlockRedstoneOre. If you use the above method, it'll crash
 	 * your game. Guaranteed.
-	 *
+	 * 
 	 * @return new item stack
 	 */
 	public static ItemStack createStackedBlock()

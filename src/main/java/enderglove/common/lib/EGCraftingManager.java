@@ -16,7 +16,7 @@ import enderglove.common.config.ConfigItems;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EGCraftingManager
 {

@@ -14,11 +14,11 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EnchantmentSpelunker extends Enchantment
 {
-	public EnchantmentSpelunker(int id, int rarity)
+	public EnchantmentSpelunker(final int id, final int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		setName("spelunker");

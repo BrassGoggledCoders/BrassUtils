@@ -26,76 +26,76 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * The ItemRenderer for the ender glove item.
- *
+ * 
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {
-	private ModelEnderGlove modelGlove = new ModelEnderGlove();
-	private ResourceLocation gloveTex = new ResourceLocation(
+	private final ModelEnderGlove modelGlove = new ModelEnderGlove();
+	private final ResourceLocation gloveTex = new ResourceLocation(
 			LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
 
 	@Override
-	public boolean handleRenderType(ItemStack item, ItemRenderType type)
+	public boolean handleRenderType(final ItemStack item,
+			final ItemRenderType type)
 	{
 		switch (type)
 		{
-			case EQUIPPED_FIRST_PERSON:
-				return true;
-			case EQUIPPED:
-				return true;
-			default:
-				return false;
+		case EQUIPPED_FIRST_PERSON:
+			return true;
+		case EQUIPPED:
+			return true;
+		default:
+			return false;
 		}
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item,
-			ItemRendererHelper helper)
+	public boolean shouldUseRenderHelper(final ItemRenderType type,
+			final ItemStack item, final ItemRendererHelper helper)
 	{
 		return true;
 	}
 
 	@Override
-	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
+	public void renderItem(final ItemRenderType type, final ItemStack item,
+			final Object... data)
 	{
 		switch (type)
 		{
-			case EQUIPPED_FIRST_PERSON:
+		case EQUIPPED_FIRST_PERSON:
+		{
+			final Minecraft mc = Minecraft.getMinecraft();
+
+			if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 			{
-				Minecraft mc = Minecraft.getMinecraft();
+				GL11.glPushMatrix();
+				final int slot = InventoryHelper.isInPlayerInventory(
+						Minecraft.getMinecraft().thePlayer, Items.ender_eye);
+				final ItemStack is = Minecraft.getMinecraft().thePlayer.inventory
+						.getStackInSlot(slot);
 
-				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
-				{
-					GL11.glPushMatrix();
-					int slot = InventoryHelper
-							.isInPlayerInventory(
-									Minecraft.getMinecraft().thePlayer,
-									Items.ender_eye);
-					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory
-							.getStackInSlot(slot);
-
-					renderEnderEye(item, is);
-					// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
-					// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
-					// 0.0F, 0.0F, 0.0625F);
-					GL11.glPopMatrix();
-				}
+				renderEnderEye(item, is);
+				// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+				// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+				// 0.0F, 0.0F, 0.0625F);
+				GL11.glPopMatrix();
 			}
-			default:
-				break;
+		}
+		default:
+			break;
 		}
 	}
 
-	private void renderEnderEye(ItemStack item, ItemStack is)
+	private void renderEnderEye(final ItemStack item, final ItemStack is)
 	{
-		Minecraft mc = Minecraft.getMinecraft();
+		final Minecraft mc = Minecraft.getMinecraft();
 
 		GL11.glTranslatef(8, 0, 0);
-		float scale = 1.9F;
+		final float scale = 1.9F;
 		GL11.glScalef(scale, scale, scale);
-		float angle = mc.theWorld.getWorldTime() * 11.6F;
+		final float angle = mc.theWorld.getWorldTime() * 11.6F;
 		GL11.glRotatef(angle, 0 - 0.5F, 0 - 0.5F, 0);
 
 		if (is != null)
@@ -105,14 +105,14 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 
 			do
 			{
-				IIcon icon = Items.ender_eye.getIcon(item, renderPass);
+				final IIcon icon = Items.ender_eye.getIcon(item, renderPass);
 
 				if (icon != null)
 				{
-					float minU = icon.getMinU();
-					float maxU = icon.getMaxU();
-					float minV = icon.getMinV();
-					float maxV = icon.getMaxV();
+					final float minU = icon.getMinU();
+					final float maxU = icon.getMaxU();
+					final float minV = icon.getMinV();
+					final float maxV = icon.getMaxV();
 					ItemRenderer.renderItemIn2D(Tessellator.instance, maxU,
 							minV, minU, maxV, icon.getIconWidth(),
 							icon.getIconHeight(), 1.0F / 16.0F);

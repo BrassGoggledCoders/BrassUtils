@@ -17,24 +17,24 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EnchantmentArtisan extends Enchantment
 {
-	public EnchantmentArtisan(int id, int rarity)
+	public EnchantmentArtisan(final int id, final int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		setName("artisan");
 	}
 
 	@Override
-	public int getMinEnchantability(int level)
+	public int getMinEnchantability(final int level)
 	{
 		return 15 + (level - 1) * 9;
 	}
 
 	@Override
-	public int getMaxEnchantability(int level)
+	public int getMaxEnchantability(final int level)
 	{
 		return super.getMinEnchantability(level) + 50;
 	}
@@ -46,14 +46,14 @@ public class EnchantmentArtisan extends Enchantment
 	}
 
 	@Override
-	public boolean canApply(ItemStack is)
+	public boolean canApply(final ItemStack is)
 	{
 		return is != null
 				&& (is.getItem() instanceof ItemEnderGlove || is.getItem() instanceof ItemBook);
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(ItemStack is)
+	public boolean canApplyAtEnchantingTable(final ItemStack is)
 	{
 		return canApply(is);
 	}

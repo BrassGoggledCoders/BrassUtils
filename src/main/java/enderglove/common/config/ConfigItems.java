@@ -16,7 +16,7 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class ConfigItems
 {
