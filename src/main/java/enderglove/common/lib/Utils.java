@@ -24,23 +24,21 @@ import net.minecraft.world.World;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
+ *
  */
 public class Utils
 {
 	/**
 	 * Hmm...I wonder what this method does? Indeed! It *does* spawn chickens!
-	 * 
-	 * @param player
-	 *            - the player to send the message
-	 * @param message
-	 *            - the message to send
+	 *
+	 * @param player - the player to send the message
+	 * @param message - the message to send
 	 */
-	public static void sendMessage(final EntityPlayer player,
-			final String message)
+	public static void sendMessage(EntityPlayer player, String message)
 	{
-		final IChatComponent chat = new ChatComponentText(message);
+		IChatComponent chat = new ChatComponentText(message);
 
 		if (!player.worldObj.isRemote)
 		{
@@ -51,29 +49,20 @@ public class Utils
 	/**
 	 * Determines what a block's drops are without checking for fortune values
 	 * (useful for the Flame Touch enchantment).
-	 * 
-	 * @param world
-	 *            - the world "Minecraftia"
-	 * @param player
-	 *            - the player breaking the block
-	 * @param block
-	 *            - the block being broken
-	 * @param x
-	 *            - block xCoord
-	 * @param y
-	 *            - block yCoord
-	 * @param z
-	 *            - block zCoord
-	 * @param md
-	 *            - block metadata
+	 *
+	 * @param world - the world "Minecraftia"
+	 * @param player - the player breaking the block
+	 * @param block - the block being broken
+	 * @param x - block xCoord
+	 * @param y - block yCoord
+	 * @param z - block zCoord
+	 * @param md - block metadata
+     *
 	 * @return the block's drops
 	 */
-	public static ItemStack getDroppedItemStack(final World world,
-			final EntityPlayer player, final Block block, final int x,
-			final int y, final int z, final int md)
+	public static ItemStack getDroppedItemStack(World world, EntityPlayer player, Block block, int x, int y, int z, int md)
 	{
-		final ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
-				EnchantmentHelper.getFortuneModifier(player));
+		ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
 		ItemStack drops = null;
 
 		if (items != null && items.size() > 0)
@@ -90,52 +79,41 @@ public class Utils
 	/**
 	 * Determines whether the given block stored in the item stack can be
 	 * smelted.
-	 * 
-	 * @param is
-	 *            - the item stack to check
+     *
+	 * @param is - the item stack to check
+     *
 	 * @return false if it cannot be smelted
 	 */
-	public static boolean isSmeltable(final ItemStack is)
+	public static boolean isSmeltable(ItemStack is)
 	{
-		return is == null
-				|| FurnaceRecipes.smelting().getSmeltingResult(is) == null ? false
-				: true;
+		return is == null || FurnaceRecipes.smelting().getSmeltingResult(is) == null ? false : true;
 	}
 
 	/**
 	 * Plays a sound at the given location. It's an ugly method, that's why I
 	 * moved it here.
-	 * 
-	 * @param world
-	 *            - the world. What else?
-	 * @param x
-	 *            - block xCoord
-	 * @param y
-	 *            - block yCoord
-	 * @param z
-	 *            - block zCoord
-	 * @param sound
-	 *            - sound name
+	 *
+	 * @param world - the world. What else?
+	 * @param x - block xCoord
+	 * @param y - block yCoord
+	 * @param z - block zCoord
+	 * @param sound - sound name
 	 */
-	public static void playSFX(final World world, final int x, final int y,
-			final int z, final String sound)
+	public static void playSFX(World world, int x, int y, int z, String sound)
 	{
-		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F,
-				world.rand.nextFloat() * 0.4F + 0.8F);
+		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 	}
 
 	/**
 	 * Determines whether the player is wearing an instance of an Ender Glove.
-	 * 
-	 * @param player
-	 *            - the player carrying the item
+     *
+	 * @param player - the player carrying the item
+     *
 	 * @return false if not carrying
 	 */
-	public static boolean isCarryingGlove(final EntityPlayer player)
+	public static boolean isCarryingGlove( EntityPlayer player)
 	{
-		if (player != null
-				&& player.inventory.getCurrentItem() != null
-				&& player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove)
+		if (player != null && player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove)
 		{
 			return true;
 		}
@@ -146,18 +124,16 @@ public class Utils
 	/**
 	 * Creates a new item-based, metadata-inclusive item stack for the given
 	 * block and metadata. Relays the metadata to item subtypes.
-	 * 
-	 * @param block
-	 *            - the block to be converted
-	 * @param metadata
-	 *            - the metadata > subtypes
+	 *
+	 * @param block - the block to be converted
+	 * @param metadata - the metadata > subtypes
+     *
 	 * @return new item stack
 	 */
-	public static ItemStack createStackedBlock(final Block block,
-			final int metadata)
+	public static ItemStack createStackedBlock( Block block, int metadata)
 	{
 		int md = 0;
-		final Item item = Item.getItemFromBlock(block);
+		Item item = Item.getItemFromBlock(block);
 
 		if (item != null && item.getHasSubtypes())
 		{
@@ -178,7 +154,7 @@ public class Utils
 		return new ItemStack(Blocks.redstone_ore);
 	}
 
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	private boolean handleTileEntities() // TODO: Some handling for TileEntities
 	{
 		/*

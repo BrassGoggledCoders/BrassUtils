@@ -26,78 +26,74 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * The ItemRenderer for the ender glove item.
- * 
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
+ *
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
+ *
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {
-	@SuppressWarnings("unused")
-	private final ModelEnderGlove modelGlove = new ModelEnderGlove();
-	@SuppressWarnings("unused")
-	private final ResourceLocation gloveTex = new ResourceLocation(
-			LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
+	//@SuppressWarnings("unused")
+	private ModelEnderGlove modelGlove = new ModelEnderGlove();
+	//@SuppressWarnings("unused")
+	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
 
 	@Override
-	public boolean handleRenderType(final ItemStack item,
-			final ItemRenderType type)
+	public boolean handleRenderType(ItemStack item, ItemRenderType type)
 	{
 		switch (type)
 		{
-		case EQUIPPED_FIRST_PERSON:
-			return true;
-		case EQUIPPED:
-			return true;
-		default:
-			return false;
+			case EQUIPPED_FIRST_PERSON:
+				return true;
+			case EQUIPPED:
+				return true;
+			default:
+				return false;
 		}
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(final ItemRenderType type,
-			final ItemStack item, final ItemRendererHelper helper)
+	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
 		return true;
 	}
 
 	@Override
-	public void renderItem(final ItemRenderType type, final ItemStack item,
-			final Object... data)
+	public void renderItem(ItemRenderType type, ItemStack item, Object... data)
 	{
 		switch (type)
 		{
-		case EQUIPPED_FIRST_PERSON:
-		{
-			final Minecraft mc = Minecraft.getMinecraft();
-
-			if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+			case EQUIPPED_FIRST_PERSON:
 			{
-				GL11.glPushMatrix();
-				final int slot = InventoryHelper.isInPlayerInventory(
-						Minecraft.getMinecraft().thePlayer, Items.ender_eye);
-				final ItemStack is = Minecraft.getMinecraft().thePlayer.inventory
-						.getStackInSlot(slot);
+				Minecraft mc = Minecraft.getMinecraft();
 
-				renderEnderEye(item, is);
-				// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
-				// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
-				// 0.0F, 0.0F, 0.0625F);
-				GL11.glPopMatrix();
+				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+				{
+					GL11.glPushMatrix();
+					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
+					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
+
+					renderEnderEye(item, is);
+					// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					// 0.0F, 0.0F, 0.0625F);
+					GL11.glPopMatrix();
+				}
 			}
-		}
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
-	private void renderEnderEye(final ItemStack item, final ItemStack is)
+	private void renderEnderEye( ItemStack item,  ItemStack is)
 	{
-		final Minecraft mc = Minecraft.getMinecraft();
+		Minecraft mc = Minecraft.getMinecraft();
 
 		GL11.glTranslatef(8, 0, 0);
-		final float scale = 1.9F;
+		float scale = 1.9F;
 		GL11.glScalef(scale, scale, scale);
-		final float angle = mc.theWorld.getWorldTime() * 11.6F;
+		float angle = mc.theWorld.getWorldTime() * 11.6F;
 		GL11.glRotatef(angle, 0 - 0.5F, 0 - 0.5F, 0);
 
 		if (is != null)
@@ -107,23 +103,21 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 
 			do
 			{
-				final IIcon icon = Items.ender_eye.getIcon(item, renderPass);
+				IIcon icon = Items.ender_eye.getIcon(item, renderPass);
 
 				if (icon != null)
 				{
-					final float minU = icon.getMinU();
-					final float maxU = icon.getMaxU();
-					final float minV = icon.getMinV();
-					final float maxV = icon.getMaxV();
-					ItemRenderer.renderItemIn2D(Tessellator.instance, maxU,
-							minV, minU, maxV, icon.getIconWidth(),
-							icon.getIconHeight(), 1.0F / 16.0F);
+					float minU = icon.getMinU();
+					float maxU = icon.getMaxU();
+					float minV = icon.getMinV();
+					float maxV = icon.getMaxV();
+					ItemRenderer.renderItemIn2D(Tessellator.instance, maxU, minV, minU, maxV, icon.getIconWidth(), icon.getIconHeight(), 1.0F / 16.0F);
 					GL11.glColor3f(1.0F, 1.0F, 1.0F);
 				}
 
 				renderPass++;
-			} while (renderPass < is.getItem().getRenderPasses(
-					is.getItemDamage()));
+			} 
+			while (renderPass < is.getItem().getRenderPasses(is.getItemDamage()));
 		}
 	}
 }

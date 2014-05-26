@@ -21,7 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class CreativeTabEG extends CreativeTabs
 {
-	public CreativeTabEG(final int id, final String name)
+	public CreativeTabEG( int id,  String name)
 	{
 		super(id, name);
 	}

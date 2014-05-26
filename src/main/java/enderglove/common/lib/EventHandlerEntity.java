@@ -36,25 +36,25 @@ public class EventHandlerEntity
 
 	@SuppressWarnings("unchecked")
 	@SubscribeEvent
-	public void enderTeleport(final EnderTeleportEvent event)
+	public void enderTeleport( EnderTeleportEvent event)
 	{
 		// Tell me there is a better way to do this, pl0x
-		final Iterator<?> i = event.entityLiving.worldObj.playerEntities
+		 Iterator<?> i = event.entityLiving.worldObj.playerEntities
 				.iterator();
 		while (i.hasNext())
 		{
-			final EntityPlayer player = (EntityPlayer) i.next();
+			 EntityPlayer player = (EntityPlayer) i.next();
 			if (Utils.isCarryingGlove(player))
 			{
-				final AxisAlignedBB axisalignedbb = AxisAlignedBB
+				 AxisAlignedBB axisalignedbb = AxisAlignedBB
 						.getAABBPool()
 						.getAABB(player.posX, player.posY, player.posZ,
 								player.posX + 1, player.posY + 1,
 								player.posY + 1).expand(30, 30, 30);
-				final List<EntityEnderman> l = player.worldObj
+				 List<EntityEnderman> l = player.worldObj
 						.getEntitiesWithinAABB(EntityEnderman.class,
 								axisalignedbb);
-				final Iterator<EntityEnderman> i2 = l.iterator();
+				 Iterator<EntityEnderman> i2 = l.iterator();
 				while (i2.hasNext())
 				{
 					i2.next();
@@ -74,21 +74,21 @@ public class EventHandlerEntity
 	 * Items.blaze_rod) { event.setCanceled(true); } } }
 	 */
 	@SubscribeEvent(priority = EventPriority.HIGH)
-	public void itemCrafted(final PlayerEvent.ItemCraftedEvent event)
+	public void itemCrafted( PlayerEvent.ItemCraftedEvent event)
 	{
-		final ItemStack heldItem = event.player.inventory.getCurrentItem();
-		final int artisanAmount = EnchantmentHelper.getEnchantmentLevel(
+		 ItemStack heldItem = event.player.inventory.getCurrentItem();
+		 int artisanAmount = EnchantmentHelper.getEnchantmentLevel(
 				Config.enchArtisanId, heldItem);
 
 		if (heldItem != null && heldItem.getItem() instanceof ItemEnderGlove
 				&& artisanAmount > 0)
 		{
-			final IInventory craft = event.craftMatrix;
-			final int randomSlot = random.nextInt(8);
+			 IInventory craft = event.craftMatrix;
+			 int randomSlot = random.nextInt(8);
 
 			if (craft.getStackInSlot(randomSlot) != null)
 			{
-				final ItemStack result = new ItemStack(craft
+				 ItemStack result = new ItemStack(craft
 						.getStackInSlot(randomSlot).copy().getItem(), 2);
 
 				if (random.nextInt(Config.artisanBonusChance) == 0)

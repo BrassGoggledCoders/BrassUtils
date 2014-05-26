@@ -33,15 +33,15 @@ public class ClientProxy extends CommonProxy
 	}
 
 	@Override
-	public void blockSparkleFX(final World world, final int x, final int y,
-			final int z, final int count)
+	public void blockSparkleFX( World world,  int x,  int y,
+			 int z,  int count)
 	{
 		UtilsFX.blockSparkle(world, x, y, z, count);
 	}
 
 	@Override
-	public void blockFlameFX(final World world, final int x, final int y,
-			final int z, final int count)
+	public void blockFlameFX( World world,  int x,  int y,
+			 int z,  int count)
 	{
 		UtilsFX.blockFlameFX(world, x, y, z, count);
 	}

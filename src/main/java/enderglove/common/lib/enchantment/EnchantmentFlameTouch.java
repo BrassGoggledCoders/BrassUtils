@@ -21,7 +21,7 @@ import enderglove.common.item.ItemEnderGlove;
  */
 public class EnchantmentFlameTouch extends Enchantment
 {
-	public EnchantmentFlameTouch(final int id, final int rarity)
+	public EnchantmentFlameTouch( int id,  int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		setName("flametouch");
@@ -29,13 +29,13 @@ public class EnchantmentFlameTouch extends Enchantment
 	}
 
 	@Override
-	public int getMinEnchantability(final int level)
+	public int getMinEnchantability( int level)
 	{
 		return 21;
 	}
 
 	@Override
-	public int getMaxEnchantability(final int level)
+	public int getMaxEnchantability( int level)
 	{
 		return super.getMinEnchantability(level) + 50;
 	}
@@ -47,20 +47,20 @@ public class EnchantmentFlameTouch extends Enchantment
 	}
 
 	@Override
-	public boolean canApply(final ItemStack is)
+	public boolean canApply( ItemStack is)
 	{
 		return is.getItem() instanceof ItemEnderGlove
 				|| is.getItem() instanceof ItemBook;
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(final ItemStack is)
+	public boolean canApplyAtEnchantingTable( ItemStack is)
 	{
 		return canApply(is);
 	}
 
 	@Override
-	public boolean canApplyTogether(final Enchantment enchantment)
+	public boolean canApplyTogether( Enchantment enchantment)
 	{
 		if (enchantment.effectId == Enchantment.silkTouch.effectId
 				|| enchantment.effectId == Enchantment.fortune.effectId)

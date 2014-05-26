@@ -52,7 +52,7 @@ public class EnderGlove
 	// CreativeTabEG(CreativeTabs.getNextID(), "enderglove");
 
 	@Mod.EventHandler
-	public void foreplay(final FMLPreInitializationEvent event)
+	public void foreplay( FMLPreInitializationEvent event)
 	{
 		event.getModMetadata().version = LibInfo.VERSION;
 		directory = event.getModConfigurationDirectory();
@@ -62,16 +62,14 @@ public class EnderGlove
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
-		} catch (final Exception e)
+		} catch ( Exception e)
 		{
 			FMLLog.severe("EnderGlove could not load its config file!",
 					new Object[0]);
 		} finally
 		{
 			if (Config.config != null)
-			{
 				Config.save();
-			}
 		}
 
 		entityEventHandler = new EventHandlerEntity();
@@ -88,7 +86,7 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void orgasm(final FMLInitializationEvent event)
+	public void orgasm( FMLInitializationEvent event)
 	{
 		proxy.registerDisplayInformation();
 
@@ -97,7 +95,5 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void cuddling(final FMLPostInitializationEvent event)
-	{
-	}
+	public void cuddling( FMLPostInitializationEvent event) {}
 }

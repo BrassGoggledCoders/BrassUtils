@@ -18,8 +18,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * @author Surseance (Johnny Eatmon) Email: surseance@autistici.org
- * 
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
+ *
  */
 public class EntityMinedBlock extends Entity
 {
@@ -27,36 +28,36 @@ public class EntityMinedBlock extends Entity
 	public int metadata;
 	public NBTTagCompound tagCompound;
 
-	public static float scale = 0.9F;
+	public static float scale;
 
-	public EntityMinedBlock(final World world)
+	public EntityMinedBlock(World world)
 	{
 		super(world);
+		//this.scale = 0.9F;
 	}
 
-	public EntityMinedBlock(final World world, final double posX,
-			final double posY, final double posZ, final Block block)
+	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, float scale)
 	{
-		this(world, posX, posY, posZ, block, 0);
+		this(world, posX, posY, posZ, block, 0, scale);
+		this.scale = scale;
 	}
 
-	public EntityMinedBlock(final World world, final double posX,
-			final double posY, final double posZ, final Block block,
-			final int md)
+	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, int md, float scale)
 	{
 		super(world);
 		this.block = block;
-		metadata = md;
-		// this.preventEntitySpawning = true;
+		this.metadata = md;
+		this.preventEntitySpawning = true;
 		// this.setSize(0.98F, 0.98F);
-		yOffset = height / 2.0F;
-		setPosition(posX, posY, posZ);
-		motionX = 0.0D;
-		motionY = 0.0D;
-		motionZ = 0.0D;
-		prevPosX = posX;
-		prevPosY = posY;
-		prevPosZ = posZ;
+		this.yOffset = this.height / 2.0F;
+		this.setPosition(posX, posY, posZ);
+		this.motionX = 0.0D;
+		this.motionY = 0.0D;
+		this.motionZ = 0.0D;
+		this.prevPosX = posX;
+		this.prevPosY = posY;
+		this.prevPosZ = posZ;
+		this.scale = scale;
 	}
 
 	@Override
@@ -66,71 +67,67 @@ public class EntityMinedBlock extends Entity
 	}
 
 	@Override
-	protected void entityInit()
-	{
-	}
+	protected void entityInit() {}
 
 	@Override
 	public boolean canBeCollidedWith()
 	{
-		return !isDead;
+		return !this.isDead;
 	}
 
 	@Override
 	public void onUpdate()
 	{
-		if ((worldObj.getWorldTime() % 1) == 0)
+		if ((this.getBlock() != null))
 		{
-			scale -= 0.0625F;
-		}
+			if ((this.worldObj.getWorldTime() % 1) == 0)
+				scale -= 0.0625F;
 
-		if (scale <= 0)
-		{
-			scale = 0.9F;
-			setDead();
+			if (scale <= 0)
+			{
+				//scale = 0.9F;
+				this.setDead();
+			}
 		}
+		
+		//this.scale = 0.9F;
 	}
 
 	@Override
-	protected void writeEntityToNBT(final NBTTagCompound tagCompound)
+	protected void writeEntityToNBT(NBTTagCompound tagCompound)
 	{
-		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(block));
-		tagCompound.setInteger("TileID", Block.getIdFromBlock(block));
-		tagCompound.setByte("Data", (byte) metadata);
+		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(this.block));
+		tagCompound.setInteger("TileID", Block.getIdFromBlock(this.block));
+		tagCompound.setByte("Data", (byte) this.metadata);
+		tagCompound.setFloat("Scale", this.scale);
 
 		if (this.tagCompound != null)
-		{
 			tagCompound.setTag("TileEntityData", this.tagCompound);
-		}
 	}
 
 	@Override
-	protected void readEntityFromNBT(final NBTTagCompound tagCompound)
+	protected void readEntityFromNBT(NBTTagCompound tagCompound)
 	{
 		if (tagCompound.hasKey("TileID", 99))
-		{
-			block = Block.getBlockById(tagCompound.getInteger("TileID"));
-		}
+			this.block = Block.getBlockById(tagCompound.getInteger("TileID"));
 		else
-		{
-			block = Block.getBlockById(tagCompound.getByte("Tile") & 255);
-		}
+			this.block = Block.getBlockById(tagCompound.getByte("Tile") & 255);
 
-		metadata = tagCompound.getByte("Data") & 255;
+		this.metadata = tagCompound.getByte("Data") & 255;
 
 		if (tagCompound.hasKey("TileEntityData", 10))
-		{
 			this.tagCompound = tagCompound.getCompoundTag("TileEntityData");
-		}
+
+		this.scale = tagCompound.getFloat("Scale");
 	}
 
 	@Override
-	public void addEntityCrashInfo(final CrashReportCategory crc)
+	public void addEntityCrashInfo(CrashReportCategory crc)
 	{
 		super.addEntityCrashInfo(crc);
 		crc.addCrashSection("Imitating block ID",
-				Integer.valueOf(Block.getIdFromBlock(block)));
-		crc.addCrashSection("Imitating block data", Integer.valueOf(metadata));
+				Integer.valueOf(Block.getIdFromBlock(Block.getIdFromBlock(this.block)));
+		crc.addCrashSection("Imitating block data", Integer.valueOf(this.metadata));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -143,7 +140,7 @@ public class EntityMinedBlock extends Entity
 	@SideOnly(Side.CLIENT)
 	public World getWorldObj()
 	{
-		return worldObj;
+		return this.worldObj;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -155,6 +152,6 @@ public class EntityMinedBlock extends Entity
 
 	public Block getBlock()
 	{
-		return block;
+		return this.block;
 	}
 }

@@ -28,101 +28,86 @@ import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
- * @author Surseance (Johnny Eatmon) Email: surseance@autistici.org
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  * 
  */
 @SideOnly(Side.CLIENT)
 public class RenderMinedBlock extends Render
 {
-	private final RenderBlocks blockRenderer = new RenderBlocks();
+	private RenderBlocks blockRenderer = new RenderBlocks();
 
 	public RenderMinedBlock()
 	{
 		shadowSize = 0.0F;
 	}
 
-	public void doRender(final EntityMinedBlock entBlock, final double posX,
-			final double posY, final double posZ, final float p_147918_8_,
-			final float brightness)
+	public void doRender(EntityMinedBlock entBlock, double posX, double posY, double posZ, float f, float brightness)
 	{
-		final World world = entBlock.getWorldObj();
-		final Block block = entBlock.getBlock();
-		final int x = MathHelper.floor_double(entBlock.posX);
-		final int y = MathHelper.floor_double(entBlock.posY);
-		final int z = MathHelper.floor_double(entBlock.posZ);
+		 World world = entBlock.getWorldObj();
+		 Block block = entBlock.getBlock();
+		 int x = MathHelper.floor_double(entBlock.posX);
+		 int y = MathHelper.floor_double(entBlock.posY);
+		 int z = MathHelper.floor_double(entBlock.posZ);
 
-		if ((block != null) && (block != world.getBlock(x, y, z)))
-		{
+		//if ((block != null) && (block == world.getBlock(x, y, z)))
+		//{
 			GL11.glPushMatrix();
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE,
-					GL11.GL_REPLACE);
-			GL11.glColor3f(0.5F, 0.0F, 1.0F);
-			GL11.glTranslatef((float) posX, (float) posY, (float) posZ);
+			GL11.glTranslatef((float)posX, (float)posY, (float)posZ);
 			bindEntityTexture(entBlock);
-
-			Tessellator tessellator;
+			GL11.glDisable(GL11.GL_LIGHTING);
+			Tessellator tessellator = Tessellator.instance;
 
 			if (block instanceof BlockAnvil)
 			{
 				blockRenderer.blockAccess = world;
-				tessellator = Tessellator.instance;
 				tessellator.startDrawingQuads();
-				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F,
-						(-z) - 0.5F);
-				blockRenderer.renderBlockAnvilMetadata((BlockAnvil) block, x,
-						y, z, entBlock.metadata);
+				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
+				blockRenderer.renderBlockAnvilMetadata((BlockAnvil) block, x, y, z, entBlock.metadata);
 				tessellator.setTranslation(0.0D, 0.0D, 0.0D);
 				tessellator.draw();
 			}
 			else if (block instanceof BlockDragonEgg)
 			{
 				blockRenderer.blockAccess = world;
-				tessellator = Tessellator.instance;
 				tessellator.startDrawingQuads();
-				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F,
-						(-z) - 0.5F);
-				blockRenderer.renderBlockDragonEgg((BlockDragonEgg) block, x,
-						y, z);
+				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
+				blockRenderer.renderBlockDragonEgg((BlockDragonEgg) block, x, y, z);
 				tessellator.setTranslation(0.0D, 0.0D, 0.0D);
 				tessellator.draw();
 			}
 			else
 			{
-				final float scale = EntityMinedBlock.scale;
+				float scale = EntityMinedBlock.scale;
+				tessellator.setBrightness(10);
 				// GL11.glColor4f(0.75F, 0.0F, 0.5F, 1.0F);
 				GL11.glScalef(scale, scale, scale);
-				GL11.glRotatef(world.getWorldTime() * 3, 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef(world.getWorldTime() * (world.rand.nextFloat() * 11.5F), world.rand.nextFloat(), world.rand.nextFloat(), world.rand.nextFloat());
 
 				blockRenderer.setRenderBoundsFromBlock(block);
-				blockRenderer.renderBlockSandFalling(block, world, x, y, z,
-						entBlock.metadata);
+				blockRenderer.renderBlockSandFalling(block, world, x, y, z, entBlock.metadata);
 			}
-			// Hehe
-			// if(!(Calendar.DAY_OF_MONTH == 1 && Calendar.MONTH ==
-			// Calendar.APRIL))
+
+			GL11.glTranslatef(0, 0, 0);
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();
-		}
+		//}
 	}
 
-	protected ResourceLocation getEntityTexture(final EntityMinedBlock entBlock)
+	protected ResourceLocation getEntityTexture(EntityMinedBlock entBlock)
 	{
 		return TextureMap.locationBlocksTexture;
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(final Entity entity)
+	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return this.getEntityTexture((EntityMinedBlock) entity);
 	}
 
 	@Override
-	public void doRender(final Entity entity, final double posX,
-			final double posY, final double posZ, final float par8,
-			final float brightness)
+	public void doRender(Entity entity, double posX, double posY, double posZ, float par8, float brightness)
 	{
-		this.doRender((EntityMinedBlock) entity, posX, posY, posZ, par8,
-				brightness);
+		this.doRender((EntityMinedBlock) entity, posX, posY, posZ, par8, brightness);
 	}
 }
