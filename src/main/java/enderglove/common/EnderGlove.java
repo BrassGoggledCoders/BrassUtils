@@ -23,6 +23,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigBlocks;
+import enderglove.common.config.ConfigEntities;
 import enderglove.common.config.ConfigItems;
 import enderglove.common.lib.EGCraftingManager;
 import enderglove.common.lib.EnderGloveWorldGenerator;
@@ -56,8 +57,7 @@ public class EnderGlove
 		event.getModMetadata().version = LibInfo.VERSION;
 		directory = event.getModConfigurationDirectory();
 
-		LanguageRegistry.instance().getStringLocalization(
-				"itemGroup.endergloves", "en_US");
+		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US");
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
@@ -89,10 +89,10 @@ public class EnderGlove
 	public void orgasm(FMLInitializationEvent event)
 	{
 		proxy.registerDisplayInformation();
+		
+		ConfigEntities.init();
 	}
 
 	@Mod.EventHandler
-	public void cuddling(FMLPostInitializationEvent event)
-	{
-	}
+	public void cuddling(FMLPostInitializationEvent event) {}
 }
