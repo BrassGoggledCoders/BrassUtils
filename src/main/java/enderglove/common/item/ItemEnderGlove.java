@@ -111,8 +111,9 @@ public class ItemEnderGlove extends ItemTool
 
 		if (world.isRemote)
 		{
-			EntityMinedBlock entBlock = new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, 0.9F);
-			world.spawnEntityInWorld(entBlock);
+			//EntityMinedBlock entBlock = ;
+			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
+			//EntityMinedBlock.scale = 0.9F;
 		}
 
 		EntityPlayer player = (EntityPlayer)entityLiving;

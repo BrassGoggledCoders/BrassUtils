@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,38 +27,38 @@ public class EntityMinedBlock extends Entity
 {
 	public Block block;
 	public int metadata;
-	public NBTTagCompound tagCompound;
 
-	public static float scale;
+	public float scale;
 
 	public EntityMinedBlock(World world)
 	{
 		super(world);
-		//this.scale = 0.9F;
+		this.preventEntitySpawning = true;
+		this.renderDistanceWeight = 20.0D;
+		this.scale = 0.9F;
 	}
 
-	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, float scale)
-	{
-		this(world, posX, posY, posZ, block, 0, scale);
-		this.scale = scale;
-	}
+	//public EntityMinedBlock(World world, double x, double y, double z, Block block)
+	//{
+	//	this(world, x, y, z, block, 0);
+	//}
 
-	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, int md, float scale)
+	public EntityMinedBlock(World world, double x, double y, double z, Block block, int md)
 	{
 		super(world);
 		this.block = block;
 		this.metadata = md;
 		this.preventEntitySpawning = true;
 		// this.setSize(0.98F, 0.98F);
-		this.yOffset = this.height / 2.0F;
-		this.setPosition(posX, posY, posZ);
+		this.yOffset = this.height / 2.0F; 
+		this.setPosition(x, y, z);
 		this.motionX = 0.0D;
 		this.motionY = 0.0D;
 		this.motionZ = 0.0D;
-		this.prevPosX = posX;
-		this.prevPosY = posY;
-		this.prevPosZ = posZ;
-		this.scale = scale;
+		this.prevPosX = x;
+		this.prevPosY = y;
+		this.prevPosZ = z;
+		this.scale = 0.9F;
 	}
 
 	@Override
@@ -67,30 +68,33 @@ public class EntityMinedBlock extends Entity
 	}
 
 	@Override
-	protected void entityInit() {}
+	protected void entityInit() {} 
 
 	@Override
 	public boolean canBeCollidedWith()
 	{
-		return !this.isDead;
+		return false;
 	}
 
 	@Override
 	public void onUpdate()
 	{
-		if ((this.getBlock() != null))
+		super.onUpdate();
+
+		if (this.getBlock() != null)
 		{
 			if ((this.worldObj.getWorldTime() % 1) == 0)
-				scale -= 0.0625F;
+				this.scale -= 0.0625F;
 
-			if (scale <= 0)
-			{
-				//scale = 0.9F;
+			if (this.scale <= 0.0F)
 				this.setDead();
-			}
 		}
-		
-		//this.scale = 0.9F;
+	}
+
+	@Override
+	public AxisAlignedBB getBoundingBox()
+	{
+		return null;
 	}
 
 	@Override
@@ -99,10 +103,6 @@ public class EntityMinedBlock extends Entity
 		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(this.block));
 		tagCompound.setInteger("TileID", Block.getIdFromBlock(this.block));
 		tagCompound.setByte("Data", (byte) this.metadata);
-		tagCompound.setFloat("Scale", this.scale);
-
-		if (this.tagCompound != null)
-			tagCompound.setTag("TileEntityData", this.tagCompound);
 	}
 
 	@Override
@@ -114,19 +114,6 @@ public class EntityMinedBlock extends Entity
 			this.block = Block.getBlockById(tagCompound.getByte("Tile") & 255);
 
 		this.metadata = tagCompound.getByte("Data") & 255;
-
-		if (tagCompound.hasKey("TileEntityData", 10))
-			this.tagCompound = tagCompound.getCompoundTag("TileEntityData");
-
-		this.scale = tagCompound.getFloat("Scale");
-	}
-
-	@Override
-	public void addEntityCrashInfo(CrashReportCategory crc)
-	{
-		super.addEntityCrashInfo(crc);
-		crc.addCrashSection("Immitating block ID", Integer.valueOf(Block.getIdFromBlock(this.block)));
-		crc.addCrashSection("Immitating block data", Integer.valueOf(this.metadata));
 	}
 
 	@SideOnly(Side.CLIENT)
