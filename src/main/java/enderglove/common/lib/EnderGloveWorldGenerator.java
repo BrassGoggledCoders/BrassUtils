@@ -22,7 +22,6 @@ import enderglove.common.config.ConfigBlocks;
  */
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
-	int totemsPerChunk = -1;
 
 	@Override
 	public void generate(final Random random, final int chunkX,
@@ -42,49 +41,37 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 			break;
 		case 1:
 			break;
-		default:
+		case 0:
 			generateSurface(world, random, x, z);
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private boolean generateSurface(final World world, final Random random,
 			final int chunkX, final int chunkZ)
 	{
-		for (int amount = 0; amount < totemsPerChunk; ++amount)
+		for (int i = 0; i < 300/* Config.totemsPerChunk */; i++)
 		{
-			final int x = chunkX + random.nextInt(16) + 8;
-			final int z = chunkZ + random.nextInt(16) + 8;
-
-			final int y = random.nextInt(world.getHeightValue(x, z) * 2);
-
-			generateTotem(world, random, x, y, z);
+			int x = chunkX + random.nextInt(16);
+			int z = chunkZ + random.nextInt(16);
+			generateTotem(world, random, x, world.getActualHeight(), z);
+			return true;
 		}
-
-		return true;
+		return false;
 	}
 
 	private boolean generateTotem(final World world, final Random random,
 			final int x, final int y, final int z)
 	{
-		// for (int rarity = 0; rarity < 10; ++rarity)
-		// {
-		// int posX = x + random.nextInt(8) - random.nextInt(8);
-		// int posY = y + random.nextInt(4) - random.nextInt(4);
-		// int posZ = z + random.nextInt(8) - random.nextInt(8);
-
-		if (world.isAirBlock(x, y, z))
-		{
-			final int maxHeight = 1 + random.nextInt(random.nextInt(3) + 1);
-
-			for (int height = 0; height < maxHeight; ++height)
-			{
-				world.setBlock(x, y + height, z, ConfigBlocks.blockEnderTotem,
-						0, 2);
-				System.out.println(x + "," + y + "," + z);
-			}
-		}
-		// }
-
+		/*
+		 * Find the lowest ground block while (world.isAirBlock(x, y, z) && y >
+		 * 2) { --y;x } //Don't generate on water if (world.getBlock(x, y, z) ==
+		 * Blocks.water) { return false; } else {
+		 */
+		world.setBlock(x, y, z, ConfigBlocks.blockEnderTotem);
+		world.setBlock(x, y + 1, z, ConfigBlocks.blockEnderTotem);
+		world.setBlock(x, y + 2, z, ConfigBlocks.blockEnderTotem);
 		return true;
+		// return true;
 	}
 }

@@ -9,9 +9,11 @@
  */
 package enderglove.common.lib;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.registry.GameRegistry;
+import enderglove.common.config.Config;
 import enderglove.common.config.ConfigItems;
 
 /**
@@ -23,7 +25,11 @@ public class EGCraftingManager
 	public static void init()
 	{
 		GameRegistry.addRecipe(new ItemStack(ConfigItems.itemEnderGlove),
-				new Object[] { "EEE", "LNL", "LLL", 'L', Items.leather, 'N',
-						Items.nether_star, 'E', Items.ender_eye });
+				new Object[] { Config.recipeLine1, Config.recipeLine2,
+						Config.recipeLine3, 'L', Items.leather, 'N',
+						Items.nether_star, 'E', Items.ender_eye, 'P',
+						Items.ender_pearl, 'B', Items.blaze_rod, 'D',
+						Blocks.dragon_egg, 'S', Blocks.end_stone, 'd',
+						Blocks.diamond_block, 'b', Blocks.obsidian });
 	}
 }

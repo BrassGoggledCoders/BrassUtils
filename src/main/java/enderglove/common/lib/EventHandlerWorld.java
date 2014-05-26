@@ -24,7 +24,7 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class EventHandlerWorld
 {
@@ -66,7 +66,7 @@ public class EventHandlerWorld
 		final Iterator<EntityItem> iterator = event.drops.iterator();
 		while (iterator.hasNext())
 		{
-			final EntityItem entItem = (EntityItem) iterator.next();
+			final EntityItem entItem = iterator.next();
 			final ItemStack is = entItem.getEntityItem();
 
 			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))

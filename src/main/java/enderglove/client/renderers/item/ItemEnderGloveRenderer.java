@@ -26,9 +26,9 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * The ItemRenderer for the ender glove item.
- *
+ * 
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {

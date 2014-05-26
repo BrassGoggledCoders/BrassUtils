@@ -47,9 +47,9 @@ import enderglove.common.lib.Utils;
 
 /**
  * This class is the whole point of this mod.
- *
+ * 
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- *
+ * 
  */
 public class ItemEnderGlove extends ItemTool
 {

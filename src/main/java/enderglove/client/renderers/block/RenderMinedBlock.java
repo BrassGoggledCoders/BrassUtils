@@ -1,11 +1,11 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGloves mod for Minecraft. 
+ * EnderGloves mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 25, 2014, 3:09:52 PM] 
+ * File created @[May 25, 2014, 3:09:52 PM]
  */
 package enderglove.client.renderers.block;
 
@@ -54,9 +54,13 @@ public class RenderMinedBlock extends Render
 		if ((block != null) && (block != world.getBlock(x, y, z)))
 		{
 			GL11.glPushMatrix();
+			GL11.glDisable(GL11.GL_LIGHTING);
+			GL11.glTexEnvi(GL11.GL_TEXTURE_ENV, GL11.GL_TEXTURE_ENV_MODE,
+					GL11.GL_REPLACE);
+			GL11.glColor3f(0.5F, 0.0F, 1.0F);
 			GL11.glTranslatef((float) posX, (float) posY, (float) posZ);
 			bindEntityTexture(entBlock);
-			GL11.glDisable(GL11.GL_LIGHTING);
+
 			Tessellator tessellator;
 
 			if (block instanceof BlockAnvil)
@@ -94,7 +98,9 @@ public class RenderMinedBlock extends Render
 				blockRenderer.renderBlockSandFalling(block, world, x, y, z,
 						entBlock.metadata);
 			}
-
+			// Hehe
+			// if(!(Calendar.DAY_OF_MONTH == 1 && Calendar.MONTH ==
+			// Calendar.APRIL))
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();
 		}

@@ -5,7 +5,7 @@
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 14, 2014, 8:10:36 PM]
+ * File created @[May 34, 2034, 8:30:36 PM]
  */
 package enderglove.common.config;
 
@@ -53,6 +53,8 @@ public class Config
 
 	public static int entMinedBlockId;
 
+	public static String recipeLine1, recipeLine2, recipeLine3;
+
 	public static void initialize(final File file)
 	{
 		config = new Configuration(file);
@@ -70,7 +72,7 @@ public class Config
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
 
-		int enchIndex = 160;
+		int enchIndex = 360;
 
 		final Property enchAff = config.get("Enchantments", "ench_affluency",
 				enchIndex++);
@@ -108,7 +110,7 @@ public class Config
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
-		int eIdx = 210;
+		int eIdx = 230;
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 
@@ -117,6 +119,16 @@ public class Config
 		enchField = new EnchantmentField(enchEField.getInt(), 3);
 		enchFieldID = enchEField.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
+
+		final Property recipeLine1 = config.get("Recipe", "line_1", "EEE");
+		recipeLine1.comment = "Line 1";
+		final Property recipeLine2 = config.get("Recipe", "line_2", "LNL");
+		recipeLine2.comment = "Line 2";
+		final Property recipeLine3 = config.get("Recipe", "line_3", "LNL");
+		recipeLine3.comment = "Line 3";
+		config.addCustomCategoryComment(
+				"Recipe",
+				"Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
 
 		config.save();
 	}

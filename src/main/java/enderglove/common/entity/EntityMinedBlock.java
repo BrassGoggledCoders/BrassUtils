@@ -1,11 +1,11 @@
 /**
  * This class was created by <Surseance> as a part of the
- * EnderGloves mod for Minecraft. 
+ * EnderGloves mod for Minecraft.
  *
  * This mod is registered under the WTFPL v2.0. Please read the
  * COPYING.WTFPL file for more details.
  *
- * File created @[May 25, 2014, 3:05:32 PM] 
+ * File created @[May 25, 2014, 3:05:32 PM]
  */
 package enderglove.common.entity;
 
@@ -128,9 +128,9 @@ public class EntityMinedBlock extends Entity
 	public void addEntityCrashInfo(final CrashReportCategory crc)
 	{
 		super.addEntityCrashInfo(crc);
-		crc.addCrashSection("Immitating block ID",
+		crc.addCrashSection("Imitating block ID",
 				Integer.valueOf(Block.getIdFromBlock(block)));
-		crc.addCrashSection("Immitating block data", Integer.valueOf(metadata));
+		crc.addCrashSection("Imitating block data", Integer.valueOf(metadata));
 	}
 
 	@SideOnly(Side.CLIENT)
