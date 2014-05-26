@@ -12,7 +12,8 @@ package enderglove.client.renderers.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockDragonEgg;
-import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.block.BlockGrass;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -40,7 +41,7 @@ public class RenderMinedBlock extends Render
 
 	public RenderMinedBlock()
 	{
-		shadowSize = 0.0F;
+		this.shadowSize = 0.0F;
 	}
 
 	public void doRender(EntityMinedBlock entBlock, double posX, double posY, double posZ, float f, float renderTick)
@@ -51,24 +52,29 @@ public class RenderMinedBlock extends Render
 		int x = MathHelper.floor_double(entBlock.posX);
 		int y = MathHelper.floor_double(entBlock.posY);
 		int z = MathHelper.floor_double(entBlock.posZ);
-		
+
 		GL11.glDisable(GL11.GL_LIGHTING);
 
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)posX, (float)posY, (float)posZ);
 		this.bindEntityTexture(entBlock);
-		
+
 		float scale = entBlock.scale;
-		float rot = world.getWorldTime() * 17.8F;
-		float rf = 1 - world.rand.nextFloat();
-			
+		float rot = world.getWorldTime() * 17.6F;
+
 		GL11.glScalef(scale, scale, scale);
-		GL11.glRotatef(rot, rf, rf, rf);
-		
+		GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
+
 		Tessellator tessellator = Tessellator.instance;
 
 		this.blockRenderer.blockAccess = entBlock.worldObj;
 		this.blockRenderer.useInventoryTint = true;
+		
+		//int color = block.colorMultiplier(world, x, y, z); 
+		//float r = (float)(color >> 16 & 255) / 255.0F;
+		//float g = (float)(color >> 8 & 255) / 255.0F;
+		//float b = (float)(color & 255) / 255.0F;
+		//GL11.glColor4f(r, g, b, 1.0F);
 
 		if (block instanceof BlockAnvil)
 		{
@@ -106,12 +112,12 @@ public class RenderMinedBlock extends Render
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return this.getEntityTexture((EntityMinedBlock) entity);
+		return this.getEntityTexture((EntityMinedBlock)entity);
 	}
 
 	@Override
-	public void doRender(Entity entity, double posX, double posY, double posZ, float par8, float brightness)
+	public void doRender(Entity entity, double posX, double posY, double posZ, float par8, float renderTick)
 	{
-		this.doRender((EntityMinedBlock) entity, posX, posY, posZ, par8, brightness);
+		this.doRender((EntityMinedBlock)entity, posX, posY, posZ, par8, renderTick);
 	}
 }

@@ -23,14 +23,9 @@ import enderglove.common.config.Config;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
-<<<<<<< HEAD
  * @author Surseance (Johnny Eatmon) 
  * Email: surseance@autistici.org
  *
-=======
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
->>>>>>> FETCH_HEAD
  */
 public class EventHandlerWorld
 {
@@ -66,13 +61,8 @@ public class EventHandlerWorld
 		Iterator<EntityItem> iterator = event.drops.iterator();
 		while (iterator.hasNext())
 		{
-<<<<<<< HEAD
 			EntityItem entItem = (EntityItem) iterator.next();
 			ItemStack is = entItem.getEntityItem();
-=======
-             EntityItem entItem = (EntityItem) iterator.next();
-			 ItemStack is = entItem.getEntityItem();
->>>>>>> FETCH_HEAD
 
 			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
 			{

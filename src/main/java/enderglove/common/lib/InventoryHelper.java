@@ -17,7 +17,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  *
  */
 public class InventoryHelper
@@ -201,13 +202,11 @@ public class InventoryHelper
 	 *            - the item stack to look for
 	 * @return - the slot in which the specified item sits
 	 */
-	public static int isInPlayerInventory( EntityPlayer player,
-			 Item item)
+	public static int isInPlayerInventory(EntityPlayer player, Item item)
 	{
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
-			if (player.inventory.mainInventory[slot] != null
-					&& player.inventory.mainInventory[slot].getItem() == item)
+			if (player.inventory.mainInventory[slot] != null && player.inventory.mainInventory[slot].getItem() == item)
 			{
 				return slot;
 			}
@@ -215,10 +214,11 @@ public class InventoryHelper
 
 		return -1;
 	}
-	for(int slot = InventoryHelper.getPlayerEnderChest(player).getSizeInventory(); slot != 0; slot--)
-	{
-		InventoryHelper.getPlayerEnderChest(player).getStackInSlot(slot);
-	}
+	
+	//for(int slot = InventoryHelper.getPlayerEnderChest(player).getSizeInventory(); slot != 0; slot--)
+	//{
+	//	InventoryHelper.getPlayerEnderChest(player).getStackInSlot(slot);
+	//}
 
 	/**
 	 * Determines if the given inventory is empty by checking if it can add the
