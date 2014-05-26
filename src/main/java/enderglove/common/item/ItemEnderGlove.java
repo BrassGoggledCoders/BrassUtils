@@ -117,10 +117,7 @@ public class ItemEnderGlove extends ItemTool
 		int md = world.getBlockMetadata(x, y, z);
 
 		if (world.isRemote)
-		{
-			EntityMinedBlock entBlock = new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, 0.9F);
-			world.spawnEntityInWorld(entBlock);
-		}
+			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
 
 		EntityPlayer player = (EntityPlayer)entityLiving;
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
@@ -265,15 +262,19 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
+		
+		/*
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
-		if(player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
+		
+		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
-			if(world.isAirBlock(x, y + 1, z))
+			if (world.isAirBlock(x, y + 1, z))
 			{
-			world.setBlock(x, y + 1, z, Blocks.ender_chest);
-			player.inventory.consumeInventoryItem(ItemBlock.getItemFromBlock(Blocks.ender_chest));
+				world.setBlock(x, y + 1, z, Blocks.ender_chest);
+				player.inventory.consumeInventoryItem(ItemBlock.getItemFromBlock(Blocks.ender_chest));
 			}
-		}
+		}*/
+		
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
 }
