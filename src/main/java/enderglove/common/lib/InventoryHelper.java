@@ -11,7 +11,6 @@ package enderglove.common.lib;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -214,10 +213,6 @@ public class InventoryHelper
 		}
 
 		return -1;
-	}
-	for(int slot = InventoryHelper.getPlayerEnderChest(player).getSizeInventory(); slot != 0; slot--)
-	{
-		InventoryHelper.getPlayerEnderChest(player).getStackInSlot(slot);
 	}
 
 	/**
