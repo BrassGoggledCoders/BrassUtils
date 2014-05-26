@@ -66,7 +66,7 @@ public class ItemEnderGlove extends ItemTool
 
 	public ItemEnderGlove()
 	{
-		super(2.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
+		super(1.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 		this.setMaxDamage(350);
@@ -78,17 +78,6 @@ public class ItemEnderGlove extends ItemTool
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
-	}
-
-	@Override
-	public float func_150893_a( ItemStack is,  Block block) // getStrVsBlock
-	{
-		int effAmount = EnchantmentHelper.getEnchantmentLevel(Enchantment.efficiency.effectId, is);
-
-		if (effAmount > 0)
-			return 1.3F;
-
-		return blocksEffectiveAgainst.contains(block) ? efficiencyOnProperMaterial : 1.0F;
 	}
 
 	@Override
@@ -122,7 +111,7 @@ public class ItemEnderGlove extends ItemTool
 
 		if (world.isRemote)
 		{
-			EntityMinedBlock entBlock = new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md);
+			EntityMinedBlock entBlock = new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, 0.9F);
 			world.spawnEntityInWorld(entBlock);
 		}
 

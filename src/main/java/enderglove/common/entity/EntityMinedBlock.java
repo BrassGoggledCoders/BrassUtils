@@ -28,24 +28,26 @@ public class EntityMinedBlock extends Entity
 	public int metadata;
 	public NBTTagCompound tagCompound;
 
-	public static float scale = 0.9F;
+	public static float scale;
 
 	public EntityMinedBlock(World world)
 	{
 		super(world);
+		//this.scale = 0.9F;
 	}
 
-	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block)
+	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, float scale)
 	{
-		this(world, posX, posY, posZ, block, 0);
+		this(world, posX, posY, posZ, block, 0, scale);
+		this.scale = scale;
 	}
 
-	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, int md)
+	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, int md, float scale)
 	{
 		super(world);
 		this.block = block;
 		this.metadata = md;
-		// this.preventEntitySpawning = true;
+		this.preventEntitySpawning = true;
 		// this.setSize(0.98F, 0.98F);
 		this.yOffset = this.height / 2.0F;
 		this.setPosition(posX, posY, posZ);
@@ -55,6 +57,7 @@ public class EntityMinedBlock extends Entity
 		this.prevPosX = posX;
 		this.prevPosY = posY;
 		this.prevPosZ = posZ;
+		this.scale = scale;
 	}
 
 	@Override
@@ -82,10 +85,12 @@ public class EntityMinedBlock extends Entity
 
 			if (scale <= 0)
 			{
-				scale = 0.9F;
+				//scale = 0.9F;
 				this.setDead();
 			}
 		}
+		
+		//this.scale = 0.9F;
 	}
 
 	@Override
