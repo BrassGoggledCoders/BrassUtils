@@ -81,16 +81,16 @@ public class ItemEnderGlove extends ItemTool
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
 	}
 
-	//@Override
-	//public float func_150893_a(ItemStack is, Block block) // getStrVsBlock
-	//{
-	//	int effAmount = EnchantmentHelper.getEnchantmentLevel(Enchantment.efficiency.effectId, is);
+	@Override
+	public float func_150893_a(ItemStack is, Block block) // getStrVsBlock
+	{
+		int effAmount = EnchantmentHelper.getEnchantmentLevel(Enchantment.efficiency.effectId, is);
 
-	//	if (effAmount > 0)
-	//		return 1.3F;
+		if (effAmount > 0)
+			return 1.3F;
 
-	//	return this.blocksEffectiveAgainst.contains(block) ? this.efficiencyOnProperMaterial : 1.0F;
-	//}
+		return this.blocksEffectiveAgainst.contains(block) ? this.efficiencyOnProperMaterial : 1.0F;
+	}
 
 	@Override
 	public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker) 
