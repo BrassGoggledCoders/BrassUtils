@@ -39,3 +39,10 @@ Thumbs.db
 ## Misc. Unnecessary Files
 *.log
 *.lck
+
+##Minecraft
+/logs
+/config
+/mods
+/saves
+options.txt
