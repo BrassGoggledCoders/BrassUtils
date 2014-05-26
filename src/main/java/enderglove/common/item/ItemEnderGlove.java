@@ -17,9 +17,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderPearl;
+import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -38,6 +41,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
 import enderglove.common.config.Config;
+import enderglove.common.entity.EntityMinedBlock;
 import enderglove.common.lib.InventoryHelper;
 import enderglove.common.lib.LibInfo;
 import enderglove.common.lib.Utils;
@@ -45,13 +49,14 @@ import enderglove.common.lib.Utils;
 /**
  * This class is the whole point of this mod.
  *
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) 
+ * <jmaeatmon@gmail.com>
  *
  */
 public class ItemEnderGlove extends ItemTool
 {
-	private static final Set<Block> blocksEffectiveAgainst = Sets
-			.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
+	private static final Set blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
+	private int xCoord, yCoord, zCoord;
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -60,71 +65,92 @@ public class ItemEnderGlove extends ItemTool
 		itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderglove");
 	}
 
-	public ItemEnderGlove()
+	public ItemEnderGlove() 
 	{
 		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
-		setCreativeTab(CreativeTabs.tabTools);
-		setNoRepair();
-		setMaxDamage(350);
+		this.setCreativeTab(CreativeTabs.tabTools);
+		this.setNoRepair();
+		this.setMaxDamage(350);
 	}
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack is, EntityPlayer player, List list,
-			boolean flag)
+	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
 	}
 
-	// @Override
-	// public float func_150893_a(ItemStack is, Block block) // getStrVsBlock
-	// {
-	// return this.blocksEffectiveAgainst.contains(block) ?
-	// this.efficiencyOnProperMaterial : 1.0F;
-	// }
+	@Override
+	public float func_150893_a(ItemStack is, Block block) // getStrVsBlock
+	{
+		int effAmount = EnchantmentHelper.getEnchantmentLevel(Enchantment.efficiency.effectId, is);
+
+		if (effAmount > 0)
+			return 1.3F;
+
+		return this.blocksEffectiveAgainst.contains(block) ? this.efficiencyOnProperMaterial : 1.0F;
+	}
 
 	@Override
-	public boolean hitEntity(ItemStack is, EntityLivingBase target,
-			EntityLivingBase attacker) // I think that's the right order xD
+	public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker) 
 	{
+		if (attacker instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)attacker;
+
+			if (player.capabilities.isCreativeMode)
+			{
+				target.moveEntity(this.xCoord, this.yCoord, this.zCoord);
+				target.setPosition(this.xCoord, this.yCoord, this.zCoord);
+
+				//EnderGlove.proxy.blockSparkleFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, 4);
+				Utils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
+			}
+		}
+
+		if (target instanceof EntityEnderman)
+		{
+			EntityEnderman enderman = (EntityEnderman)target;
+		}
+
 		return false;
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack is, World world, Block block,
-			int x, int y, int z, EntityLivingBase entityLiving)
+	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
-		EntityPlayer player = (EntityPlayer) entityLiving;
-		InventoryEnderChest enderInv = InventoryHelper
-				.getPlayerEnderChest(player);
 		int md = world.getBlockMetadata(x, y, z);
 
-		int flameAmount = EnchantmentHelper.getEnchantmentLevel(
-				Config.enchFlameTouchId, is);
-		ItemStack smeltableBlock = Utils.getDroppedItemStack(world, player,
-				block, x, y, z, md);
+		if (world.isRemote)
+		{
+			EntityMinedBlock entBlock = new EntityMinedBlock(world, (double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), block, md);
+			world.spawnEntityInWorld(entBlock);
+		}
+
+		EntityPlayer player = (EntityPlayer) entityLiving; 
+		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);	
+
+		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
+		ItemStack smeltableBlock = Utils.getDroppedItemStack(world, player, block, x, y, z, md);
 
 		if (flameAmount > 0 && Utils.isSmeltable(smeltableBlock))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(
-					smeltableBlock);// .copy();
+			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock);// .copy();
 
 			if (drops != null)
 				items.add(drops);
 
-			for (ItemStack stack : items)
+			for (ItemStack stack : items) 
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, stack))
-					InventoryHelper.addItemStackToInventory(
-							InventoryHelper.getPlayerEnderChest(player), stack);
+				if (InventoryHelper.isInvEmpty(enderInv, stack) && (world.isRemote))
+					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
 			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "fire.ignite");
 		}
-		else if (EnchantmentHelper.getSilkTouchModifier(player)
-				&& block.canSilkHarvest(world, player, x, y, z, md))
+		else if (EnchantmentHelper.getSilkTouchModifier(player) && block.canSilkHarvest(world, player, x, y, z, md))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 			ItemStack stack = null;
@@ -139,7 +165,7 @@ public class ItemEnderGlove extends ItemTool
 
 			for (ItemStack drops : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, drops))
+				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
 			}
 
@@ -148,12 +174,11 @@ public class ItemEnderGlove extends ItemTool
 		}
 		else
 		{
-			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
-					EnchantmentHelper.getFortuneModifier(player));
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
 
 			for (ItemStack drops : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, drops))
+				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
 			}
 
@@ -186,6 +211,11 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public float getDigSpeed(ItemStack is, Block block, int metadata)
 	{
+		int effAmount = EnchantmentHelper.getEnchantmentLevel(Enchantment.efficiency.effectId, is);
+
+		if (effAmount > 0)
+			return 1.3F;
+
 		return 1.3F;
 	}
 
@@ -196,8 +226,7 @@ public class ItemEnderGlove extends ItemTool
 	}
 
 	@Override
-	public boolean onBlockStartBreak(ItemStack is, int x, int y, int z,
-			EntityPlayer player)
+	public boolean onBlockStartBreak(ItemStack is, int x, int y, int z, EntityPlayer player)
 	{
 		return super.onBlockStartBreak(is, x, y, z, player);
 	}
@@ -209,17 +238,14 @@ public class ItemEnderGlove extends ItemTool
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack is, World world,
-			EntityPlayer player)
+	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player)
 	{
-		int teleAmount = EnchantmentHelper.getEnchantmentLevel(
-				Config.enchTeleportId, is);
+		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
 
 		if (teleAmount > 0)
 		{
-			world.playSoundAtEntity(player, "random.bow", 0.5F,
-					0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			is.damageItem(3, player);
+			world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			is.damageItem(1, player);
 
 			if (!world.isRemote)
 				world.spawnEntityInWorld(new EntityEnderPearl(world,player));
@@ -227,25 +253,27 @@ public class ItemEnderGlove extends ItemTool
 				//player.mountEntity(pearl); Fun, but broken, and not really a teleport anymore
 		}
 
+
 		return is;
 	}
 
-	/*
-	 * TODO: Might use this for a better, cleaner teleport public static
-	 * MovingObjectPosition getTargetBlock(World world, Entity entity, boolean
-	 * flag) { float var4 = 1.0F; float var5 = entity.prevRotationPitch +
-	 * (entity.rotationPitch - entity.prevRotationPitch) * var4; float var6 =
-	 * entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) *
-	 * var4; double var7 = entity.prevPosX + (entity.posX - entity.prevPosX) *
-	 * var4; double var9 = entity.prevPosY + (entity.posY - entity.prevPosY) *
-	 * var4 + 1.62D - entity.yOffset; double var11 = entity.prevPosZ +
-	 * (entity.posZ - entity.prevPosZ) * var4; Vec3 var13 =
-	 * world.getWorldVec3Pool().getVecFromPool(var7, var9, var11); float var14 =
-	 * MathHelper.cos(-var6 * 0.01745329F - 3.141593F); float var15 =
-	 * MathHelper.sin(-var6 * 0.01745329F - 3.141593F); float var16 =
-	 * -MathHelper.cos(-var5 * 0.01745329F); float var17 = MathHelper.sin(-var5
-	 * * 0.01745329F); float var18 = var15 * var16; float var20 = var14 * var16;
-	 * double var21 = 10.0D; Vec3 var23 = var13.addVector(var18 * var21, var17 *
-	 * var21, var20 * var21); return world.rayTraceBlocks(var13, var23, flag); }
-	 */
+	@Override
+	public boolean onItemUse(ItemStack is, EntityPlayer player, World world, int x, int y, int z, int md, float hitX, float hitY, float hitZ)
+	{
+		int creativeAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is);
+
+		if ((creativeAmount > 0) && (player.isSneaking()) && (player.capabilities.isCreativeMode)) 
+		{
+			this.xCoord = x;
+			this.yCoord = y;
+			this.zCoord = z; 
+
+			Utils.sendMessage(player, "Position set to: [" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "]");
+			Utils.playSFX(world, x, y, z, "random.orb");
+
+			return true;
+		}
+
+		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ); 
+	}
 }

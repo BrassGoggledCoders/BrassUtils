@@ -10,7 +10,12 @@
 package enderglove.common.lib;
 
 import java.util.Iterator;
+import java.util.Random;
 
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,11 +24,14 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import enderglove.common.config.Config;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) 
+ * <jmaeatmon@gmail.com>
  *
  */
 public class EventHandlerWorld
@@ -33,8 +41,7 @@ public class EventHandlerWorld
 	{
 		EntityPlayer player = event.harvester;
 
-		if (event.drops != null && event.drops.size() > 0
-				&& Utils.isCarryingGlove(player))
+		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 		else
 			return;
@@ -44,8 +51,7 @@ public class EventHandlerWorld
 	public void blockBreak(BlockEvent.BreakEvent event)
 	{
 		EntityPlayer player = event.getPlayer();
-		int affAmount = EnchantmentHelper.getEnchantmentLevel(
-				Config.enchAffluencyId, player.inventory.getCurrentItem());
+		int affAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchAffluencyId, player.inventory.getCurrentItem());
 
 		if (event.getExpToDrop() > 0)
 		{
@@ -62,22 +68,15 @@ public class EventHandlerWorld
 		Iterator iterator = event.drops.iterator();
 		while (iterator.hasNext())
 		{
-			EntityItem entItem = (EntityItem) iterator.next();
+			EntityItem entItem = (EntityItem)iterator.next();
 			ItemStack is = entItem.getEntityItem();
 
-			if (is != null && is.getItem() instanceof ItemEnderGlove)
+			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
 			{
-				is.damageItem(1, event.entityPlayer);
-				InventoryHelper
-				.addItemStackToInventory(InventoryHelper
-						.getPlayerEnderChest(event.entityPlayer), is);
-				Utils.sendMessage(
-						event.entityPlayer,
-						EnumChatFormatting.DARK_PURPLE
-						+ "Your Ender Glove was succesfully put in your Ender Chest!");
-				Utils.playSFX(event.entityPlayer.worldObj,
-						(int) entItem.prevPosX, (int) entItem.prevPosY,
-						(int) entItem.prevPosZ, "mob.endermen.portal");
+				is.damageItem(2, event.entityPlayer);
+				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.entityPlayer), is);
+				Utils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName() + " was succesfully saved to your Ender Chest!");
+				Utils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
 			}
 		}
