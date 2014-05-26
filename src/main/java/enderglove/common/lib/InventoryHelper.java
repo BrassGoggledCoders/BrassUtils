@@ -28,7 +28,7 @@ public class InventoryHelper
 	 *            - the player that owns the Ender Inventory
 	 * @return - an instance of the InventoryEnderChest
 	 */
-	public static InventoryEnderChest getPlayerEnderChest(final EntityPlayer p)
+	public static InventoryEnderChest getPlayerEnderChest( EntityPlayer p)
 	{
 		return p.getInventoryEnderChest();
 	}
@@ -40,8 +40,8 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	public static boolean addItemStackToInventory(final IInventory inv,
-			final ItemStack is)
+	public static boolean addItemStackToInventory( IInventory inv,
+			 ItemStack is)
 	{
 		if (!is.isItemDamaged())
 		{
@@ -55,7 +55,7 @@ public class InventoryHelper
 			return is.stackSize < stackSize;
 		}
 
-		final int slot = getFirstEmptySlot(inv, is);
+		 int slot = getFirstEmptySlot(inv, is);
 
 		if (slot >= 0)
 		{
@@ -74,14 +74,14 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	public static int storePartially(final IInventory inv, final ItemStack is)
+	public static int storePartially( IInventory inv,  ItemStack is)
 	{
-		final Item item = is.getItem();
+		 Item item = is.getItem();
 		int size = is.stackSize;
 
 		if (is.getMaxStackSize() == 1) // Not stackable
 		{
-			final int freeSlot = getFirstEmptySlot(inv, is);
+			 int freeSlot = getFirstEmptySlot(inv, is);
 
 			if (freeSlot < 0)
 			{
@@ -148,11 +148,11 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	public static int getNonFilledStack(final IInventory inv, final ItemStack is)
+	public static int getNonFilledStack( IInventory inv,  ItemStack is)
 	{
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
-			final ItemStack stackInSlot = inv.getStackInSlot(slot);
+			 ItemStack stackInSlot = inv.getStackInSlot(slot);
 
 			if (stackInSlot != null
 					&& stackInSlot.getItem() == is.getItem()
@@ -178,7 +178,7 @@ public class InventoryHelper
 	 *            - the item stack to put in the inventory
 	 * @return -1 if there is not slot available
 	 */
-	public static int getFirstEmptySlot(final IInventory inv, final ItemStack is)
+	public static int getFirstEmptySlot( IInventory inv,  ItemStack is)
 	{
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
@@ -200,8 +200,8 @@ public class InventoryHelper
 	 *            - the item stack to look for
 	 * @return - the slot in which the specified item sits
 	 */
-	public static int isInPlayerInventory(final EntityPlayer player,
-			final Item item)
+	public static int isInPlayerInventory( EntityPlayer player,
+			 Item item)
 	{
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
@@ -225,7 +225,7 @@ public class InventoryHelper
 	 *            - the item stack to put in the inventory
 	 * @return true if there's room for the item stack
 	 */
-	public static boolean isInvEmpty(final IInventory inv, final ItemStack is)
+	public static boolean isInvEmpty( IInventory inv,  ItemStack is)
 	{
 		if (!addItemStackToInventory(inv, is))
 		{

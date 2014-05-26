@@ -29,9 +29,9 @@ import enderglove.common.item.ItemEnderGlove;
 public class EventHandlerWorld
 {
 	@SubscribeEvent
-	public void harvestDrops(final BlockEvent.HarvestDropsEvent event)
+	public void harvestDrops( BlockEvent.HarvestDropsEvent event)
 	{
-		final EntityPlayer player = event.harvester;
+		 EntityPlayer player = event.harvester;
 
 		if ((event.drops != null) && (event.drops.size() > 0)
 				&& (Utils.isCarryingGlove(player)))
@@ -45,29 +45,29 @@ public class EventHandlerWorld
 	}
 
 	@SubscribeEvent
-	public void blockBreak(final BlockEvent.BreakEvent event)
+	public void blockBreak( BlockEvent.BreakEvent event)
 	{
-		final EntityPlayer player = event.getPlayer();
-		final int affAmount = EnchantmentHelper.getEnchantmentLevel(
+		 EntityPlayer player = event.getPlayer();
+		 int affAmount = EnchantmentHelper.getEnchantmentLevel(
 				Config.enchAffluencyId, player.inventory.getCurrentItem());
 
 		if (event.getExpToDrop() > 0)
 		{
-			final int XP = event.getExpToDrop();
-			final int affXP = XP + affAmount * affAmount / 2;
+			 int XP = event.getExpToDrop();
+			 int affXP = XP + affAmount * affAmount / 2;
 
 			event.setExpToDrop(affXP);
 		}
 	}
 
 	@SubscribeEvent
-	public void playerDrops(final PlayerDropsEvent event)
+	public void playerDrops( PlayerDropsEvent event)
 	{
-		final Iterator<EntityItem> iterator = event.drops.iterator();
+		 Iterator<EntityItem> iterator = event.drops.iterator();
 		while (iterator.hasNext())
 		{
-			final EntityItem entItem = (EntityItem) iterator.next();
-			final ItemStack is = entItem.getEntityItem();
+			 EntityItem entItem = (EntityItem) iterator.next();
+			 ItemStack is = entItem.getEntityItem();
 
 			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
 			{

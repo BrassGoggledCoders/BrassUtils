@@ -111,8 +111,8 @@ public class ModelEnderGlove extends ModelBase
 	}
 
 	@Override
-	public void render(final Entity entity, final float f1, final float f2,
-			final float f3, final float f4, final float f5, final float f6)
+	public void render( Entity entity,  float f1,  float f2,
+			 float f3,  float f4,  float f5,  float f6)
 	{
 		super.render(entity, f1, f2, f3, f4, f5, f6);
 		setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
@@ -136,8 +136,8 @@ public class ModelEnderGlove extends ModelBase
 	}
 
 	@SuppressWarnings("unused")
-	private void setRotation(final ModelRenderer model, final float x,
-			final float y, final float z)
+	private void setRotation( ModelRenderer model,  float x,
+			 float y,  float z)
 	{
 		model.rotateAngleX = x;
 		model.rotateAngleY = y;
@@ -145,9 +145,9 @@ public class ModelEnderGlove extends ModelBase
 	}
 
 	@Override
-	public void setRotationAngles(final float f1, final float f2,
-			final float f3, final float f4, final float f5, final float f6,
-			final Entity entity)
+	public void setRotationAngles( float f1,  float f2,
+			 float f3,  float f4,  float f5,  float f6,
+			 Entity entity)
 	{
 		super.setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
 	}

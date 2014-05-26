@@ -25,16 +25,16 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 	int totemsPerChunk = -1;
 
 	@Override
-	public void generate(final Random random, final int chunkX,
-			final int chunkZ, final World world,
-			final IChunkProvider chunkGenerator,
-			final IChunkProvider chunkProvider)
+	public void generate( Random random,  int chunkX,
+			 int chunkZ,  World world,
+			 IChunkProvider chunkGenerator,
+			 IChunkProvider chunkProvider)
 	{
 		worldGeneration(world, random, chunkX, chunkZ);
 	}
 
-	private void worldGeneration(final World world, final Random random,
-			final int x, final int z)
+	private void worldGeneration( World world,  Random random,
+			 int x,  int z)
 	{
 		switch (world.provider.dimensionId)
 		{
@@ -47,15 +47,15 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 		}
 	}
 
-	private boolean generateSurface(final World world, final Random random,
-			final int chunkX, final int chunkZ)
+	private boolean generateSurface( World world,  Random random,
+			 int chunkX,  int chunkZ)
 	{
 		for (int amount = 0; amount < totemsPerChunk; ++amount)
 		{
-			final int x = chunkX + random.nextInt(16) + 8;
-			final int z = chunkZ + random.nextInt(16) + 8;
+			 int x = chunkX + random.nextInt(16) + 8;
+			 int z = chunkZ + random.nextInt(16) + 8;
 
-			final int y = random.nextInt(world.getHeightValue(x, z) * 2);
+			 int y = random.nextInt(world.getHeightValue(x, z) * 2);
 
 			generateTotem(world, random, x, y, z);
 		}
@@ -63,8 +63,8 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 		return true;
 	}
 
-	private boolean generateTotem(final World world, final Random random,
-			final int x, final int y, final int z)
+	private boolean generateTotem( World world,  Random random,
+			 int x,  int y,  int z)
 	{
 		// for (int rarity = 0; rarity < 10; ++rarity)
 		// {
@@ -74,7 +74,7 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 
 		if (world.isAirBlock(x, y, z))
 		{
-			final int maxHeight = 1 + random.nextInt(random.nextInt(3) + 1);
+			 int maxHeight = 1 + random.nextInt(random.nextInt(3) + 1);
 
 			for (int height = 0; height < maxHeight; ++height)
 			{

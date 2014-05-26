@@ -18,7 +18,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
  */
 public class EnchantmentCreative extends Enchantment
 {
-	public EnchantmentCreative(final int id, final int rarity)
+	public EnchantmentCreative( int id,  int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
 		setName("creative");

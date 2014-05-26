@@ -1,9 +1,9 @@
 /**
- * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft.
+ * This class was created by <Surseance> as a part of the EnderGlove mod for
+ * Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
+ * This mod is registered under the WTFPL v2.0. Please read the COPYING.WTFPL
+ * file for more details.
  *
  * File created @[May 14, 2014, 8:10:36 PM]
  */
@@ -17,14 +17,14 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
-import enderglove.common.lib.enchantment.EnchantmentField;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
+ *
  */
 public class Config
 {
@@ -53,70 +53,60 @@ public class Config
 
 	public static int entMinedBlockId;
 
-	public static void initialize(final File file)
+	public static void initialize(File file)
 	{
 		config = new Configuration(file);
-		config.addCustomCategoryComment("Enchantments",
-				"EnderGlove enchantments");
+		config.addCustomCategoryComment("Enchantments", "EnderGlove enchantments");
 		config.load();
 
-		final Property tpc = config.get("general", "totems_per_chunk",
-				totemsPerChunk);
+		Property tpc = config.get("general", "totems_per_chunk", totemsPerChunk);
 		tpc.comment = "The rarity of the Ender Totems. Setting it to 0 will remove Ender Totem generation.";
 		totemsPerChunk = tpc.getInt();
 
-		final Property atc = config.get("general", "artisan_bonus_chance",
-				artisanBonusChance);
+		Property atc = config.get("general", "artisan_bonus_chance", artisanBonusChance);
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
 
 		int enchIndex = 160;
 
-		final Property enchAff = config.get("Enchantments", "ench_affluency",
-				enchIndex++);
+		Property enchAff = config.get("Enchantments", "ench_affluency", enchIndex++);
 		enchAffluency = new EnchantmentAffluency(enchAff.getInt(), 3);
 		enchAffluencyId = enchAff.getInt();
 		Enchantment.addToBookList(enchAffluency);
 
-		final Property enchArt = config.get("Enchantments", "ench_artisan",
-				enchIndex++);
+		Property enchArt = config.get("Enchantments", "ench_artisan", enchIndex++);
 		enchArtisan = new EnchantmentArtisan(enchArt.getInt(), 2);
 		enchArtisanId = enchArt.getInt();
 		Enchantment.addToBookList(enchArtisan);
 
-		final Property enchSpe = config.get("Enchantments", "ench_spelunker",
-				enchIndex++);
+		Property enchSpe = config.get("Enchantments", "ench_spelunker", enchIndex++);
 		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 2);
 		enchSpelunkerId = enchSpe.getInt();
 		Enchantment.addToBookList(enchSpelunker);
 
-		final Property enchTel = config.get("Enchantments", "ench_teleport",
-				enchIndex++);
+		Property enchTel = config.get("Enchantments", "ench_teleport", enchIndex++);
 		enchTeleport = new EnchantmentTeleport(enchTel.getInt(), 4);
 		enchTeleportId = enchTel.getInt();
 		Enchantment.addToBookList(enchTeleport);
 
-		final Property enchOP = config.get("Enchantments", "ench_creative",
-				enchIndex++);
+		Property enchOP = config.get("Enchantments", "ench_creative", enchIndex++);
 		enchCreative = new EnchantmentCreative(enchOP.getInt(), 0);
 		enchCreativeId = enchOP.getInt();
 		Enchantment.addToBookList(enchCreative);
 
-		final Property enchFla = config.get("Enchantments", "ench_flametouch",
-				enchIndex++);
+		Property enchFla = config.get("Enchantments", "ench_flametouch", enchIndex++);
 		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 3);
 		enchFlameTouchId = enchFla.getInt();
+		Enchantment.addToBookList(enchFlameTouch);
+
+		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
+		enchField = new EnchantmentField(enchEField.getInt(), 3);
+		enchFieldID = enchEField.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
 		int eIdx = 210;
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
-
-		final Property enchEField = config.get("Enchantments",
-				"ench_enderfield", enchIndex++);
-		enchField = new EnchantmentField(enchEField.getInt(), 3);
-		enchFieldID = enchEField.getInt();
-		Enchantment.addToBookList(enchFlameTouch);
 
 		config.save();
 	}

@@ -26,7 +26,7 @@ public class BlockEnderTotem extends BlockContainer
 {
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerBlockIcons(final IIconRegister ir)
+	public void registerBlockIcons( IIconRegister ir)
 	{
 		blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
 	}
@@ -39,7 +39,7 @@ public class BlockEnderTotem extends BlockContainer
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World world, final int metadata)
+	public TileEntity createNewTileEntity( World world,  int metadata)
 	{
 		return null;
 	}

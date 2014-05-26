@@ -42,13 +42,13 @@ public class RenderMinedBlock extends Render
 		shadowSize = 0.0F;
 	}
 
-	public void doRender(final EntityMinedBlock entBlock, double posX, double posY, double posZ, float p_147918_8_, float brightness)
+	public void doRender( EntityMinedBlock entBlock, double posX, double posY, double posZ, float p_147918_8_, float brightness)
 	{
-		final World world = entBlock.getWorldObj();
-		final Block block = entBlock.getBlock();
-		final int x = MathHelper.floor_double(entBlock.posX);
-		final int y = MathHelper.floor_double(entBlock.posY);
-		final int z = MathHelper.floor_double(entBlock.posZ);
+		 World world = entBlock.getWorldObj();
+		 Block block = entBlock.getBlock();
+		 int x = MathHelper.floor_double(entBlock.posX);
+		 int y = MathHelper.floor_double(entBlock.posY);
+		 int z = MathHelper.floor_double(entBlock.posZ);
 
 		if ((block != null) && (block != world.getBlock(x, y, z)))
 		{

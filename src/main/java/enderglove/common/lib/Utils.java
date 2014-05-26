@@ -37,10 +37,10 @@ public class Utils
 	 * @param message
 	 *            - the message to send
 	 */
-	public static void sendMessage(final EntityPlayer player,
-			final String message)
+	public static void sendMessage( EntityPlayer player,
+			 String message)
 	{
-		final IChatComponent chat = new ChatComponentText(message);
+		 IChatComponent chat = new ChatComponentText(message);
 
 		if (!player.worldObj.isRemote)
 		{
@@ -68,11 +68,11 @@ public class Utils
 	 *            - block metadata
 	 * @return the block's drops
 	 */
-	public static ItemStack getDroppedItemStack(final World world,
-			final EntityPlayer player, final Block block, final int x,
-			final int y, final int z, final int md)
+	public static ItemStack getDroppedItemStack( World world,
+			 EntityPlayer player,  Block block,  int x,
+			 int y,  int z,  int md)
 	{
-		final ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
+		 ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md,
 				EnchantmentHelper.getFortuneModifier(player));
 		ItemStack drops = null;
 
@@ -95,7 +95,7 @@ public class Utils
 	 *            - the item stack to check
 	 * @return false if it cannot be smelted
 	 */
-	public static boolean isSmeltable(final ItemStack is)
+	public static boolean isSmeltable( ItemStack is)
 	{
 		return is == null
 				|| FurnaceRecipes.smelting().getSmeltingResult(is) == null ? false
@@ -117,8 +117,8 @@ public class Utils
 	 * @param sound
 	 *            - sound name
 	 */
-	public static void playSFX(final World world, final int x, final int y,
-			final int z, final String sound)
+	public static void playSFX( World world,  int x,  int y,
+			 int z,  String sound)
 	{
 		world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, sound, 1.0F,
 				world.rand.nextFloat() * 0.4F + 0.8F);
@@ -131,7 +131,7 @@ public class Utils
 	 *            - the player carrying the item
 	 * @return false if not carrying
 	 */
-	public static boolean isCarryingGlove(final EntityPlayer player)
+	public static boolean isCarryingGlove( EntityPlayer player)
 	{
 		if (player != null
 				&& player.inventory.getCurrentItem() != null
@@ -153,11 +153,11 @@ public class Utils
 	 *            - the metadata > subtypes
 	 * @return new item stack
 	 */
-	public static ItemStack createStackedBlock(final Block block,
-			final int metadata)
+	public static ItemStack createStackedBlock( Block block,
+			 int metadata)
 	{
 		int md = 0;
-		final Item item = Item.getItemFromBlock(block);
+		 Item item = Item.getItemFromBlock(block);
 
 		if (item != null && item.getHasSubtypes())
 		{
