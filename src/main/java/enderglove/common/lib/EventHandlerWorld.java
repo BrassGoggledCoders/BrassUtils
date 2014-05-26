@@ -24,7 +24,7 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class EventHandlerWorld
 {
@@ -63,7 +63,7 @@ public class EventHandlerWorld
 	@SubscribeEvent
 	public void playerDrops(final PlayerDropsEvent event)
 	{
-		final Iterator iterator = event.drops.iterator();
+		final Iterator<EntityItem> iterator = event.drops.iterator();
 		while (iterator.hasNext())
 		{
 			final EntityItem entItem = (EntityItem) iterator.next();

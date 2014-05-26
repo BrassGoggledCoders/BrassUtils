@@ -34,6 +34,7 @@ public class EventHandlerEntity
 	public static boolean playerDead = false;
 	Random random = new Random();
 
+	@SuppressWarnings("unchecked")
 	@SubscribeEvent
 	public void enderTeleport(final EnderTeleportEvent event)
 	{
@@ -65,7 +66,7 @@ public class EventHandlerEntity
 
 	/*
 	 * Broken \/
-	 * 
+	 *
 	 * @SubscribeEvent public void livingDropsEvent(LivingDropsEvent event) {
 	 * Iterator<EntityItem> iterator = event.drops.iterator(); while
 	 * (iterator.hasNext()) { EntityItem entItem = (EntityItem) iterator.next();

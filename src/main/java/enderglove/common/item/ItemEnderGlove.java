@@ -47,13 +47,13 @@ import enderglove.common.lib.Utils;
 
 /**
  * This class is the whole point of this mod.
- * 
+ *
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class ItemEnderGlove extends ItemTool
 {
-	private static final Set blocksEffectiveAgainst = Sets
+	private static final Set<Block> blocksEffectiveAgainst = Sets
 			.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
 	private int xCoord, yCoord, zCoord;
 
@@ -72,10 +72,11 @@ public class ItemEnderGlove extends ItemTool
 		setMaxDamage(350);
 	}
 
+	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(final ItemStack is, final EntityPlayer player,
-			final List list, final boolean flag)
+			@SuppressWarnings("rawtypes") final List list, final boolean flag)
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");

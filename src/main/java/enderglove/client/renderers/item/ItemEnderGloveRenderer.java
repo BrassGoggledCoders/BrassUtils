@@ -26,13 +26,15 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * The ItemRenderer for the ender glove item.
- * 
+ *
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {
+	@SuppressWarnings("unused")
 	private final ModelEnderGlove modelGlove = new ModelEnderGlove();
+	@SuppressWarnings("unused")
 	private final ResourceLocation gloveTex = new ResourceLocation(
 			LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
 

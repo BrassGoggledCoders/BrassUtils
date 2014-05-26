@@ -25,13 +25,13 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class Utils
 {
 	/**
 	 * Hmm...I wonder what this method does? Indeed! It *does* spawn chickens!
-	 * 
+	 *
 	 * @param player
 	 *            - the player to send the message
 	 * @param message
@@ -51,7 +51,7 @@ public class Utils
 	/**
 	 * Determines what a block's drops are without checking for fortune values
 	 * (useful for the Flame Touch enchantment).
-	 * 
+	 *
 	 * @param world
 	 *            - the world "Minecraftia"
 	 * @param player
@@ -90,7 +90,7 @@ public class Utils
 	/**
 	 * Determines whether the given block stored in the item stack can be
 	 * smelted.
-	 * 
+	 *
 	 * @param is
 	 *            - the item stack to check
 	 * @return false if it cannot be smelted
@@ -105,7 +105,7 @@ public class Utils
 	/**
 	 * Plays a sound at the given location. It's an ugly method, that's why I
 	 * moved it here.
-	 * 
+	 *
 	 * @param world
 	 *            - the world. What else?
 	 * @param x
@@ -126,7 +126,7 @@ public class Utils
 
 	/**
 	 * Determines whether the player is wearing an instance of an Ender Glove.
-	 * 
+	 *
 	 * @param player
 	 *            - the player carrying the item
 	 * @return false if not carrying
@@ -146,7 +146,7 @@ public class Utils
 	/**
 	 * Creates a new item-based, metadata-inclusive item stack for the given
 	 * block and metadata. Relays the metadata to item subtypes.
-	 * 
+	 *
 	 * @param block
 	 *            - the block to be converted
 	 * @param metadata
@@ -170,7 +170,7 @@ public class Utils
 	/**
 	 * Only used for BlockRedstoneOre. If you use the above method, it'll crash
 	 * your game. Guaranteed.
-	 * 
+	 *
 	 * @return new item stack
 	 */
 	public static ItemStack createStackedBlock()
@@ -178,35 +178,36 @@ public class Utils
 		return new ItemStack(Blocks.redstone_ore);
 	}
 
+	@SuppressWarnings("unused")
 	private boolean handleTileEntities() // TODO: Some handling for TileEntities
 	{
 		/*
 		 * TileEntityFurnace tileentityfurnace =
 		 * (TileEntityFurnace)p_149749_1_.getTileEntity(p_149749_2_,
 		 * p_149749_3_, p_149749_4_);
-		 * 
+		 *
 		 * if (tileentityfurnace != null) { for (int i1 = 0; i1 <
 		 * tileentityfurnace.getSizeInventory(); ++i1) { ItemStack itemstack =
 		 * tileentityfurnace.getStackInSlot(i1);
-		 * 
+		 *
 		 * if (itemstack != null) { float f = this.field_149933_a.nextFloat() *
 		 * 0.8F + 0.1F; float f1 = this.field_149933_a.nextFloat() * 0.8F +
 		 * 0.1F; float f2 = this.field_149933_a.nextFloat() * 0.8F + 0.1F;
-		 * 
+		 *
 		 * while (itemstack.stackSize > 0) { int j1 =
 		 * this.field_149933_a.nextInt(21) + 10;
-		 * 
+		 *
 		 * if (j1 > itemstack.stackSize) { j1 = itemstack.stackSize; }
-		 * 
+		 *
 		 * itemstack.stackSize -= j1; EntityItem entityitem = new
 		 * EntityItem(p_149749_1_, (double)((float)p_149749_2_ + f),
 		 * (double)((float)p_149749_3_ + f1), (double)((float)p_149749_4_ + f2),
 		 * new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
-		 * 
+		 *
 		 * if (itemstack.hasTagCompound()) {
 		 * entityitem.getEntityItem().setTagCompound
 		 * ((NBTTagCompound)itemstack.getTagCompound().copy()); }
-		 * 
+		 *
 		 * float f3 = 0.05F; entityitem.motionX =
 		 * (double)((float)this.field_149933_a.nextGaussian() * f3);
 		 * entityitem.motionY =
@@ -214,7 +215,7 @@ public class Utils
 		 * entityitem.motionZ =
 		 * (double)((float)this.field_149933_a.nextGaussian() * f3);
 		 * p_149749_1_.spawnEntityInWorld(entityitem); } } }
-		 * 
+		 *
 		 * p_149749_1_.func_147453_f(p_149749_2_, p_149749_3_, p_149749_4_,
 		 * p_149749_5_); }
 		 */

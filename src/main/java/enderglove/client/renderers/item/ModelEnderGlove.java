@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 @SideOnly(Side.CLIENT)
 public class ModelEnderGlove extends ModelBase
@@ -135,6 +135,7 @@ public class ModelEnderGlove extends ModelBase
 		wrist.render(f6);
 	}
 
+	@SuppressWarnings("unused")
 	private void setRotation(final ModelRenderer model, final float x,
 			final float y, final float z)
 	{
