@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * @author Surseance (Johnny Eatmon) 
+ * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
  *
  */
@@ -89,7 +89,7 @@ public class EntityMinedBlock extends Entity
 				this.setDead();
 			}
 		}
-		
+
 		//this.scale = 0.9F;
 	}
 
@@ -126,7 +126,7 @@ public class EntityMinedBlock extends Entity
 	{
 		super.addEntityCrashInfo(crc);
 		crc.addCrashSection("Imitating block ID",
-				Integer.valueOf(Block.getIdFromBlock(Block.getIdFromBlock(this.block)));
+				Integer.valueOf(Block.getIdFromBlock(this.block)));
 		crc.addCrashSection("Imitating block data", Integer.valueOf(this.metadata));
 	}
 
