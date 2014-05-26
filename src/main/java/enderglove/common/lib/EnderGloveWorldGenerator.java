@@ -18,22 +18,22 @@ import enderglove.common.config.ConfigBlocks;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
 
 	@Override
-	public void generate(final Random random, final int chunkX,
-			final int chunkZ, final World world,
-			final IChunkProvider chunkGenerator,
-			final IChunkProvider chunkProvider)
+	public void generate( Random random,  int chunkX,
+			 int chunkZ,  World world,
+			 IChunkProvider chunkGenerator,
+			 IChunkProvider chunkProvider)
 	{
 		worldGeneration(world, random, chunkX, chunkZ);
 	}
 
-	private void worldGeneration(final World world, final Random random,
-			final int x, final int z)
+	private void worldGeneration( World world,  Random random,
+			 int x,  int z)
 	{
 		switch (world.provider.dimensionId)
 		{
@@ -47,8 +47,8 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 	}
 
 	@SuppressWarnings("unused")
-	private boolean generateSurface(final World world, final Random random,
-			final int chunkX, final int chunkZ)
+	private boolean generateSurface( World world,  Random random,
+			 int chunkX,  int chunkZ)
 	{
 		for (int i = 0; i < 300/* Config.totemsPerChunk */; i++)
 		{
@@ -60,8 +60,8 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 		return false;
 	}
 
-	private boolean generateTotem(final World world, final Random random,
-			final int x, final int y, final int z)
+	private boolean generateTotem( World world,  Random random,
+			 int x,  int y,  int z)
 	{
 		/*
 		 * Find the lowest ground block while (world.isAirBlock(x, y, z) && y >

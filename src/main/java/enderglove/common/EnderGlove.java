@@ -33,7 +33,7 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION)
 public class EnderGlove
@@ -85,7 +85,6 @@ public class EnderGlove
 
 		ConfigBlocks.init();
 		ConfigItems.init();
-		EGCraftingManager.init();
 	}
 
 	@Mod.EventHandler
@@ -94,6 +93,7 @@ public class EnderGlove
 		proxy.registerDisplayInformation();
 
 		ConfigEntities.init();
+		EGCraftingManager.init();
 	}
 
 	@Mod.EventHandler

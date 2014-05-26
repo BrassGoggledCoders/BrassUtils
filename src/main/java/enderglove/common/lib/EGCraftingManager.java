@@ -18,14 +18,18 @@ import enderglove.common.config.ConfigItems;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class EGCraftingManager
 {
 	public static void init()
 	{
-		GameRegistry.addRecipe(new ItemStack(ConfigItems.itemEnderGlove),
-				new Object[] { Config.recipeLine1, Config.recipeLine2,
+		//Linesplit for debugging
+		GameRegistry.
+		addRecipe(
+				new ItemStack(
+				Items.apple),
+						new Object[] { Config.recipeLine1, Config.recipeLine2,
 						Config.recipeLine3, 'L', Items.leather, 'N',
 						Items.nether_star, 'E', Items.ender_eye, 'P',
 						Items.ender_pearl, 'B', Items.blaze_rod, 'D',
