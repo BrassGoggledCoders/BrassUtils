@@ -54,6 +54,7 @@ import enderglove.common.lib.LibInfo;
 import enderglove.common.lib.Utils;
 
 /**
+ * This class is the whole point of this mod.
  *
  * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
@@ -96,13 +97,13 @@ public class ItemEnderGlove extends ItemTool
 
 			if (player.capabilities.isCreativeMode)
 			{
-				target.moveEntity(xCoord, yCoord, zCoord);
-				target.setPosition(xCoord, yCoord, zCoord);
+				target.moveEntity(this.xCoord, this.yCoord, this.zCoord);
+				target.setPosition(this.xCoord, this.yCoord, this.zCoord);
 
 				// EnderGlove.proxy.blockSparkleFX(player.worldObj,
 				// (int)target.prevPosX, (int)target.prevPosY,
 				// (int)target.prevPosZ, 4);
-				Utils.playSFX(player.worldObj, (int) target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
+				Utils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
 			}
 		}
 
@@ -253,27 +254,24 @@ public class ItemEnderGlove extends ItemTool
 
 		if ((creativeAmount > 0) && (player.isSneaking()) && (player.capabilities.isCreativeMode))
 		{
-			xCoord = x;
-			yCoord = y;
-			zCoord = z;
+			this.xCoord = x;
+			this.yCoord = y;
+			this.zCoord = z;
 
-			Utils.sendMessage(player, "Position set to: [" + xCoord + ", " + yCoord + ", " + zCoord + "]");
+			Utils.sendMessage(player, "Position set to: [" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "]");
 			Utils.playSFX(world, x, y, z, "random.orb");
 
 			return true;
 		}
 		
-		/*
-		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
-		
-		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
+		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)))
 		{
 			if (world.isAirBlock(x, y + 1, z))
 			{
 				world.setBlock(x, y + 1, z, Blocks.ender_chest);
 				player.inventory.consumeInventoryItem(ItemBlock.getItemFromBlock(Blocks.ender_chest));
 			}
-		}*/
+		}
 		
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
