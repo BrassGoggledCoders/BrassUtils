@@ -54,30 +54,27 @@ import enderglove.common.lib.Utils;
  */
 public class ItemEnderGlove extends ItemTool
 {
-	private static  Set<Block> blocksEffectiveAgainst = Sets
-			.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
+	private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
 	private int xCoord, yCoord, zCoord;
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons( IIconRegister ir)
 	{
-		itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderglove");
+		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderglove");
 	}
 
 	public ItemEnderGlove()
 	{
-		super(2.0F, Item.ToolMaterial.STONE, blocksEffectiveAgainst);
-		setCreativeTab(CreativeTabs.tabTools);
-		setNoRepair();
-		setMaxDamage(350);
+		super(2.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
+		this.setCreativeTab(CreativeTabs.tabTools);
+		this.setNoRepair();
+		this.setMaxDamage(350);
 	}
 
-	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation( ItemStack is,  EntityPlayer player,
-			@SuppressWarnings("rawtypes")  List list,  boolean flag)
+	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
@@ -99,7 +96,7 @@ public class ItemEnderGlove extends ItemTool
 	{
 		if (attacker instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer) attacker;
+			EntityPlayer player = (EntityPlayer)attacker;
 
 			if (player.capabilities.isCreativeMode)
 			{
@@ -129,66 +126,48 @@ public class ItemEnderGlove extends ItemTool
 			world.spawnEntityInWorld(entBlock);
 		}
 
-		EntityPlayer player = (EntityPlayer) entityLiving;
-		InventoryEnderChest enderInv = InventoryHelper
-				.getPlayerEnderChest(player);
+		EntityPlayer player = (EntityPlayer)entityLiving;
+		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
 
-		int flameAmount = EnchantmentHelper.getEnchantmentLevel(
-				Config.enchFlameTouchId, is);
-		ItemStack smeltableBlock = Utils.getDroppedItemStack(world,
-				player, block, x, y, z, md);
+		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
+		ItemStack smeltableBlock = Utils.getDroppedItemStack(world, player, block, x, y, z, md);
 
 		if (flameAmount > 0 && Utils.isSmeltable(smeltableBlock))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-			ItemStack drops = FurnaceRecipes.smelting()
-					.getSmeltingResult(smeltableBlock);// .copy();
+			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock);// .copy();
 
 			if (drops != null)
-			{
 				items.add(drops);
-			}
 
-			for ( ItemStack stack : items)
+			for (ItemStack stack : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, stack)
-						&& (world.isRemote))
+				if (InventoryHelper.isInvEmpty(enderInv, stack) && (world.isRemote))
 				{
-					InventoryHelper.addItemStackToInventory(
-							InventoryHelper.getPlayerEnderChest(player), stack);
+					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
 				}
 			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "fire.ignite");
 		}
-		else if (EnchantmentHelper.getSilkTouchModifier(player)
-				&& block.canSilkHarvest(world, player, x, y, z, md))
+		else if (EnchantmentHelper.getSilkTouchModifier(player) && block.canSilkHarvest(world, player, x, y, z, md))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 			ItemStack stack = null;
 
 			if (block instanceof BlockRedstoneOre)
-			{
 				stack = Utils.createStackedBlock();
-			}
 			else
-			{
 				stack = Utils.createStackedBlock(block, md);
-			}
 
 			if (stack != null)
-			{
 				items.add(stack);
-			}
 
-			for ( ItemStack drops : items)
+			for (ItemStack drops : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, drops)
-						&& (world.isRemote))
-				{
+				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
-				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
@@ -196,16 +175,12 @@ public class ItemEnderGlove extends ItemTool
 		}
 		else
 		{
-			ArrayList<ItemStack> items = block.getDrops(world, x, y, z,
-					md, EnchantmentHelper.getFortuneModifier(player));
+			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
 
-			for ( ItemStack drops : items)
+			for (ItemStack drops : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, drops)
-						&& (world.isRemote))
-				{
+				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
-				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
@@ -229,7 +204,7 @@ public class ItemEnderGlove extends ItemTool
 	}
 
 	@Override
-	public int getHarvestLevel( ItemStack is,  String toolClass)
+	public int getHarvestLevel(ItemStack is, String toolClass)
 	{
 		return Items.iron_pickaxe.getHarvestLevel(is, toolClass);
 	}
@@ -237,13 +212,6 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public float getDigSpeed(ItemStack is, Block block, int md)
 	{
-		int effAmount = EnchantmentHelper.getEnchantmentLevel(Enchantment.efficiency.effectId, is);
-
-		if (effAmount > 0)
-		{
-			return 1.3F;
-		}
-
 		return 1.3F;
 	}
 

@@ -75,29 +75,33 @@ public class EntityMinedBlock extends Entity
 	@Override
 	public void onUpdate()
 	{
-		if ((this.worldObj.getWorldTime() % 1) == 0)
-			scale -= 0.0625F;
-
-		if (scale <= 0)
+		if ((this.getBlock() != null))
 		{
-			scale = 0.9F;
-			this.setDead();
+			if ((this.worldObj.getWorldTime() % 1) == 0)
+				scale -= 0.0625F;
+
+			if (scale <= 0)
+			{
+				scale = 0.9F;
+				this.setDead();
+			}
 		}
 	}
 
 	@Override
-	protected void writeEntityToNBT( NBTTagCompound tagCompound)
+	protected void writeEntityToNBT(NBTTagCompound tagCompound)
 	{
 		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(this.block));
 		tagCompound.setInteger("TileID", Block.getIdFromBlock(this.block));
 		tagCompound.setByte("Data", (byte) this.metadata);
+		tagCompound.setFloat("Scale", this.scale);
 
 		if (this.tagCompound != null)
 			tagCompound.setTag("TileEntityData", this.tagCompound);
 	}
 
 	@Override
-	protected void readEntityFromNBT( NBTTagCompound tagCompound)
+	protected void readEntityFromNBT(NBTTagCompound tagCompound)
 	{
 		if (tagCompound.hasKey("TileID", 99))
 			this.block = Block.getBlockById(tagCompound.getInteger("TileID"));
@@ -108,16 +112,16 @@ public class EntityMinedBlock extends Entity
 
 		if (tagCompound.hasKey("TileEntityData", 10))
 			this.tagCompound = tagCompound.getCompoundTag("TileEntityData");
+
+		this.scale = tagCompound.getFloat("Scale");
 	}
 
 	@Override
-	public void addEntityCrashInfo( CrashReportCategory crc)
+	public void addEntityCrashInfo(CrashReportCategory crc)
 	{
 		super.addEntityCrashInfo(crc);
-		crc.addCrashSection("Immitating block ID",
-				Integer.valueOf(Block.getIdFromBlock(this.block)));
-		crc.addCrashSection("Immitating block data",
-				Integer.valueOf(this.metadata));
+		crc.addCrashSection("Immitating block ID", Integer.valueOf(Block.getIdFromBlock(this.block)));
+		crc.addCrashSection("Immitating block data", Integer.valueOf(this.metadata));
 	}
 
 	@SideOnly(Side.CLIENT)

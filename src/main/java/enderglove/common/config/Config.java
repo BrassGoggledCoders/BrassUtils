@@ -100,9 +100,9 @@ public class Config
 		Enchantment.addToBookList(enchFlameTouch);
 
 		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
-		enchField = new EnchantmentField(enchEField.getInt(), 3);
+		//enchField = new EnchantmentField(enchEField.getInt(), 3);
 		enchFieldID = enchEField.getInt();
-		Enchantment.addToBookList(enchFlameTouch);
+		//Enchantment.addToBookList(enchFlameTouch);
 
 		int eIdx = 210;
 

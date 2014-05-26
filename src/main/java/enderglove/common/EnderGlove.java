@@ -65,12 +65,10 @@ public class EnderGlove
 		{
 			FMLLog.severe("EnderGlove could not load its config file!",
 					new Object[0]);
-		} ly
+		} finally
 		{
 			if (Config.config != null)
-			{
 				Config.save();
-			}
 		}
 
 		entityEventHandler = new EventHandlerEntity();
@@ -96,7 +94,5 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void cuddling( FMLPostInitializationEvent event)
-	{
-	}
+	public void cuddling( FMLPostInitializationEvent event) {}
 }

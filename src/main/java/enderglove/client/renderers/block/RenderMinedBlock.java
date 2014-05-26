@@ -42,7 +42,7 @@ public class RenderMinedBlock extends Render
 		shadowSize = 0.0F;
 	}
 
-	public void doRender( EntityMinedBlock entBlock, double posX, double posY, double posZ, float p_147918_8_, float brightness)
+	public void doRender( EntityMinedBlock entBlock, double posX, double posY, double posZ, float f, float brightness)
 	{
 		 World world = entBlock.getWorldObj();
 		 Block block = entBlock.getBlock();
@@ -53,27 +53,23 @@ public class RenderMinedBlock extends Render
 		if ((block != null) && (block != world.getBlock(x, y, z)))
 		{
 			GL11.glPushMatrix();
-			GL11.glTranslatef((float) posX, (float) posY, (float) posZ);
+			GL11.glTranslatef((float)posX, (float)posY, (float)posZ);
 			bindEntityTexture(entBlock);
 			GL11.glDisable(GL11.GL_LIGHTING);
-			Tessellator tessellator;
+			Tessellator tessellator = Tessellator.instance;
 
 			if (block instanceof BlockAnvil)
 			{
 				blockRenderer.blockAccess = world;
-				tessellator = Tessellator.instance;
 				tessellator.startDrawingQuads();
-				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F,
-						(-z) - 0.5F);
-				blockRenderer.renderBlockAnvilMetadata((BlockAnvil) block, x,
-						y, z, entBlock.metadata);
+				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
+				blockRenderer.renderBlockAnvilMetadata((BlockAnvil) block, x, y, z, entBlock.metadata);
 				tessellator.setTranslation(0.0D, 0.0D, 0.0D);
 				tessellator.draw();
 			}
 			else if (block instanceof BlockDragonEgg)
 			{
 				blockRenderer.blockAccess = world;
-				tessellator = Tessellator.instance;
 				tessellator.startDrawingQuads();
 				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
 				blockRenderer.renderBlockDragonEgg((BlockDragonEgg) block, x, y, z);
@@ -83,9 +79,10 @@ public class RenderMinedBlock extends Render
 			else
 			{
 				float scale = EntityMinedBlock.scale;
+				tessellator.setBrightness(10);
 				// GL11.glColor4f(0.75F, 0.0F, 0.5F, 1.0F);
 				GL11.glScalef(scale, scale, scale);
-				GL11.glRotatef(world.getWorldTime() * 3, 0.0F, 1.0F, 0.0F);
+				GL11.glRotatef(world.getWorldTime() * 20.5F, 0.0F, 1.0F, 0.0F);
 
 				blockRenderer.setRenderBoundsFromBlock(block);
 				blockRenderer.renderBlockSandFalling(block, world, x, y, z, entBlock.metadata);

@@ -24,7 +24,8 @@ import net.minecraft.world.World;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  *
  */
 public class Utils
@@ -32,13 +33,10 @@ public class Utils
 	/**
 	 * Hmm...I wonder what this method does? Indeed! It *does* spawn chickens!
 	 *
-	 * @param player
-	 *            - the player to send the message
-	 * @param message
-	 *            - the message to send
+	 * @param player - the player to send the message
+	 * @param message - the message to send
 	 */
-	public static void sendMessage( EntityPlayer player,
-			 String message)
+	public static void sendMessage( EntityPlayer player, String message)
 	{
 		 IChatComponent chat = new ChatComponentText(message);
 
@@ -178,7 +176,7 @@ public class Utils
 		return new ItemStack(Blocks.redstone_ore);
 	}
 
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	private boolean handleTileEntities() // TODO: Some handling for TileEntities
 	{
 		/*
