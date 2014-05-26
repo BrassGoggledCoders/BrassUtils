@@ -17,6 +17,7 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
+import enderglove.common.lib.enchantment.EnchantmentField;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
@@ -53,6 +54,8 @@ public class Config
 
 	public static int entMinedBlockId;
 
+	public static String line1, line2, line3;
+
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
@@ -83,7 +86,7 @@ public class Config
 		enchSpelunker = new EnchantmentSpelunker(enchSpe.getInt(), 2);
 		enchSpelunkerId = enchSpe.getInt();
 		Enchantment.addToBookList(enchSpelunker);
-        
+
 		Property enchTel = config.get("Enchantments", "ench_teleport", enchIndex++);
 		enchTeleport = new EnchantmentTeleport(enchTel.getInt(), 4);
 		enchTeleportId = enchTel.getInt();
@@ -108,7 +111,7 @@ public class Config
 		int eIdx = 230;
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
-        
+
 		Property rline1 = config.get("Recipe", "line_1", "EEE");
 		line1 = rline1.toString();
 		Property rline2 = config.get("Recipe", "line_2", "LNL");
