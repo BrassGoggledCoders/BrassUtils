@@ -28,22 +28,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
- * @author Surseance (Johnny Eatmon) Email: surseance@autistici.org
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  * 
  */
 @SideOnly(Side.CLIENT)
 public class RenderMinedBlock extends Render
 {
-	private final RenderBlocks blockRenderer = new RenderBlocks();
+	private RenderBlocks blockRenderer = new RenderBlocks();
 
 	public RenderMinedBlock()
 	{
 		shadowSize = 0.0F;
 	}
 
-	public void doRender(final EntityMinedBlock entBlock, final double posX,
-			final double posY, final double posZ, final float p_147918_8_,
-			final float brightness)
+	public void doRender(final EntityMinedBlock entBlock, double posX, double posY, double posZ, float p_147918_8_, float brightness)
 	{
 		final World world = entBlock.getWorldObj();
 		final Block block = entBlock.getBlock();
@@ -76,23 +75,20 @@ public class RenderMinedBlock extends Render
 				blockRenderer.blockAccess = world;
 				tessellator = Tessellator.instance;
 				tessellator.startDrawingQuads();
-				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F,
-						(-z) - 0.5F);
-				blockRenderer.renderBlockDragonEgg((BlockDragonEgg) block, x,
-						y, z);
+				tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
+				blockRenderer.renderBlockDragonEgg((BlockDragonEgg) block, x, y, z);
 				tessellator.setTranslation(0.0D, 0.0D, 0.0D);
 				tessellator.draw();
 			}
 			else
 			{
-				final float scale = EntityMinedBlock.scale;
+				float scale = EntityMinedBlock.scale;
 				// GL11.glColor4f(0.75F, 0.0F, 0.5F, 1.0F);
 				GL11.glScalef(scale, scale, scale);
 				GL11.glRotatef(world.getWorldTime() * 3, 0.0F, 1.0F, 0.0F);
 
 				blockRenderer.setRenderBoundsFromBlock(block);
-				blockRenderer.renderBlockSandFalling(block, world, x, y, z,
-						entBlock.metadata);
+				blockRenderer.renderBlockSandFalling(block, world, x, y, z, entBlock.metadata);
 			}
 
 			GL11.glEnable(GL11.GL_LIGHTING);
@@ -100,23 +96,20 @@ public class RenderMinedBlock extends Render
 		}
 	}
 
-	protected ResourceLocation getEntityTexture(final EntityMinedBlock entBlock)
+	protected ResourceLocation getEntityTexture(EntityMinedBlock entBlock)
 	{
 		return TextureMap.locationBlocksTexture;
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(final Entity entity)
+	protected ResourceLocation getEntityTexture(Entity entity)
 	{
 		return this.getEntityTexture((EntityMinedBlock) entity);
 	}
 
 	@Override
-	public void doRender(final Entity entity, final double posX,
-			final double posY, final double posZ, final float par8,
-			final float brightness)
+	public void doRender(Entity entity, double posX, double posY, double posZ, float par8, float brightness)
 	{
-		this.doRender((EntityMinedBlock) entity, posX, posY, posZ, par8,
-				brightness);
+		this.doRender((EntityMinedBlock) entity, posX, posY, posZ, par8, brightness);
 	}
 }
