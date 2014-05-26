@@ -11,19 +11,20 @@ package enderglove.common.lib;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class InventoryHelper
 {
 	/**
 	 * Grabs the Ender Chest inventory relative to a given player.
-	 * 
+	 *
 	 * @param p
 	 *            - the player that owns the Ender Inventory
 	 * @return - an instance of the InventoryEnderChest
@@ -35,7 +36,7 @@ public class InventoryHelper
 
 	/**
 	 * @author MightyPork, from PowerCraft
-	 * 
+	 *
 	 * @param inv
 	 * @param is
 	 * @return
@@ -69,7 +70,7 @@ public class InventoryHelper
 
 	/**
 	 * @author MightyPork, from PowerCraft
-	 * 
+	 *
 	 * @param inv
 	 * @param is
 	 * @return
@@ -143,7 +144,7 @@ public class InventoryHelper
 
 	/**
 	 * @author MightyPork, from PowerCraft
-	 * 
+	 *
 	 * @param inv
 	 * @param is
 	 * @return
@@ -171,7 +172,7 @@ public class InventoryHelper
 
 	/**
 	 * Grabs the first empty slot that the item stack can be placed into.
-	 * 
+	 *
 	 * @param inv
 	 *            - the inventory to check
 	 * @param is
@@ -193,7 +194,7 @@ public class InventoryHelper
 
 	/**
 	 * Determines if a specific item is in the player's inventory.
-	 * 
+	 *
 	 * @param player
 	 *            - the player with the inventory to check
 	 * @param item
@@ -214,11 +215,15 @@ public class InventoryHelper
 
 		return -1;
 	}
+	for(int slot = InventoryHelper.getPlayerEnderChest(player).getSizeInventory(); slot != 0; slot--)
+	{
+		InventoryHelper.getPlayerEnderChest(player).getStackInSlot(slot);
+	}
 
 	/**
 	 * Determines if the given inventory is empty by checking if it can add the
 	 * given item stack to the inventory.
-	 * 
+	 *
 	 * @param inv
 	 *            - the inventory to check
 	 * @param is

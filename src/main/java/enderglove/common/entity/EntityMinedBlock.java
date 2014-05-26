@@ -39,7 +39,7 @@ public class EntityMinedBlock extends Entity
 	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, float scale)
 	{
 		this(world, posX, posY, posZ, block, 0, scale);
-		this.scale = scale;
+		EntityMinedBlock.scale = scale;
 	}
 
 	public EntityMinedBlock(World world, double posX, double posY, double posZ, Block block, int md, float scale)
@@ -57,7 +57,7 @@ public class EntityMinedBlock extends Entity
 		this.prevPosX = posX;
 		this.prevPosY = posY;
 		this.prevPosZ = posZ;
-		this.scale = scale;
+		EntityMinedBlock.scale = scale;
 	}
 
 	@Override
@@ -99,7 +99,7 @@ public class EntityMinedBlock extends Entity
 		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(this.block));
 		tagCompound.setInteger("TileID", Block.getIdFromBlock(this.block));
 		tagCompound.setByte("Data", (byte) this.metadata);
-		tagCompound.setFloat("Scale", this.scale);
+		tagCompound.setFloat("Scale", EntityMinedBlock.scale);
 
 		if (this.tagCompound != null)
 			tagCompound.setTag("TileEntityData", this.tagCompound);
@@ -118,7 +118,7 @@ public class EntityMinedBlock extends Entity
 		if (tagCompound.hasKey("TileEntityData", 10))
 			this.tagCompound = tagCompound.getCompoundTag("TileEntityData");
 
-		this.scale = tagCompound.getFloat("Scale");
+		EntityMinedBlock.scale = tagCompound.getFloat("Scale");
 	}
 
 	@Override
