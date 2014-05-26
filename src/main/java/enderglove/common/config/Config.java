@@ -17,6 +17,7 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
+import enderglove.common.lib.enchantment.EnchantmentField;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
@@ -38,6 +39,7 @@ public class Config
 	public static Enchantment enchTeleport = null;
 	public static Enchantment enchCreative = null;
 	public static Enchantment enchFlameTouch = null;
+	public static Enchantment enchField = null;
 
 	public static int enchAffluencyId;
 	public static int enchArtisanId;
@@ -45,6 +47,7 @@ public class Config
 	public static int enchTeleportId;
 	public static int enchCreativeId;
 	public static int enchFlameTouchId;
+	public static int enchFieldID;
 
 	public static void initialize(File file)
 	{
@@ -99,6 +102,12 @@ public class Config
 				enchIndex++);
 		enchFlameTouch = new EnchantmentFlameTouch(enchFla.getInt(), 3);
 		enchFlameTouchId = enchFla.getInt();
+		Enchantment.addToBookList(enchFlameTouch);
+
+		Property enchEField = config.get("Enchantments", "ench_enderfield",
+				enchIndex++);
+		enchField = new EnchantmentField(enchEField.getInt(), 3);
+		enchFieldID = enchEField.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
 		config.save();

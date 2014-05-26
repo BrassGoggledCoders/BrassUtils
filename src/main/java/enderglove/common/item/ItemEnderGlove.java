@@ -50,7 +50,7 @@ import enderglove.common.lib.Utils;
  */
 public class ItemEnderGlove extends ItemTool
 {
-	private static final Set blocksEffectiveAgainst = Sets
+	private static final Set<Block> blocksEffectiveAgainst = Sets
 			.newHashSet(new Block[] { Blocks.cobblestone, Blocks.stone });
 
 	@SideOnly(Side.CLIENT)
@@ -67,7 +67,6 @@ public class ItemEnderGlove extends ItemTool
 		setNoRepair();
 		setMaxDamage(350);
 	}
-
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list,
@@ -223,7 +222,9 @@ public class ItemEnderGlove extends ItemTool
 			is.damageItem(3, player);
 
 			if (!world.isRemote)
-				world.spawnEntityInWorld(new EntityEnderPearl(world, player));
+				world.spawnEntityInWorld(new EntityEnderPearl(world,player));
+
+				//player.mountEntity(pearl); Fun, but broken, and not really a teleport anymore
 		}
 
 		return is;

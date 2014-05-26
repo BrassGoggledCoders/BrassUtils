@@ -20,12 +20,12 @@ import enderglove.common.item.ItemEnderGlove;
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
-public class EnchantmentTeleport extends Enchantment
+public class EnchantmentField extends Enchantment
 {
-	public EnchantmentTeleport(int id, int rarity)
+	public EnchantmentField(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		setName("teleport");
+		setName("enderfield");
 	}
 
 	@Override
@@ -63,7 +63,6 @@ public class EnchantmentTeleport extends Enchantment
 	public boolean canApplyTogether(Enchantment enchantment)
 	{
 		return super.canApplyTogether(enchantment)
-				&& (enchantment.effectId != Enchantment.fortune.effectId
-						|| enchantment.effectId != Enchantment.silkTouch.effectId || enchantment.effectId != Config.enchAffluencyId || enchantment.effectId != Config.enchFieldID);
+				&& (enchantment.effectId != Config.enchTeleportId);
 	}
 }

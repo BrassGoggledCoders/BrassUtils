@@ -5,6 +5,7 @@ enchantment.spelunker=Spelunker
 enchantment.teleport=Teleport
 enchantment.creative=EG Creative
 enchantment.flametouch=Flame Touch
+enchantment.enderfield=Ender Suppression Field
 #
 # Blocks
 tile.endertotem.name=Ender Totem
