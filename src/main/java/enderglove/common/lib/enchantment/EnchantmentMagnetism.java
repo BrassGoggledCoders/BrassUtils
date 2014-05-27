@@ -17,25 +17,26 @@ import enderglove.common.config.Config;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  * 
  */
-public class EnchantmentField extends Enchantment
+public class EnchantmentMagnetism extends Enchantment
 {
-	public EnchantmentField(final int id, final int rarity)
+	public EnchantmentMagnetism(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		setName("enderfield");
+		this.setName("magnetism");
 	}
 
 	@Override
-	public int getMinEnchantability(final int level)
+	public int getMinEnchantability(int level)
 	{
 		return 24;
 	}
 
 	@Override
-	public int getMaxEnchantability(final int level)
+	public int getMaxEnchantability(int level)
 	{
 		return super.getMinEnchantability(level) + 50;
 	}
@@ -47,22 +48,20 @@ public class EnchantmentField extends Enchantment
 	}
 
 	@Override
-	public boolean canApply(final ItemStack is)
+	public boolean canApply(ItemStack is)
 	{
-		return is.getItem() instanceof ItemEnderGlove
-				|| is.getItem() instanceof ItemBook;
+		return is.getItem() instanceof ItemEnderGlove || is.getItem() instanceof ItemBook;
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable(final ItemStack is)
+	public boolean canApplyAtEnchantingTable(ItemStack is)
 	{
-		return canApply(is);
+		return this.canApply(is);
 	}
 
 	@Override
-	public boolean canApplyTogether(final Enchantment enchantment)
+	public boolean canApplyTogether(Enchantment ench)
 	{
-		return super.canApplyTogether(enchantment)
-				&& (enchantment.effectId != Config.enchTeleportId);
+		return super.canApplyTogether(ench);
 	}
 }

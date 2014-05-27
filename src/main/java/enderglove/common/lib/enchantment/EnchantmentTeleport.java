@@ -65,6 +65,6 @@ public class EnchantmentTeleport extends Enchantment
 		return super.canApplyTogether(enchantment)
 				&& (enchantment.effectId != Enchantment.fortune.effectId
 						|| enchantment.effectId != Enchantment.silkTouch.effectId
-						|| enchantment.effectId != Config.enchAffluencyId || enchantment.effectId != Config.enchFieldId);
+						|| enchantment.effectId != Config.enchAffluencyId || enchantment.effectId != Config.enchMagnetismId);
 	}
 }

@@ -16,7 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  *
  */
 public class InventoryHelper
@@ -194,26 +195,73 @@ public class InventoryHelper
 	/**
 	 * Determines if a specific item is in the player's inventory.
 	 *
-	 * @param player
-	 *            - the player with the inventory to check
-	 * @param item
-	 *            - the item stack to look for
+	 * @param player - the player with the inventory to check
+	 * @param item - the item stack to look for
 	 * @return - the slot in which the specified item sits
 	 */
-	public static int isInPlayerInventory( EntityPlayer player,
-			 Item item)
+	public static boolean isInPlayerInventory(EntityPlayer player, Item item)
 	{
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
 		{
-			if (player.inventory.mainInventory[slot] != null
-					&& player.inventory.mainInventory[slot].getItem() == item)
-			{
-				return slot;
-			}
+			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].getItem() == item))
+				return true;
 		}
 
+		return false;
+	}
+	
+	public static boolean isInEnderInventory(EntityPlayer player, Item item)
+	{
+		InventoryEnderChest enderInv = getPlayerEnderChest(player);
+		
+		for (int slot = 0; slot < enderInv.getSizeInventory(); slot++)
+		{
+			if ((enderInv.getStackInSlot(slot) != null) && (enderInv.getStackInSlot(slot).getItem() == item))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	public static int getEnderSlotForItem(EntityPlayer player, Item item)
+	{
+		InventoryEnderChest enderInv = getPlayerEnderChest(player);
+		
+		for (int slot = 0; slot < enderInv.getSizeInventory(); slot++)
+		{
+			if ((enderInv.getStackInSlot(slot) != null) && (enderInv.getStackInSlot(slot).getItem() == item))
+				return slot;
+		}
+		
 		return -1;
 	}
+	
+	public static int getPlayerSlotForItem(EntityPlayer player, Item item)
+	{
+		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
+		{
+			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].getItem() == item))
+				return slot;
+		}
+		
+		return -1;
+	}
+	
+	public static boolean consumeEnderInventoryItem(EntityPlayer player, Item item)
+    {
+		InventoryEnderChest enderInv = getPlayerEnderChest(player);
+        int slot = getEnderSlotForItem(player, item);
+
+        if (slot < 0)
+            return false;
+        else
+        {
+            if (--enderInv.getStackInSlot(slot).stackSize <= 0)
+            	enderInv.getStackInSlot(slot).stackSize = 0;
+
+            return true;
+        }
+    }
 
 	/**
 	 * Determines if the given inventory is empty by checking if it can add the

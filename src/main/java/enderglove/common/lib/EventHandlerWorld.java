@@ -10,14 +10,27 @@
 package enderglove.common.lib;
 
 import java.util.Iterator;
+import java.util.List;
 
+import org.lwjgl.opengl.GL11;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingSetAttackTargetEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import enderglove.common.config.Config;
 import enderglove.common.item.ItemEnderGlove;
@@ -28,16 +41,14 @@ import enderglove.common.item.ItemEnderGlove;
  *
  */
 public class EventHandlerWorld
-{
+{	
 	@SubscribeEvent
 	public void harvestDrops(BlockEvent.HarvestDropsEvent event)
 	{
 		EntityPlayer player = event.harvester;
 
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
-		{
 			event.drops.clear();
-		}
 	}
 
 	@SubscribeEvent
@@ -61,7 +72,7 @@ public class EventHandlerWorld
 		Iterator<EntityItem> iterator = event.drops.iterator();
 		while (iterator.hasNext())
 		{
-			EntityItem entItem = (EntityItem) iterator.next();
+			EntityItem entItem = (EntityItem)iterator.next();
 			ItemStack is = entItem.getEntityItem();
 
 			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
@@ -74,4 +85,9 @@ public class EventHandlerWorld
 			}
 		}
 	}
+	
+	//livingDrops
+
+	//@SubscribeEvent
+	public void livingUpdate(LivingEvent.LivingUpdateEvent event) {}
 }

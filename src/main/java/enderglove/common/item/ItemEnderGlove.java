@@ -32,6 +32,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -87,7 +88,7 @@ public class ItemEnderGlove extends ItemTool
 		{
 			EntityPlayer player = (EntityPlayer)attacker;
 
-			if (player.capabilities.isCreativeMode)
+			if ((player.capabilities.isCreativeMode) && EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is) > 0)
 			{
 				target.moveEntity(this.xCoord, this.yCoord, this.zCoord);
 				target.setPosition(this.xCoord, this.yCoord, this.zCoord);
@@ -98,8 +99,6 @@ public class ItemEnderGlove extends ItemTool
 				Utils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
 			}
 		}
-
-		if (target instanceof EntityEnderman) {}
 
 		return false;
 	}
@@ -255,16 +254,24 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-		
-		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)))
+
+		/*
+		if ((InventoryHelper.isInPlayerInventory(player, Item.getItemFromBlock(Blocks.ender_chest))))
 		{
-			if (world.isAirBlock(x, y + 1, z))
-			{
-				world.setBlock(x, y + 1, z, Blocks.ender_chest);
-				player.inventory.consumeInventoryItem(ItemBlock.getItemFromBlock(Blocks.ender_chest));
-			}
+			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
+			player.inventory.consumeInventoryItem(Item.getItemFromBlock(Blocks.ender_chest));
+
+			return true;
 		}
-		
+		else if (InventoryHelper.isInEnderInventory(player, Item.getItemFromBlock(Blocks.ender_chest)))
+		{
+			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
+			System.out.println(Utils.getRotationMeta(player));
+			InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
+			
+			return true;
+		}*/
+
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
 }

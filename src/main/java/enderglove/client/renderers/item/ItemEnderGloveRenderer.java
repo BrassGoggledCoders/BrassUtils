@@ -71,10 +71,10 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
 					GL11.glPushMatrix();
-					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
-					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
+					//int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
+					//ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
 
-					renderEnderEye(item, is);
+					//renderEnderEye(item, is);
 					// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 					// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
 					// 0.0F, 0.0F, 0.0625F);

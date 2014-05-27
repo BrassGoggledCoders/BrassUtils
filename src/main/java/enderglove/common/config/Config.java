@@ -17,7 +17,7 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
-import enderglove.common.lib.enchantment.EnchantmentField;
+import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
@@ -42,7 +42,7 @@ public class Config
 	public static Enchantment enchTeleport = null;
 	public static Enchantment enchCreative = null;
 	public static Enchantment enchFlameTouch = null;
-	public static Enchantment enchField = null;
+	public static Enchantment enchMagnetism = null;
 
 	public static int enchAffluencyId;
 	public static int enchArtisanId;
@@ -50,7 +50,7 @@ public class Config
 	public static int enchTeleportId;
 	public static int enchCreativeId;
 	public static int enchFlameTouchId;
-	public static int enchFieldId;
+	public static int enchMagnetismId;
 
 	public static int entMinedBlockId;
 
@@ -71,7 +71,7 @@ public class Config
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
 
-		int enchIndex = 360;
+		int enchIndex = 63; // Luck of the Sea is 62
 
 		Property enchAff = config.get("Enchantments", "ench_affluency", enchIndex++);
 		enchAffluency = new EnchantmentAffluency(enchAff.getInt(), 3);
@@ -104,11 +104,11 @@ public class Config
 		Enchantment.addToBookList(enchFlameTouch);
 
 		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
-		enchField = new EnchantmentField(enchEField.getInt(), 3);
-		enchFieldId = enchEField.getInt();
-		Enchantment.addToBookList(enchField);
+		enchMagnetism = new EnchantmentMagnetism(enchEField.getInt(), 2);
+		enchMagnetismId = enchEField.getInt();
+		Enchantment.addToBookList(enchMagnetism);
 
-		int eIdx = 230;
+		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 		/*
