@@ -197,6 +197,30 @@ public class ModelEnderGlove extends ModelBase
       palm2.setTextureSize(64, 32);
       palm2.mirror = true;
       setRotation(palm2, 0F, 0F, 0F);
+      //Add Children
+      this.wrist.addChild(palm);
+      this.wrist.addChild(finger1);
+      this.wrist.addChild(finger2);
+      this.wrist.addChild(finger3);
+      this.wrist.addChild(lfinger1);
+      this.wrist.addChild(lfinger2);
+      this.wrist.addChild(lfinger3);
+      this.wrist.addChild(eyebase);
+      this.wrist.addChild(llfinger1);
+      this.wrist.addChild(llfinger2);
+      this.wrist.addChild(llfinger3);
+      this.wrist.addChild(thumb);
+      this.wrist.addChild(thumb2);
+      this.wrist.addChild(eyeholder);
+      this.wrist.addChild(eyeholder1);
+      this.wrist.addChild(eyeholder2);
+      this.wrist.addChild(eyeholder3);
+      this.wrist.addChild(wrist2);
+      this.wrist.addChild(wrist2);
+      this.wrist.addChild(finger4);
+      this.wrist.addChild(lfinger4);
+      this.wrist.addChild(llfinger4);
+      this.wrist.addChild(palm2);
   }
 
   public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
@@ -204,41 +228,18 @@ public class ModelEnderGlove extends ModelBase
     super.render(entity, f, f1, f2, f3, f4, f5);
     setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     wrist.render(f5);
-    palm.render(f5);
-    finger1.render(f5);
-    finger2.render(f5);
-    finger3.render(f5);
-    lfinger1.render(f5);
-    lfinger2.render(f5);
-    lfinger3.render(f5);
-    eyebase.render(f5);
-    llfinger1.render(f5);
-    llfinger2.render(f5);
-    llfinger3.render(f5);
-    thumb.render(f5);
-    thumb2.render(f5);
-    eyeholder.render(f5);
-    eyeholder1.render(f5);
-    eyeholder2.render(f5);
-    eyeholder3.render(f5);
-    wrist2.render(f5);
-    wrist2.render(f5);
-    finger4.render(f5);
-    lfinger4.render(f5);
-    llfinger4.render(f5);
-    palm2.render(f5);
   }
 
   private void setRotation(ModelRenderer model, float x, float y, float z)
   {
-   // model.rotateAngleX = x;
-   // model.rotateAngleY = y;
-   // model.rotateAngleZ = z;
+    model.rotateAngleX = x;
+    model.rotateAngleY = y;
+    model.rotateAngleZ = z;
   }
 
   public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
   {
-   //super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+   super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
   }
 
 
