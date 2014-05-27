@@ -256,10 +256,7 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-		/*
-		if ((InventoryHelper.isInPlayerInventory(player, Item.getItemFromBlock(Blocks.ender_chest))))
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
-
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
 			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
@@ -269,12 +266,12 @@ public class ItemEnderGlove extends ItemTool
 		}
 		else if (InventoryHelper.isInEnderInventory(player, Item.getItemFromBlock(Blocks.ender_chest)))
 		{
-			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
+			//world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
 			System.out.println(Utils.getRotationMeta(player));
-			InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
-			
+			//InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
+
 			return true;
-		}*/
+		}
 
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
