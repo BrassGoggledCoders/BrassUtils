@@ -68,14 +68,16 @@ public class ItemEnderGlove extends ItemTool
 	public ItemEnderGlove()
 	{
 		super(1.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
+		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 		this.setMaxDamage(350);
 	}
 
+	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
+	public void addInformation(ItemStack is, EntityPlayer player, @SuppressWarnings("rawtypes") List list, boolean flag)
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
@@ -254,9 +256,11 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-
 		/*
 		if ((InventoryHelper.isInPlayerInventory(player, Item.getItemFromBlock(Blocks.ender_chest))))
+		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
+
+		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
 			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
 			player.inventory.consumeInventoryItem(Item.getItemFromBlock(Blocks.ender_chest));

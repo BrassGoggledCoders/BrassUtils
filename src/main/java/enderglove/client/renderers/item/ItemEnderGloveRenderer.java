@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -21,7 +22,6 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import enderglove.common.lib.InventoryHelper;
 import enderglove.common.lib.LibInfo;
 
 /**
@@ -68,7 +68,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 			{
 				Minecraft mc = Minecraft.getMinecraft();
 
-				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+				/*if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
 					GL11.glPushMatrix();
 					//int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
@@ -78,15 +78,61 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 					// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
 					// 0.0F, 0.0F, 0.0625F);
+					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
+					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
+					renderEnderEye(item, is);
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
 					GL11.glPopMatrix();
 				}
+				else
+				{*/
+					GL11.glPushMatrix();
+					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					GL11.glTranslatef(1, 2, 1);
+					GL11.glScalef(3F, 3F, 3F);
+					GL11.glRotatef(45, 1, 0, 0);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
+					GL11.glPopMatrix();
+				//}
+			}
+			case EQUIPPED:
+			{
+				Minecraft mc = Minecraft.getMinecraft();
+
+				/*if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+				{
+					GL11.glPushMatrix();
+					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
+					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
+					renderEnderEye(item, is);
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
+>>>>>>> FETCH_HEAD
+					GL11.glPopMatrix();
+				}
+				else
+				{*/
+					GL11.glPushMatrix();
+					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					GL11.glTranslatef(1, 2, 1);
+					GL11.glScalef(-1F, -1F, -1F);
+					GL11.glRotatef(-65, 1, 0, 0);
+					GL11.glRotatef(-25, 0, 1, 0);
+					GL11.glRotatef(-10, 0, 0, 1);
+					this.modelGlove.render(null/*(Entity)data[1]*/, 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
+					GL11.glPopMatrix();
+				//}
 			}
 			default:
 				break;
 		}
 	}
 
-	private void renderEnderEye( ItemStack item,  ItemStack is)
+	private void renderEnderEye(ItemStack item, ItemStack is)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 
@@ -116,7 +162,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 				}
 
 				renderPass++;
-			} 
+			}
 			while (renderPass < is.getItem().getRenderPasses(is.getItemDamage()));
 		}
 	}
