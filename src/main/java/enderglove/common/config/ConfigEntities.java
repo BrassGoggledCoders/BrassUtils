@@ -21,10 +21,6 @@ public class ConfigEntities
 {
 	public static void init()
 	{
-		// EntityRegistry.registerGlobalEntityID(EntityMinedBlock.class,
-		// "MinedBlock", EntityRegistry.findGlobalUniqueEntityId(), 10031615,
-		// 1131656);
-		EntityRegistry.registerModEntity(EntityMinedBlock.class, "MinedBlock",
-				Config.entMinedBlockId, EnderGlove.instance, 160, 1, true);
+		EntityRegistry.registerModEntity(EntityMinedBlock.class, "MinedBlock", Config.entMinedBlockId, EnderGlove.instance, 160, 1, true);
 	}
 }

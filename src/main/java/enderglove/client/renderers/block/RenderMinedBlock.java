@@ -12,8 +12,7 @@ package enderglove.client.renderers.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAnvil;
 import net.minecraft.block.BlockDragonEgg;
-import net.minecraft.block.BlockGrass;
-import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockTallGrass;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -63,42 +62,15 @@ public class RenderMinedBlock extends Render
 		float rot = world.getWorldTime() * 17.6F;
 
 		GL11.glScalef(scale, scale, scale);
-		GL11.glRotatef(rot, 0.0F, 1.0F, 0.0F);
+		GL11.glRotatef(rot, 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat(), 0 - world.rand.nextFloat());
 
 		Tessellator tessellator = Tessellator.instance;
 
 		this.blockRenderer.blockAccess = entBlock.worldObj;
 		this.blockRenderer.useInventoryTint = true;
-		
-		//int color = block.colorMultiplier(world, x, y, z); 
-		//float r = (float)(color >> 16 & 255) / 255.0F;
-		//float g = (float)(color >> 8 & 255) / 255.0F;
-		//float b = (float)(color & 255) / 255.0F;
-		//GL11.glColor4f(r, g, b, 1.0F);
 
-		if (block instanceof BlockAnvil)
-		{
-			blockRenderer.blockAccess = world;
-			tessellator.startDrawingQuads();
-			tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
-			blockRenderer.renderBlockAnvilMetadata((BlockAnvil) block, x, y, z, entBlock.metadata);
-			tessellator.setTranslation(0.0D, 0.0D, 0.0D);
-			tessellator.draw();
-		}
-		else if (block instanceof BlockDragonEgg)
-		{
-			blockRenderer.blockAccess = world;
-			tessellator.startDrawingQuads();
-			tessellator.setTranslation((-x) - 0.5F, (-y) - 0.5F, (-z) - 0.5F);
-			blockRenderer.renderBlockDragonEgg((BlockDragonEgg) block, x, y, z);
-			tessellator.setTranslation(0.0D, 0.0D, 0.0D);
-			tessellator.draw();
-		}
-		else
-		{
-			blockRenderer.setRenderBoundsFromBlock(block);
-			blockRenderer.renderBlockSandFalling(block, world, x, y, z, entBlock.metadata);
-		}
+		this.blockRenderer.setRenderBoundsFromBlock(block);
+		this.blockRenderer.renderBlockAsItem(block, entBlock.metadata, 1.0F);
 
 		GL11.glEnable(GL11.GL_LIGHTING);
 		GL11.glPopMatrix();
