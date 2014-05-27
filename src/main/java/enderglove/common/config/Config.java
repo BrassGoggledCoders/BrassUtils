@@ -50,7 +50,7 @@ public class Config
 	public static int enchTeleportId;
 	public static int enchCreativeId;
 	public static int enchFlameTouchId;
-	public static int enchFieldID;
+	public static int enchFieldId;
 
 	public static int entMinedBlockId;
 
@@ -59,7 +59,8 @@ public class Config
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
-		config.addCustomCategoryComment("Enchantments", "EnderGlove enchantments");
+		config.addCustomCategoryComment("Enchantments", "Custom enchantments");
+		config.addCustomCategoryComment("Entities", "Entity IDs");
 		config.load();
 
 		Property tpc = config.get("general", "totems_per_chunk", totemsPerChunk);
@@ -102,16 +103,15 @@ public class Config
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
-		Property enchEField = config.get("Enchantments",
-					"ench_enderfield", enchIndex++);
+		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
 		enchField = new EnchantmentField(enchEField.getInt(), 3);
-		enchFieldID = enchEField.getInt();
+		enchFieldId = enchEField.getInt();
 		Enchantment.addToBookList(enchField);
 
 		int eIdx = 230;
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
-
+		/*
 		Property rline1 = config.get("Recipe", "line_1", "EEE");
 		line1 = rline1.toString();
 		Property rline2 = config.get("Recipe", "line_2", "LNL");
@@ -119,9 +119,8 @@ public class Config
 		Property rline3 = config.get("Recipe", "line_3", "LNL");
 		line3 = rline3.toString();
 		//Sorry about line wrap...
-        config.addCustomCategoryComment(
-                                        "Recipe",
-                                        "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
+        config.addCustomCategoryComment("Recipe", "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
+		 */
 		config.save();
 	}
 

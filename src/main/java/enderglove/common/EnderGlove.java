@@ -32,7 +32,8 @@ import enderglove.common.lib.EventHandlerWorld;
 import enderglove.common.lib.LibInfo;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  * 
  */
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION)
@@ -43,6 +44,7 @@ public class EnderGlove
 
 	@Mod.Instance(LibInfo.ID)
 	public static EnderGlove instance;
+
 	public EnderGloveWorldGenerator worldGen;
 	public EventHandlerEntity entityEventHandler;
 	public EventHandlerWorld worldEventHandler;
@@ -55,29 +57,30 @@ public class EnderGlove
 	public void foreplay( FMLPreInitializationEvent event)
 	{
 		event.getModMetadata().version = LibInfo.VERSION;
-		directory = event.getModConfigurationDirectory();
+		this.directory = event.getModConfigurationDirectory();
 
-		LanguageRegistry.instance().getStringLocalization(
-				"itemGroup.endergloves", "en_US");
+		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US");
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
-		} catch ( Exception e)
+		} 
+		catch ( Exception e)
 		{
-			FMLLog.severe("EnderGlove could not load its config file!",
-					new Object[0]);
-		} finally
+			FMLLog.severe("EnderGlove could not load its config file!", new Object[0]);
+		} 
+		finally
 		{
 			if (Config.config != null)
 				Config.save();
 		}
 
-		entityEventHandler = new EventHandlerEntity();
-		worldEventHandler = new EventHandlerWorld();
+		this.entityEventHandler = new EventHandlerEntity();
+		this.worldEventHandler = new EventHandlerWorld();
+		
 		FMLCommonHandler.instance().bus().register(entityEventHandler);
 		MinecraftForge.EVENT_BUS.register(worldEventHandler);
-		GameRegistry.registerWorldGenerator(
-				worldGen = new EnderGloveWorldGenerator(), 0);
+		
+		//GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 0);
 
 		Config.save();
 
