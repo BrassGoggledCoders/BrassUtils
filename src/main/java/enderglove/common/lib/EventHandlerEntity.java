@@ -17,6 +17,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,7 +67,7 @@ public class EventHandlerEntity
 			}
 		}*/
 	}
-	
+
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void itemCrafted( PlayerEvent.ItemCraftedEvent event)
 	{

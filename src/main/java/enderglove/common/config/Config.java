@@ -55,6 +55,7 @@ public class Config
 	public static int entMinedBlockId;
 
 	public static String line1, line2, line3;
+	public static boolean dragonDrop;
 
 	public static void initialize(File file)
 	{
@@ -111,6 +112,7 @@ public class Config
 		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
+		dragonDrop = config.get("Options", "EnderGlove will drop from Dragon", true).getBoolean(true);
 		/*
 		Property rline1 = config.get("Recipe", "line_1", "EEE");
 		line1 = rline1.toString();

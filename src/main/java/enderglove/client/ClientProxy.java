@@ -10,20 +10,19 @@
 package enderglove.client;
 
 import net.minecraft.world.World;
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import enderglove.client.lib.Corruption;
 import enderglove.client.lib.UtilsFX;
 import enderglove.client.renderers.block.RenderMinedBlock;
-import enderglove.client.renderers.item.ItemEnderGloveRenderer;
 import enderglove.common.CommonProxy;
-import enderglove.common.config.ConfigItems;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
 <<<<<<< HEAD
- * @author Surseance (Johnny Eatmon) 
+ * @author Surseance (Johnny Eatmon)
  * Email: sursesance@autistici.org
- * 
+ *
 =======
  * @author Surseance (Johnny Eatmon) Email: sursesance@autistici.org
  *
