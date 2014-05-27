@@ -17,14 +17,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 @SideOnly(Side.CLIENT)
 public class ModelEnderGlove extends ModelBase
 {
-	public ModelRenderer eye;
-	public ModelRenderer eye2;
-	public ModelRenderer eye3;
 	public ModelRenderer eyebase;
 	public ModelRenderer finger;
 	public ModelRenderer finger2;
@@ -42,16 +39,7 @@ public class ModelEnderGlove extends ModelBase
 
 	public ModelEnderGlove()
 	{
-		// super(scale, 0, 64, 128);
-		eye = new ModelRenderer(this, 44, 0);
-		eye.addBox(0F, 0F, 0F, 4, 4, 4);
-		eye.setRotationPoint(6F, 6F, 0F);
-		eye2 = new ModelRenderer(this, 36, 10);
-		eye2.addBox(0F, 0F, 0F, 2, 2, 6);
-		eye2.setRotationPoint(7F, 7F, -1F);
-		eye3 = new ModelRenderer(this, 46, 12);
-		eye3.addBox(0F, 0F, 0F, 6, 2, 2);
-		eye3.setRotationPoint(5F, 7F, 1F);
+		super();
 		eyebase = new ModelRenderer(this, 38, 0);
 		eyebase.addBox(0F, 0F, 0F, 2, 1, 2);
 		eyebase.setRotationPoint(7F, 4F, 1F);
@@ -115,9 +103,6 @@ public class ModelEnderGlove extends ModelBase
 	{
 		super.render(entity, f1, f2, f3, f4, f5, f6);
 		setRotationAngles(f1, f2, f3, f4, f5, f6, entity);
-		eye.render(f6);
-		eye2.render(f6);
-		eye3.render(f6);
 		eyebase.render(f6);
 		finger.render(f6);
 		finger2.render(f6);
@@ -132,13 +117,6 @@ public class ModelEnderGlove extends ModelBase
 		palm2.render(f6);
 		thumb.render(f6);
 		wrist.render(f6);
-	}
-
-	private void setRotation( ModelRenderer model, float x, float y, float z)
-	{
-		model.rotateAngleX = x;
-		model.rotateAngleY = y;
-		model.rotateAngleZ = z;
 	}
 
 	@Override

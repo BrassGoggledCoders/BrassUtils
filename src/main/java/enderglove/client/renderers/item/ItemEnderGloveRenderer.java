@@ -13,6 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -56,7 +57,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
-		return true;
+		return false;
 	}
 
 	@Override
@@ -73,11 +74,42 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glPushMatrix();
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
 					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
-
 					renderEnderEye(item, is);
-					// Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
-					// this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
-					// 0.0F, 0.0F, 0.0625F);
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
+					GL11.glPopMatrix();
+				}
+				else
+				{
+					GL11.glPushMatrix();
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
+					GL11.glPopMatrix();
+				}
+			}
+			case EQUIPPED:
+			{
+				Minecraft mc = Minecraft.getMinecraft();
+
+				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+				{
+					GL11.glPushMatrix();
+					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
+					ItemStack is = Minecraft.getMinecraft().thePlayer.inventory.getStackInSlot(slot);
+					renderEnderEye(item, is);
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
+					GL11.glPopMatrix();
+				}
+				else
+				{
+					GL11.glPushMatrix();
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
 					GL11.glPopMatrix();
 				}
 			}
@@ -116,7 +148,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 				}
 
 				renderPass++;
-			} 
+			}
 			while (renderPass < is.getItem().getRenderPasses(is.getItemDamage()));
 		}
 	}

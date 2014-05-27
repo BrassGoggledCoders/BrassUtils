@@ -10,15 +10,18 @@
 package enderglove.client;
 
 import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import enderglove.client.lib.UtilsFX;
 import enderglove.client.renderers.block.RenderMinedBlock;
+import enderglove.client.renderers.item.ItemEnderGloveRenderer;
 import enderglove.common.CommonProxy;
+import enderglove.common.config.ConfigItems;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance (Johnny Eatmon) Email: sursesance@autistici.org
- * 
+ *
  */
 public class ClientProxy extends CommonProxy
 {
@@ -27,9 +30,8 @@ public class ClientProxy extends CommonProxy
 	{
 		RenderingRegistry.registerEntityRenderingHandler(
 				EntityMinedBlock.class, new RenderMinedBlock());
-		// RenderingRegistry.re
-		// MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove,
-		// new ItemEnderGloveRenderer());
+		MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove,
+		new ItemEnderGloveRenderer());
 	}
 
 	@Override

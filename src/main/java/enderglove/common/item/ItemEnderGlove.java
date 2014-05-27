@@ -15,7 +15,6 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneOre;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -28,22 +27,14 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.event.entity.player.FillBucketEvent;
 
 import com.google.common.collect.Sets;
 
-import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
@@ -74,14 +65,16 @@ public class ItemEnderGlove extends ItemTool
 	public ItemEnderGlove()
 	{
 		super(1.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
+		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 		this.setMaxDamage(350);
 	}
 
+	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
+	public void addInformation(ItemStack is, EntityPlayer player, @SuppressWarnings("rawtypes") List list, boolean flag)
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
@@ -262,10 +255,10 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-		
+
 		/*
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
-		
+
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
 			if (world.isAirBlock(x, y + 1, z))
@@ -274,7 +267,7 @@ public class ItemEnderGlove extends ItemTool
 				player.inventory.consumeInventoryItem(ItemBlock.getItemFromBlock(Blocks.ender_chest));
 			}
 		}*/
-		
+
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
 }
