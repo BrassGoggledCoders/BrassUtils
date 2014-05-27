@@ -27,6 +27,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;

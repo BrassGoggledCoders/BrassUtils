@@ -22,7 +22,6 @@ import net.minecraftforge.client.IItemRenderer;
 
 import org.lwjgl.opengl.GL11;
 
-import enderglove.common.lib.InventoryHelper;
 import enderglove.common.lib.LibInfo;
 
 /**
@@ -57,7 +56,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper)
 	{
-		return false;
+		return true;
 	}
 
 	@Override
@@ -67,9 +66,10 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 		{
 			case EQUIPPED_FIRST_PERSON:
 			{
+				@SuppressWarnings("unused")
 				Minecraft mc = Minecraft.getMinecraft();
 
-				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+				/*if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
 					GL11.glPushMatrix();
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
@@ -81,19 +81,21 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glPopMatrix();
 				}
 				else
-				{
+				{*/
 					GL11.glPushMatrix();
-					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
-					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
-					0.0F, 0.0F, 0.0F);
+					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					GL11.glTranslatef(1, 2, 1);
+					GL11.glScalef(3F, 3F, 3F);
+					GL11.glRotatef(45, 1, 0, 0);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 					GL11.glPopMatrix();
-				}
+				//}
 			}
 			case EQUIPPED:
 			{
 				Minecraft mc = Minecraft.getMinecraft();
 
-				if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
+				/*if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
 					GL11.glPushMatrix();
 					int slot = InventoryHelper.isInPlayerInventory(Minecraft.getMinecraft().thePlayer, Items.ender_eye);
@@ -105,20 +107,25 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glPopMatrix();
 				}
 				else
-				{
+				{*/
 					GL11.glPushMatrix();
-					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
-					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					GL11.glTranslatef(1, 2, 1);
+					GL11.glScalef(-1F, -1F, -1F);
+					GL11.glRotatef(-65, 1, 0, 0);
+					GL11.glRotatef(-25, 0, 1, 0);
+					GL11.glRotatef(-10, 0, 0, 1);
+					this.modelGlove.render(null/*(Entity)data[1]*/, 0.0F, 0.0F, 0.0F,
 					0.0F, 0.0F, 0.0F);
 					GL11.glPopMatrix();
-				}
+				//}
 			}
 			default:
 				break;
 		}
 	}
 
-	private void renderEnderEye( ItemStack item,  ItemStack is)
+	private void renderEnderEye(ItemStack item, ItemStack is)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
 
