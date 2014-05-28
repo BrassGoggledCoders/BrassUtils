@@ -13,10 +13,7 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.IWorldGenerator;
-import enderglove.common.config.Config;
-import enderglove.common.config.ConfigBlocks;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>

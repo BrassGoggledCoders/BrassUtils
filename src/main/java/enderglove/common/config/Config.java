@@ -64,6 +64,7 @@ public class Config
 	public static boolean totemGen;
 	public static boolean hasDurability;
 	public static boolean chestGen;
+	public static boolean recipe;
 	public static int durability;
 
 	public static void initialize(File file)
@@ -85,6 +86,7 @@ public class Config
 		totemGen = config.get("general", "Ender Totem Generation (Kinda Buggy Right Now)", false).getBoolean(false);
 		hasDurability = config.get("general", "Ender Glove Has Durability", true).getBoolean(true);
 		chestGen = config.get("general", "Ender Glove generates in Stronghold chests", true).getBoolean(true);
+		recipe = config.get("general", "Ender Glove Recipe", true).getBoolean(true);
 
 		durability = config.get("general", "Ender Glove Durability Value", 350).getInt();
 
@@ -139,7 +141,6 @@ public class Config
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 
-		/*
 		Property rline1 = config.get("Recipe", "line_1", "EEE");
 		line1 = rline1.toString();
 		Property rline2 = config.get("Recipe", "line_2", "LNL");
@@ -147,7 +148,7 @@ public class Config
 		Property rline3 = config.get("Recipe", "line_3", "LNL");
 		line3 = rline3.toString();
         config.addCustomCategoryComment("Recipe", "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
-		 */
+
 		config.save();
 	}
 

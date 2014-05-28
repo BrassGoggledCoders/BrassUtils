@@ -24,18 +24,16 @@ public class EGCraftingManager
 {
 	public static void init()
 	{
-		if(Config.line1 != null)
+		if(Config.line1 != null && Config.line2 != null && Config.line3 != null)
 		{
-	FMLLog.severe(Config.line1.toString());
-	/**	GameRegistry.addShapedRecipe(new ItemStack(ConfigItems.itemEnderGlove),
-				new Object[] {Config.recipeLine1.toString(), Config.recipeLine2.toCharArray().toString(),
-						Config.recipeLine3.toString(), 'L', Items.leather, 'N',
+			FMLLog.severe(Config.line1.toString());
+	 	GameRegistry.addShapedRecipe(new ItemStack(ConfigItems.itemEnderGlove),
+				new Object[] {Config.line1, Config.line2,
+						Config.line3, 'L', Items.leather, 'N',
 						Items.nether_star, 'E', Items.ender_eye/*, 'P',
 						Items.ender_pearl, 'B', Items.blaze_rod, 'D',
 						Blocks.dragon_egg, 'S', Blocks.end_stone, 'd',
-						Blocks.diamond_block, 'b', Blocks.obsidian });
-
-	*/
+						Blocks.diamond_block, 'b', Blocks.obsidian*/ });
 		}
 		else
 		{

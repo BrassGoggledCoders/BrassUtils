@@ -1,7 +1,7 @@
 package enderglove.common.gen;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 @Deprecated
 public class TerrainGenEventHandler

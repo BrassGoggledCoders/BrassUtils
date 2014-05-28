@@ -59,6 +59,8 @@ public class EnderGlove
 	@Mod.EventHandler
 	public void foreplay( FMLPreInitializationEvent event)
 	{
+		//FMLLog.severe(Config.line1);
+
 		//Ignore this, it's a little thing I am testing
 		//MinecraftForge.EVENT_BUS.register(new Corruption());
 		//FMLCommonHandler.instance().bus().register(new Corruption());
@@ -102,6 +104,7 @@ public class EnderGlove
 		proxy.registerDisplayInformation();
 
 		ConfigEntities.init();
+		if(Config.recipe)
 		EGCraftingManager.init();
 
 		if(Config.chestGen)
