@@ -10,7 +10,6 @@
 package enderglove.common.entity;
 
 import net.minecraft.block.Block;
-import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;

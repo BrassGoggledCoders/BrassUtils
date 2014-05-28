@@ -20,19 +20,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import com.google.common.collect.Sets;
@@ -41,6 +38,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
 import enderglove.common.config.Config;
+import enderglove.common.config.ConfigItems;
 import enderglove.common.entity.EntityMinedBlock;
 import enderglove.common.lib.InventoryHelper;
 import enderglove.common.lib.LibInfo;
@@ -67,11 +65,20 @@ public class ItemEnderGlove extends ItemTool
 
 	public ItemEnderGlove()
 	{
-		super(1.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
+		super(1.0F, getToolLevel(), blocksEffectiveAgainst);
 		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 		this.setMaxDamage(350);
+	}
+
+	private static ToolMaterial getToolLevel()
+	{
+		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(ConfigItems.itemEnderGlove));
+		if(crystalsLevel > 0)
+		return Item.ToolMaterial.EMERALD;
+		else
+		return Item.ToolMaterial.IRON;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -131,7 +138,7 @@ public class ItemEnderGlove extends ItemTool
 			{
 				if (InventoryHelper.isInvEmpty(enderInv, stack) && (world.isRemote))
 				{
-					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
+					InventoryHelper.addItemStackToInventory(enderInv, stack);
 				}
 			}
 
@@ -175,13 +182,6 @@ public class ItemEnderGlove extends ItemTool
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public boolean isFull3D()
-	{
-		return true;
 	}
 
 	@Override
@@ -256,10 +256,7 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-		/*
-		if ((InventoryHelper.isInPlayerInventory(player, Item.getItemFromBlock(Blocks.ender_chest))))
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
-
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
 			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
@@ -269,12 +266,12 @@ public class ItemEnderGlove extends ItemTool
 		}
 		else if (InventoryHelper.isInEnderInventory(player, Item.getItemFromBlock(Blocks.ender_chest)))
 		{
-			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
+			//world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
 			System.out.println(Utils.getRotationMeta(player));
-			InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
-			
+			//InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
+
 			return true;
-		}*/
+		}
 
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}

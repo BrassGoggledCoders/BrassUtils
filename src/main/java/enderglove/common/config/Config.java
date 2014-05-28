@@ -17,8 +17,10 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
-import enderglove.common.lib.enchantment.EnchantmentMagnetism;
+import enderglove.common.lib.enchantment.EnchantmentCrystals;
+import enderglove.common.lib.enchantment.EnchantmentEnderField;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
+import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
 
@@ -42,7 +44,9 @@ public class Config
 	public static Enchantment enchTeleport = null;
 	public static Enchantment enchCreative = null;
 	public static Enchantment enchFlameTouch = null;
+	public static Enchantment enchEnderField = null;
 	public static Enchantment enchMagnetism = null;
+	public static Enchantment enchCrystals = null;
 
 	public static int enchAffluencyId;
 	public static int enchArtisanId;
@@ -50,18 +54,22 @@ public class Config
 	public static int enchTeleportId;
 	public static int enchCreativeId;
 	public static int enchFlameTouchId;
+	public static int enchEFieldId;
 	public static int enchMagnetismId;
+	public static int enchCrystalsId;
 
 	public static int entMinedBlockId;
 
 	public static String line1, line2, line3;
+	public static boolean dragonDrop;
+	public static boolean totemGen;
 
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
+		config.load();
 		config.addCustomCategoryComment("Enchantments", "Custom enchantments");
 		config.addCustomCategoryComment("Entities", "Entity IDs");
-		config.load();
 
 		Property tpc = config.get("general", "totems_per_chunk", totemsPerChunk);
 		tpc.comment = "The rarity of the Ender Totems. Setting it to 0 will remove Ender Totem generation.";
@@ -70,6 +78,9 @@ public class Config
 		Property atc = config.get("general", "artisan_bonus_chance", artisanBonusChance);
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
+
+		dragonDrop = config.get("general", "EnderGlove will drop from Dragon", true).getBoolean(true);
+		totemGen = config.get("general", "Ender Totem Generation", true).getBoolean(true);
 
 		int enchIndex = 63; // Luck of the Sea is 62
 
@@ -103,14 +114,25 @@ public class Config
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
-		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
-		enchMagnetism = new EnchantmentMagnetism(enchEField.getInt(), 2);
-		enchMagnetismId = enchEField.getInt();
+		/*Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
+		enchEnderField = new EnchantmentEnderField(enchEField.getInt(), 2);
+		enchEFieldId = enchEField.getInt();
+		Enchantment.addToBookList(enchEnderField);*/
+
+		Property enchMagnet = config.get("Enchantments", "ench_magnetism", enchIndex++);
+		enchMagnetism = new EnchantmentMagnetism(enchMagnet.getInt(), 2);
+		enchMagnetismId = enchMagnet.getInt();
 		Enchantment.addToBookList(enchMagnetism);
+
+		Property enchCrystal = config.get("Enchantments", "ench_crystals", enchIndex++);
+		enchCrystals = new EnchantmentCrystals(enchCrystal.getInt(), 2);
+		enchCrystalsId = enchCrystal.getInt();
+		Enchantment.addToBookList(enchCrystals);
 
 		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
+
 		/*
 		Property rline1 = config.get("Recipe", "line_1", "EEE");
 		line1 = rline1.toString();
@@ -118,7 +140,6 @@ public class Config
 		line2 = rline2.toString();
 		Property rline3 = config.get("Recipe", "line_3", "LNL");
 		line3 = rline3.toString();
-		//Sorry about line wrap...
         config.addCustomCategoryComment("Recipe", "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
 		 */
 		config.save();

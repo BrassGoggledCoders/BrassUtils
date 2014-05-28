@@ -10,19 +10,27 @@
 package enderglove.client;
 
 import net.minecraft.world.World;
-import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import enderglove.client.lib.UtilsFX;
 import enderglove.client.renderers.block.RenderMinedBlock;
-import enderglove.client.renderers.item.ItemEnderGloveRenderer;
 import enderglove.common.CommonProxy;
-import enderglove.common.config.ConfigItems;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
+<<<<<<< HEAD
  * @author Surseance (Johnny Eatmon) 
  * Email: sursesance@autistici.org
  * 
+=======
+<<<<<<< HEAD
+ * @author Surseance (Johnny Eatmon)
+ * Email: sursesance@autistici.org
+ *
+=======
+ * @author Surseance (Johnny Eatmon) Email: sursesance@autistici.org
+ *
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
  */
 public class ClientProxy extends CommonProxy
 {

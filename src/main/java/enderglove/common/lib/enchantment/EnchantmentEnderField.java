@@ -18,14 +18,14 @@ import enderglove.common.item.ItemEnderGlove;
 /**
  * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
- * 
+ *
  */
-public class EnchantmentMagnetism extends Enchantment
+public class EnchantmentEnderField extends Enchantment
 {
-	public EnchantmentMagnetism(int id, int rarity)
+	public EnchantmentEnderField(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		this.setName("magnetism");
+		this.setName("enderfield");
 	}
 
 	@Override

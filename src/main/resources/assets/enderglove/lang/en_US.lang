@@ -5,10 +5,13 @@ enchantment.spelunker=Spelunker
 enchantment.teleport=Teleport
 enchantment.creative=EG Creative
 enchantment.flametouch=Flame Touch
+enchantment.enderfield=Ender Suppression Field
 enchantment.magnetism=Magnetism
+enchantment.crystals=Crystalline Formations
 #
 # Blocks
 tile.endertotem.name=Ender Totem
+tile.endertotemtop.name=Ender Totem Capstone
 #
 # Items
 item.enderglove.name=Ender Glove

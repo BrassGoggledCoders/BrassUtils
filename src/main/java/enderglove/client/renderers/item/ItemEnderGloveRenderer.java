@@ -119,7 +119,12 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glRotatef(-65, 1, 0, 0);
 					GL11.glRotatef(-25, 0, 1, 0);
 					GL11.glRotatef(-10, 0, 0, 1);
+<<<<<<< HEAD
 					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+=======
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
+					0.0F, 0.0F, 0.0F);
+>>>>>>> FETCH_HEAD
 					GL11.glPopMatrix();
 				//}
 			}

@@ -12,6 +12,7 @@ package enderglove.common;
 import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -19,13 +20,19 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+<<<<<<< HEAD
+=======
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+>>>>>>> FETCH_HEAD
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigBlocks;
 import enderglove.common.config.ConfigEntities;
 import enderglove.common.config.ConfigItems;
+import enderglove.common.gen.EnderGloveWorldGenerator;
+import enderglove.common.gen.TerrainGenEventHandler;
 import enderglove.common.lib.EGCraftingManager;
-import enderglove.common.lib.EnderGloveWorldGenerator;
 import enderglove.common.lib.EventHandlerEntity;
 import enderglove.common.lib.EventHandlerWorld;
 import enderglove.common.lib.LibInfo;
@@ -33,7 +40,7 @@ import enderglove.common.lib.LibInfo;
 /**
  * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
- * 
+ *
  */
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION)
 public class EnderGlove
@@ -55,6 +62,9 @@ public class EnderGlove
 	@Mod.EventHandler
 	public void foreplay( FMLPreInitializationEvent event)
 	{
+		//Ignore this, it's a little thing I am testing
+		//MinecraftForge.EVENT_BUS.register(new Corruption());
+		//FMLCommonHandler.instance().bus().register(new Corruption());
 		event.getModMetadata().version = LibInfo.VERSION;
 		this.directory = event.getModConfigurationDirectory();
 
@@ -62,11 +72,11 @@ public class EnderGlove
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
-		} 
+		}
 		catch ( Exception e)
 		{
 			FMLLog.severe("EnderGlove could not load its config file!", new Object[0]);
-		} 
+		}
 		finally
 		{
 			if (Config.config != null)
@@ -75,11 +85,13 @@ public class EnderGlove
 
 		this.entityEventHandler = new EventHandlerEntity();
 		this.worldEventHandler = new EventHandlerWorld();
-		
+
 		FMLCommonHandler.instance().bus().register(entityEventHandler);
 		MinecraftForge.EVENT_BUS.register(worldEventHandler);
-		
-		//GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 0);
+
+		if(Config.totemGen)
+		GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 100);
+		//MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainGenEventHandler());
 
 		Config.save();
 
