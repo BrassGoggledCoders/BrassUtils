@@ -7,7 +7,7 @@
  *
  * File created @[May 17, 2014, 1:15:45 PM]
  */
-package enderglove.common.lib;
+package enderglove.common.gen;
 
 import java.util.Random;
 
@@ -22,6 +22,7 @@ import enderglove.common.config.ConfigBlocks;
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
  *
  */
+
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
 

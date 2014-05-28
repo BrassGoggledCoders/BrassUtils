@@ -12,6 +12,7 @@ package enderglove.common;
 import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -19,14 +20,16 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigBlocks;
 import enderglove.common.config.ConfigEntities;
 import enderglove.common.config.ConfigItems;
+import enderglove.common.gen.EnderGloveWorldGenerator;
+import enderglove.common.gen.TerrainGenEventHandler;
 import enderglove.common.lib.EGCraftingManager;
-import enderglove.common.lib.EnderGloveWorldGenerator;
 import enderglove.common.lib.EventHandlerEntity;
 import enderglove.common.lib.EventHandlerWorld;
 import enderglove.common.lib.LibInfo;
@@ -83,7 +86,8 @@ public class EnderGlove
 		FMLCommonHandler.instance().bus().register(entityEventHandler);
 		MinecraftForge.EVENT_BUS.register(worldEventHandler);
 
-		GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 0);
+		GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 100);
+		//MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainGenEventHandler());
 
 		Config.save();
 
