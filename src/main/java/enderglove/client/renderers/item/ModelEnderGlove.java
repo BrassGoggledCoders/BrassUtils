@@ -223,16 +223,9 @@ public class ModelEnderGlove extends ModelBase
 		this.wrist.addChild(llfinger4);
 		this.wrist.addChild(palm2);*/
 	}
-
-<<<<<<< HEAD
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		wrist.render(f5);
-	}
-=======
       wrist = new ModelRenderer(this, 0, 0);
       wrist.addBox(0F, 0F, 0F, 3, 1, 3);
       wrist.setRotationPoint(-1F, -0.5F, 0F);
@@ -402,26 +395,6 @@ public class ModelEnderGlove extends ModelBase
       this.wrist.addChild(llfinger4);
       this.wrist.addChild(palm2);
   }
-
-  public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
-  {
-    super.render(entity, f, f1, f2, f3, f4, f5);
-    setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-    wrist.render(f5);
-  }
-
-  private void setRotation(ModelRenderer model, float x, float y, float z)
-  {
-    model.rotateAngleX = x;
-    model.rotateAngleY = y;
-    model.rotateAngleZ = z;
-  }
-
-  public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
-  {
-   super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-  }
->>>>>>> FETCH_HEAD
 
 	private void setRotation(ModelRenderer model, float x, float y, float z)
 	{

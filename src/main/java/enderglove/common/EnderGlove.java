@@ -12,7 +12,6 @@ package enderglove.common;
 import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.BiomeEvent;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -20,18 +19,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-<<<<<<< HEAD
-=======
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
->>>>>>> FETCH_HEAD
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigBlocks;
 import enderglove.common.config.ConfigEntities;
 import enderglove.common.config.ConfigItems;
 import enderglove.common.gen.EnderGloveWorldGenerator;
-import enderglove.common.gen.TerrainGenEventHandler;
 import enderglove.common.lib.EGCraftingManager;
 import enderglove.common.lib.EventHandlerEntity;
 import enderglove.common.lib.EventHandlerWorld;
