@@ -18,12 +18,18 @@ import enderglove.common.entity.EntityMinedBlock;
 
 /**
 <<<<<<< HEAD
+ * @author Surseance (Johnny Eatmon) 
+ * Email: sursesance@autistici.org
+ * 
+=======
+<<<<<<< HEAD
  * @author Surseance (Johnny Eatmon)
  * Email: sursesance@autistici.org
  *
 =======
  * @author Surseance (Johnny Eatmon) Email: sursesance@autistici.org
  *
+>>>>>>> FETCH_HEAD
 >>>>>>> FETCH_HEAD
  */
 public class ClientProxy extends CommonProxy
@@ -32,7 +38,7 @@ public class ClientProxy extends CommonProxy
 	public void registerDisplayInformation()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMinedBlock.class, new RenderMinedBlock());
-		// MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove, new ItemEnderGloveRenderer());
+		MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove, new ItemEnderGloveRenderer());
 	}
 
 	@Override

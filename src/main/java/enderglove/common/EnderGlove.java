@@ -20,8 +20,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+<<<<<<< HEAD
+=======
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+>>>>>>> FETCH_HEAD
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigBlocks;
