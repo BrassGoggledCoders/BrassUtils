@@ -12,22 +12,15 @@ package enderglove.common;
 import net.minecraft.world.World;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autstici.org
  * 
  */
 public class CommonProxy
 {
-	public void registerDisplayInformation()
-	{
-	}
+	public void registerDisplayInformation() {}
 
-	public void blockSparkleFX( World world,  int x,  int y,
-			 int z,  int count)
-	{
-	}
+	public void blockSparkleFX(World world, int x, int y, int z, int count) {}
 
-	public void blockFlameFX( World world,  int x,  int y,
-			 int z,  int count)
-	{
-	}
+	public void blockFlameFX(World world, int x, int y, int z, int count) {}
 }
