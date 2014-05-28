@@ -112,10 +112,10 @@ public class Config
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
-		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
+		/*Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
 		enchEnderField = new EnchantmentEnderField(enchEField.getInt(), 2);
 		enchEFieldId = enchEField.getInt();
-		Enchantment.addToBookList(enchEnderField);
+		Enchantment.addToBookList(enchEnderField);*/
 
 		Property enchMagnet = config.get("Enchantments", "ench_magnetism", enchIndex++);
 		enchMagnetism = new EnchantmentMagnetism(enchMagnet.getInt(), 2);
@@ -138,7 +138,6 @@ public class Config
 		line2 = rline2.toString();
 		Property rline3 = config.get("Recipe", "line_3", "LNL");
 		line3 = rline3.toString();
-		//Sorry about line wrap...
         config.addCustomCategoryComment("Recipe", "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
 		 */
 		config.save();
