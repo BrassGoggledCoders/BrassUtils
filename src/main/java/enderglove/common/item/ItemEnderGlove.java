@@ -128,19 +128,13 @@ public class ItemEnderGlove extends ItemTool
 
 		if (flameAmount > 0 && Utils.isSmeltable(smeltableBlock))
 		{
-			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
-			ItemStack drops = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock);// .copy();
-
-			if (drops != null)
-				items.add(drops);
-
-			for (ItemStack stack : items)
-			{
-				if (InventoryHelper.isInvEmpty(enderInv, stack) && (world.isRemote))
+			ItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
+			
+			if(!world.isRemote)
+				if (InventoryHelper.isInvEmpty(enderInv, stack))
 					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
 				else
 					Utils.spawnStackInWorld(world, x, y, z, stack);
-			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "fire.ignite");
@@ -160,10 +154,11 @@ public class ItemEnderGlove extends ItemTool
 
 			for (ItemStack drops : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
-					InventoryHelper.addItemStackToInventory(enderInv, drops);
-				else
-					Utils.spawnStackInWorld(world, x, y, z, drops);
+				if(!world.isRemote)
+					if (InventoryHelper.isInvEmpty(enderInv, drops))
+						InventoryHelper.addItemStackToInventory(enderInv, drops);
+					else
+						Utils.spawnStackInWorld(world, x, y, z, drops);
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
@@ -175,10 +170,11 @@ public class ItemEnderGlove extends ItemTool
 
 			for (ItemStack drops : items)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
-					InventoryHelper.addItemStackToInventory(enderInv, drops);
-				else
-					Utils.spawnStackInWorld(world, x, y, z, drops);
+				if(!world.isRemote)
+					if (InventoryHelper.isInvEmpty(enderInv, drops))
+						InventoryHelper.addItemStackToInventory(enderInv, drops);
+					else
+						Utils.spawnStackInWorld(world, x, y, z, drops);
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);

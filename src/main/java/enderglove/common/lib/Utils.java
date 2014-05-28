@@ -184,10 +184,7 @@ public class Utils
 	
 	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
     {		
-		if(!world.isRemote)
-		{
-	    	world.setBlockToAir(x, y, z);
-			world.spawnEntityInWorld(new EntityItem(world, x+0.5, y+0.5, z+0.5, stack.copy()));
-		}
+    	world.setBlockToAir(x, y, z);
+		world.spawnEntityInWorld(new EntityItem(world, x+0.5, y+0.5, z+0.5, stack.copy()));
     }
 }
