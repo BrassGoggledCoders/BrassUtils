@@ -62,8 +62,8 @@ public class EnchantmentFlameTouch extends Enchantment
 	@Override
 	public boolean canApplyTogether( Enchantment enchantment)
 	{
-		if (enchantment.effectId == Enchantment.silkTouch.effectId
-				|| enchantment.effectId == Enchantment.fortune.effectId)
+		if (enchantment.effectId == Enchantment.silkTouch.effectId)
+				//|| enchantment.effectId == Enchantment.fortune.effectId)
 		{
 			return false;
 		}

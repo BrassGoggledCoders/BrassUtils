@@ -137,9 +137,9 @@ public class ItemEnderGlove extends ItemTool
 			for (ItemStack stack : items)
 			{
 				if (InventoryHelper.isInvEmpty(enderInv, stack) && (world.isRemote))
-				{
 					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
-				}
+				else
+					Utils.spawnStackInWorld(world, x, y, z, stack);
 			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
@@ -162,6 +162,8 @@ public class ItemEnderGlove extends ItemTool
 			{
 				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
+				else
+					Utils.spawnStackInWorld(world, x, y, z, drops);
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
@@ -175,6 +177,8 @@ public class ItemEnderGlove extends ItemTool
 			{
 				if (InventoryHelper.isInvEmpty(enderInv, drops) && (world.isRemote))
 					InventoryHelper.addItemStackToInventory(enderInv, drops);
+				else
+					Utils.spawnStackInWorld(world, x, y, z, drops);
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);

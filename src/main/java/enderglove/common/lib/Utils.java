@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -180,4 +181,13 @@ public class Utils
 
 		return md;
 	}
+	
+	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
+    {		
+		if(!world.isRemote)
+		{
+	    	world.setBlockToAir(x, y, z);
+			world.spawnEntityInWorld(new EntityItem(world, x+0.5, y+0.5, z+0.5, stack.copy()));
+		}
+    }
 }
