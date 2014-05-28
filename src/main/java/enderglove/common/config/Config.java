@@ -17,6 +17,8 @@ import net.minecraftforge.common.config.Property;
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
+import enderglove.common.lib.enchantment.EnchantmentCrystals;
+import enderglove.common.lib.enchantment.EnchantmentEnderField;
 import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
@@ -42,7 +44,9 @@ public class Config
 	public static Enchantment enchTeleport = null;
 	public static Enchantment enchCreative = null;
 	public static Enchantment enchFlameTouch = null;
+	public static Enchantment enchEnderField = null;
 	public static Enchantment enchMagnetism = null;
+	public static Enchantment enchCrystals = null;
 
 	public static int enchAffluencyId;
 	public static int enchArtisanId;
@@ -50,7 +54,9 @@ public class Config
 	public static int enchTeleportId;
 	public static int enchCreativeId;
 	public static int enchFlameTouchId;
+	public static int enchEFieldId;
 	public static int enchMagnetismId;
+	public static int enchCrystalsId;
 
 	public static int entMinedBlockId;
 
@@ -105,13 +111,24 @@ public class Config
 		Enchantment.addToBookList(enchFlameTouch);
 
 		Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
-		enchMagnetism = new EnchantmentMagnetism(enchEField.getInt(), 2);
-		enchMagnetismId = enchEField.getInt();
+		enchEnderField = new EnchantmentEnderField(enchEField.getInt(), 2);
+		enchEFieldId = enchEField.getInt();
+		Enchantment.addToBookList(enchEnderField);
+
+		Property enchMagnet = config.get("Enchantments", "ench_magnetism", enchIndex++);
+		enchMagnetism = new EnchantmentMagnetism(enchMagnet.getInt(), 2);
+		enchMagnetismId = enchMagnet.getInt();
 		Enchantment.addToBookList(enchMagnetism);
+
+		Property enchCrystal = config.get("Enchantments", "ench_crystals", enchIndex++);
+		enchCrystals = new EnchantmentCrystals(enchCrystal.getInt(), 2);
+		enchCrystalsId = enchCrystal.getInt();
+		Enchantment.addToBookList(enchCrystals);
 
 		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
+
 		dragonDrop = config.get("Options", "EnderGlove will drop from Dragon", true).getBoolean(true);
 		/*
 		Property rline1 = config.get("Recipe", "line_1", "EEE");

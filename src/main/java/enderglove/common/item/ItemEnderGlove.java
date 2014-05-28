@@ -41,6 +41,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
 import enderglove.common.config.Config;
+import enderglove.common.config.ConfigItems;
 import enderglove.common.entity.EntityMinedBlock;
 import enderglove.common.lib.InventoryHelper;
 import enderglove.common.lib.LibInfo;
@@ -67,11 +68,20 @@ public class ItemEnderGlove extends ItemTool
 
 	public ItemEnderGlove()
 	{
-		super(1.0F, Item.ToolMaterial.IRON, blocksEffectiveAgainst);
+		super(1.0F, getToolLevel(), blocksEffectiveAgainst);
 		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 		this.setMaxDamage(350);
+	}
+
+	private static ToolMaterial getToolLevel()
+	{
+		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(ConfigItems.itemEnderGlove));
+		if(crystalsLevel > 0)
+		return Item.ToolMaterial.EMERALD;
+		else
+		return Item.ToolMaterial.IRON;
 	}
 
 	@SuppressWarnings("unchecked")
