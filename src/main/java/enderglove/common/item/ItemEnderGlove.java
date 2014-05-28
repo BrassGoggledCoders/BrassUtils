@@ -138,7 +138,7 @@ public class ItemEnderGlove extends ItemTool
 			{
 				if (InventoryHelper.isInvEmpty(enderInv, stack) && (world.isRemote))
 				{
-					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
+					InventoryHelper.addItemStackToInventory(enderInv, stack);
 				}
 			}
 
@@ -182,13 +182,6 @@ public class ItemEnderGlove extends ItemTool
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public boolean isFull3D()
-	{
-		return true;
 	}
 
 	@Override

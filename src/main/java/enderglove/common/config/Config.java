@@ -62,6 +62,7 @@ public class Config
 
 	public static String line1, line2, line3;
 	public static boolean dragonDrop;
+	public static boolean totemGen;
 
 	public static void initialize(File file)
 	{
@@ -79,6 +80,7 @@ public class Config
 		artisanBonusChance = atc.getInt();
 
 		dragonDrop = config.get("general", "EnderGlove will drop from Dragon", true).getBoolean(true);
+		totemGen = config.get("general", "Ender Totem Generation", true).getBoolean(true);
 
 		int enchIndex = 63; // Luck of the Sea is 62
 

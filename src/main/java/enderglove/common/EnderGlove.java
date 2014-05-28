@@ -86,6 +86,7 @@ public class EnderGlove
 		FMLCommonHandler.instance().bus().register(entityEventHandler);
 		MinecraftForge.EVENT_BUS.register(worldEventHandler);
 
+		if(Config.totemGen)
 		GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 100);
 		//MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainGenEventHandler());
 
