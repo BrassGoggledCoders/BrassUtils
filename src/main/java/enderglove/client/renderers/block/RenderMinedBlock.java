@@ -10,9 +10,6 @@
 package enderglove.client.renderers.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAnvil;
-import net.minecraft.block.BlockDragonEgg;
-import net.minecraft.block.BlockTallGrass;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;

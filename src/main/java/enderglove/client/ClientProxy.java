@@ -10,9 +10,7 @@
 package enderglove.client;
 
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import enderglove.client.lib.Corruption;
 import enderglove.client.lib.UtilsFX;
 import enderglove.client.renderers.block.RenderMinedBlock;
 import enderglove.common.CommonProxy;

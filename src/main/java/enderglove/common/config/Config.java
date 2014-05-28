@@ -19,8 +19,8 @@ import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
 import enderglove.common.lib.enchantment.EnchantmentCrystals;
 import enderglove.common.lib.enchantment.EnchantmentEnderField;
-import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
+import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
 

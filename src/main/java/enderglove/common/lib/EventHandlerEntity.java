@@ -9,30 +9,16 @@
  */
 package enderglove.common.lib;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import enderglove.common.config.Config;
-import enderglove.common.config.ConfigItems;
 import enderglove.common.item.ItemEnderGlove;
 
 /**

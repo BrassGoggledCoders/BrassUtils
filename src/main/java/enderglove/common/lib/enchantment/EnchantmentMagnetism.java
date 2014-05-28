@@ -13,7 +13,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
-import enderglove.common.config.Config;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
