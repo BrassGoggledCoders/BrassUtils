@@ -11,6 +11,9 @@ package enderglove.common;
 
 import java.io.File;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
@@ -100,6 +103,13 @@ public class EnderGlove
 
 		ConfigEntities.init();
 		EGCraftingManager.init();
+
+		if(Config.chestGen)
+		{
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 1));
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 1));
+		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 2));
+		}
 	}
 
 	@Mod.EventHandler

@@ -70,7 +70,8 @@ public class ItemEnderGlove extends ItemTool
 		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
-		this.setMaxDamage(350);
+		if(Config.hasDurability)
+		this.setMaxDamage(Config.durability);
 	}
 
 	private static ToolMaterial getToolLevel()
@@ -130,7 +131,7 @@ public class ItemEnderGlove extends ItemTool
 		if (flameAmount > 0 && Utils.isSmeltable(smeltableBlock))
 		{
 			ItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
-			
+
 			byte level = (byte)EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, is);
 			if(block.getLocalizedName().contains("Ore"))
 				switch(level)
@@ -145,7 +146,7 @@ public class ItemEnderGlove extends ItemTool
 						stack.stackSize += (1 + world.rand.nextInt(7)/6);
 					break;
 				}
-			
+
 			if(!world.isRemote)
 				if (InventoryHelper.isInvEmpty(enderInv, stack))
 					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
