@@ -66,9 +66,9 @@ public class Config
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
+		config.load();
 		config.addCustomCategoryComment("Enchantments", "Custom enchantments");
 		config.addCustomCategoryComment("Entities", "Entity IDs");
-		config.load();
 
 		Property tpc = config.get("general", "totems_per_chunk", totemsPerChunk);
 		tpc.comment = "The rarity of the Ender Totems. Setting it to 0 will remove Ender Totem generation.";
@@ -77,6 +77,8 @@ public class Config
 		Property atc = config.get("general", "artisan_bonus_chance", artisanBonusChance);
 		atc.comment = "The chance of getting a returned ingredient. Increase for more rarity.";
 		artisanBonusChance = atc.getInt();
+
+		dragonDrop = config.get("general", "EnderGlove will drop from Dragon", true).getBoolean(true);
 
 		int enchIndex = 63; // Luck of the Sea is 62
 
@@ -129,7 +131,6 @@ public class Config
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 
-		dragonDrop = config.get("Options", "EnderGlove will drop from Dragon", true).getBoolean(true);
 		/*
 		Property rline1 = config.get("Recipe", "line_1", "EEE");
 		line1 = rline1.toString();
