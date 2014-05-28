@@ -48,7 +48,7 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 	private boolean generateSurface( World world,  Random random, int chunkX,  int chunkZ)
 	{
 		Random ChunkGenRand = new Random();
-		int ChunkGenRandomNum = ChunkGenRand.nextInt(4)+1;
+		int ChunkGenRandomNum = ChunkGenRand.nextInt(80);
 		if(ChunkGenRandomNum == 1)
 		{
 	//	for (int i = 0; i < 50/*Config.totemsPerChunk*/; i++)

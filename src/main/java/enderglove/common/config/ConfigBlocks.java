@@ -12,14 +12,15 @@ package enderglove.common.config;
 import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import enderglove.common.block.BlockEnderTotem;
+import enderglove.common.block.BlockTotemTop;
 
 /**
  * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
- * 
+ *
  */
 public class ConfigBlocks
 {
-	public static Block blockEnderTotem;
+	public static Block blockEnderTotem, blockTotemTop;
 
 	public static void init()
 	{
@@ -31,11 +32,13 @@ public class ConfigBlocks
 	public static void initializeBlocks()
 	{
 		blockEnderTotem = new BlockEnderTotem().setBlockName("endertotem");
+		blockTotemTop = new BlockTotemTop().setBlockName("endertotemtop");
 	}
 
 	public static void registerBlocks()
 	{
 		GameRegistry.registerBlock(blockEnderTotem, "BlockEnderTotem");
+		GameRegistry.registerBlock(blockTotemTop, "blockTotemTop");
 	}
 
 	public static void registerTileEntities()

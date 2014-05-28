@@ -11,6 +11,7 @@ enchantment.crystals=Crystalline Formations
 #
 # Blocks
 tile.endertotem.name=Ender Totem
+tile.endertotemtop.name=Ender Totem Capstone
 #
 # Items
 item.enderglove.name=Ender Glove

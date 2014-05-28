@@ -29,6 +29,9 @@ public class WorldGenTotem extends WorldGenCactus
                                //for (int i2 = 0; i2 < l1; ++i2)
                                //{
                                             world.setBlock(x, y, z, ConfigBlocks.blockEnderTotem, 0, 2);
+                                            world.setBlock(x, y + 1, z, ConfigBlocks.blockEnderTotem, 0, 2);
+                                            world.setBlock(x, y + 2, z, ConfigBlocks.blockEnderTotem, 0, 2);
+                                            world.setBlock(x, y + 3, z, ConfigBlocks.blockTotemTop, 0, 2);
                                        		FMLLog.info("Ender Totem generated at:" + x + "," + y + "," + z, "");
                                     //   }
                        }
