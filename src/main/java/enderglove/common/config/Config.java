@@ -82,7 +82,7 @@ public class Config
 		artisanBonusChance = atc.getInt();
 
 		dragonDrop = config.get("general", "EnderGlove will drop from Dragon", true).getBoolean(true);
-		totemGen = config.get("general", "Ender Totem Generation", true).getBoolean(true);
+		totemGen = config.get("general", "Ender Totem Generation (Kinda Buggy Right Now)", false).getBoolean(false);
 		hasDurability = config.get("general", "Ender Glove Has Durability", true).getBoolean(true);
 		chestGen = config.get("general", "Ender Glove generates in Stronghold chests", true).getBoolean(true);
 
