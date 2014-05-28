@@ -70,14 +70,16 @@ public class ItemEnderGlove extends ItemTool
 		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
-		if(Config.hasDurability)
-		this.setMaxDamage(Config.durability);
+		
+		if (Config.hasDurability)
+			this.setMaxDamage(Config.durability);
 	}
 
 	private static ToolMaterial getToolLevel()
 	{
 		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(ConfigItems.itemEnderGlove));
-		if(crystalsLevel > 0)
+		
+		if (crystalsLevel > 0)
 			return Item.ToolMaterial.EMERALD;
 		else
 			return Item.ToolMaterial.IRON;
