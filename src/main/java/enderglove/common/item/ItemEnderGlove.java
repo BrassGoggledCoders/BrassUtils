@@ -77,9 +77,9 @@ public class ItemEnderGlove extends ItemTool
 	{
 		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(ConfigItems.itemEnderGlove));
 		if(crystalsLevel > 0)
-		return Item.ToolMaterial.EMERALD;
+			return Item.ToolMaterial.EMERALD;
 		else
-		return Item.ToolMaterial.IRON;
+			return Item.ToolMaterial.IRON;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -113,16 +113,16 @@ public class ItemEnderGlove extends ItemTool
 		return false;
 	}
 
-	@Override
+	@Override // TODO: Clean up this method. It needs halp.
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
-		int md = world.getBlockMetadata(x, y, z);
-
-		if (world.isRemote)
-			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
-
 		EntityPlayer player = (EntityPlayer)entityLiving;
 		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
+		
+		int md = world.getBlockMetadata(x, y, z);
+		
+		if (world.isRemote)
+			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
 		ItemStack smeltableBlock = Utils.getDroppedItemStack(world, player, block, x, y, z, md);
@@ -130,27 +130,37 @@ public class ItemEnderGlove extends ItemTool
 		if (flameAmount > 0 && Utils.isSmeltable(smeltableBlock))
 		{
 			ItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
-			
+
 			byte level = (byte)EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, is);
-			if(block.getLocalizedName().contains("Ore"))
-				switch(level)
+
+			if (block.getLocalizedName().contains("Ore"))
+			{
+				switch (level)
 				{
 					case 1:
 						stack.stackSize += world.rand.nextInt(2);
-					break;
+						break;
 					case 2:
 						stack.stackSize += 1;
-					break;
+						break;
 					case 3:
-						stack.stackSize += (1 + world.rand.nextInt(7)/6);
-					break;
+						stack.stackSize += (1 + world.rand.nextInt(7) / 6);
+						break;
 				}
-			
-			if(!world.isRemote)
+			}
+
+			if (!world.isRemote)
+			{
 				if (InventoryHelper.isInvEmpty(enderInv, stack))
+				{
 					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
+					Utils.spawnBlockEntity(player, block, x, y, z, md, stack);
+				}
 				else
+				{
 					Utils.spawnStackInWorld(world, x, y, z, stack);
+				}
+			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
 			Utils.playSFX(world, x, y, z, "fire.ignite");
@@ -171,10 +181,17 @@ public class ItemEnderGlove extends ItemTool
 			for (ItemStack drops : items)
 			{
 				if(!world.isRemote)
+				{
 					if (InventoryHelper.isInvEmpty(enderInv, drops))
+					{
 						InventoryHelper.addItemStackToInventory(enderInv, drops);
+						Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
+					}
 					else
+					{
 						Utils.spawnStackInWorld(world, x, y, z, drops);
+					}
+				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
@@ -186,11 +203,18 @@ public class ItemEnderGlove extends ItemTool
 
 			for (ItemStack drops : items)
 			{
-				if(!world.isRemote)
+				if (!world.isRemote)
+				{
 					if (InventoryHelper.isInvEmpty(enderInv, drops))
+					{
 						InventoryHelper.addItemStackToInventory(enderInv, drops);
+						Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
+					}
 					else
+					{
 						Utils.spawnStackInWorld(world, x, y, z, drops);
+					}
+				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
@@ -272,6 +296,8 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
+
+		/* TODO:
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
@@ -287,7 +313,7 @@ public class ItemEnderGlove extends ItemTool
 			//InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
-		}
+		}*/
 
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}

@@ -17,11 +17,14 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigItems;
 import enderglove.common.item.ItemEnderGlove;
@@ -41,12 +44,13 @@ public class EventHandlerWorld
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 	}
+	
 	@SubscribeEvent
 	public void onEnderDragonKilled(LivingDropsEvent event)
 	{
-		if(event.entityLiving instanceof EntityDragon && Config.dragonDrop)
+		if (event.entityLiving instanceof EntityDragon && Config.dragonDrop)
 		{
-			event.entityLiving.dropItem(ConfigItems.itemEnderGlove, 1);
+			event.entityLiving.dropItem(ConfigItems.itemEnderGlove, 1); 
 		}
 	}
 
@@ -62,6 +66,26 @@ public class EventHandlerWorld
 			int affXP = XP + affAmount * affAmount / 2;
 
 			event.setExpToDrop(affXP);
+		}
+	}
+	
+	@SideOnly(Side.SERVER)
+	@SubscribeEvent
+	public void enderTeleport(EnderTeleportEvent event)
+	{
+		if (!event.entityLiving.worldObj.isRemote)
+		{
+			if (event.entityLiving instanceof EntityPlayer)
+			{
+				EntityPlayer player = (EntityPlayer)event.entityLiving;
+				int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, player.inventory.getCurrentItem());
+
+				if ((Utils.isCarryingGlove(player)) && (teleAmount > 0))
+				{
+					if (!event.entityLiving.worldObj.isRemote)
+						event.attackDamage = 10.0F;
+				}
+			}
 		}
 	}
 

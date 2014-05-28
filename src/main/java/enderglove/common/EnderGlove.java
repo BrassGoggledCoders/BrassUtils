@@ -50,13 +50,12 @@ public class EnderGlove
 	public EventHandlerWorld worldEventHandler;
 	public File directory;
 
-	// public static CreativeTabs tabEG = new
-	// CreativeTabEG(CreativeTabs.getNextID(), "enderglove");
+	// public static CreativeTabs tabEG = new CreativeTabEG(CreativeTabs.getNextID(), "enderglove");
 
 	@Mod.EventHandler
-	public void foreplay( FMLPreInitializationEvent event)
+	public void foreplay(FMLPreInitializationEvent event)
 	{
-		//Ignore this, it's a little thing I am testing
+		//Ignore this, it's a little thing I am testing *ignores*
 		//MinecraftForge.EVENT_BUS.register(new Corruption());
 		//FMLCommonHandler.instance().bus().register(new Corruption());
 		event.getModMetadata().version = LibInfo.VERSION;
@@ -67,7 +66,7 @@ public class EnderGlove
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
 		}
-		catch ( Exception e)
+		catch (Exception e)
 		{
 			FMLLog.severe("EnderGlove could not load its config file!", new Object[0]);
 		}
@@ -94,7 +93,7 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void orgasm( FMLInitializationEvent event)
+	public void orgasm(FMLInitializationEvent event)
 	{
 		proxy.registerDisplayInformation();
 
@@ -103,5 +102,5 @@ public class EnderGlove
 	}
 
 	@Mod.EventHandler
-	public void cuddling( FMLPostInitializationEvent event) {}
+	public void cuddling(FMLPostInitializationEvent event) {}
 }

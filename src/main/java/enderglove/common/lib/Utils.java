@@ -13,10 +13,12 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.InventoryEnderChest;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -24,6 +26,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import enderglove.common.entity.EntityMinedBlock;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
@@ -37,16 +40,14 @@ public class Utils
 	 * Hmm...I wonder what this method does? Indeed! It *does* spawn chickens!
 	 *
 	 * @param player - the player to send the message
-	 * @param message - the message to send
+	 * @param msg - the message to send
 	 */
-	public static void sendMessage(EntityPlayer player, String message)
+	public static void sendMessage(EntityPlayer player, String msg)
 	{
-		IChatComponent chat = new ChatComponentText(message);
+		IChatComponent chat = new ChatComponentText(msg);
 
 		if (!player.worldObj.isRemote)
-		{
 			player.addChatMessage(chat);
-		}
 	}
 
 	/**
@@ -114,12 +115,10 @@ public class Utils
 	 *
 	 * @return false if not carrying
 	 */
-	public static boolean isCarryingGlove( EntityPlayer player)
+	public static boolean isCarryingGlove(EntityPlayer player)
 	{
 		if (player != null && player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove)
-		{
 			return true;
-		}
 
 		return false;
 	}
@@ -133,22 +132,20 @@ public class Utils
 	 *
 	 * @return new item stack
 	 */
-	public static ItemStack createStackedBlock( Block block, int metadata)
+	public static ItemStack createStackedBlock(Block block, int metadata)
 	{
 		int md = 0;
 		Item item = Item.getItemFromBlock(block);
 
 		if (item != null && item.getHasSubtypes())
-		{
 			md = metadata;
-		}
 
 		return new ItemStack(item, 1, md);
 	}
 
 	/**
 	 * Only used for BlockRedstoneOre. If you use the above method, it'll crash
-	 * your game. Guaranteed.
+	 * your game. Guaranteed. Don't believe me? Give it a go.
 	 * 
 	 * @return new item stack
 	 */
@@ -162,6 +159,7 @@ public class Utils
 		return false;
 	}
 
+	// XXX: doesn't work for some weird reason; keeps returning 4
 	public static int getRotationMeta(EntityLivingBase entLiving)
 	{
 		int md = 0;
@@ -182,9 +180,27 @@ public class Utils
 		return md;
 	}
 	
+	/**
+	 * @author decebaldecebal
+	 * 
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param stack
+	 */
 	public static void spawnStackInWorld(World world, int x, int y, int z, ItemStack stack)
     {		
     	world.setBlockToAir(x, y, z);
-		world.spawnEntityInWorld(new EntityItem(world, x+0.5, y+0.5, z+0.5, stack.copy()));
+		world.spawnEntityInWorld(new EntityItem(world, x + 0.5F, y + 0.5F, z + 0.5F, stack.copy()));
     }
+	
+	@Deprecated
+	public static void spawnBlockEntity(EntityPlayer player, Block block, int x, int y, int z, int md, ItemStack drops)
+	{
+		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
+		
+		if ((player.worldObj.isRemote) && (InventoryHelper.isInvEmpty(enderInv, drops)))
+			player.worldObj.spawnEntityInWorld(new EntityMinedBlock(player.worldObj, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
+	}
 }
