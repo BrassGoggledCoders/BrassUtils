@@ -70,7 +70,8 @@ public class ItemEnderGlove extends ItemTool
 		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
-		this.setMaxDamage(350);
+		if(Config.hasDurability)
+		this.setMaxDamage(Config.durability);
 	}
 
 	private static ToolMaterial getToolLevel()

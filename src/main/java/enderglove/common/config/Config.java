@@ -18,7 +18,6 @@ import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
 import enderglove.common.lib.enchantment.EnchantmentCrystals;
-import enderglove.common.lib.enchantment.EnchantmentEnderField;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
@@ -63,6 +62,9 @@ public class Config
 	public static String line1, line2, line3;
 	public static boolean dragonDrop;
 	public static boolean totemGen;
+	public static boolean hasDurability;
+	public static boolean chestGen;
+	public static int durability;
 
 	public static void initialize(File file)
 	{
@@ -80,7 +82,11 @@ public class Config
 		artisanBonusChance = atc.getInt();
 
 		dragonDrop = config.get("general", "EnderGlove will drop from Dragon", true).getBoolean(true);
-		totemGen = config.get("general", "Ender Totem Generation", true).getBoolean(true);
+		totemGen = config.get("general", "Ender Totem Generation (Kinda Buggy Right Now)", false).getBoolean(false);
+		hasDurability = config.get("general", "Ender Glove Has Durability", true).getBoolean(true);
+		chestGen = config.get("general", "Ender Glove generates in Stronghold chests", true).getBoolean(true);
+
+		durability = config.get("general", "Ender Glove Durability Value", 350).getInt();
 
 		int enchIndex = 63; // Luck of the Sea is 62
 

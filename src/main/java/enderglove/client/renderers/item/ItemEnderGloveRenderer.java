@@ -115,7 +115,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					GL11.glPushMatrix();
 					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 					GL11.glTranslatef(1, 2, 1);
-					GL11.glScalef(-0.80F, -0.80F, -0.80F);
+					//GL11.glScalef(-0.80F, -0.80F, -0.80F);
 					GL11.glRotatef(-65, 1, 0, 0);
 					GL11.glRotatef(-25, 0, 1, 0);
 					GL11.glRotatef(-10, 0, 0, 1);
