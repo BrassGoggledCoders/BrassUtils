@@ -35,7 +35,7 @@ public class InventoryHelper
 	}
 
 	/**
-	 * @author MightyPork, from PowerCraft
+	 * @author From PowerCraft
 	 *
 	 * @param inv
 	 * @param is
@@ -69,7 +69,7 @@ public class InventoryHelper
 	}
 
 	/**
-	 * @author MightyPork, from PowerCraft
+	 * @author From PowerCraft
 	 *
 	 * @param inv
 	 * @param is
@@ -143,7 +143,7 @@ public class InventoryHelper
 	}
 
 	/**
-	 * @author MightyPork, from PowerCraft
+	 * @author From PowerCraft
 	 *
 	 * @param inv
 	 * @param is

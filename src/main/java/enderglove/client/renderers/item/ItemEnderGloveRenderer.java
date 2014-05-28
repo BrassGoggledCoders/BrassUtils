@@ -34,9 +34,7 @@ import enderglove.common.lib.LibInfo;
  */
 public class ItemEnderGloveRenderer implements IItemRenderer
 {
-	//@SuppressWarnings("unused")
 	private ModelEnderGlove modelGlove = new ModelEnderGlove();
-	//@SuppressWarnings("unused")
 	private ResourceLocation gloveTex = new ResourceLocation(LibInfo.PREFIX.replace(":", ""), "textures/models/modelglove.png");
 
 	@Override
@@ -89,10 +87,10 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 				else
 				{*/
 					GL11.glPushMatrix();
-					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
-					GL11.glTranslatef(1, 2, 1);
-					GL11.glScalef(3F, 3F, 3F);
-					GL11.glRotatef(45, 1, 0, 0);
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					//GL11.glTranslatef(1, 2, 1);
+					//GL11.glScalef(3F, 3F, 3F);
+					//GL11.glRotatef(45, 1, 0, 0);
 					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.625F);
 					GL11.glPopMatrix();
 				//}
@@ -110,20 +108,18 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F,
 					0.0F, 0.0F, 0.0F);
->>>>>>> FETCH_HEAD
 					GL11.glPopMatrix();
 				}
 				else
 				{*/
 					GL11.glPushMatrix();
-					//Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
+					Minecraft.getMinecraft().renderEngine.bindTexture(gloveTex);
 					GL11.glTranslatef(1, 2, 1);
-					GL11.glScalef(-1F, -1F, -1F);
+					GL11.glScalef(-0.80F, -0.80F, -0.80F);
 					GL11.glRotatef(-65, 1, 0, 0);
 					GL11.glRotatef(-25, 0, 1, 0);
 					GL11.glRotatef(-10, 0, 0, 1);
-					this.modelGlove.render(null/*(Entity)data[1]*/, 0.0F, 0.0F, 0.0F,
-					0.0F, 0.0F, 0.0F);
+					this.modelGlove.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 					GL11.glPopMatrix();
 				//}
 			}
