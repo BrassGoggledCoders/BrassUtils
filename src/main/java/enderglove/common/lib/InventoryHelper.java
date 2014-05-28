@@ -25,11 +25,10 @@ public class InventoryHelper
 	/**
 	 * Grabs the Ender Chest inventory relative to a given player.
 	 *
-	 * @param p
-	 *            - the player that owns the Ender Inventory
+	 * @param p - the player that owns the Ender Inventory
 	 * @return - an instance of the InventoryEnderChest
 	 */
-	public static InventoryEnderChest getPlayerEnderChest( EntityPlayer p)
+	public static InventoryEnderChest getPlayerEnderChest(EntityPlayer p)
 	{
 		return p.getInventoryEnderChest();
 	}
@@ -41,8 +40,7 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	public static boolean addItemStackToInventory( IInventory inv,
-			 ItemStack is)
+	public static boolean addItemStackToInventory(IInventory inv, ItemStack is)
 	{
 		if (!is.isItemDamaged())
 		{
@@ -56,7 +54,7 @@ public class InventoryHelper
 			return is.stackSize < stackSize;
 		}
 
-		 int slot = getFirstEmptySlot(inv, is);
+		int slot = getFirstEmptySlot(inv, is);
 
 		if (slot >= 0)
 		{
@@ -75,14 +73,14 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	public static int storePartially( IInventory inv,  ItemStack is)
+	public static int storePartially(IInventory inv, ItemStack is)
 	{
-		 Item item = is.getItem();
+		Item item = is.getItem();
 		int size = is.stackSize;
 
 		if (is.getMaxStackSize() == 1) // Not stackable
 		{
-			 int freeSlot = getFirstEmptySlot(inv, is);
+			int freeSlot = getFirstEmptySlot(inv, is);
 
 			if (freeSlot < 0)
 			{
@@ -91,8 +89,7 @@ public class InventoryHelper
 
 			if (inv.getStackInSlot(freeSlot) == null)
 			{
-				inv.setInventorySlotContents(freeSlot,
-						ItemStack.copyItemStack(is));
+				inv.setInventorySlotContents(freeSlot, ItemStack.copyItemStack(is));
 			}
 
 			return 0;
@@ -111,23 +108,18 @@ public class InventoryHelper
 
 		if (inv.getStackInSlot(freeSlot) == null)
 		{
-			inv.setInventorySlotContents(freeSlot,
-					new ItemStack(item, 0, is.getItemDamage()));
+			inv.setInventorySlotContents(freeSlot, new ItemStack(item, 0, is.getItemDamage()));
 		}
 
 		int canStore = size;
 
-		if (canStore > inv.getStackInSlot(freeSlot).getMaxStackSize()
-				- inv.getStackInSlot(freeSlot).stackSize)
+		if (canStore > inv.getStackInSlot(freeSlot).getMaxStackSize() - inv.getStackInSlot(freeSlot).stackSize)
 		{
-			canStore = inv.getStackInSlot(freeSlot).getMaxStackSize()
-					- inv.getStackInSlot(freeSlot).stackSize;
+			canStore = inv.getStackInSlot(freeSlot).getMaxStackSize() - inv.getStackInSlot(freeSlot).stackSize;
 		}
-		if (canStore > inv.getInventoryStackLimit()
-				- inv.getStackInSlot(freeSlot).stackSize)
+		if (canStore > inv.getInventoryStackLimit() - inv.getStackInSlot(freeSlot).stackSize)
 		{
-			canStore = inv.getInventoryStackLimit()
-					- inv.getStackInSlot(freeSlot).stackSize;
+			canStore = inv.getInventoryStackLimit() - inv.getStackInSlot(freeSlot).stackSize;
 		}
 
 		if (canStore == 0)
@@ -149,11 +141,11 @@ public class InventoryHelper
 	 * @param is
 	 * @return
 	 */
-	public static int getNonFilledStack( IInventory inv,  ItemStack is)
+	public static int getNonFilledStack(IInventory inv, ItemStack is)
 	{
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
-			 ItemStack stackInSlot = inv.getStackInSlot(slot);
+			ItemStack stackInSlot = inv.getStackInSlot(slot);
 
 			if (stackInSlot != null
 					&& stackInSlot.getItem() == is.getItem()
@@ -161,8 +153,7 @@ public class InventoryHelper
 					&& stackInSlot.stackSize < stackInSlot.getMaxStackSize()
 					&& stackInSlot.stackSize < inv.getInventoryStackLimit()
 					&& (!stackInSlot.getHasSubtypes() || stackInSlot
-							.getItemDamage() == is.getItemDamage()))
-			{
+							.getItemDamage() == is.getItemDamage())) {
 				return slot;
 			}
 		}
@@ -173,20 +164,16 @@ public class InventoryHelper
 	/**
 	 * Grabs the first empty slot that the item stack can be placed into.
 	 *
-	 * @param inv
-	 *            - the inventory to check
-	 * @param is
-	 *            - the item stack to put in the inventory
+	 * @param inv - the inventory to check
+	 * @param is - the item stack to put in the inventory
 	 * @return -1 if there is not slot available
 	 */
-	public static int getFirstEmptySlot( IInventory inv,  ItemStack is)
+	public static int getFirstEmptySlot(IInventory inv, ItemStack is)
 	{
 		for (int slot = 0; slot < inv.getSizeInventory(); slot++)
 		{
 			if (inv.getStackInSlot(slot) == null)
-			{
 				return slot;
-			}
 		}
 
 		return -1;
@@ -209,33 +196,33 @@ public class InventoryHelper
 
 		return false;
 	}
-	
+
 	public static boolean isInEnderInventory(EntityPlayer player, Item item)
 	{
 		InventoryEnderChest enderInv = getPlayerEnderChest(player);
-		
+
 		for (int slot = 0; slot < enderInv.getSizeInventory(); slot++)
 		{
 			if ((enderInv.getStackInSlot(slot) != null) && (enderInv.getStackInSlot(slot).getItem() == item))
 				return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	public static int getEnderSlotForItem(EntityPlayer player, Item item)
 	{
 		InventoryEnderChest enderInv = getPlayerEnderChest(player);
-		
+
 		for (int slot = 0; slot < enderInv.getSizeInventory(); slot++)
 		{
 			if ((enderInv.getStackInSlot(slot) != null) && (enderInv.getStackInSlot(slot).getItem() == item))
 				return slot;
 		}
-		
+
 		return -1;
 	}
-	
+
 	public static int getPlayerSlotForItem(EntityPlayer player, Item item)
 	{
 		for (int slot = 0; slot < player.inventory.mainInventory.length; slot++)
@@ -243,42 +230,38 @@ public class InventoryHelper
 			if ((player.inventory.mainInventory[slot] != null) && (player.inventory.mainInventory[slot].getItem() == item))
 				return slot;
 		}
-		
+
 		return -1;
 	}
-	
+
 	public static boolean consumeEnderInventoryItem(EntityPlayer player, Item item)
-    {
+	{
 		InventoryEnderChest enderInv = getPlayerEnderChest(player);
-        int slot = getEnderSlotForItem(player, item);
+		int slot = getEnderSlotForItem(player, item);
 
-        if (slot < 0)
-            return false;
-        else
-        {
-            if (--enderInv.getStackInSlot(slot).stackSize <= 0)
-            	enderInv.getStackInSlot(slot).stackSize = 0;
+		if (slot < 0)
+			return false;
+		else
+		{
+			if (--enderInv.getStackInSlot(slot).stackSize <= 0)
+				enderInv.getStackInSlot(slot).stackSize = 0;
 
-            return true;
-        }
-    }
+			return true;
+		}
+	}
 
 	/**
 	 * Determines if the given inventory is empty by checking if it can add the
 	 * given item stack to the inventory.
 	 *
-	 * @param inv
-	 *            - the inventory to check
-	 * @param is
-	 *            - the item stack to put in the inventory
+	 * @param inv - the inventory to check
+	 * @param is - the item stack to put in the inventory
 	 * @return true if there's room for the item stack
 	 */
-	public static boolean isInvEmpty( IInventory inv,  ItemStack is)
+	public static boolean isInvEmpty(IInventory inv, ItemStack is)
 	{
 		if (!addItemStackToInventory(inv, is))
-		{
 			return false;
-		}
 
 		return true;
 	}
