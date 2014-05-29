@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -154,10 +153,10 @@ public class Utils
 		return new ItemStack(Blocks.redstone_ore);
 	}
 
-	private boolean handleTileEntities() // TODO: Some handling for TileEntities
-	{
-		return false;
-	}
+	//private boolean handleTileEntities() // TODO: Some handling for TileEntities
+	//{
+	//	return false;
+	//}
 
 	// XXX: doesn't work for some weird reason; keeps returning 4
 	public static int getRotationMeta(EntityLivingBase entLiving)

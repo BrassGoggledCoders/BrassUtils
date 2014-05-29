@@ -10,13 +10,8 @@
 package enderglove.client.renderers.item;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 
@@ -63,7 +58,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 		{
 			case EQUIPPED_FIRST_PERSON:
 			{
-				Minecraft mc = Minecraft.getMinecraft();
+				//Minecraft mc = Minecraft.getMinecraft();
 
 				/*if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
@@ -96,7 +91,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 			}
 			case EQUIPPED:
 			{
-				Minecraft mc = Minecraft.getMinecraft();
+				//Minecraft mc = Minecraft.getMinecraft();
 
 				/*if (mc.thePlayer.inventory.hasItem(Items.ender_eye))
 				{
@@ -128,6 +123,7 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 		}
 	}
 
+	/*
 	private void renderEnderEye(ItemStack item, ItemStack is)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
@@ -161,5 +157,5 @@ public class ItemEnderGloveRenderer implements IItemRenderer
 			}
 			while (renderPass < is.getItem().getRenderPasses(is.getItemDamage()));
 		}
-	}
+	}*/
 }
