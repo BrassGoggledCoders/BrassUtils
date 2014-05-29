@@ -11,8 +11,6 @@ package enderglove.common.lib;
 
 import java.util.Iterator;
 
-import boilerplate.common.utils.EnderUtils;
-import boilerplate.common.utils.InventoryHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
@@ -24,6 +22,8 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import boilerplate.common.utils.EnderUtils;
+import boilerplate.common.utils.InventoryHelper;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -43,7 +43,7 @@ public class EventHandlerWorld
 	{
 		EntityPlayer player = event.harvester;
 
-		if ((event.drops != null) && (event.drops.size() > 0) && (EnderUtils.isCarryingGlove(player)))
+		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 	}
 	
@@ -82,7 +82,7 @@ public class EventHandlerWorld
 				EntityPlayer player = (EntityPlayer)event.entityLiving;
 				int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, player.inventory.getCurrentItem());
 
-				if ((EnderUtils.isCarryingGlove(player)) && (teleAmount > 0))
+				if ((Utils.isCarryingGlove(player)) && (teleAmount > 0))
 				{
 					if (!event.entityLiving.worldObj.isRemote)
 						event.attackDamage = 10.0F;

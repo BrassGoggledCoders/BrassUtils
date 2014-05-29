@@ -44,6 +44,7 @@ import enderglove.common.EnderGlove;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigItems;
 import enderglove.common.lib.LibInfo;
+import enderglove.common.lib.Utils;
 
 /**
  * This class is the whole point of this mod.
@@ -59,7 +60,7 @@ public class ItemEnderGlove extends ItemTool
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons( IIconRegister ir)
+	public void registerIcons(IIconRegister ir)
 	{
 		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderglove");
 	}
@@ -85,10 +86,9 @@ public class ItemEnderGlove extends ItemTool
 			return Item.ToolMaterial.IRON;
 	}
 
-	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack is, EntityPlayer player, @SuppressWarnings("rawtypes") List list, boolean flag)
+	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
 	{
 		list.add(EnumChatFormatting.GREEN + "The power of the End");
 		list.add(EnumChatFormatting.GREEN + "in your hands!");
@@ -174,9 +174,9 @@ public class ItemEnderGlove extends ItemTool
 			ItemStack stack = null;
 
 			if (block instanceof BlockRedstoneOre)
-				stack = EnderUtils.createStackedBlock();
+				stack = Utils.createStackedBlock();
 			else
-				stack = EnderUtils.createStackedBlock(block, md);
+				stack = Utils.createStackedBlock(block, md);
 
 			if (stack != null)
 				items.add(stack);
@@ -264,7 +264,7 @@ public class ItemEnderGlove extends ItemTool
 	}
 
 	@Override
-	public ItemStack onItemRightClick( ItemStack is, World world, EntityPlayer player)
+	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player)
 	{
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
 
