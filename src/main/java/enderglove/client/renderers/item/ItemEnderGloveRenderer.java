@@ -27,7 +27,6 @@ import enderglove.common.lib.LibInfo;
 /**
  * The ItemRenderer for the ender glove item.
  *
- *
  * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
  *

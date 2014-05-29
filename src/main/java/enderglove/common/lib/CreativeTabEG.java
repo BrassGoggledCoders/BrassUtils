@@ -10,18 +10,19 @@
 package enderglove.common.lib;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import enderglove.common.config.ConfigItems;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  * 
  */
 public class CreativeTabEG extends CreativeTabs
 {
-	public CreativeTabEG( int id,  String name)
+	public CreativeTabEG(int id, String name)
 	{
 		super(id, name);
 	}
@@ -30,6 +31,6 @@ public class CreativeTabEG extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-		return Items.apple; // XXX: temp
+		return ConfigItems.itemEnderGlove; 
 	}
 }

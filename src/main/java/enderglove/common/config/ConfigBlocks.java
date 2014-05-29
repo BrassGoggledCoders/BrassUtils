@@ -15,7 +15,8 @@ import enderglove.common.block.BlockEnderTotem;
 import enderglove.common.block.BlockTotemTop;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  *
  */
 public class ConfigBlocks

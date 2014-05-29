@@ -17,27 +17,35 @@ import enderglove.common.config.Config;
 import enderglove.common.config.ConfigItems;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  *
  */
 public class EGCraftingManager
 {
 	public static void init()
 	{
-		if(Config.line1 != null && Config.line2 != null && Config.line3 != null)
+		if (Config.line1 != null && Config.line2 != null && Config.line3 != null)
 		{
 			FMLLog.severe(Config.line1.toString());
-	 	GameRegistry.addShapedRecipe(new ItemStack(ConfigItems.itemEnderGlove),
-				new Object[] {Config.line1, Config.line2,
-						Config.line3, 'L', Items.leather, 'N',
-						Items.nether_star, 'E', Items.ender_eye/*, 'P',
-						Items.ender_pearl, 'B', Items.blaze_rod, 'D',
-						Blocks.dragon_egg, 'S', Blocks.end_stone, 'd',
-						Blocks.diamond_block, 'b', Blocks.obsidian*/ });
+			GameRegistry.addShapedRecipe(new ItemStack(ConfigItems.itemEnderGlove), new Object[] {
+				Config.line1, 
+				Config.line2,
+				Config.line3, 'L', 
+				Items.leather, 'N',
+				Items.nether_star, 'E', 
+				Items.ender_eye
+			});
+
 		}
 		else
 		{
 			GameRegistry.addRecipe(new ItemStack(ConfigItems.itemEnderGlove), new Object[] {"EEE", "LNL", "LLL", 'L', Items.leather, 'N', Items.nether_star, 'E', Items.ender_eye});
 		}
 	}
+
+	/*, 'P',
+	Items.ender_pearl, 'B', Items.blaze_rod, 'D',
+	Blocks.dragon_egg, 'S', Blocks.end_stone, 'd',
+	Blocks.diamond_block, 'b', Blocks.obsidian*/ 
 }

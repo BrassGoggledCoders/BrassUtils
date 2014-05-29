@@ -14,7 +14,8 @@ import enderglove.common.EnderGlove;
 import enderglove.common.entity.EntityMinedBlock;
 
 /**
- * @author Surseance (Johnny Eatmon) Email: surseance@autistici.org
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  * 
  */
 public class ConfigEntities

@@ -20,7 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.lib.LibInfo;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  *
  */
 public class BlockEnderTotem extends Block
@@ -29,17 +30,17 @@ public class BlockEnderTotem extends Block
 	@Override
 	public void registerBlockIcons( IIconRegister ir)
 	{
-		blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
-
+		this.blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
 	}
 
 	public BlockEnderTotem()
 	{
 		super(Material.rock);
-		setHardness(3.5F);
-		setResistance(6.0F);
-		setCreativeTab(CreativeTabs.tabBlock);
+		this.setHardness(3.5F);
+		this.setResistance(6.0F);
+		this.setCreativeTab(CreativeTabs.tabBlock);
 	}
+	
 	@Override
 	public boolean onBlockActivated(World p_149727_1_, int p_149727_2_, int p_149727_3_, int p_149727_4_, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
 	{

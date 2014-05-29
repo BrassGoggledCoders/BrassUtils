@@ -42,7 +42,6 @@ public class EntityMinedBlock extends Entity
 	//	this(world, x, y, z, block, 0);
 	//}
 
-
 	public EntityMinedBlock(World world, double x, double y, double z, Block block, int md)
 	{
 		super(world);
@@ -103,7 +102,7 @@ public class EntityMinedBlock extends Entity
 		tagCompound.setByte("Tile", (byte) Block.getIdFromBlock(this.block));
 		tagCompound.setInteger("TileID", Block.getIdFromBlock(this.block));
 		tagCompound.setByte("Data", (byte) this.metadata);
-		
+
 		tagCompound.setFloat("Scale", this.scale);
 	}
 

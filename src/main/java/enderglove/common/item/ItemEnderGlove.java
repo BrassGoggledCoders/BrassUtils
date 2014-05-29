@@ -157,7 +157,7 @@ public class ItemEnderGlove extends ItemTool
 				if (InventoryHelper.isInvEmpty(enderInv, stack))
 				{
 					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
-					Utils.spawnBlockEntity(player, block, x, y, z, md, stack);
+					//Utils.spawnBlockEntity(player, block, x, y, z, md, stack);
 				}
 				else
 				{
@@ -188,7 +188,7 @@ public class ItemEnderGlove extends ItemTool
 					if (InventoryHelper.isInvEmpty(enderInv, drops))
 					{
 						InventoryHelper.addItemStackToInventory(enderInv, drops);
-						Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
+						//Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
 					}
 					else
 					{
@@ -211,7 +211,7 @@ public class ItemEnderGlove extends ItemTool
 					if (InventoryHelper.isInvEmpty(enderInv, drops))
 					{
 						InventoryHelper.addItemStackToInventory(enderInv, drops);
-						Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
+						//Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
 					}
 					else
 					{

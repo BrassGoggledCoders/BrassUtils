@@ -12,7 +12,8 @@ package enderglove.common.tiles;
 import net.minecraft.tileentity.TileEntity;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon) 
+ * Email: surseance@autistici.org
  * 
  */
 public class TileEnderTotem extends TileEntity

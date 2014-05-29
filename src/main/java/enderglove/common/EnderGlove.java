@@ -85,8 +85,8 @@ public class EnderGlove
 		FMLCommonHandler.instance().bus().register(entityEventHandler);
 		MinecraftForge.EVENT_BUS.register(worldEventHandler);
 
-		if(Config.totemGen)
-		GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 100);
+		if (Config.totemGen)
+			GameRegistry.registerWorldGenerator(worldGen = new EnderGloveWorldGenerator(), 100);
 		//MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainGenEventHandler());
 
 		Config.save();
@@ -99,16 +99,16 @@ public class EnderGlove
 	public void orgasm(FMLInitializationEvent event)
 	{
 		proxy.registerDisplayInformation();
-
 		ConfigEntities.init();
-		if(Config.recipe)
-		EGCraftingManager.init();
+		
+		if (Config.recipe)
+			EGCraftingManager.init();
 
-		if(Config.chestGen)
+		if (Config.chestGen) // TODO: Add this as a method in the Config class
 		{
-		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 1));
-		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 1));
-		ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 2));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 1));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 1));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(ConfigItems.itemEnderGlove), 1, 1, 2));
 		}
 	}
 

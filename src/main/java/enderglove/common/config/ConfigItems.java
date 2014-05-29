@@ -15,7 +15,8 @@ import enderglove.common.item.ItemEnderGlove;
 import enderglove.common.lib.LibInfo;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance (Johnny Eatmon)
+ * Email: surseance@autistici.org
  * 
  */
 public class ConfigItems
