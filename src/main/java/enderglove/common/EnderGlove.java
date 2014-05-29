@@ -39,7 +39,7 @@ import enderglove.common.lib.LibInfo;
  * Email: surseance@autistici.org
  *
  */
-@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION)
+@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION, dependencies="required-after:boilerplate")
 public class EnderGlove
 {
 	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
@@ -100,7 +100,7 @@ public class EnderGlove
 	{
 		proxy.registerDisplayInformation();
 		ConfigEntities.init();
-		
+
 		if (Config.recipe)
 			EGCraftingManager.init();
 
