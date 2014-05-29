@@ -1,4 +1,4 @@
-package enderglove.client.lib;
+package enderglove.client;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

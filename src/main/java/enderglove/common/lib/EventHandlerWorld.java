@@ -11,6 +11,8 @@ package enderglove.common.lib;
 
 import java.util.Iterator;
 
+import boilerplate.common.utils.EnderUtils;
+import boilerplate.common.utils.InventoryHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
@@ -41,7 +43,7 @@ public class EventHandlerWorld
 	{
 		EntityPlayer player = event.harvester;
 
-		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
+		if ((event.drops != null) && (event.drops.size() > 0) && (EnderUtils.isCarryingGlove(player)))
 			event.drops.clear();
 	}
 	
@@ -80,7 +82,7 @@ public class EventHandlerWorld
 				EntityPlayer player = (EntityPlayer)event.entityLiving;
 				int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, player.inventory.getCurrentItem());
 
-				if ((Utils.isCarryingGlove(player)) && (teleAmount > 0))
+				if ((EnderUtils.isCarryingGlove(player)) && (teleAmount > 0))
 				{
 					if (!event.entityLiving.worldObj.isRemote)
 						event.attackDamage = 10.0F;
@@ -102,8 +104,8 @@ public class EventHandlerWorld
 			{
 				is.damageItem(2, event.entityPlayer);
 				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.entityPlayer), is);
-				Utils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName() + " was succesfully saved to your Ender Chest!");
-				Utils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
+				EnderUtils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName() + " was succesfully saved to your Ender Chest!");
+				EnderUtils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
 			}
 		}

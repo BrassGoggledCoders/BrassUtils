@@ -9,9 +9,9 @@
  */
 package enderglove.common.config;
 
+import boilerplate.common.entity.EntityMinedBlock;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import enderglove.common.EnderGlove;
-import enderglove.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance (Johnny Eatmon) 

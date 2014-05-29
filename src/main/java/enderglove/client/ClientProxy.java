@@ -10,11 +10,11 @@
 package enderglove.client;
 
 import net.minecraft.world.World;
+import boilerplate.client.renderers.block.RenderMinedBlock;
+import boilerplate.client.utils.EffectUtils;
+import boilerplate.common.entity.EntityMinedBlock;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import enderglove.client.lib.UtilsFX;
-import enderglove.client.renderers.block.RenderMinedBlock;
 import enderglove.common.CommonProxy;
-import enderglove.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance (Johnny Eatmon)
@@ -33,12 +33,12 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void blockSparkleFX(World world, int x, int y, int z, int count)
 	{
-		UtilsFX.blockSparkle(world, x, y, z, count);
+		EffectUtils.blockSparkle(world, x, y, z, count);
 	}
 
 	@Override
 	public void blockFlameFX(World world, int x, int y, int z, int count)
 	{
-		UtilsFX.blockFlameFX(world, x, y, z, count);
+		EffectUtils.blockFlameFX(world, x, y, z, count);
 	}
 }

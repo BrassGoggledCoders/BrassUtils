@@ -32,6 +32,9 @@ import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import boilerplate.common.entity.EntityMinedBlock;
+import boilerplate.common.utils.EnderUtils;
+import boilerplate.common.utils.InventoryHelper;
 
 import com.google.common.collect.Sets;
 
@@ -40,10 +43,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
 import enderglove.common.config.Config;
 import enderglove.common.config.ConfigItems;
-import enderglove.common.entity.EntityMinedBlock;
-import enderglove.common.lib.InventoryHelper;
 import enderglove.common.lib.LibInfo;
-import enderglove.common.lib.Utils;
 
 /**
  * This class is the whole point of this mod.
@@ -109,7 +109,7 @@ public class ItemEnderGlove extends ItemTool
 				// EnderGlove.proxy.blockSparkleFX(player.worldObj,
 				// (int)target.prevPosX, (int)target.prevPosY,
 				// (int)target.prevPosZ, 4);
-				Utils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
+				EnderUtils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
 			}
 		}
 
@@ -128,9 +128,9 @@ public class ItemEnderGlove extends ItemTool
 			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
-		ItemStack smeltableBlock = Utils.getDroppedItemStack(world, player, block, x, y, z, md);
+		ItemStack smeltableBlock = EnderUtils.getDroppedItemStack(world, player, block, x, y, z, md);
 
-		if (flameAmount > 0 && Utils.isSmeltable(smeltableBlock))
+		if (flameAmount > 0 && EnderUtils.isSmeltable(smeltableBlock))
 		{
 			ItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 
@@ -161,12 +161,12 @@ public class ItemEnderGlove extends ItemTool
 				}
 				else
 				{
-					Utils.spawnStackInWorld(world, x, y, z, stack);
+					EnderUtils.spawnStackInWorld(world, x, y, z, stack);
 				}
 			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
-			Utils.playSFX(world, x, y, z, "fire.ignite");
+			EnderUtils.playSFX(world, x, y, z, "fire.ignite");
 		}
 		else if (EnchantmentHelper.getSilkTouchModifier(player) && block.canSilkHarvest(world, player, x, y, z, md))
 		{
@@ -174,9 +174,9 @@ public class ItemEnderGlove extends ItemTool
 			ItemStack stack = null;
 
 			if (block instanceof BlockRedstoneOre)
-				stack = Utils.createStackedBlock();
+				stack = EnderUtils.createStackedBlock();
 			else
-				stack = Utils.createStackedBlock(block, md);
+				stack = EnderUtils.createStackedBlock(block, md);
 
 			if (stack != null)
 				items.add(stack);
@@ -192,13 +192,13 @@ public class ItemEnderGlove extends ItemTool
 					}
 					else
 					{
-						Utils.spawnStackInWorld(world, x, y, z, drops);
+						EnderUtils.spawnStackInWorld(world, x, y, z, drops);
 					}
 				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
-			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
+			EnderUtils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 		else
 		{
@@ -215,13 +215,13 @@ public class ItemEnderGlove extends ItemTool
 					}
 					else
 					{
-						Utils.spawnStackInWorld(world, x, y, z, drops);
+						EnderUtils.spawnStackInWorld(world, x, y, z, drops);
 					}
 				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
-			Utils.playSFX(world, x, y, z, "mob.endermen.portal");
+			EnderUtils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
@@ -294,8 +294,8 @@ public class ItemEnderGlove extends ItemTool
 			this.yCoord = y;
 			this.zCoord = z;
 
-			Utils.sendMessage(player, "Position set to: [" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "]");
-			Utils.playSFX(world, x, y, z, "random.orb");
+			EnderUtils.sendMessage(player, "Position set to: [" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "]");
+			EnderUtils.playSFX(world, x, y, z, "random.orb");
 
 			return true;
 		}
