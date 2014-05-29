@@ -1,4 +1,4 @@
-![](https://copy.com/HNrV7k74CymKPRRc)
+![](https://copy.com/myBD6f2dG7klqtOF)
 
 Based on [Geartooth's suggestion](http://www.minecraftforum.net/topic/1299856-ender-gloves/) 
 on the Minecraft Forums, this mod was originally created for the 4th Modjam.
