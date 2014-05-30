@@ -35,6 +35,8 @@ import net.minecraft.world.World;
 import boilerplate.common.entity.EntityMinedBlock;
 import boilerplate.common.utils.EnderUtils;
 import boilerplate.common.utils.InventoryUtils;
+import boilerplate.common.utils.ItemStackUtils;
+import boilerplate.common.utils.PlayerUtils;
 
 import com.google.common.collect.Sets;
 
@@ -109,7 +111,7 @@ public class ItemEnderGlove extends ItemTool
 				// EnderGlove.proxy.blockSparkleFX(player.worldObj,
 				// (int)target.prevPosX, (int)target.prevPosY,
 				// (int)target.prevPosZ, 4);
-				EnderUtils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
+				boilerplate.common.utils.Utils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
 			}
 		}
 
@@ -128,9 +130,9 @@ public class ItemEnderGlove extends ItemTool
 			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
-		ItemStack smeltableBlock = EnderUtils.getDroppedItemStack(world, player, block, x, y, z, md);
+		ItemStack smeltableBlock = ItemStackUtils.getDroppedItemStack(world, player, block, x, y, z, md);
 
-		if (flameAmount > 0 && EnderUtils.isSmeltable(smeltableBlock))
+		if (flameAmount > 0 && ItemStackUtils.isSmeltable(smeltableBlock))
 		{
 			ItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 
@@ -161,12 +163,12 @@ public class ItemEnderGlove extends ItemTool
 				}
 				else
 				{
-					EnderUtils.spawnStackInWorld(world, x, y, z, stack);
+					ItemStackUtils.spawnStackInWorld(world, x, y, z, stack);
 				}
 			}
 
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
-			EnderUtils.playSFX(world, x, y, z, "fire.ignite");
+			boilerplate.common.utils.Utils.playSFX(world, x, y, z, "fire.ignite");
 		}
 		else if (EnchantmentHelper.getSilkTouchModifier(player) && block.canSilkHarvest(world, player, x, y, z, md))
 		{
@@ -192,13 +194,13 @@ public class ItemEnderGlove extends ItemTool
 					}
 					else
 					{
-						EnderUtils.spawnStackInWorld(world, x, y, z, drops);
+						ItemStackUtils.spawnStackInWorld(world, x, y, z, drops);
 					}
 				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
-			EnderUtils.playSFX(world, x, y, z, "mob.endermen.portal");
+			boilerplate.common.utils.Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 		else
 		{
@@ -215,13 +217,13 @@ public class ItemEnderGlove extends ItemTool
 					}
 					else
 					{
-						EnderUtils.spawnStackInWorld(world, x, y, z, drops);
+						ItemStackUtils.spawnStackInWorld(world, x, y, z, drops);
 					}
 				}
 			}
 
 			EnderGlove.proxy.blockSparkleFX(world, x, y, z, 4);
-			EnderUtils.playSFX(world, x, y, z, "mob.endermen.portal");
+			boilerplate.common.utils.Utils.playSFX(world, x, y, z, "mob.endermen.portal");
 		}
 
 		return super.onBlockDestroyed(is, world, block, x, y, z, entityLiving);
@@ -294,8 +296,8 @@ public class ItemEnderGlove extends ItemTool
 			this.yCoord = y;
 			this.zCoord = z;
 
-			EnderUtils.sendMessage(player, "Position set to: [" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "]");
-			EnderUtils.playSFX(world, x, y, z, "random.orb");
+			PlayerUtils.sendMessage(player, "Position set to: [" + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + "]");
+			boilerplate.common.utils.Utils.playSFX(world, x, y, z, "random.orb");
 
 			return true;
 		}
