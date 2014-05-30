@@ -34,7 +34,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import boilerplate.common.entity.EntityMinedBlock;
 import boilerplate.common.utils.EnderUtils;
-import boilerplate.common.utils.InventoryHelper;
+import boilerplate.common.utils.InventoryUtils;
 
 import com.google.common.collect.Sets;
 
@@ -71,7 +71,7 @@ public class ItemEnderGlove extends ItemTool
 		this.setFull3D();
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
-		
+
 		if (Config.hasDurability)
 			this.setMaxDamage(Config.durability);
 	}
@@ -79,7 +79,7 @@ public class ItemEnderGlove extends ItemTool
 	private static ToolMaterial getToolLevel()
 	{
 		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(ConfigItems.itemEnderGlove));
-		
+
 		if (crystalsLevel > 0)
 			return Item.ToolMaterial.EMERALD;
 		else
@@ -120,10 +120,10 @@ public class ItemEnderGlove extends ItemTool
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
 		EntityPlayer player = (EntityPlayer)entityLiving;
-		InventoryEnderChest enderInv = InventoryHelper.getPlayerEnderChest(player);
-		
+		InventoryEnderChest enderInv = InventoryUtils.getPlayerEnderChest(player);
+
 		int md = world.getBlockMetadata(x, y, z);
-		
+
 		if (world.isRemote)
 			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
 
@@ -154,9 +154,9 @@ public class ItemEnderGlove extends ItemTool
 
 			if (!world.isRemote)
 			{
-				if (InventoryHelper.isInvEmpty(enderInv, stack))
+				if (InventoryUtils.isInvEmpty(enderInv, stack))
 				{
-					InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(player), stack);
+					InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), stack);
 					//Utils.spawnBlockEntity(player, block, x, y, z, md, stack);
 				}
 				else
@@ -185,9 +185,9 @@ public class ItemEnderGlove extends ItemTool
 			{
 				if(!world.isRemote)
 				{
-					if (InventoryHelper.isInvEmpty(enderInv, drops))
+					if (InventoryUtils.isInvEmpty(enderInv, drops))
 					{
-						InventoryHelper.addItemStackToInventory(enderInv, drops);
+						InventoryUtils.addItemStackToInventory(enderInv, drops);
 						//Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
 					}
 					else
@@ -208,9 +208,9 @@ public class ItemEnderGlove extends ItemTool
 			{
 				if (!world.isRemote)
 				{
-					if (InventoryHelper.isInvEmpty(enderInv, drops))
+					if (InventoryUtils.isInvEmpty(enderInv, drops))
 					{
-						InventoryHelper.addItemStackToInventory(enderInv, drops);
+						InventoryUtils.addItemStackToInventory(enderInv, drops);
 						//Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
 					}
 					else
@@ -309,11 +309,11 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-		else if (InventoryHelper.isInEnderInventory(player, Item.getItemFromBlock(Blocks.ender_chest)))
+		else if (InventoryUtils.isInEnderInventory(player, Item.getItemFromBlock(Blocks.ender_chest)))
 		{
 			//world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
 			System.out.println(Utils.getRotationMeta(player));
-			//InventoryHelper.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
+			//InventoryUtils.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
 		}*/

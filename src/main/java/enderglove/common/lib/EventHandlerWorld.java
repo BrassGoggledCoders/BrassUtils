@@ -23,7 +23,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import boilerplate.common.utils.EnderUtils;
-import boilerplate.common.utils.InventoryHelper;
+import boilerplate.common.utils.InventoryUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -46,13 +46,13 @@ public class EventHandlerWorld
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 	}
-	
+
 	@SubscribeEvent
 	public void onEnderDragonKilled(LivingDropsEvent event)
 	{
 		if (event.entityLiving instanceof EntityDragon && Config.dragonDrop)
 		{
-			event.entityLiving.dropItem(ConfigItems.itemEnderGlove, 1); 
+			event.entityLiving.dropItem(ConfigItems.itemEnderGlove, 1);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class EventHandlerWorld
 			event.setExpToDrop(affXP);
 		}
 	}
-	
+
 	@SideOnly(Side.SERVER)
 	@SubscribeEvent
 	public void enderTeleport(EnderTeleportEvent event)
@@ -103,7 +103,7 @@ public class EventHandlerWorld
 			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
 			{
 				is.damageItem(2, event.entityPlayer);
-				InventoryHelper.addItemStackToInventory(InventoryHelper.getPlayerEnderChest(event.entityPlayer), is);
+				InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(event.entityPlayer), is);
 				EnderUtils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName() + " was succesfully saved to your Ender Chest!");
 				EnderUtils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
