@@ -22,7 +22,6 @@ import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import boilerplate.common.utils.EnderUtils;
 import boilerplate.common.utils.InventoryUtils;
 import boilerplate.common.utils.PlayerUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

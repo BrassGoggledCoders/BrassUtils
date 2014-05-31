@@ -33,7 +33,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import boilerplate.common.entity.EntityMinedBlock;
-import boilerplate.common.utils.EnderUtils;
 import boilerplate.common.utils.InventoryUtils;
 import boilerplate.common.utils.ItemStackUtils;
 import boilerplate.common.utils.PlayerUtils;
