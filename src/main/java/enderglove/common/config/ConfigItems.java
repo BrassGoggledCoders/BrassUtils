@@ -33,7 +33,7 @@ public class ConfigItems
 	public static void initializeItems()
 	{
 		itemEnderGlove = new ItemEnderGlove().setUnlocalizedName("itemEnderglove");
-		itemEnderPocket = new ItemEnderPocket().setUnlocalizedName("itemEnderPocket");
+		itemEnderPocket = new ItemEnderPocket().setUnlocalizedName("itemEnderpocket");
 	}
 
 	public static void registerItems()
