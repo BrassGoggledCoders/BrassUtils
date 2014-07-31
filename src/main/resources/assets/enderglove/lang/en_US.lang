@@ -14,7 +14,8 @@ tile.endertotem.name=Ender Totem
 tile.endertotemtop.name=Ender Totem Capstone
 #
 # Items
-item.enderglove.name=Ender Glove
+item.itemEnderglove.name=Ender Glove
+item.itemEnderpocket.name=Ender Pocket
 #
 # Tab
 itemGroup.endergloves=EnderGloves
