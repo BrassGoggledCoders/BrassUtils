@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
@@ -43,5 +44,10 @@ public class ItemEnderPocket extends RootItem
 	{
 		list.add(EnumChatFormatting.GREEN + "Shows a random");
 		list.add(EnumChatFormatting.GREEN + "six slots from your ender chest");
+	}
+    @Override
+	public EnumRarity getRarity(ItemStack is)
+	{
+		return EnumRarity.rare;
 	}
 }
