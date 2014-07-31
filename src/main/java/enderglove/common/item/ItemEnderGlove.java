@@ -35,6 +35,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import boilerplate.common.entity.EntityMinedBlock;
+import boilerplate.common.utils.EnderUtils;
 import boilerplate.common.utils.InventoryUtils;
 import boilerplate.common.utils.ItemStackUtils;
 import boilerplate.common.utils.PlayerUtils;
@@ -302,24 +303,21 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-
-		/* TODO:
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
-			world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
+			world.setBlock(x, y + 1, z, Blocks.ender_chest, EnderUtils.getRotationMeta(player), 2);
 			player.inventory.consumeInventoryItem(Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
 		}
-		else if (InventoryUtils.isInEnderInventory(player, Item.getItemFromBlock(Blocks.ender_chest)))
+		else if (InventoryUtils.isInInventory(InventoryUtils.getPlayerEnderChest(player), new ItemStack(Blocks.ender_chest)) != -1)
 		{
-			//world.setBlock(x, y + 1, z, Blocks.ender_chest, Utils.getRotationMeta(player), 2);
-			System.out.println(Utils.getRotationMeta(player));
+			world.setBlock(x, y + 1, z, Blocks.ender_chest, EnderUtils.getRotationMeta(player), 2);
 			//InventoryUtils.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
-		}*/
+		}
 
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
