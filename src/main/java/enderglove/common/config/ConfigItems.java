@@ -12,16 +12,17 @@ package enderglove.common.config;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import enderglove.common.item.ItemEnderGlove;
+import enderglove.common.item.ItemEnderPocket;
 import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance (Johnny Eatmon)
  * Email: surseance@autistici.org
- * 
+ *
  */
 public class ConfigItems
 {
-	public static Item itemEnderGlove;
+	public static Item itemEnderGlove, itemEnderPocket;
 
 	public static void init()
 	{
@@ -31,11 +32,13 @@ public class ConfigItems
 
 	public static void initializeItems()
 	{
-		itemEnderGlove = new ItemEnderGlove().setUnlocalizedName("enderglove");
+		itemEnderGlove = new ItemEnderGlove().setUnlocalizedName("itemEnderglove");
+		itemEnderPocket = new ItemEnderPocket().setUnlocalizedName("itemEnderPocket");
 	}
 
 	public static void registerItems()
 	{
 		GameRegistry.registerItem(itemEnderGlove, "ItemEnderGlove", LibInfo.ID);
+		GameRegistry.registerItem(itemEnderPocket, "ItemEnderPocket", LibInfo.ID);
 	}
 }
