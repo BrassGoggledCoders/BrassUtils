@@ -243,7 +243,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public float getDigSpeed(ItemStack is, Block block, int md)
 	{
-		return 1.3F;
+		return 1.5F;
 	}
 
 	@Override
