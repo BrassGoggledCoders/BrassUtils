@@ -110,6 +110,26 @@ public class EventHandlerWorld
 			}
 		}
 	}
+	@SubscribeEvent
+	public void livingDrops(LivingDropsEvent event)
+	{
+		if(event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
+		{
+		EntityPlayer player = (EntityPlayer) event.source.getEntity();
+		Iterator<EntityItem> iterator = event.drops.iterator();
+		while (iterator.hasNext())
+		{
+			EntityItem entItem = (EntityItem)iterator.next();
+			ItemStack is = entItem.getEntityItem();
+
+			if(is != null)
+			{
+				InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), is);
+				entItem.setDead();
+			}
+		}
+		}
+	}
 
 	//livingDrops
 
