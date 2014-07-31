@@ -27,13 +27,12 @@ public class ItemEnderPocket extends RootItem
 	{
 		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderpocket");
 	}
-	  /**
-     * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
-     * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
+	/**
+     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
-    public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer player, World world, int x, int y, int z, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_)
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-    	player.openGui(EnderGlove.instance, 0, world, x, y, z);
-        return true;
+    	player.openGui(EnderGlove.instance, 0, world, (int)player.posX, (int)player.posY, (int)player.posZ);
+        return stack;
     }
 }
