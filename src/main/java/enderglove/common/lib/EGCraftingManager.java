@@ -11,9 +11,7 @@ package enderglove.common.lib;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.registry.GameRegistry;
-import enderglove.common.config.Config;
 import enderglove.common.config.ConfigItems;
 
 /**

@@ -1,10 +1,12 @@
 package enderglove.common.item;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import boilerplate.common.baseclasses.RootItem;
 import cpw.mods.fml.relauncher.Side;
@@ -35,4 +37,11 @@ public class ItemEnderPocket extends RootItem
     	player.openGui(EnderGlove.instance, 0, world, (int)player.posX, (int)player.posY, (int)player.posZ);
         return stack;
     }
+    @SideOnly(Side.CLIENT)
+	@Override
+	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
+	{
+		list.add(EnumChatFormatting.GREEN + "Shows a random");
+		list.add(EnumChatFormatting.GREEN + "six slots from your ender chest");
+	}
 }
