@@ -15,12 +15,12 @@ public class ContainerEnderPocket extends Container
 		{
 			int var3;
 
-			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 70, 33));
-			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 86, 33));
-			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 92, 33));
-			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 70, 40));
-			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 86, 40));
-			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 92, 40));
+			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 63, 25));
+			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 81, 25));
+			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 99, 25));
+			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 63, 43));
+			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 81, 43));
+			addSlotToContainer(new SlotEnder(InventoryUtils.getPlayerEnderChest(player.player), random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 99, 43));
 
 			//Inv
 			for (var3 = 0; var3 < 3; ++var3)
