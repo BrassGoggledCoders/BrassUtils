@@ -126,7 +126,7 @@ public class ItemEnderGlove extends ItemTool
 		int md = world.getBlockMetadata(x, y, z);
 
 		if (world.isRemote)
-			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md));
+			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, true));
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
 		ItemStack smeltableBlock = ItemStackUtils.getDroppedItemStack(world, player, block, x, y, z, md);

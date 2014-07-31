@@ -34,14 +34,14 @@ public class Corruption {
 		if(event.phase == Phase.END) {
 			EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
 			if(player != null && player.ticksExisted > 300) {
-				ThreadDownloadImageData tex = player.getTextureSkin();
-				BufferedImage img = ReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, tex, Corruption.BUFFERED_IMAGE);
-				if(img != null)
-				if(player.getHeldItem() == new ItemStack(ConfigItems.itemEnderGlove))
-				{
-					for(int i = 0; i < 1 + (player.ticksExisted - 300) / 30; i++)
-						corruptRandomPixel(tex, img);
-				}
+				///ThreadDownloadImageData tex = player.getSkin);
+				//BufferedImage img = ReflectionHelper.getPrivateValue(ThreadDownloadImageData.class, tex, Corruption.BUFFERED_IMAGE);
+				//if(img != null)
+				//if(player.getHeldItem() == new ItemStack(ConfigItems.itemEnderGlove))
+				//{
+				//	for(int i = 0; i < 1 + (player.ticksExisted - 300) / 30; i++)
+				//		corruptRandomPixel(tex, img);
+				//}
 			}
 		}
 	}
