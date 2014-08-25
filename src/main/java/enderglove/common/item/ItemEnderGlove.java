@@ -19,11 +19,9 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryEnderChest;
@@ -33,9 +31,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import boilerplate.common.entity.EntityMinedBlock;
-import boilerplate.common.utils.EnderUtils;
 import boilerplate.common.utils.InventoryUtils;
 import boilerplate.common.utils.ItemStackUtils;
 import boilerplate.common.utils.PlayerUtils;
@@ -306,19 +304,39 @@ public class ItemEnderGlove extends ItemTool
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
 		{
-			world.setBlock(x, y + 1, z, Blocks.ender_chest, EnderUtils.getRotationMeta(player), 2);
+			world.setBlock(x, y + 1, z, Blocks.ender_chest, getRotationMeta(player), 2);
 			player.inventory.consumeInventoryItem(Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
 		}
 		else if (InventoryUtils.isInInventory(InventoryUtils.getPlayerEnderChest(player), new ItemStack(Blocks.ender_chest)) != -1)
 		{
-			world.setBlock(x, y + 1, z, Blocks.ender_chest, EnderUtils.getRotationMeta(player), 2);
+			world.setBlock(x, y + 1, z, Blocks.ender_chest, getRotationMeta(player), 2);
 			//InventoryUtils.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
 		}
 
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
+	}
+	
+	public static int getRotationMeta(EntityLivingBase entLiving)
+	{
+		int md = 0;
+		int rot = MathHelper.floor_double((entLiving.rotationYaw * 4.0F) / 360.0F + 0.5D) & 3;
+
+		switch(rot)
+		{
+			case 0:
+				md = 2;
+			case 1:
+				md = 5;
+			case 2:
+				md = 3;
+			case 3:
+				md = 4;
+		}
+
+		return md;
 	}
 }
