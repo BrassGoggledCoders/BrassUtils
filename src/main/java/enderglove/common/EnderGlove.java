@@ -49,14 +49,12 @@ public class EnderGlove
 	@Instance(LibInfo.ID)
 	public static EnderGlove instance;
 
-	public static CreativeTabs tabSC2 = new CreativeTabEnderglove(CreativeTabs.getNextID(), "enderglove", InitItems.itemEnderGlove);
+	public static CreativeTabs tabEG = new CreativeTabEnderglove(CreativeTabs.getNextID(), "enderglove", Items.ender_pearl);
 	
 	public EnderGloveWorldGenerator worldGen;
 	public EventHandlerEntity entityEventHandler;
 	public EventHandlerWorld worldEventHandler;
 	public File directory;
-
-	// public static CreativeTabs tabEG = new CreativeTabEG(CreativeTabs.getNextID(), "enderglove");
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)

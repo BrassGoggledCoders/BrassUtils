@@ -49,13 +49,14 @@ public class EventHandlerEntity
 
 			if(craft.getStackInSlot(randomSlot) != null)
 			{
-				ItemStack result = new ItemStack(craft.getStackInSlot(randomSlot).copy().getItem(), 2);
+				ItemStack stack = craft.getStackInSlot(randomSlot);
 
-				if(this.random.nextInt(Config.artisanBonusChance) == 0)
+				if(this.random.nextInt(Config.artisanBonusChance) == 0 && stack.stackSize < stack.getMaxStackSize())
 				{
 					// if (!event.player.worldObj.isRemote)
-					craft.setInventorySlotContents(randomSlot, result);
-					heldItem.damageItem(1, event.player);
+					//craft.setInventorySlotContents(randomSlot, result);
+					craft.decrStackSize(randomSlot, -1);
+					//heldItem.damageItem(1, event.player);
 				}
 			}
 		}

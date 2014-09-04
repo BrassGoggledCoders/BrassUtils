@@ -29,7 +29,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class Corruption
 {
-
 	Random rand = new Random();
 	// ThreadDownloadImageData
 	public static final String[] TEXTURE_UPLOADED = new String[] { "textureUploaded", "field_110559_g", "i" };

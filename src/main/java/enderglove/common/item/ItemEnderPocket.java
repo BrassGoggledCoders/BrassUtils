@@ -11,7 +11,6 @@ package enderglove.common.item;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -33,7 +32,7 @@ public class ItemEnderPocket extends RootItem
 	{
 		super();
 		this.setFull3D();
-		this.setCreativeTab(CreativeTabs.tabTools);
+		this.setCreativeTab(EnderGlove.tabEG);
 		this.setNoRepair();
 	}
 

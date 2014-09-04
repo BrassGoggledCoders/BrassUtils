@@ -15,7 +15,6 @@ import java.util.Set;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneOre;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -67,7 +66,7 @@ public class ItemEnderGlove extends ItemTool
 	{
 		super(1.0F, getToolLevel(), blocksEffectiveAgainst);
 		this.setFull3D();
-		this.setCreativeTab(CreativeTabs.tabTools);
+		this.setCreativeTab(EnderGlove.tabEG);
 		this.setNoRepair();
 
 		if(Config.hasDurability)
@@ -243,7 +242,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public float getDigSpeed(ItemStack is, Block block, int md)
 	{
-		return 1.5F;
+		return 2.0F;
 	}
 
 	@Override

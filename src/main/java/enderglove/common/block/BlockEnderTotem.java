@@ -11,11 +11,11 @@ package enderglove.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import enderglove.common.EnderGlove;
 import enderglove.common.lib.LibInfo;
 
 /**
@@ -36,7 +36,7 @@ public class BlockEnderTotem extends Block
 		super(Material.rock);
 		this.setHardness(3.5F);
 		this.setResistance(6.0F);
-		this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setCreativeTab(EnderGlove.tabEG);
 	}
 
 	@Override
