@@ -18,4 +18,4 @@ item.itemEnderglove.name=Ender Glove
 item.itemEnderpocket.name=Ender Pocket
 #
 # Tab
-itemGroup.endergloves=EnderGloves
+itemGroup.enderglove=EnderGlove

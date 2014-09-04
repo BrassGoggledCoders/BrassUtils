@@ -10,6 +10,7 @@ package enderglove.common;
 
 import java.io.File;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -19,6 +20,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -29,6 +31,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import enderglove.client.gui.GuiHandler;
 import enderglove.common.config.Config;
 import enderglove.common.gen.EnderGloveWorldGenerator;
+import enderglove.common.lib.CreativeTabEnderglove;
 import enderglove.common.lib.EventHandlerEntity;
 import enderglove.common.lib.EventHandlerWorld;
 import enderglove.common.lib.LibInfo;
@@ -43,9 +46,11 @@ public class EnderGlove
 	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
 	public static CommonProxy proxy;
 
-	@Mod.Instance(LibInfo.ID)
+	@Instance(LibInfo.ID)
 	public static EnderGlove instance;
 
+	public static CreativeTabs tabSC2 = new CreativeTabEnderglove(CreativeTabs.getNextID(), "enderglove", InitItems.itemEnderGlove);
+	
 	public EnderGloveWorldGenerator worldGen;
 	public EventHandlerEntity entityEventHandler;
 	public EventHandlerWorld worldEventHandler;

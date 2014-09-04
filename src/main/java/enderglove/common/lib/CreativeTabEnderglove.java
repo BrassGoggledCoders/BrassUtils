@@ -8,27 +8,17 @@
  */
 package enderglove.common.lib;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import enderglove.common.InitItems;
+import boilerplate.common.baseclasses.CreativeTabBase;
 
 /**
  * @author Surseance
  * 
  */
-public class CreativeTabEnderglove extends CreativeTabs
+public class CreativeTabEnderglove extends CreativeTabBase
 {
-	public CreativeTabEnderglove(int id, String name)
+	public CreativeTabEnderglove(int id, String name, Item icon)
 	{
-		super(id, name);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public Item getTabIconItem()
-	{
-		return InitItems.itemEnderGlove;
+		super(id, name, icon);
 	}
 }
