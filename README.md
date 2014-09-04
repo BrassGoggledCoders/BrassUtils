@@ -24,7 +24,16 @@ _Ex-Coders:_
 
 Based on [Geartooth's suggestion](http://www.minecraftforum.net/topic/1299856-ender-gloves/) on the Minecraft Forums, this mod was originally created for the 4th Modjam by Surseance.
 
+***
+
 Email: brasscoders@gmail.com <br/>
 Twitter: www.twitter.com/brasscoders <br/>
 Skype: arona.jones <br/>
 
+***
+
+Want to support us?
+
+Simply using the adfly links to download the mod supports the team in creating more awesome features. Want to support more directly?
+
+http://www.patreon.com/BrassGoggledCoders
