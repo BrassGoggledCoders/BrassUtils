@@ -11,6 +11,7 @@ package enderglove.common;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -104,10 +105,14 @@ public class EnderGlove
 		proxy.registerDisplayInformation();
 		InitEntities.init();
 
-		if(Config.recipe)
+		if(Config.recipeEnderGlove)
 		{
 			GameRegistry.addRecipe(new ItemStack(InitItems.itemEnderGlove), new Object[] { "EEE", "LNL", "LLL", 'L', Items.leather, 'N', Items.nether_star, 'E',
 				Items.ender_eye });
+		}
+		if(Config.recipeEnderPocket)
+		{
+			GameRegistry.addRecipe(new ItemStack(InitItems.itemEnderPocket), new Object[] { "XXX", "XYX", "XXX", 'X', Blocks.obsidian, 'Y', Blocks.ender_chest});
 		}
 
 		if(Config.chestGen) // TODO: Add this as a method in the Config class

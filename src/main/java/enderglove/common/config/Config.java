@@ -62,7 +62,8 @@ public class Config
 	public static boolean totemGen;
 	public static boolean hasDurability;
 	public static boolean chestGen;
-	public static boolean recipe;
+	public static boolean recipeEnderGlove;
+	public static boolean recipeEnderPocket;
 	public static int durability;
 
 	public static void initialize(File file)
@@ -84,7 +85,8 @@ public class Config
 		totemGen = config.get("general", "Ender Totem Generation (Kinda Buggy Right Now)", false).getBoolean(false);
 		hasDurability = config.get("general", "Ender Glove Has Durability", true).getBoolean(true);
 		chestGen = config.get("general", "Ender Glove generates in Stronghold chests", true).getBoolean(true);
-		recipe = config.get("general", "Ender Glove Recipe", true).getBoolean(true);
+		recipeEnderGlove = config.get("general", "Ender Glove Recipe", true).getBoolean(true);
+		recipeEnderPocket = config.get("general", "Ender Pocket Recipe", true).getBoolean(true);
 
 		durability = config.get("general", "Ender Glove Durability Value", 350).getInt();
 
