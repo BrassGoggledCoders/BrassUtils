@@ -1,11 +1,10 @@
 /**
- * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * File created @[May 14, 2014, 8:38:46 PM]
  */
 package enderglove.common.item;
 
@@ -43,17 +42,14 @@ import com.google.common.collect.Sets;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import enderglove.common.EnderGlove;
+import enderglove.common.InitItems;
 import enderglove.common.config.Config;
-import enderglove.common.config.ConfigItems;
 import enderglove.common.lib.LibInfo;
 import enderglove.common.lib.Utils;
 
 /**
- * This class is the whole point of this mod.
- *
- * @author Surseance (Johnny Eatmon)
- * Email: surseance@autistici.org
- *
+ * @author Surseance
+ * 
  */
 public class ItemEnderGlove extends ItemTool
 {
@@ -74,20 +70,21 @@ public class ItemEnderGlove extends ItemTool
 		this.setCreativeTab(CreativeTabs.tabTools);
 		this.setNoRepair();
 
-		if (Config.hasDurability)
+		if(Config.hasDurability)
 			this.setMaxDamage(Config.durability);
 	}
 
 	private static ToolMaterial getToolLevel()
 	{
-		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(ConfigItems.itemEnderGlove));
+		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(InitItems.itemEnderGlove));
 
-		if (crystalsLevel > 0)
+		if(crystalsLevel > 0)
 			return Item.ToolMaterial.EMERALD;
 		else
 			return Item.ToolMaterial.IRON;
 	}
 
+	@SuppressWarnings("all")
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack is, EntityPlayer player, List list, boolean flag)
@@ -99,11 +96,11 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker)
 	{
-		if (attacker instanceof EntityPlayer)
+		if(attacker instanceof EntityPlayer)
 		{
-			EntityPlayer player = (EntityPlayer)attacker;
+			EntityPlayer player = (EntityPlayer) attacker;
 
-			if ((player.capabilities.isCreativeMode) && EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is) > 0)
+			if((player.capabilities.isCreativeMode) && (EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is) > 0))
 			{
 				target.moveEntity(this.xCoord, this.yCoord, this.zCoord);
 				target.setPosition(this.xCoord, this.yCoord, this.zCoord);
@@ -111,36 +108,38 @@ public class ItemEnderGlove extends ItemTool
 				// EnderGlove.proxy.blockSparkleFX(player.worldObj,
 				// (int)target.prevPosX, (int)target.prevPosY,
 				// (int)target.prevPosZ, 4);
-				boilerplate.common.utils.Utils.playSFX(player.worldObj, (int)target.prevPosX, (int)target.prevPosY, (int)target.prevPosZ, "mob.endermen.portal");
+				boilerplate.common.utils.Utils.playSFX(player.worldObj, (int) target.prevPosX, (int) target.prevPosY, (int) target.prevPosZ,
+						"mob.endermen.portal");
 			}
 		}
 
 		return false;
 	}
 
-	@Override // TODO: Clean up this method. It needs halp.
+	@Override
+	// TODO: Clean up this method. It needs halp.
 	public boolean onBlockDestroyed(ItemStack is, World world, Block block, int x, int y, int z, EntityLivingBase entityLiving)
 	{
-		EntityPlayer player = (EntityPlayer)entityLiving;
+		EntityPlayer player = (EntityPlayer) entityLiving;
 		InventoryEnderChest enderInv = InventoryUtils.getPlayerEnderChest(player);
 
 		int md = world.getBlockMetadata(x, y, z);
 
-		if (world.isRemote)
+		if(world.isRemote)
 			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, true));
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
 		ItemStack smeltableBlock = ItemStackUtils.getDroppedItemStack(world, player, block, x, y, z, md);
 
-		if (flameAmount > 0 && ItemStackUtils.isSmeltable(smeltableBlock))
+		if((flameAmount > 0) && ItemStackUtils.isSmeltable(smeltableBlock))
 		{
 			ItemStack stack = FurnaceRecipes.smelting().getSmeltingResult(smeltableBlock).copy();
 
-			byte level = (byte)EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, is);
+			byte level = (byte) EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, is);
 
-			if (block.getLocalizedName().contains("Ore"))
+			if(block.getLocalizedName().contains("Ore"))
 			{
-				switch (level)
+				switch(level)
 				{
 					case 1:
 						stack.stackSize += world.rand.nextInt(2);
@@ -149,17 +148,17 @@ public class ItemEnderGlove extends ItemTool
 						stack.stackSize += 1;
 						break;
 					case 3:
-						stack.stackSize += (1 + world.rand.nextInt(7) / 6);
+						stack.stackSize += (1 + (world.rand.nextInt(7) / 6));
 						break;
 				}
 			}
 
-			if (!world.isRemote)
+			if(!world.isRemote)
 			{
-				if (InventoryUtils.isInvEmpty(enderInv, stack))
+				if(InventoryUtils.isInvEmpty(enderInv, stack))
 				{
 					InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), stack);
-					//Utils.spawnBlockEntity(player, block, x, y, z, md, stack);
+					// Utils.spawnBlockEntity(player, block, x, y, z, md, stack);
 				}
 				else
 				{
@@ -170,27 +169,27 @@ public class ItemEnderGlove extends ItemTool
 			EnderGlove.proxy.blockFlameFX(world, x, y, z, 4);
 			boilerplate.common.utils.Utils.playSFX(world, x, y, z, "fire.ignite");
 		}
-		else if (EnchantmentHelper.getSilkTouchModifier(player) && block.canSilkHarvest(world, player, x, y, z, md))
+		else if(EnchantmentHelper.getSilkTouchModifier(player) && block.canSilkHarvest(world, player, x, y, z, md))
 		{
 			ArrayList<ItemStack> items = new ArrayList<ItemStack>();
 			ItemStack stack = null;
 
-			if (block instanceof BlockRedstoneOre)
+			if(block instanceof BlockRedstoneOre)
 				stack = Utils.createStackedBlock();
 			else
 				stack = Utils.createStackedBlock(block, md);
 
-			if (stack != null)
+			if(stack != null)
 				items.add(stack);
 
-			for (ItemStack drops : items)
+			for(ItemStack drops : items)
 			{
 				if(!world.isRemote)
 				{
-					if (InventoryUtils.isInvEmpty(enderInv, drops))
+					if(InventoryUtils.isInvEmpty(enderInv, drops))
 					{
 						InventoryUtils.addItemStackToInventory(enderInv, drops);
-						//Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
+						// Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
 					}
 					else
 					{
@@ -206,14 +205,14 @@ public class ItemEnderGlove extends ItemTool
 		{
 			ArrayList<ItemStack> items = block.getDrops(world, x, y, z, md, EnchantmentHelper.getFortuneModifier(player));
 
-			for (ItemStack drops : items)
+			for(ItemStack drops : items)
 			{
-				if (!world.isRemote)
+				if(!world.isRemote)
 				{
-					if (InventoryUtils.isInvEmpty(enderInv, drops))
+					if(InventoryUtils.isInvEmpty(enderInv, drops))
 					{
 						InventoryUtils.addItemStackToInventory(enderInv, drops);
-						//Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
+						// Utils.spawnBlockEntity(player, block, x, y, z, md, drops);
 					}
 					else
 					{
@@ -232,7 +231,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public int getItemEnchantability()
 	{
-		return toolMaterial.getEnchantability();
+		return this.toolMaterial.getEnchantability();
 	}
 
 	@Override
@@ -270,12 +269,12 @@ public class ItemEnderGlove extends ItemTool
 	{
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
 
-		if (teleAmount > 0)
+		if(teleAmount > 0)
 		{
-			world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / ((itemRand.nextFloat() * 0.4F) + 0.8F));
 			is.damageItem(1, player);
 
-			if (!world.isRemote)
+			if(!world.isRemote)
 				world.spawnEntityInWorld(new EntityEnderPearl(world, player));
 
 			// player.mountEntity(pearl); Fun, but broken, and not really a
@@ -290,7 +289,7 @@ public class ItemEnderGlove extends ItemTool
 	{
 		int creativeAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is);
 
-		if ((creativeAmount > 0) && (player.isSneaking()) && (player.capabilities.isCreativeMode))
+		if((creativeAmount > 0) && (player.isSneaking()) && (player.capabilities.isCreativeMode))
 		{
 			this.xCoord = x;
 			this.yCoord = y;
@@ -302,28 +301,28 @@ public class ItemEnderGlove extends ItemTool
 			return true;
 		}
 		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
-		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && teleAmount == 0)
+		if(player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && (teleAmount == 0))
 		{
 			world.setBlock(x, y + 1, z, Blocks.ender_chest, getRotationMeta(player), 2);
 			player.inventory.consumeInventoryItem(Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
 		}
-		else if (InventoryUtils.isInInventory(InventoryUtils.getPlayerEnderChest(player), new ItemStack(Blocks.ender_chest)) != -1)
+		else if(InventoryUtils.isInInventory(InventoryUtils.getPlayerEnderChest(player), new ItemStack(Blocks.ender_chest)) != -1)
 		{
 			world.setBlock(x, y + 1, z, Blocks.ender_chest, getRotationMeta(player), 2);
-			//InventoryUtils.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
+			// InventoryUtils.consumeEnderInventoryItem(player, Item.getItemFromBlock(Blocks.ender_chest));
 
 			return true;
 		}
 
 		return super.onItemUse(is, player, world, x, y, z, md, hitX, hitY, hitZ);
 	}
-	
+
 	public static int getRotationMeta(EntityLivingBase entLiving)
 	{
 		int md = 0;
-		int rot = MathHelper.floor_double((entLiving.rotationYaw * 4.0F) / 360.0F + 0.5D) & 3;
+		int rot = MathHelper.floor_double(((entLiving.rotationYaw * 4.0F) / 360.0F) + 0.5D) & 3;
 
 		switch(rot)
 		{

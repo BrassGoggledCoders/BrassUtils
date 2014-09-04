@@ -1,13 +1,12 @@
 /**
- * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * File created @[May 14, 2014, 8:20:10 PM]
  */
-package enderglove.common.config;
+package enderglove.common;
 
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -16,11 +15,10 @@ import enderglove.common.item.ItemEnderPocket;
 import enderglove.common.lib.LibInfo;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * Email: surseance@autistici.org
- *
+ * @author Surseance
+ * 
  */
-public class ConfigItems
+public class InitItems
 {
 	public static Item itemEnderGlove, itemEnderPocket;
 

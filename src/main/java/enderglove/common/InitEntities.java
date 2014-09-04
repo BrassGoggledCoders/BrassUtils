@@ -8,23 +8,18 @@
  */
 package enderglove.common;
 
-import net.minecraft.world.World;
+import boilerplate.common.entity.EntityMinedBlock;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import enderglove.common.config.Config;
 
 /**
  * @author Surseance
  * 
  */
-public class CommonProxy
+public class InitEntities
 {
-	public void registerDisplayInformation()
+	public static void init()
 	{
-	}
-
-	public void blockSparkleFX(World world, int x, int y, int z, int count)
-	{
-	}
-
-	public void blockFlameFX(World world, int x, int y, int z, int count)
-	{
+		EntityRegistry.registerModEntity(EntityMinedBlock.class, "MinedBlock", Config.entMinedBlockId, EnderGlove.instance, 160, 1, true);
 	}
 }

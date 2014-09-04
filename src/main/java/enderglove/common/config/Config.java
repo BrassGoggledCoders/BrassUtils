@@ -1,11 +1,10 @@
 /**
- * This class was created by <Surseance> as a part of the EnderGlove mod for
- * Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the COPYING.WTFPL
- * file for more details.
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * File created @[May 34, 2034, 8:30:36 PM]
  */
 package enderglove.common.config;
 
@@ -24,9 +23,8 @@ import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * Email: surseance@autistici.org
- *
+ * @author Surseance
+ * 
  */
 public class Config
 {
@@ -122,10 +120,10 @@ public class Config
 		enchFlameTouchId = enchFla.getInt();
 		Enchantment.addToBookList(enchFlameTouch);
 
-		/*Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++);
-		enchEnderField = new EnchantmentEnderField(enchEField.getInt(), 2);
-		enchEFieldId = enchEField.getInt();
-		Enchantment.addToBookList(enchEnderField);*/
+		/*
+		 * Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++); enchEnderField = new EnchantmentEnderField(enchEField.getInt(), 2);
+		 * enchEFieldId = enchEField.getInt(); Enchantment.addToBookList(enchEnderField);
+		 */
 
 		Property enchMagnet = config.get("Enchantments", "ench_magnetism", enchIndex++);
 		enchMagnetism = new EnchantmentMagnetism(enchMagnet.getInt(), 2);
@@ -147,7 +145,9 @@ public class Config
 		line2 = rline2.toString();
 		Property rline3 = config.get("Recipe", "line_3", "LNL");
 		line3 = rline3.toString();
-        config.addCustomCategoryComment("Recipe", "Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
+		config.addCustomCategoryComment(
+				"Recipe",
+				"Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
 
 		config.save();
 	}

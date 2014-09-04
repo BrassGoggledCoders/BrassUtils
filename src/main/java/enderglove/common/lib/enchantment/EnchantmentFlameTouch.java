@@ -1,11 +1,10 @@
 /**
- * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * File created @[May 16, 2014, 7:27:41 PM]
  */
 package enderglove.common.lib.enchantment;
 
@@ -16,26 +15,26 @@ import net.minecraft.item.ItemStack;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance
  * 
  */
 public class EnchantmentFlameTouch extends Enchantment
 {
-	public EnchantmentFlameTouch( int id,  int rarity)
+	public EnchantmentFlameTouch(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		setName("flametouch");
+		this.setName("flametouch");
 		silkTouch.canApplyTogether(this);
 	}
 
 	@Override
-	public int getMinEnchantability( int level)
+	public int getMinEnchantability(int level)
 	{
 		return 21;
 	}
 
 	@Override
-	public int getMaxEnchantability( int level)
+	public int getMaxEnchantability(int level)
 	{
 		return super.getMinEnchantability(level) + 50;
 	}
@@ -47,23 +46,23 @@ public class EnchantmentFlameTouch extends Enchantment
 	}
 
 	@Override
-	public boolean canApply( ItemStack is)
+	public boolean canApply(ItemStack is)
 	{
-		return is.getItem() instanceof ItemEnderGlove
-				|| is.getItem() instanceof ItemBook;
+		return (is.getItem() instanceof ItemEnderGlove)
+				|| (is.getItem() instanceof ItemBook);
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable( ItemStack is)
+	public boolean canApplyAtEnchantingTable(ItemStack is)
 	{
-		return canApply(is);
+		return this.canApply(is);
 	}
 
 	@Override
-	public boolean canApplyTogether( Enchantment enchantment)
+	public boolean canApplyTogether(Enchantment enchantment)
 	{
-		if (enchantment.effectId == Enchantment.silkTouch.effectId)
-				//|| enchantment.effectId == Enchantment.fortune.effectId)
+		if(enchantment.effectId == Enchantment.silkTouch.effectId)
+		// || enchantment.effectId == Enchantment.fortune.effectId)
 		{
 			return false;
 		}

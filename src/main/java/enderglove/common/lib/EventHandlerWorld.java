@@ -1,11 +1,10 @@
 /**
- * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * File created @[May 14, 2014, 9:26:54 PM]
  */
 package enderglove.common.lib;
 
@@ -27,14 +26,13 @@ import boilerplate.common.utils.PlayerUtils;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import enderglove.common.InitItems;
 import enderglove.common.config.Config;
-import enderglove.common.config.ConfigItems;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon)
- * Email: surseance@autistici.org
- *
+ * @author Surseance
+ * 
  */
 public class EventHandlerWorld
 {
@@ -43,16 +41,16 @@ public class EventHandlerWorld
 	{
 		EntityPlayer player = event.harvester;
 
-		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
+		if((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
 	}
 
 	@SubscribeEvent
 	public void onEnderDragonKilled(LivingDropsEvent event)
 	{
-		if (event.entityLiving instanceof EntityDragon && Config.dragonDrop)
+		if((event.entityLiving instanceof EntityDragon) && Config.dragonDrop)
 		{
-			event.entityLiving.dropItem(ConfigItems.itemEnderGlove, 1);
+			event.entityLiving.dropItem(InitItems.itemEnderGlove, 1);
 		}
 	}
 
@@ -62,10 +60,10 @@ public class EventHandlerWorld
 		EntityPlayer player = event.getPlayer();
 		int affAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchAffluencyId, player.inventory.getCurrentItem());
 
-		if (event.getExpToDrop() > 0)
+		if(event.getExpToDrop() > 0)
 		{
 			int XP = event.getExpToDrop();
-			int affXP = XP + affAmount * affAmount / 2;
+			int affXP = XP + ((affAmount * affAmount) / 2);
 
 			event.setExpToDrop(affXP);
 		}
@@ -75,16 +73,16 @@ public class EventHandlerWorld
 	@SubscribeEvent
 	public void enderTeleport(EnderTeleportEvent event)
 	{
-		if (!event.entityLiving.worldObj.isRemote)
+		if(!event.entityLiving.worldObj.isRemote)
 		{
-			if (event.entityLiving instanceof EntityPlayer)
+			if(event.entityLiving instanceof EntityPlayer)
 			{
-				EntityPlayer player = (EntityPlayer)event.entityLiving;
+				EntityPlayer player = (EntityPlayer) event.entityLiving;
 				int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, player.inventory.getCurrentItem());
 
-				if ((Utils.isCarryingGlove(player)) && (teleAmount > 0))
+				if((Utils.isCarryingGlove(player)) && (teleAmount > 0))
 				{
-					if (!event.entityLiving.worldObj.isRemote)
+					if(!event.entityLiving.worldObj.isRemote)
 						event.attackDamage = 10.0F;
 				}
 			}
@@ -95,44 +93,49 @@ public class EventHandlerWorld
 	public void playerDrops(PlayerDropsEvent event)
 	{
 		Iterator<EntityItem> iterator = event.drops.iterator();
-		while (iterator.hasNext())
+		while(iterator.hasNext())
 		{
-			EntityItem entItem = (EntityItem)iterator.next();
+			EntityItem entItem = iterator.next();
 			ItemStack is = entItem.getEntityItem();
 
-			if ((is != null) && (is.getItem() instanceof ItemEnderGlove))
+			if((is != null) && (is.getItem() instanceof ItemEnderGlove))
 			{
 				is.damageItem(2, event.entityPlayer);
 				InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(event.entityPlayer), is);
-				PlayerUtils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName() + " was succesfully saved to your Ender Chest!");
-				boilerplate.common.utils.Utils.playSFX(event.entityPlayer.worldObj, (int)entItem.prevPosX, (int)entItem.prevPosY, (int)entItem.prevPosZ, "mob.endermen.portal");
+				PlayerUtils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName()
+						+ " was succesfully saved to your Ender Chest!");
+				boilerplate.common.utils.Utils.playSFX(event.entityPlayer.worldObj, (int) entItem.prevPosX, (int) entItem.prevPosY, (int) entItem.prevPosZ,
+						"mob.endermen.portal");
 				entItem.setDead();
 			}
 		}
 	}
+
 	@SubscribeEvent
 	public void livingDrops(LivingDropsEvent event)
 	{
-		if(event.source.getEntity() != null && event.source.getEntity() instanceof EntityPlayer)
+		if((event.source.getEntity() != null) && (event.source.getEntity() instanceof EntityPlayer))
 		{
-		EntityPlayer player = (EntityPlayer) event.source.getEntity();
-		Iterator<EntityItem> iterator = event.drops.iterator();
-		while (iterator.hasNext())
-		{
-			EntityItem entItem = (EntityItem)iterator.next();
-			ItemStack is = entItem.getEntityItem();
-
-			if(is != null)
+			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			Iterator<EntityItem> iterator = event.drops.iterator();
+			while(iterator.hasNext())
 			{
-				InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), is);
-				entItem.setDead();
+				EntityItem entItem = iterator.next();
+				ItemStack is = entItem.getEntityItem();
+
+				if(is != null)
+				{
+					InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), is);
+					entItem.setDead();
+				}
 			}
-		}
 		}
 	}
 
-	//livingDrops
+	// livingDrops
 
-	//@SubscribeEvent
-	public void livingUpdate(LivingEvent.LivingUpdateEvent event) {}
+	// @SubscribeEvent
+	public void livingUpdate(LivingEvent.LivingUpdateEvent event)
+	{
+	}
 }

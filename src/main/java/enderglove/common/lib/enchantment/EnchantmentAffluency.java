@@ -1,11 +1,10 @@
 /**
- * This class was created by <Surseance> as a part of the
- * EnderGlove mod for Minecraft.
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
  *
- * This mod is registered under the WTFPL v2.0. Please read the
- * COPYING.WTFPL file for more details.
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
- * File created @[May 14, 2014, 8:57:04 PM]
  */
 package enderglove.common.lib.enchantment;
 
@@ -16,25 +15,25 @@ import net.minecraft.item.ItemStack;
 import enderglove.common.item.ItemEnderGlove;
 
 /**
- * @author Surseance (Johnny Eatmon) <jmaeatmon@gmail.com>
+ * @author Surseance
  * 
  */
 public class EnchantmentAffluency extends Enchantment
 {
-	public EnchantmentAffluency( int id,  int rarity)
+	public EnchantmentAffluency(int id, int rarity)
 	{
 		super(id, rarity, EnumEnchantmentType.all);
-		setName("affluency");
+		this.setName("affluency");
 	}
 
 	@Override
-	public int getMinEnchantability( int level)
+	public int getMinEnchantability(int level)
 	{
-		return 5 + 11 * (level - 1);
+		return 5 + (11 * (level - 1));
 	}
 
 	@Override
-	public int getMaxEnchantability( int level)
+	public int getMaxEnchantability(int level)
 	{
 		return super.getMinEnchantability(level) + 50;
 	}
@@ -46,20 +45,20 @@ public class EnchantmentAffluency extends Enchantment
 	}
 
 	@Override
-	public boolean canApply( ItemStack is)
+	public boolean canApply(ItemStack is)
 	{
-		return is.getItem() instanceof ItemEnderGlove
-				|| is.getItem() instanceof ItemBook;
+		return (is.getItem() instanceof ItemEnderGlove)
+				|| (is.getItem() instanceof ItemBook);
 	}
 
 	@Override
-	public boolean canApplyAtEnchantingTable( ItemStack is)
+	public boolean canApplyAtEnchantingTable(ItemStack is)
 	{
-		return canApply(is);
+		return this.canApply(is);
 	}
 
 	@Override
-	public boolean canApplyTogether( Enchantment enchantment)
+	public boolean canApplyTogether(Enchantment enchantment)
 	{
 		return super.canApplyTogether(enchantment);
 	}

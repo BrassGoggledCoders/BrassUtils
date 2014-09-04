@@ -1,3 +1,11 @@
+/**
+ * This class was created by BrassGoggledCoders modding team.
+ * This class is available as part of the EnderGloves Mod for Minecraft.
+ *
+ * EnderGloves is open-source and is distributed under the MMPL v1.0 License.
+ * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
+ *
+ */
 package enderglove.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -8,6 +16,10 @@ import org.lwjgl.opengl.GL11;
 
 import enderglove.common.lib.LibInfo;
 
+/**
+ * @author Surseance
+ *
+ */
 public class GuiEnderPocket extends GuiContainer
 {
 	private static ResourceLocation guitexture = new ResourceLocation(LibInfo.PREFIX + "textures/gui/enderpocket.png");
@@ -23,9 +35,9 @@ public class GuiEnderPocket extends GuiContainer
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-		mc.renderEngine.bindTexture(guitexture);
-		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		this.mc.renderEngine.bindTexture(guitexture);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
-		this.drawTexturedModalRect(guiLeft + 12, guiTop + 64, 176, 56, 16, 1);
+		this.drawTexturedModalRect(this.guiLeft + 12, this.guiTop + 64, 176, 56, 16, 1);
 	}
 }
