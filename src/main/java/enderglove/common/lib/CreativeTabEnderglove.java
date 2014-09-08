@@ -8,17 +8,23 @@
  */
 package enderglove.common.lib;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import boilerplate.common.baseclasses.CreativeTabBase;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class CreativeTabEnderglove extends CreativeTabBase
 {
-	public CreativeTabEnderglove(int id, String name, Item icon)
+	public CreativeTabEnderglove(int id, String name)
 	{
-		super(id, name, icon);
+		super(id, name);
+	}
+	@Override
+	public Item getTabIconItem()
+	{
+		return Items.ender_eye;
 	}
 }

@@ -39,7 +39,7 @@ import enderglove.common.lib.LibInfo;
 
 /**
  * @author Surseance
- * 
+ *
  */
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION, dependencies = "required-after:boilerplate")
 public class EnderGlove
@@ -50,8 +50,8 @@ public class EnderGlove
 	@Instance(LibInfo.ID)
 	public static EnderGlove instance;
 
-	public static CreativeTabs tabEG = new CreativeTabEnderglove(CreativeTabs.getNextID(), "enderglove", Items.ender_pearl);
-	
+	public static CreativeTabs tabEG = new CreativeTabEnderglove(CreativeTabs.getNextID(), "enderglove");
+
 	public EnderGloveWorldGenerator worldGen;
 	public EventHandlerEntity entityEventHandler;
 	public EventHandlerWorld worldEventHandler;
