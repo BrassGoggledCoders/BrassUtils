@@ -19,12 +19,13 @@ import enderglove.common.lib.enchantment.EnchantmentCreative;
 import enderglove.common.lib.enchantment.EnchantmentCrystals;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentMagnetism;
+import enderglove.common.lib.enchantment.EnchantmentProspector;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class Config
 {
@@ -44,6 +45,7 @@ public class Config
 	public static Enchantment enchEnderField = null;
 	public static Enchantment enchMagnetism = null;
 	public static Enchantment enchCrystals = null;
+	public static Enchantment enchProspector = null;
 
 	public static int enchAffluencyId;
 	public static int enchArtisanId;
@@ -54,6 +56,7 @@ public class Config
 	public static int enchEFieldId;
 	public static int enchMagnetismId;
 	public static int enchCrystalsId;
+	public static int enchProspectorId;
 
 	public static int entMinedBlockId;
 
@@ -136,6 +139,11 @@ public class Config
 		enchCrystals = new EnchantmentCrystals(enchCrystal.getInt(), 2);
 		enchCrystalsId = enchCrystal.getInt();
 		Enchantment.addToBookList(enchCrystals);
+
+		Property enchProspect = config.get("Enchantments", "ench_prospector", enchIndex++);
+		enchProspector = new EnchantmentProspector(enchProspect.getInt(), 2);
+		enchProspectorId = enchProspect.getInt();
+		Enchantment.addToBookList(enchProspector);
 
 		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 

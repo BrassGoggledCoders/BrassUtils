@@ -9,11 +9,14 @@
 package enderglove.common.lib;
 
 import java.util.Iterator;
+import java.util.Random;
 
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
@@ -32,7 +35,7 @@ import enderglove.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EventHandlerWorld
 {
@@ -43,6 +46,22 @@ public class EventHandlerWorld
 
 		if((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
 			event.drops.clear();
+
+		if(Utils.isCarryingGlove(player))
+		{
+			int prosAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchProspectorId, player.inventory.getCurrentItem());
+			if(prosAmount > 0)
+			{
+				if(event.block == Blocks.dirt || event.block == Blocks.grass || event.block == Blocks.stone)
+				{
+					Random rand = new Random();
+					if(rand.nextInt(10 - prosAmount) == 0)
+					{
+						event.drops.add(new ItemStack(Items.gold_nugget, 1 + rand.nextInt(3 + prosAmount), 1));
+					}
+				}
+			}
+		}
 	}
 
 	@SubscribeEvent
