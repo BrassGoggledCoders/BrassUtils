@@ -1,0 +1,22 @@
+# Enchantments
+enchantment.affluency=富裕
+enchantment.artisan=工匠
+enchantment.spelunker=洞穴冒险
+enchantment.teleport=传送
+enchantment.creative=生物传送
+enchantment.flametouch=烈焰火把
+enchantment.enderfield=反末影力场
+enchantment.magnetism=磁力
+enchantment.crystals=水晶形态
+enchantment.prospector=勘探
+#
+# Blocks
+tile.endertotem.name=末影图腾
+tile.endertotemtop.name=末影图腾拱顶石
+#
+# Items
+item.itemEnderglove.name=末影手套
+item.itemEnderpocket.name=末影口袋
+#
+# Tab
+itemGroup.enderglove=末影手套
