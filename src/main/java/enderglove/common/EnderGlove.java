@@ -20,6 +20,7 @@ import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
@@ -29,6 +30,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 import enderglove.client.gui.GuiHandler;
 import enderglove.common.config.Config;
 import enderglove.common.gen.EnderGloveWorldGenerator;
@@ -67,6 +69,7 @@ public class EnderGlove
 		this.directory = event.getModConfigurationDirectory();
 
 		LanguageRegistry.instance().getStringLocalization("itemGroup.endergloves", "en_US");
+
 		try
 		{
 			Config.initialize(event.getSuggestedConfigurationFile());
@@ -126,5 +129,7 @@ public class EnderGlove
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		final ModContainer container = FMLCommonHandler.instance().findContainerFor(this);
+		LanguageRegistry.instance().loadLanguagesFor(container, Side.CLIENT);
 	}
 }
