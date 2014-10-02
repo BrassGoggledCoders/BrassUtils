@@ -115,7 +115,7 @@ public class EnderGlove
 		}
 		if(Config.recipeEnderPocket)
 		{
-			GameRegistry.addRecipe(new ItemStack(InitItems.itemEnderPocket), new Object[] { "XXX", "XYX", "XXX", 'X', Blocks.obsidian, 'Y', Blocks.ender_chest});
+			GameRegistry.addRecipe(new ItemStack(InitItems.itemEnderPocket), new Object[] { "LXL", "XYX", "LXL", 'X', Blocks.obsidian, 'Y', Blocks.ender_chest, 'L', Items.leather});
 		}
 
 		if(Config.chestGen) // TODO: Add this as a method in the Config class
