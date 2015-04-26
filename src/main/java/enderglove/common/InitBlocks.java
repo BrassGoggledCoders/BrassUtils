@@ -9,13 +9,15 @@
 package enderglove.common;
 
 import net.minecraft.block.Block;
+
 import cpw.mods.fml.common.registry.GameRegistry;
+
 import enderglove.common.block.BlockEnderTotem;
 import enderglove.common.block.BlockTotemTop;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class InitBlocks
 {

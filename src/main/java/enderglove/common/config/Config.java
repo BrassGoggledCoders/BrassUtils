@@ -11,8 +11,7 @@ package enderglove.common.config;
 import java.io.File;
 
 import net.minecraft.enchantment.Enchantment;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+
 import enderglove.common.lib.enchantment.EnchantmentAffluency;
 import enderglove.common.lib.enchantment.EnchantmentArtisan;
 import enderglove.common.lib.enchantment.EnchantmentCreative;
@@ -20,8 +19,12 @@ import enderglove.common.lib.enchantment.EnchantmentCrystals;
 import enderglove.common.lib.enchantment.EnchantmentFlameTouch;
 import enderglove.common.lib.enchantment.EnchantmentMagnetism;
 import enderglove.common.lib.enchantment.EnchantmentProspector;
+import enderglove.common.lib.enchantment.EnchantmentReach;
 import enderglove.common.lib.enchantment.EnchantmentSpelunker;
 import enderglove.common.lib.enchantment.EnchantmentTeleport;
+
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
 /**
  * @author Surseance
@@ -46,6 +49,7 @@ public class Config
 	public static Enchantment enchMagnetism = null;
 	public static Enchantment enchCrystals = null;
 	public static Enchantment enchProspector = null;
+	public static Enchantment enchReaching = null;
 
 	public static int enchAffluencyId;
 	public static int enchArtisanId;
@@ -57,6 +61,7 @@ public class Config
 	public static int enchMagnetismId;
 	public static int enchCrystalsId;
 	public static int enchProspectorId;
+	public static int enchReachId;
 
 	public static int entMinedBlockId;
 
@@ -126,8 +131,10 @@ public class Config
 		Enchantment.addToBookList(enchFlameTouch);
 
 		/*
-		 * Property enchEField = config.get("Enchantments", "ench_enderfield", enchIndex++); enchEnderField = new EnchantmentEnderField(enchEField.getInt(), 2);
-		 * enchEFieldId = enchEField.getInt(); Enchantment.addToBookList(enchEnderField);
+		 * Property enchEField = config.get("Enchantments", "ench_enderfield",
+		 * enchIndex++); enchEnderField = new
+		 * EnchantmentEnderField(enchEField.getInt(), 2); enchEFieldId =
+		 * enchEField.getInt(); Enchantment.addToBookList(enchEnderField);
 		 */
 
 		Property enchMagnet = config.get("Enchantments", "ench_magnetism", enchIndex++);
@@ -145,19 +152,14 @@ public class Config
 		enchProspectorId = enchProspect.getInt();
 		Enchantment.addToBookList(enchProspector);
 
+		Property enchReach = config.get("Enchantments", "ench_reach", enchIndex++);
+		enchReaching = new EnchantmentReach(enchReach.getInt(), 2);
+		enchReachId = enchReach.getInt();
+		Enchantment.addToBookList(enchReaching);
+
 		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
-
-		Property rline1 = config.get("Recipe", "line_1", "EEE");
-		line1 = rline1.toString();
-		Property rline2 = config.get("Recipe", "line_2", "LNL");
-		line2 = rline2.toString();
-		Property rline3 = config.get("Recipe", "line_3", "LNL");
-		line3 = rline3.toString();
-		config.addCustomCategoryComment(
-				"Recipe",
-				"Allows customisation of the recipe. Line one is the top line of the craftin recipe, left to right. Case Sensetive. Possible values: P = Ender Pearl, E = Eye of Ender, N = Nether Star, L = Leather, B = Blaze Rod, D = Dragon Egg, S = Endstone, d = Dimamond block, b = Obsidian");
 
 		config.save();
 	}

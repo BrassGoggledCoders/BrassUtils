@@ -9,6 +9,8 @@ enchantment.enderfield=Ender Suppression Field
 enchantment.magnetism=Magnetism
 enchantment.crystals=Crystalline Formations
 enchantment.prospector=Prospector
+enchantment.reach=Reach
+
 #
 # Blocks
 tile.endertotem.name=Ender Totem
