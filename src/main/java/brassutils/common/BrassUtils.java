@@ -17,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -30,6 +29,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.GameRegistry.Type;
 
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,7 +55,7 @@ public class BrassUtils
 	@Instance(LibInfo.ID)
 	public static BrassUtils instance;
 
-	public static CreativeTabs tabBU = new CreativeTabBrassUtils(CreativeTabs.getNextID(), LibInfo.NAME_SPACED);
+	public static CreativeTabs tabBU = new CreativeTabBrassUtils(CreativeTabs.getNextID(), LibInfo.ID);
 
 	public EnderGloveWorldGenerator worldGen;
 	public EventHandlerEntity entityEventHandler;
@@ -130,15 +130,20 @@ public class BrassUtils
 	{
 		for (MissingMapping m : event.getAll())
 		{
-			FMLLog.info(m.name, m.name);
-			if (m.name.equals("EnderGlove:BlockEnderTotem"))
-				m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem"));
-			else if (m.name.equals("EnderGlove:blockTotemTop"))
-				m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockTotemTop"));
-			else if (m.name.equals("EnderGlove:itemEnderGlove"))
-				m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderGlove"));
-			else if (m.name.equals("EnderGlove:itemEnderPocket"))
-				m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderPocket"));
+			if (m.type == Type.BLOCK)
+			{
+				if (m.name.contains("BlockEnderTotem"))
+					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem"));
+				else if (m.name.contains("blockTotemTop"))
+					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotemTop"));
+			}
+			else if (m.type == Type.ITEM)
+			{
+				if (m.name.contains("ItemEnderGlove"))
+					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderGlove"));
+				else if (m.name.contains("ItemEnderPocket"))
+					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderPocket"));
+			}
 		}
 	}
 }

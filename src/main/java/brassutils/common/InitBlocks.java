@@ -31,13 +31,13 @@ public class InitBlocks
 
 	public static void initializeBlocks()
 	{
-		blockEnderTotem = new BlockEnderTotem().setBlockName("endertotem");
-		blockTotemTop = new BlockTotemTop().setBlockName("endertotemtop");
+		blockEnderTotem = new BlockEnderTotem().setBlockName("blockEnderTotem");
+		blockTotemTop = new BlockTotemTop().setBlockName("blockEnderTotemTop");
 	}
 
 	public static void registerBlocks()
 	{
 		GameRegistry.registerBlock(blockEnderTotem, "BlockEnderTotem");
-		GameRegistry.registerBlock(blockTotemTop, "BlockTotemTop");
+		GameRegistry.registerBlock(blockTotemTop, "BlockEnderTotemTop");
 	}
 }
