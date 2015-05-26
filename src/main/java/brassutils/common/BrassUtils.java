@@ -132,13 +132,13 @@ public class BrassUtils
 		{
 			FMLLog.info(m.name, m.name);
 			if (m.name.equals("EnderGlove:BlockEnderTotem"))
-				m.remap(GameRegistry.findBlock(LibInfo.ID, "blockEnderTotem"));
+				m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem"));
 			else if (m.name.equals("EnderGlove:blockTotemTop"))
-				m.remap(GameRegistry.findBlock(LibInfo.ID, "blockTotemTop"));
+				m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockTotemTop"));
 			else if (m.name.equals("EnderGlove:itemEnderGlove"))
-				m.remap(GameRegistry.findItem(LibInfo.ID, "itemEnderGlove"));
+				m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderGlove"));
 			else if (m.name.equals("EnderGlove:itemEnderPocket"))
-				m.remap(GameRegistry.findItem(LibInfo.ID, "itemEnderPocket"));
+				m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderPocket"));
 		}
 	}
 }
