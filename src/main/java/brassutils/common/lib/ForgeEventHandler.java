@@ -44,7 +44,7 @@ public class ForgeEventHandler
 			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
 					new ItemStack(Items.bone, this.rand.nextInt(3) * event.lootingLevel, 1)));
 		}
-		if (event.entityLiving instanceof EntityCreeper)
+		else if (event.entityLiving instanceof EntityCreeper)
 		{
 			if (this.rand.nextInt(50) > 5)
 			{
@@ -52,11 +52,31 @@ public class ForgeEventHandler
 						event.entityLiving.posZ, new ItemStack(Blocks.tnt, this.rand.nextInt(1) + event.lootingLevel, 1)));
 			}
 		}
-		if (event.entityLiving instanceof EntityEnderman)
+		else if (event.entityLiving instanceof EntityEnderman)
 		{
 			EntityEnderman enderman = (EntityEnderman) event.entityLiving;
 			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
 					enderman.getHeldItem()));
+		}
+		else if (event.entityLiving instanceof EntityDragon && InitConfig.dragonDrop)
+		{
+			event.entityLiving.dropItem(InitItems.itemEnderGlove, 1);
+		}
+		if (event.source.getEntity() instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			Iterator<EntityItem> iterator = event.drops.iterator();
+			while (iterator.hasNext())
+			{
+				EntityItem entItem = iterator.next();
+				ItemStack is = entItem.getEntityItem();
+
+				if (is != null)
+				{
+					InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), is);
+					entItem.setDead();
+				}
+			}
 		}
 	}
 
@@ -88,11 +108,6 @@ public class ForgeEventHandler
 				event.drops.add(items[random]);
 			}
 		}
-	}
-
-	@SubscribeEvent
-	public void harvestDrops(BlockEvent.HarvestDropsEvent event)
-	{
 		EntityPlayer player = event.harvester;
 
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
@@ -118,16 +133,7 @@ public class ForgeEventHandler
 	}
 
 	@SubscribeEvent
-	public void onEnderDragonKilled(LivingDropsEvent event)
-	{
-		if ((event.entityLiving instanceof EntityDragon) && InitConfig.dragonDrop)
-		{
-			event.entityLiving.dropItem(InitItems.itemEnderGlove, 1);
-		}
-	}
-
-	@SubscribeEvent
-	public void blockBreak(BlockEvent.BreakEvent event)
+	public void onBlockBreak(BlockEvent.BreakEvent event)
 	{
 		EntityPlayer player = event.getPlayer();
 		int affAmount = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchAffluencyId, player.inventory.getCurrentItem());
@@ -143,7 +149,7 @@ public class ForgeEventHandler
 
 	@SideOnly(Side.SERVER)
 	@SubscribeEvent
-	public void enderTeleport(EnderTeleportEvent event)
+	public void onEnderTeleport(EnderTeleportEvent event)
 	{
 		if (!event.entityLiving.worldObj.isRemote)
 		{
@@ -164,7 +170,7 @@ public class ForgeEventHandler
 	}
 
 	@SubscribeEvent
-	public void playerDrops(PlayerDropsEvent event)
+	public void onPlayerDrops(PlayerDropsEvent event)
 	{
 		Iterator<EntityItem> iterator = event.drops.iterator();
 		while (iterator.hasNext())
@@ -181,27 +187,6 @@ public class ForgeEventHandler
 				boilerplate.common.utils.Utils.playSFX(event.entityPlayer.worldObj, (int) entItem.prevPosX, (int) entItem.prevPosY,
 						(int) entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public void livingDrops(LivingDropsEvent event)
-	{
-		if ((event.source.getEntity() != null) && (event.source.getEntity() instanceof EntityPlayer))
-		{
-			EntityPlayer player = (EntityPlayer) event.source.getEntity();
-			Iterator<EntityItem> iterator = event.drops.iterator();
-			while (iterator.hasNext())
-			{
-				EntityItem entItem = iterator.next();
-				ItemStack is = entItem.getEntityItem();
-
-				if (is != null)
-				{
-					InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(player), is);
-					entItem.setDead();
-				}
 			}
 		}
 	}
