@@ -84,15 +84,11 @@ public class BaseCommand extends CommandBase implements ICommand
 	{
 		if (userLevel == 1)
 		{
-			if (Config.modArray == null)
-				return false;
-			if (Arrays.asList(Config.modArray).contains(playerName))
+			if (Arrays.asList(Config.modArray).contains(playerName) || Arrays.asList(Config.adminArray).contains(playerName))
 				return true;
 		}
 		else if (userLevel == 2)
 		{
-			if (Config.adminArray == null)
-				return false;
 			if (Arrays.asList(Config.adminArray).contains(playerName))
 				return true;
 		}
