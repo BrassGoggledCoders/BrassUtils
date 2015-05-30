@@ -13,6 +13,7 @@ import java.io.File;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 
@@ -157,6 +158,10 @@ public class BrassUtils
 					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderGlove"));
 				else if (m.name.contains("ItemEnderPocket"))
 					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderPocket"));
+				else if (m.name.contains("BlockEnderTotem"))
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem")));
+				else if (m.name.contains("blockTotemTop"))
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotemTop")));
 			}
 		}
 	}
