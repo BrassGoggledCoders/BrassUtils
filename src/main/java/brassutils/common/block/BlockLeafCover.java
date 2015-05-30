@@ -22,8 +22,6 @@ import brassutils.common.BrassUtils;
 public class BlockLeafCover extends BlockTurf
 
 {
-
-	@SideOnly(Side.CLIENT)
 	private IIcon[] icons = new IIcon[12];
 
 	public BlockLeafCover(Material mat)
@@ -114,8 +112,8 @@ public class BlockLeafCover extends BlockTurf
 				int i2 = p_149720_1_.getBiomeGenForCoords(p_149720_2_ + l1, p_149720_4_ + k1).getBiomeFoliageColor(p_149720_2_ + l1, p_149720_3_,
 						p_149720_4_ + k1);
 				l += (i2 & 16711680) >> 16;
-			i1 += (i2 & 65280) >> 8;
-		j1 += i2 & 255;
+				i1 += (i2 & 65280) >> 8;
+				j1 += i2 & 255;
 			}
 		}
 
