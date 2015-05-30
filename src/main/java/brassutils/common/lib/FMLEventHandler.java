@@ -18,14 +18,14 @@ import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-import brassutils.common.Config;
+import brassutils.common.InitConfig;
 import brassutils.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
  *
  */
-public class EventHandlerEntity
+public class FMLEventHandler
 {
 	public static boolean playerDead = false;
 	Random random = new Random();
@@ -34,7 +34,7 @@ public class EventHandlerEntity
 	public void itemCrafted(PlayerEvent.ItemCraftedEvent event)
 	{
 		ItemStack heldItem = event.player.inventory.getCurrentItem();
-		int artisanAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchArtisanId, heldItem);
+		int artisanAmount = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchArtisanId, heldItem);
 
 		if ((heldItem != null) && (heldItem.getItem() instanceof ItemEnderGlove) && (artisanAmount > 0))
 		{
@@ -45,7 +45,7 @@ public class EventHandlerEntity
 			{
 				ItemStack stack = craft.getStackInSlot(randomSlot);
 
-				if ((this.random.nextInt(Config.artisanBonusChance) == 0) && (stack.stackSize < stack.getMaxStackSize()))
+				if ((this.random.nextInt(InitConfig.artisanBonusChance) == 0) && (stack.stackSize < stack.getMaxStackSize()))
 				{
 					craft.decrStackSize(randomSlot, -1);
 				}

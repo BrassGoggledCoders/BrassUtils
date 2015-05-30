@@ -45,7 +45,7 @@ import boilerplate.common.utils.InventoryUtils;
 import boilerplate.common.utils.ItemStackUtils;
 import boilerplate.common.utils.PlayerUtils;
 import brassutils.common.BrassUtils;
-import brassutils.common.Config;
+import brassutils.common.InitConfig;
 import brassutils.common.InitItems;
 import brassutils.common.lib.LibInfo;
 import brassutils.common.lib.Utils;
@@ -73,15 +73,15 @@ public class ItemEnderGlove extends ItemTool
 		this.setCreativeTab(BrassUtils.tabBU);
 		this.setNoRepair();
 
-		if (Config.hasDurability)
+		if (InitConfig.hasDurability)
 		{
-			this.setMaxDamage(Config.durability);
+			this.setMaxDamage(InitConfig.durability);
 		}
 	}
 
 	private static ToolMaterial getToolLevel()
 	{
-		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(InitItems.itemEnderGlove));
+		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchCrystalsId, new ItemStack(InitItems.itemEnderGlove));
 
 		if (crystalsLevel > 0)
 		{
@@ -109,7 +109,7 @@ public class ItemEnderGlove extends ItemTool
 		{
 			EntityPlayer player = (EntityPlayer) attacker;
 
-			if ((player.capabilities.isCreativeMode) && (EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is) > 0))
+			if ((player.capabilities.isCreativeMode) && (EnchantmentHelper.getEnchantmentLevel(InitConfig.enchCreativeId, is) > 0))
 			{
 				target.moveEntity(this.xCoord, this.yCoord, this.zCoord);
 				target.setPosition(this.xCoord, this.yCoord, this.zCoord);
@@ -140,7 +140,7 @@ public class ItemEnderGlove extends ItemTool
 			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, true));
 		}
 
-		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
+		int flameAmount = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchFlameTouchId, is);
 		ItemStack smeltableBlock = ItemStackUtils.getDroppedItemStack(world, player, block, x, y, z, md);
 
 		if ((flameAmount > 0) && ItemStackUtils.isSmeltable(smeltableBlock))
@@ -288,7 +288,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public ItemStack onItemRightClick(ItemStack is, World world, EntityPlayer player)
 	{
-		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
+		int teleAmount = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchTeleportId, is);
 
 		if (teleAmount > 0)
 		{
@@ -310,7 +310,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public boolean onItemUse(ItemStack is, EntityPlayer player, World world, int x, int y, int z, int md, float hitX, float hitY, float hitZ)
 	{
-		int creativeAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchCreativeId, is);
+		int creativeAmount = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchCreativeId, is);
 
 		if ((creativeAmount > 0) && (player.isSneaking()) && (player.capabilities.isCreativeMode))
 		{
@@ -323,7 +323,7 @@ public class ItemEnderGlove extends ItemTool
 
 			return true;
 		}
-		int teleAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchTeleportId, is);
+		int teleAmount = EnchantmentHelper.getEnchantmentLevel(InitConfig.enchTeleportId, is);
 		if (player.inventory.hasItemStack(new ItemStack(Blocks.ender_chest)) && (teleAmount == 0))
 		{
 			world.setBlock(x, y + 1, z, Blocks.ender_chest, getRotationMeta(player), 2);
@@ -355,7 +355,7 @@ public class ItemEnderGlove extends ItemTool
 			EntityPlayerMP player = (EntityPlayerMP) holder;
 			if (selected)
 			{
-				player.theItemInWorldManager.setBlockReachDistance(5D + EnchantmentHelper.getEnchantmentLevel(Config.enchReachId, stack));
+				player.theItemInWorldManager.setBlockReachDistance(5D + EnchantmentHelper.getEnchantmentLevel(InitConfig.enchReachId, stack));
 			}
 			// else
 			// player.theItemInWorldManager.setBlockReachDistance(5D);

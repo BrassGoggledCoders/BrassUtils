@@ -30,7 +30,7 @@ import brassutils.common.lib.enchantment.EnchantmentTeleport;
  * @author Surseance
  *
  */
-public class Config
+public class InitConfig
 {
 	public static Configuration config;
 	public static final String CATEGORY_ENCH = "Enchantments";

@@ -20,6 +20,6 @@ public class InitEntities
 {
 	public static void init()
 	{
-		EntityRegistry.registerModEntity(EntityMinedBlock.class, "MinedBlock", Config.entMinedBlockId, BrassUtils.instance, 160, 1, true);
+		EntityRegistry.registerModEntity(EntityMinedBlock.class, "MinedBlock", InitConfig.entMinedBlockId, BrassUtils.instance, 160, 1, true);
 	}
 }

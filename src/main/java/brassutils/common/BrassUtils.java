@@ -8,11 +8,8 @@
  */
 package brassutils.common;
 
-import java.io.File;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -43,10 +40,10 @@ import brassutils.common.commands.CommandHeal;
 import brassutils.common.commands.CommandHome;
 import brassutils.common.commands.CommandInfo;
 import brassutils.common.commands.CommandSayCoords;
-import brassutils.common.gen.EnderGloveWorldGenerator;
+import brassutils.common.gen.BrassUtilsWorldGenerator;
 import brassutils.common.lib.CreativeTabBrassUtils;
-import brassutils.common.lib.EventHandlerEntity;
-import brassutils.common.lib.EventHandlerWorld;
+import brassutils.common.lib.FMLEventHandler;
+import brassutils.common.lib.ForgeEventHandler;
 import brassutils.common.lib.LibInfo;
 
 /**
@@ -92,10 +89,7 @@ public class BrassUtils
 
 	public static CreativeTabs tabBU = new CreativeTabBrassUtils(CreativeTabs.getNextID(), LibInfo.ID);
 
-	public EnderGloveWorldGenerator worldGen;
-	public EventHandlerEntity entityEventHandler;
-	public EventHandlerWorld worldEventHandler;
-	public File directory;
+	public BrassUtilsWorldGenerator worldGen;
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -111,23 +105,16 @@ public class BrassUtils
 			throw new RuntimeException(
 					"Please uninstall TurfMod to continue. TurfMod has been merged into this mod, and so cannot be used alongside it. Old TurfMod items will be transferred safely");
 		}
-		event.getModMetadata().version = LibInfo.VERSION;
-		this.directory = event.getModConfigurationDirectory();
+		// Config
+		InitConfig.initialize(event.getSuggestedConfigurationFile());
+		// Event Handlers
+		FMLCommonHandler.instance().bus().register(new FMLEventHandler());
+		MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
 
-		Config.initialize(event.getSuggestedConfigurationFile());
+		// Worldgen Handler
+		GameRegistry.registerWorldGenerator(this.worldGen = new BrassUtilsWorldGenerator(), 100);
 
-		this.entityEventHandler = new EventHandlerEntity();
-		this.worldEventHandler = new EventHandlerWorld();
-
-		FMLCommonHandler.instance().bus().register(this.entityEventHandler);
-		MinecraftForge.EVENT_BUS.register(this.worldEventHandler);
-
-		if (Config.totemGen)
-		{
-			GameRegistry.registerWorldGenerator(this.worldGen = new EnderGloveWorldGenerator(), 100);
-		}
-
-		Config.save();
+		InitConfig.save();
 
 		InitBlocks.init();
 		InitItems.init();
@@ -145,40 +132,16 @@ public class BrassUtils
 		proxy.registerDisplayInformation();
 		InitEntities.init();
 
-		if (Config.recipeEnderGlove)
-		{
-			GameRegistry.addRecipe(new ItemStack(InitItems.itemEnderGlove), new Object[] { "EEE", "LNL", "LLL", 'L', Items.leather, 'N',
-				Items.nether_star, 'E', Items.ender_eye });
-		}
-		if (Config.recipeEnderPocket)
-		{
-			GameRegistry.addRecipe(new ItemStack(InitItems.itemEnderPocket), new Object[] { "LXL", "XYX", "LXL", 'X', Blocks.obsidian, 'Y',
-				Blocks.ender_chest, 'L', Items.leather });
-		}
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 3, 0), new Object[] { "LL", 'L', new ItemStack(Blocks.leaves, 1, 0) });
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 3, 1), new Object[] { "LL", 'L', new ItemStack(Blocks.leaves, 1, 1) });
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 3, 2), new Object[] { "LL", 'L', new ItemStack(Blocks.leaves, 1, 2) });
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 3, 3), new Object[] { "LL", 'L', new ItemStack(Blocks.leaves, 1, 3) });
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 3, 4), new Object[] { "LL", 'L', new ItemStack(Blocks.leaves2, 1, 0) });
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 3, 5), new Object[] { "LL", 'L', new ItemStack(Blocks.leaves2, 1, 1) });
-		GameRegistry.addRecipe(new ItemStack(Blocks.grass), new Object[] { "T", "D", 'T', InitBlocks.blockTurf, 'D', Blocks.dirt });
-		GameRegistry.addShapelessRecipe(new ItemStack(InitItems.itemTurfKnife), new Object[] { Items.iron_sword });
-		for (int i = 0; i < 6; i++)
-		{
-			GameRegistry.addRecipe(new ItemStack(InitBlocks.blockLeafCover, 1, i + 6), new Object[] { "S", "L", 'S', Blocks.sand, 'L',
-				new ItemStack(InitBlocks.blockLeafCover, 1, i) });
-		}
-
-		if (Config.chestGen)
+		if (InitConfig.chestGen)
 		{
 			ChestGenHooks
-			.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
+					.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
 			ChestGenHooks
-			.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
+					.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
 			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 2));
 		}
 
-		if (Config.creativeCommandBlock)
+		if (InitConfig.creativeCommandBlock)
 		{
 			Blocks.command_block.setCreativeTab(CreativeTabs.tabRedstone);
 		}

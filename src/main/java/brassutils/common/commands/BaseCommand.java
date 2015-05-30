@@ -8,7 +8,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 
-import brassutils.common.Config;
+import brassutils.common.InitConfig;
 
 public class BaseCommand extends CommandBase implements ICommand
 {
@@ -94,14 +94,14 @@ public class BaseCommand extends CommandBase implements ICommand
 	{
 		if (userLevel == 1)
 		{
-			if (Arrays.asList(Config.modArray).contains(playerName) || Arrays.asList(Config.adminArray).contains(playerName))
+			if (Arrays.asList(InitConfig.modArray).contains(playerName) || Arrays.asList(InitConfig.adminArray).contains(playerName))
 			{
 				return true;
 			}
 		}
 		else if (userLevel == 2)
 		{
-			if (Arrays.asList(Config.adminArray).contains(playerName))
+			if (Arrays.asList(InitConfig.adminArray).contains(playerName))
 			{
 				return true;
 			}

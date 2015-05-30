@@ -13,7 +13,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 
-import brassutils.common.Config;
+import brassutils.common.InitConfig;
 import brassutils.common.item.ItemEnderGlove;
 
 /**
@@ -63,6 +63,6 @@ public class EnchantmentTeleport extends Enchantment
 	{
 		return super.canApplyTogether(enchantment)
 				&& ((enchantment.effectId != Enchantment.fortune.effectId) || (enchantment.effectId != Enchantment.silkTouch.effectId)
-						|| (enchantment.effectId != Config.enchAffluencyId) || (enchantment.effectId != Config.enchMagnetismId));
+						|| (enchantment.effectId != InitConfig.enchAffluencyId) || (enchantment.effectId != InitConfig.enchMagnetismId));
 	}
 }
