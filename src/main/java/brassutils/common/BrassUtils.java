@@ -11,8 +11,6 @@ package brassutils.common;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomChestContent;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
@@ -30,7 +28,6 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.Type;
 
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 
 import brassutils.client.gui.GuiHandler;
@@ -113,17 +110,13 @@ public class BrassUtils
 
 		// Worldgen Handler
 		GameRegistry.registerWorldGenerator(this.worldGen = new BrassUtilsWorldGenerator(), 100);
-
+		// Config
 		InitConfig.save();
-
+		// Blocks & Items
 		InitBlocks.init();
 		InitItems.init();
-
+		// Gui
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-
-		MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
-		InitRecipes.init();
-		DungeonLootHandler.init();
 	}
 
 	@EventHandler
@@ -132,15 +125,7 @@ public class BrassUtils
 		proxy.registerDisplayInformation();
 		InitEntities.init();
 
-		if (InitConfig.chestGen)
-		{
-			ChestGenHooks
-					.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
-			ChestGenHooks
-					.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
-			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 2));
-		}
-
+		// Set creative tabs for some blocks
 		if (InitConfig.creativeCommandBlock)
 		{
 			Blocks.command_block.setCreativeTab(CreativeTabs.tabRedstone);
@@ -152,7 +137,23 @@ public class BrassUtils
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		// Recipes
+		InitRecipes.init();
+		// Loot
+		DungeonLootHandler.init();
+	}
 
+	@Mod.EventHandler
+	public void serverStart(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandDeathNote());
+		event.registerServerCommand(new CommandHeal());
+		// event.registerServerCommand(new CommandCraft());
+		event.registerServerCommand(new CommandHome());
+		event.registerServerCommand(new CommandSayCoords());
+		event.registerServerCommand(new CommandFeed());
+		event.registerServerCommand(new CommandInfo());
+		// event.registerServerCommand(new CommandViewInv());
 	}
 
 	// Remap old items from merged in mods
@@ -220,18 +221,5 @@ public class BrassUtils
 				}
 			}
 		}
-	}
-
-	@Mod.EventHandler
-	public void serverStart(FMLServerStartingEvent event)
-	{
-		event.registerServerCommand(new CommandDeathNote());
-		event.registerServerCommand(new CommandHeal());
-		// event.registerServerCommand(new CommandCraft());
-		event.registerServerCommand(new CommandHome());
-		event.registerServerCommand(new CommandSayCoords());
-		event.registerServerCommand(new CommandFeed());
-		event.registerServerCommand(new CommandInfo());
-		// event.registerServerCommand(new CommandViewInv());
 	}
 }

@@ -27,8 +27,6 @@ public class ClientProxy extends CommonProxy
 	public void registerDisplayInformation()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMinedBlock.class, new RenderMinedBlock());
-		// MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove,
-		// new ItemEnderGloveRenderer());
 	}
 
 	@Override
