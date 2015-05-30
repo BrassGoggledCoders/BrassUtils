@@ -147,21 +147,35 @@ public class BrassUtils
 		{
 			if (m.type == Type.BLOCK)
 			{
-				if (m.name.contains("BlockEnderTotem"))
+				if (m.name.equals("EnderGlove:BlockEnderTotem"))
 					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem"));
-				else if (m.name.contains("blockTotemTop"))
+				else if (m.name.equals("EnderGlove:blockTotemTop"))
 					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotemTop"));
+				else if (m.name.equals("TurfMod:BlockTurf"))
+					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockTurf"));
+				else if (m.name.equals("TurfMod:BlockLeafCover"))
+					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockLeafCover"));
+				else if (m.name.equals("TurfMod:BlockGrassCover"))
+					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockGrassCover"));
 			}
 			else if (m.type == Type.ITEM)
 			{
-				if (m.name.contains("ItemEnderGlove"))
+				if (m.name.equals("EnderGlove:ItemEnderGlove"))
 					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderGlove"));
-				else if (m.name.contains("ItemEnderPocket"))
+				else if (m.name.equals("EnderGlove:ItemEnderPocket"))
 					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderPocket"));
-				else if (m.name.contains("BlockEnderTotem"))
+				else if (m.name.equals("EnderGlove:BlockEnderTotem"))
 					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem")));
-				else if (m.name.contains("blockTotemTop"))
+				else if (m.name.equals("EnderGlove:blockTotemTop"))
 					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotemTop")));
+				else if (m.name.equals("TurfMod:ItemTurfKnife"))
+					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemTurfKnife"));
+				else if (m.name.equals("TurfMod:BlockTurf"))
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockTurf")));
+				else if (m.name.equals("TurfMod:BlockLeafCover"))
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockLeafCover")));
+				else if (m.name.equals("TurfMod:BlockGrassCover"))
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockGrassCover")));
 			}
 		}
 	}
