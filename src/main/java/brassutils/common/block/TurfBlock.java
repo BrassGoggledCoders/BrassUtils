@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import brassutils.common.BrassUtils;
+
 public class TurfBlock extends Block
 {
 	private IIcon[] icons = new IIcon[7];
@@ -24,7 +26,7 @@ public class TurfBlock extends Block
 	{
 		super(mat);
 		setBlockName("blockTurf");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(BrassUtils.tabBU);
 	}
 
 	@SideOnly(Side.CLIENT)

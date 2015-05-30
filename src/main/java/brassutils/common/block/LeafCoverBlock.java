@@ -17,6 +17,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import brassutils.common.BrassUtils;
+
 public class LeafCoverBlock extends TurfBlock
 
 {
@@ -29,7 +31,7 @@ public class LeafCoverBlock extends TurfBlock
 	{
 		super(mat);
 		setBlockName("blockLeafCover");
-		setCreativeTab(CreativeTabs.tabDecorations);
+		setCreativeTab(BrassUtils.tabBU);
 	}
 
 	@SideOnly(Side.CLIENT)

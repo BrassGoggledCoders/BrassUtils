@@ -8,7 +8,6 @@
  */
 package brassutils.common;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -34,7 +33,7 @@ public class InitItems
 
 	public static void initializeItems()
 	{
-		itemTurfKnife = new ItemTurfKnife().setCreativeTab(CreativeTabs.tabTools).setUnlocalizedName("itemTurfKnife");
+		itemTurfKnife = new ItemTurfKnife().setCreativeTab(BrassUtils.tabBU).setUnlocalizedName("itemTurfKnife");
 		GameRegistry.registerItem(itemTurfKnife, "ItemTurfKnife");
 
 		itemEnderGlove = new ItemEnderGlove().setUnlocalizedName("itemEnderglove");
