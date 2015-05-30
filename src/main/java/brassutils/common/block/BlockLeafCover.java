@@ -19,14 +19,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import brassutils.common.BrassUtils;
 
-public class LeafCoverBlock extends TurfBlock
+public class BlockLeafCover extends BlockTurf
 
 {
 
 	@SideOnly(Side.CLIENT)
 	private IIcon[] icons = new IIcon[12];
 
-	public LeafCoverBlock(Material mat)
+	public BlockLeafCover(Material mat)
 
 	{
 		super(mat);

@@ -17,12 +17,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import brassutils.common.BrassUtils;
+import brassutils.common.lib.LibInfo;
 
-public class TurfBlock extends Block
+public class BlockTurf extends Block
 {
 	private IIcon[] icons = new IIcon[7];
 
-	public TurfBlock(Material mat)
+	public BlockTurf(Material mat)
 	{
 		super(mat);
 		setBlockName("blockTurf");
@@ -33,13 +34,13 @@ public class TurfBlock extends Block
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		icons[0] = par1IconRegister.registerIcon("turfmod:turfNormal");
-		icons[1] = par1IconRegister.registerIcon("turfmod:turfSwamp");
-		icons[2] = par1IconRegister.registerIcon("turfmod:turfDry");
-		icons[3] = par1IconRegister.registerIcon("turfmod:turfFrozen");
-		icons[4] = par1IconRegister.registerIcon("turfmod:turfJungle");
-		icons[5] = par1IconRegister.registerIcon("turfmod:turfMycelium");
-		icons[6] = par1IconRegister.registerIcon("turfmod:turfPodzol");
+		icons[0] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfNormal");
+		icons[1] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfSwamp");
+		icons[2] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfDry");
+		icons[3] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfFrozen");
+		icons[4] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfJungle");
+		icons[5] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfMycelium");
+		icons[6] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfPodzol");
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -16,8 +16,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import brassutils.common.block.BlockEnderTotem;
 import brassutils.common.block.BlockGrassCover;
 import brassutils.common.block.BlockTotemTop;
-import brassutils.common.block.LeafCoverBlock;
-import brassutils.common.block.TurfBlock;
+import brassutils.common.block.BlockLeafCover;
+import brassutils.common.block.BlockTurf;
 import brassutils.common.item.ItemBlockLeafCover;
 import brassutils.common.item.ItemBlockTurf;
 
@@ -40,8 +40,8 @@ public class InitBlocks
 
 	public static void initializeBlocks()
 	{
-		blockTurf = new TurfBlock(Material.grass);
-		blockLeafCover = new LeafCoverBlock(Material.leaves);
+		blockTurf = new BlockTurf(Material.grass);
+		blockLeafCover = new BlockLeafCover(Material.leaves);
 		blockGrassCover = new BlockGrassCover(Material.grass);
 		GameRegistry.registerBlock(blockTurf, ItemBlockTurf.class, "BlockTurf");
 		GameRegistry.registerBlock(blockLeafCover, ItemBlockLeafCover.class, "BlockLeafCover");
