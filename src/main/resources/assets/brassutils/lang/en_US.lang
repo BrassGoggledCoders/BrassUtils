@@ -1,0 +1,45 @@
+# Enchantments
+enchantment.affluency=Affluency
+enchantment.artisan=Artisan
+enchantment.spelunker=Spelunker
+enchantment.teleport=Teleport
+enchantment.creative=Mob Teleport
+enchantment.flametouch=Flame Touch
+enchantment.enderfield=Ender Suppression Field
+enchantment.magnetism=Magnetism
+enchantment.crystals=Crystalline Formations
+enchantment.prospector=Prospector
+enchantment.reach=Reach
+
+#
+# Blocks
+tile.blockEnderTotem.name=Ender Totem
+tile.blockEnderTotemTop.name=Ender Totem Capstone
+tile.blockTurf.0.name=Turf
+tile.blockTurf.1.name=Moist Turf
+tile.blockTurf.2.name=Parched Turf
+tile.blockTurf.3.name=Frozen Turf
+tile.blockTurf.4.name=Rich Turf
+tile.blockTurf.5.name=Spooky Turf
+tile.blockTurf.6.name=Leached Turf
+tile.blockGrassCover.name=Grass Covering
+tile.blockLeafCover.0.name=Oak Leaf Covering
+tile.blockLeafCover.1.name=Spruce Leaf Covering
+tile.blockLeafCover.2.name=Jungle Leaf Covering
+tile.blockLeafCover.3.name=Birch Leaf Covering
+tile.blockLeafCover.4.name=Acacia Leaf Covering
+tile.blockLeafCover.5.name=Dark Oak Leaf Covering
+tile.blockLeafCover.6.name=Opaque Oak Leaf Covering
+tile.blockLeafCover.7.name=Opaque Spruce Leaf Covering
+tile.blockLeafCover.8.name=Opaque Jungle Leaf Covering
+tile.blockLeafCover.9.name=Opaque Birch Leaf Covering
+tile.blockLeafCover.10.name=Opaque Acacia Leaf Covering
+tile.blockLeafCover.11.name=Opaque Dark Oak Leaf Covering
+#
+# Items
+item.itemEnderglove.name=Ender Glove
+item.itemEnderpocket.name=Ender Pocket
+item.itemTurfKnife.name=Turf Knife
+#
+# Tab
+itemGroup.brassutils=Brass Utils
