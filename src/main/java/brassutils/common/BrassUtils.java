@@ -28,6 +28,7 @@ import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.Type;
@@ -36,6 +37,12 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 
 import brassutils.client.gui.GuiHandler;
+import brassutils.common.commands.CommandDeathNote;
+import brassutils.common.commands.CommandFeed;
+import brassutils.common.commands.CommandHeal;
+import brassutils.common.commands.CommandHome;
+import brassutils.common.commands.CommandInfo;
+import brassutils.common.commands.CommandSayCoords;
 import brassutils.common.config.Config;
 import brassutils.common.gen.EnderGloveWorldGenerator;
 import brassutils.common.lib.CreativeTabBrassUtils;
@@ -178,5 +185,18 @@ public class BrassUtils
 					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockGrassCover")));
 			}
 		}
+	}
+
+	@Mod.EventHandler
+	public void serverStart(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandDeathNote());
+		event.registerServerCommand(new CommandHeal());
+		// event.registerServerCommand(new CommandCraft());
+		event.registerServerCommand(new CommandHome());
+		event.registerServerCommand(new CommandSayCoords());
+		event.registerServerCommand(new CommandFeed());
+		event.registerServerCommand(new CommandInfo());
+		// event.registerServerCommand(new CommandViewInv());
 	}
 }

@@ -74,6 +74,9 @@ public class Config
 	public static boolean recipeEnderPocket;
 	public static int durability;
 
+	public static String[] adminArray;
+	public static String[] modArray;
+
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
@@ -160,6 +163,10 @@ public class Config
 		int eIdx = 201; // The EntityEnderCrystal is Id = 200
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
+
+		String[] admins = config.get("groups", "admins", "").getStringList();
+		String[] mods = config.get("groups", "mods", "").getStringList();
+		config.addCustomCategoryComment("groups", "Lists of people who can issue admin/mod commands");
 
 		config.save();
 	}
