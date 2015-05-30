@@ -8,12 +8,14 @@
  */
 package brassutils.common;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import brassutils.common.item.ItemEnderGlove;
 import brassutils.common.item.ItemEnderPocket;
+import brassutils.common.item.ItemTurfKnife;
 import brassutils.common.lib.LibInfo;
 
 /**
@@ -22,22 +24,21 @@ import brassutils.common.lib.LibInfo;
  */
 public class InitItems
 {
+	public static Item itemTurfKnife;
 	public static Item itemEnderGlove, itemEnderPocket;
 
 	public static void init()
 	{
 		initializeItems();
-		registerItems();
 	}
 
 	public static void initializeItems()
 	{
+		itemTurfKnife = new ItemTurfKnife().setCreativeTab(CreativeTabs.tabTools).setUnlocalizedName("itemTurfKnife");
+		GameRegistry.registerItem(itemTurfKnife, "ItemTurfKnife");
+
 		itemEnderGlove = new ItemEnderGlove().setUnlocalizedName("itemEnderglove");
 		itemEnderPocket = new ItemEnderPocket().setUnlocalizedName("itemEnderpocket");
-	}
-
-	public static void registerItems()
-	{
 		GameRegistry.registerItem(itemEnderGlove, "ItemEnderGlove", LibInfo.ID);
 		GameRegistry.registerItem(itemEnderPocket, "ItemEnderPocket", LibInfo.ID);
 	}
