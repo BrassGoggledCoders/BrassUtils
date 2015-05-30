@@ -9,7 +9,6 @@
 package brassutils.common;
 
 import boilerplate.common.entity.EntityMinedBlock;
-import brassutils.common.config.Config;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 

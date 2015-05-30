@@ -26,8 +26,8 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
+import brassutils.common.Config;
 import brassutils.common.InitItems;
-import brassutils.common.config.Config;
 import brassutils.common.item.ItemEnderGlove;
 import boilerplate.common.utils.InventoryUtils;
 import boilerplate.common.utils.PlayerUtils;

@@ -8,7 +8,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.command.WrongUsageException;
 import net.minecraft.entity.player.EntityPlayer;
 
-import brassutils.common.config.Config;
+import brassutils.common.Config;
 
 public class BaseCommand extends CommandBase implements ICommand
 {

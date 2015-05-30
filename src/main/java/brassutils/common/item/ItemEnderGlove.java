@@ -41,8 +41,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import brassutils.common.BrassUtils;
+import brassutils.common.Config;
 import brassutils.common.InitItems;
-import brassutils.common.config.Config;
 import brassutils.common.lib.LibInfo;
 import brassutils.common.lib.Utils;
 import boilerplate.common.entity.EntityMinedBlock;

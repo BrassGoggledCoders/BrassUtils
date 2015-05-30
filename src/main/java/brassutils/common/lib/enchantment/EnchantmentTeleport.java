@@ -13,7 +13,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemBook;
 import net.minecraft.item.ItemStack;
 
-import brassutils.common.config.Config;
+import brassutils.common.Config;
 import brassutils.common.item.ItemEnderGlove;
 
 /**

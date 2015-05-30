@@ -43,7 +43,6 @@ import brassutils.common.commands.CommandHeal;
 import brassutils.common.commands.CommandHome;
 import brassutils.common.commands.CommandInfo;
 import brassutils.common.commands.CommandSayCoords;
-import brassutils.common.config.Config;
 import brassutils.common.gen.EnderGloveWorldGenerator;
 import brassutils.common.lib.CreativeTabBrassUtils;
 import brassutils.common.lib.EventHandlerEntity;
@@ -100,6 +99,10 @@ public class BrassUtils
 		InitItems.init();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+
+		MinecraftForge.EVENT_BUS.register(new ForgeEventHandler());
+		InitRecipes.init();
+		DungeonLootHandler.init();
 	}
 
 	@EventHandler
@@ -138,6 +141,11 @@ public class BrassUtils
 					.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
 			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 2));
 		}
+
+		if (Config.creativeCommandBlock)
+			Blocks.command_block.setCreativeTab(CreativeTabs.tabRedstone);
+		Blocks.dragon_egg.setCreativeTab(CreativeTabs.tabDecorations);
+		Blocks.farmland.setCreativeTab(CreativeTabs.tabBlock);
 	}
 
 	@EventHandler

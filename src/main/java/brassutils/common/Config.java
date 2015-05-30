@@ -6,7 +6,7 @@
  * (http://www.mod-buildcraft.com/MMPL-1.0.txt)
  *
  */
-package brassutils.common.config;
+package brassutils.common;
 
 import java.io.File;
 
@@ -76,6 +76,9 @@ public class Config
 
 	public static String[] adminArray;
 	public static String[] modArray;
+
+	public static boolean endPortalRecipe;
+	public static boolean creativeCommandBlock;
 
 	public static void initialize(File file)
 	{
@@ -167,6 +170,11 @@ public class Config
 		adminArray = config.get("groups", "admins", new String[] {}).getStringList();
 		modArray = config.get("groups", "mods", new String[] {}).getStringList();
 		config.addCustomCategoryComment("groups", "Comma seperated lists of people who can issue admin/mod commands");
+
+		endPortalRecipe = config.getBoolean("End Portal Recipe", Configuration.CATEGORY_GENERAL, true,
+				"Enables/Disables (Expensive) End Portal Recipe");
+		creativeCommandBlock = config.getBoolean("CommandBlock Creative Tab", Configuration.CATEGORY_GENERAL, true,
+				"Enables/Disables adding command block to redstone creative tab");
 
 		config.save();
 	}
