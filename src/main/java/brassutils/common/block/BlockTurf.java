@@ -26,36 +26,38 @@ public class BlockTurf extends Block
 	public BlockTurf(Material mat)
 	{
 		super(mat);
-		setBlockName("blockTurf");
-		setCreativeTab(BrassUtils.tabBU);
+		this.setBlockName("blockTurf");
+		this.setCreativeTab(BrassUtils.tabBU);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		icons[0] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfNormal");
-		icons[1] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfSwamp");
-		icons[2] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfDry");
-		icons[3] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfFrozen");
-		icons[4] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfJungle");
-		icons[5] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfMycelium");
-		icons[6] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfPodzol");
+		this.icons[0] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfNormal");
+		this.icons[1] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfSwamp");
+		this.icons[2] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfDry");
+		this.icons[3] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfFrozen");
+		this.icons[4] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfJungle");
+		this.icons[5] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfMycelium");
+		this.icons[6] = par1IconRegister.registerIcon(LibInfo.PREFIX + "turfPodzol");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta)
 	{
-		return icons[meta];
+		return this.icons[meta];
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for (int i = 0; i < icons.length; i++)
+		for (int i = 0; i < this.icons.length; i++)
+		{
 			par3List.add(new ItemStack(item, 1, i));
+		}
 	}
 
 	/**
@@ -68,7 +70,7 @@ public class BlockTurf extends Block
 		byte b0 = 0;
 		float f = 0.0625F;
 		return AxisAlignedBB.getBoundingBox(p_149668_2_ + this.minX, p_149668_3_ + this.minY, p_149668_4_ + this.minZ, p_149668_2_ + this.maxX,
-				p_149668_3_ + b0 * f, p_149668_4_ + this.maxZ);
+				p_149668_3_ + (b0 * f), p_149668_4_ + this.maxZ);
 	}
 
 	/**
@@ -114,7 +116,7 @@ public class BlockTurf extends Block
 	protected void func_150089_b(int p_150089_1_)
 	{
 		byte b0 = 0;
-		float f = 1 * (1 + b0) / 16.0F;
+		float f = (1 * (1 + b0)) / 16.0F;
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
 	}
 

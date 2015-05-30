@@ -13,32 +13,54 @@ public class CommandDeathNote extends BaseCommand
 		if (stringarray.length == 2)
 		{
 			if (stringarray[1].equalsIgnoreCase("fire"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.inFire, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("anvil"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.anvil, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("cactus"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.cactus, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("drown"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.drown, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("fall"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.fall, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("suffocation"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.inWall, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("lava"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.lava, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("magic"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.magic, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("starve"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.starve, Float.MAX_VALUE);
+			}
 			else if (stringarray[1].equalsIgnoreCase("wither"))
+			{
 				entityplayermp.attackEntityFrom(DamageSource.wither, Float.MAX_VALUE);
+			}
 			else
 			{
 				entityplayermp.attackEntityFrom(DamageSource.generic, Float.MAX_VALUE);
 			}
 		}
 		else
+		{
 			entityplayermp.attackEntityFrom(DamageSource.outOfWorld, Float.MAX_VALUE);
+		}
 	}
 
 	@Override

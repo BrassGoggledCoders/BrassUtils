@@ -14,13 +14,13 @@ public class CommandCraft extends BaseCommand implements ICommand
 	public CommandCraft()
 	{
 		this.aliases = new ArrayList<String>();
-		aliases.add("crafting");
+		this.aliases.add("crafting");
 	}
 
 	@Override
 	public List<String> getCommandAliases()
 	{
-		return aliases;
+		return this.aliases;
 	}
 
 	@Override

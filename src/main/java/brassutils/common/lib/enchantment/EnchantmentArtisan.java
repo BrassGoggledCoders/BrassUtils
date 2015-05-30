@@ -17,7 +17,7 @@ import brassutils.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EnchantmentArtisan extends Enchantment
 {
@@ -48,8 +48,7 @@ public class EnchantmentArtisan extends Enchantment
 	@Override
 	public boolean canApply(ItemStack is)
 	{
-		return (is != null)
-				&& ((is.getItem() instanceof ItemEnderGlove) || (is.getItem() instanceof ItemBook));
+		return (is != null) && ((is.getItem() instanceof ItemEnderGlove) || (is.getItem() instanceof ItemBook));
 	}
 
 	@Override

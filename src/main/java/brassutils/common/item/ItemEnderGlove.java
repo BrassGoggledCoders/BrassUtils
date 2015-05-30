@@ -40,15 +40,15 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import boilerplate.common.entity.EntityMinedBlock;
+import boilerplate.common.utils.InventoryUtils;
+import boilerplate.common.utils.ItemStackUtils;
+import boilerplate.common.utils.PlayerUtils;
 import brassutils.common.BrassUtils;
 import brassutils.common.Config;
 import brassutils.common.InitItems;
 import brassutils.common.lib.LibInfo;
 import brassutils.common.lib.Utils;
-import boilerplate.common.entity.EntityMinedBlock;
-import boilerplate.common.utils.InventoryUtils;
-import boilerplate.common.utils.ItemStackUtils;
-import boilerplate.common.utils.PlayerUtils;
 
 /**
  * @author Surseance
@@ -74,7 +74,9 @@ public class ItemEnderGlove extends ItemTool
 		this.setNoRepair();
 
 		if (Config.hasDurability)
+		{
 			this.setMaxDamage(Config.durability);
+		}
 	}
 
 	private static ToolMaterial getToolLevel()
@@ -82,9 +84,13 @@ public class ItemEnderGlove extends ItemTool
 		int crystalsLevel = EnchantmentHelper.getEnchantmentLevel(Config.enchCrystalsId, new ItemStack(InitItems.itemEnderGlove));
 
 		if (crystalsLevel > 0)
+		{
 			return Item.ToolMaterial.EMERALD;
+		}
 		else
+		{
 			return Item.ToolMaterial.IRON;
+		}
 	}
 
 	@SuppressWarnings("all")
@@ -130,7 +136,9 @@ public class ItemEnderGlove extends ItemTool
 		FMLLog.warning("" + md, "");
 
 		if (world.isRemote)
+		{
 			world.spawnEntityInWorld(new EntityMinedBlock(world, x + 0.5F, y + 0.5F, z + 0.5F, block, md, true));
+		}
 
 		int flameAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchFlameTouchId, is);
 		ItemStack smeltableBlock = ItemStackUtils.getDroppedItemStack(world, player, block, x, y, z, md);
@@ -180,12 +188,18 @@ public class ItemEnderGlove extends ItemTool
 			ItemStack stack = null;
 
 			if (block instanceof BlockRedstoneOre)
+			{
 				stack = Utils.createStackedBlock();
+			}
 			else
+			{
 				stack = Utils.createStackedBlock(block, md);
+			}
 
 			if (stack != null)
+			{
 				items.add(stack);
+			}
 
 			for (ItemStack drops : items)
 			{
@@ -282,7 +296,9 @@ public class ItemEnderGlove extends ItemTool
 			is.damageItem(1, player);
 
 			if (!world.isRemote)
+			{
 				world.spawnEntityInWorld(new EntityEnderPearl(world, player));
+			}
 
 			// player.mountEntity(pearl); Fun, but broken, and not really a
 			// teleport anymore
@@ -334,7 +350,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity holder, int p_77663_4_, boolean selected)
 	{
-		if (!world.isRemote && holder instanceof EntityPlayerMP)
+		if (!world.isRemote && (holder instanceof EntityPlayerMP))
 		{
 			EntityPlayerMP player = (EntityPlayerMP) holder;
 			if (selected)

@@ -48,8 +48,7 @@ public class EnchantmentProspector extends Enchantment
 	@Override
 	public boolean canApply(ItemStack is)
 	{
-		return (is.getItem() instanceof ItemEnderGlove)
-				|| (is.getItem() instanceof ItemBook);
+		return (is.getItem() instanceof ItemEnderGlove) || (is.getItem() instanceof ItemBook);
 	}
 
 	@Override

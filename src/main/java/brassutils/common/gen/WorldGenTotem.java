@@ -26,18 +26,18 @@ public class WorldGenTotem extends WorldGenCactus
 	@Override
 	public boolean generate(World world, Random par2Random, int par3, int par4, int par5)
 	{
-		for(int l = 0; l < 2; ++l)
+		for (int l = 0; l < 2; ++l)
 		{
 			int x = (par3 + par2Random.nextInt(4)) - par2Random.nextInt(4);
 			int y = par4;
 			int z = (par5 + par2Random.nextInt(4)) - par2Random.nextInt(4);
 
-			while(world.isAirBlock(x, y - 1, z))
+			while (world.isAirBlock(x, y - 1, z))
 			{
 				y--;
 			}
 
-			if(world.isAirBlock(x, y, z))
+			if (world.isAirBlock(x, y, z))
 			{
 				// int l1 = 2 + par2Random.nextInt(par2Random.nextInt(3) + 1);
 

@@ -18,7 +18,7 @@ import brassutils.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EnchantmentTeleport extends Enchantment
 {
@@ -49,8 +49,7 @@ public class EnchantmentTeleport extends Enchantment
 	@Override
 	public boolean canApply(ItemStack is)
 	{
-		return (is.getItem() instanceof ItemEnderGlove)
-				|| (is.getItem() instanceof ItemBook);
+		return (is.getItem() instanceof ItemEnderGlove) || (is.getItem() instanceof ItemBook);
 	}
 
 	@Override
@@ -63,8 +62,7 @@ public class EnchantmentTeleport extends Enchantment
 	public boolean canApplyTogether(Enchantment enchantment)
 	{
 		return super.canApplyTogether(enchantment)
-				&& ((enchantment.effectId != Enchantment.fortune.effectId)
-						|| (enchantment.effectId != Enchantment.silkTouch.effectId)
+				&& ((enchantment.effectId != Enchantment.fortune.effectId) || (enchantment.effectId != Enchantment.silkTouch.effectId)
 						|| (enchantment.effectId != Config.enchAffluencyId) || (enchantment.effectId != Config.enchMagnetismId));
 	}
 }

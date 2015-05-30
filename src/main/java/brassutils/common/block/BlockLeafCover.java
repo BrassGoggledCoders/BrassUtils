@@ -30,33 +30,33 @@ public class BlockLeafCover extends BlockTurf
 
 	{
 		super(mat);
-		setBlockName("blockLeafCover");
-		setCreativeTab(BrassUtils.tabBU);
+		this.setBlockName("blockLeafCover");
+		this.setCreativeTab(BrassUtils.tabBU);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 	{
-		icons[0] = par1IconRegister.registerIcon("leaves_oak");
-		icons[1] = par1IconRegister.registerIcon("leaves_spruce");
-		icons[2] = par1IconRegister.registerIcon("leaves_jungle");
-		icons[3] = par1IconRegister.registerIcon("leaves_birch");
-		icons[4] = par1IconRegister.registerIcon("leaves_acacia");
-		icons[5] = par1IconRegister.registerIcon("leaves_big_oak");
-		icons[6] = par1IconRegister.registerIcon("leaves_oak_opaque");
-		icons[7] = par1IconRegister.registerIcon("leaves_spruce_opaque");
-		icons[8] = par1IconRegister.registerIcon("leaves_jungle_opaque");
-		icons[9] = par1IconRegister.registerIcon("leaves_birch_opaque");
-		icons[10] = par1IconRegister.registerIcon("leaves_acacia_opaque");
-		icons[11] = par1IconRegister.registerIcon("leaves_big_oak_opaque");
+		this.icons[0] = par1IconRegister.registerIcon("leaves_oak");
+		this.icons[1] = par1IconRegister.registerIcon("leaves_spruce");
+		this.icons[2] = par1IconRegister.registerIcon("leaves_jungle");
+		this.icons[3] = par1IconRegister.registerIcon("leaves_birch");
+		this.icons[4] = par1IconRegister.registerIcon("leaves_acacia");
+		this.icons[5] = par1IconRegister.registerIcon("leaves_big_oak");
+		this.icons[6] = par1IconRegister.registerIcon("leaves_oak_opaque");
+		this.icons[7] = par1IconRegister.registerIcon("leaves_spruce_opaque");
+		this.icons[8] = par1IconRegister.registerIcon("leaves_jungle_opaque");
+		this.icons[9] = par1IconRegister.registerIcon("leaves_birch_opaque");
+		this.icons[10] = par1IconRegister.registerIcon("leaves_acacia_opaque");
+		this.icons[11] = par1IconRegister.registerIcon("leaves_big_oak_opaque");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta)
 	{
-		return icons[meta];
+		return this.icons[meta];
 	}
 
 	@Override
@@ -69,8 +69,10 @@ public class BlockLeafCover extends BlockTurf
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs par2CreativeTabs, List par3List)
 	{
-		for (int i = 0; i < icons.length; i++)
+		for (int i = 0; i < this.icons.length; i++)
+		{
 			par3List.add(new ItemStack(item, 1, i));
+		}
 	}
 
 	@Override
@@ -112,12 +114,12 @@ public class BlockLeafCover extends BlockTurf
 				int i2 = p_149720_1_.getBiomeGenForCoords(p_149720_2_ + l1, p_149720_4_ + k1).getBiomeFoliageColor(p_149720_2_ + l1, p_149720_3_,
 						p_149720_4_ + k1);
 				l += (i2 & 16711680) >> 16;
-				i1 += (i2 & 65280) >> 8;
-				j1 += i2 & 255;
+			i1 += (i2 & 65280) >> 8;
+		j1 += i2 & 255;
 			}
 		}
 
-		return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
+		return (((l / 9) & 255) << 16) | (((i1 / 9) & 255) << 8) | ((j1 / 9) & 255);
 	}
 
 	/**
@@ -129,7 +131,7 @@ public class BlockLeafCover extends BlockTurf
 	public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
 	{
 		if (p_149734_1_.canLightningStrikeAt(p_149734_2_, p_149734_3_ + 1, p_149734_4_)
-				&& !World.doesBlockHaveSolidTopSurface(p_149734_1_, p_149734_2_, p_149734_3_ - 1, p_149734_4_) && p_149734_5_.nextInt(15) == 1)
+				&& !World.doesBlockHaveSolidTopSurface(p_149734_1_, p_149734_2_, p_149734_3_ - 1, p_149734_4_) && (p_149734_5_.nextInt(15) == 1))
 		{
 			double d0 = p_149734_2_ + p_149734_5_.nextFloat();
 			double d1 = p_149734_3_ - 0.05D;

@@ -9,7 +9,7 @@ public class ItemBlockTurf extends ItemBlockWithMetadata
 	public ItemBlockTurf(Block block)
 	{
 		super(block, block);
-		setHasSubtypes(true);
+		this.setHasSubtypes(true);
 	}
 
 	@Override

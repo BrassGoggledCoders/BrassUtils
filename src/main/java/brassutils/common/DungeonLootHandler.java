@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
+
 import net.minecraftforge.common.ChestGenHooks;
 
 public class DungeonLootHandler
@@ -12,6 +13,7 @@ public class DungeonLootHandler
 	{
 		initVillageChestGen();
 	}
+
 	public static void initVillageChestGen()
 	{
 		ChestGenHooks.addItem(ChestGenHooks.VILLAGE_BLACKSMITH, new WeightedRandomChestContent(new ItemStack(Blocks.anvil), 1, 1, 5));

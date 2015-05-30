@@ -14,13 +14,13 @@ public class CommandHome extends BaseCommand implements ICommand
 	public CommandHome()
 	{
 		this.aliases = new ArrayList<String>();
-		aliases.add("h");
+		this.aliases.add("h");
 	}
 
 	@Override
 	public List<String> getCommandAliases()
 	{
-		return aliases;
+		return this.aliases;
 	}
 
 	@Override
@@ -28,10 +28,14 @@ public class CommandHome extends BaseCommand implements ICommand
 	{
 		EntityPlayerMP user = getCommandSenderAsPlayer(sender);
 		if (user.getBedLocation(0) != null)
+		{
 			user.playerNetServerHandler
-					.setPlayerLocation(user.getBedLocation(0).posX, user.getBedLocation(0).posY, user.getBedLocation(0).posZ, 0, 0);
+			.setPlayerLocation(user.getBedLocation(0).posX, user.getBedLocation(0).posY, user.getBedLocation(0).posZ, 0, 0);
+		}
 		else
+		{
 			throw new NotFoundException();
+		}
 	}
 
 	@Override

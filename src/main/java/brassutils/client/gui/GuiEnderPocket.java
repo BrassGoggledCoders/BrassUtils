@@ -12,8 +12,8 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-import brassutils.common.lib.LibInfo;
 import org.lwjgl.opengl.GL11;
+import brassutils.common.lib.LibInfo;
 
 /**
  * @author Surseance

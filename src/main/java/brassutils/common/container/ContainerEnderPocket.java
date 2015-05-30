@@ -14,11 +14,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+
 import boilerplate.common.utils.InventoryUtils;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class ContainerEnderPocket extends Container
 {
@@ -42,12 +43,18 @@ public class ContainerEnderPocket extends Container
 				player.player).getSizeInventory()), 99, 43));
 
 		// Inv
-		for(var3 = 0; var3 < 3; ++var3)
-			for(int var4 = 0; var4 < 9; ++var4)
+		for (var3 = 0; var3 < 3; ++var3)
+		{
+			for (int var4 = 0; var4 < 9; ++var4)
+			{
 				this.addSlotToContainer(new Slot(player, var4 + (var3 * 9) + 9, 8 + (var4 * 18), 84 + (var3 * 18)));
+			}
+		}
 		// Hotbar
-		for(var3 = 0; var3 < 9; ++var3)
+		for (var3 = 0; var3 < 9; ++var3)
+		{
 			this.addSlotToContainer(new Slot(player, var3, 8 + (var3 * 18), 142));
+		}
 	}
 
 	@Override

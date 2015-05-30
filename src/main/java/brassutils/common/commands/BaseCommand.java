@@ -39,7 +39,9 @@ public class BaseCommand extends CommandBase implements ICommand
 	public boolean canCommandSenderUseCommand(ICommandSender icommandsender)
 	{
 		if (icommandsender instanceof EntityPlayer)
+		{
 			return true;
+		}
 		else
 		{
 			throw new WrongUsageException("Command can only be executed by player", new Object[0]);
@@ -49,24 +51,32 @@ public class BaseCommand extends CommandBase implements ICommand
 	@Override
 	public void processCommand(ICommandSender sender, String[] stringarray)
 	{
-		if (getUserLevelRequired() == 1)
+		if (this.getUserLevelRequired() == 1)
 		{
-			if (isUserLevelSufficient(sender.getCommandSenderName(), getUserLevelRequired())
-					|| isUserLevelSufficient(sender.getCommandSenderName(), getUserLevelRequired()))
-				executeCommand(sender, stringarray);
+			if (isUserLevelSufficient(sender.getCommandSenderName(), this.getUserLevelRequired())
+					|| isUserLevelSufficient(sender.getCommandSenderName(), this.getUserLevelRequired()))
+			{
+				this.executeCommand(sender, stringarray);
+			}
 			else
+			{
 				throw new PermissionsException("No Permissions", new Object[0]);
+			}
 		}
-		else if (getUserLevelRequired() == 2)
+		else if (this.getUserLevelRequired() == 2)
 		{
-			if (isUserLevelSufficient(sender.getCommandSenderName(), getUserLevelRequired()))
-				executeCommand(sender, stringarray);
+			if (isUserLevelSufficient(sender.getCommandSenderName(), this.getUserLevelRequired()))
+			{
+				this.executeCommand(sender, stringarray);
+			}
 			else
+			{
 				throw new PermissionsException("No Permissions", new Object[0]);
+			}
 		}
 		else
 		{
-			executeCommand(sender, stringarray);
+			this.executeCommand(sender, stringarray);
 		}
 	}
 
@@ -85,12 +95,16 @@ public class BaseCommand extends CommandBase implements ICommand
 		if (userLevel == 1)
 		{
 			if (Arrays.asList(Config.modArray).contains(playerName) || Arrays.asList(Config.adminArray).contains(playerName))
+			{
 				return true;
+			}
 		}
 		else if (userLevel == 2)
 		{
 			if (Arrays.asList(Config.adminArray).contains(playerName))
+			{
 				return true;
+			}
 		}
 		return false;
 	}

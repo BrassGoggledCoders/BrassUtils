@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class CommonProxy
 {

@@ -8,13 +8,13 @@
  */
 package brassutils.common;
 
-import boilerplate.common.entity.EntityMinedBlock;
-
 import cpw.mods.fml.common.registry.EntityRegistry;
+
+import boilerplate.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class InitEntities
 {

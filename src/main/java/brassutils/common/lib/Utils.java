@@ -18,14 +18,17 @@ import brassutils.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class Utils
 {
 	public static boolean isCarryingGlove(EntityPlayer player)
 	{
-		if((player != null) && (player.inventory.getCurrentItem() != null) && (player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove))
+		if ((player != null) && (player.inventory.getCurrentItem() != null)
+				&& (player.inventory.getCurrentItem().getItem() instanceof ItemEnderGlove))
+		{
 			return true;
+		}
 
 		return false;
 	}
@@ -35,8 +38,10 @@ public class Utils
 		int md = 0;
 		Item item = Item.getItemFromBlock(block);
 
-		if((item != null) && item.getHasSubtypes())
+		if ((item != null) && item.getHasSubtypes())
+		{
 			md = metadata;
+		}
 
 		return new ItemStack(item, 1, md);
 	}

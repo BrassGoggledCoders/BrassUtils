@@ -40,21 +40,35 @@ public class ItemTurfKnife extends Item
 				if (BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.SWAMP)
 						|| BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.WATER)
 						|| BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.BEACH))
+				{
 					player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 1));
+				}
 				else if (BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.DRY)
 						|| BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.NETHER))
+				{
 					player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 2));
+				}
 				else if (BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.COLD))
+				{
 					player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 3));
+				}
 				else if (BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(x, z), BiomeDictionary.Type.JUNGLE))
+				{
 					player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 4));
+				}
 				else
+				{
 					player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 0));
+				}
 			}
 			if (block == Blocks.mycelium)
+			{
 				player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 5));
-			if (block == Blocks.dirt && world.getBlockMetadata(x, y, z) == 2)
+			}
+			if ((block == Blocks.dirt) && (world.getBlockMetadata(x, y, z) == 2))
+			{
 				player.inventory.addItemStackToInventory(new ItemStack(InitBlocks.blockTurf, 1, 6));
+			}
 		}
 		return true;
 	}
@@ -63,7 +77,7 @@ public class ItemTurfKnife extends Item
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		itemIcon = par1IconRegister.registerIcon(LibInfo.PREFIX + "itemTurfKnife");
+		this.itemIcon = par1IconRegister.registerIcon(LibInfo.PREFIX + "itemTurfKnife");
 	}
 
 	/**

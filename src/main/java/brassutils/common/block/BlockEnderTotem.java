@@ -22,7 +22,7 @@ import brassutils.common.lib.LibInfo;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class BlockEnderTotem extends Block
 {

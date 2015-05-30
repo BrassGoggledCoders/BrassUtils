@@ -9,7 +9,7 @@ public class ItemBlockLeafCover extends ItemBlockWithMetadata
 	public ItemBlockLeafCover(Block block)
 	{
 		super(block, block);
-		setHasSubtypes(true);
+		this.setHasSubtypes(true);
 	}
 
 	@Override

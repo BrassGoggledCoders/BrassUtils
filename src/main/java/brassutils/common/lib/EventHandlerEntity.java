@@ -23,7 +23,7 @@ import brassutils.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EventHandlerEntity
 {
@@ -36,17 +36,19 @@ public class EventHandlerEntity
 		ItemStack heldItem = event.player.inventory.getCurrentItem();
 		int artisanAmount = EnchantmentHelper.getEnchantmentLevel(Config.enchArtisanId, heldItem);
 
-		if((heldItem != null) && (heldItem.getItem() instanceof ItemEnderGlove) && (artisanAmount > 0))
+		if ((heldItem != null) && (heldItem.getItem() instanceof ItemEnderGlove) && (artisanAmount > 0))
 		{
 			IInventory craft = event.craftMatrix;
 			int randomSlot = this.random.nextInt(8);
 
-			if(craft.getStackInSlot(randomSlot) != null)
+			if (craft.getStackInSlot(randomSlot) != null)
 			{
 				ItemStack stack = craft.getStackInSlot(randomSlot);
 
-				if(this.random.nextInt(Config.artisanBonusChance) == 0 && stack.stackSize < stack.getMaxStackSize())
+				if ((this.random.nextInt(Config.artisanBonusChance) == 0) && (stack.stackSize < stack.getMaxStackSize()))
+				{
 					craft.decrStackSize(randomSlot, -1);
+				}
 			}
 		}
 	}

@@ -13,7 +13,9 @@ public class CommandInfo extends BaseCommand implements ICommand
 	public void executeCommand(ICommandSender sender, String[] stringarray)
 	{
 		if (stringarray.length == 0)
+		{
 			throw new WrongUsageException("Command usage is /info <target>. Available targets are: 'player' and 'world'", new Object[0]);
+		}
 		if (stringarray[0].contains("player"))
 		{
 			EntityPlayerMP user = getCommandSenderAsPlayer(sender);
@@ -31,7 +33,9 @@ public class CommandInfo extends BaseCommand implements ICommand
 					+ world.getWorldInfo().getSpawnY() + " Z: " + world.getWorldInfo().getSpawnZ()));
 		}
 		else
+		{
 			throw new WrongUsageException("Could not get info about specified thing", new Object[0]);
+		}
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import net.minecraft.enchantment.EnumEnchantmentType;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EnchantmentSpelunker extends Enchantment
 {

@@ -12,32 +12,32 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EnderGloveWorldGenerator implements IWorldGenerator
 {
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
 		this.worldGeneration(world, random, chunkX, chunkZ);
 	}
 
 	private void worldGeneration(World world, Random random, int x, int z)
 	{
-		switch(world.provider.dimensionId)
+		switch (world.provider.dimensionId)
 		{
-			case -1:
-				break;
-			case 1:
-				break;
-			case 0:
-				this.generateSurface(world, random, x, z);
+		case -1:
+			break;
+		case 1:
+			break;
+		case 0:
+			this.generateSurface(world, random, x, z);
 		}
 	}
 
@@ -45,7 +45,7 @@ public class EnderGloveWorldGenerator implements IWorldGenerator
 	{
 		Random ChunkGenRand = new Random();
 		int ChunkGenRandomNum = ChunkGenRand.nextInt(80);
-		if(ChunkGenRandomNum == 1)
+		if (ChunkGenRandomNum == 1)
 		{
 			// for (int i = 0; i < 50/*Config.totemsPerChunk*/; i++)
 			// {

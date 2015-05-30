@@ -10,16 +10,16 @@ package brassutils.client;
 
 import net.minecraft.world.World;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
+
 import boilerplate.client.renderers.block.RenderMinedBlock;
 import boilerplate.client.utils.EffectUtils;
 import boilerplate.common.entity.EntityMinedBlock;
 import brassutils.common.CommonProxy;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-
 /**
  * @author Surseance
- * 
+ *
  */
 public class ClientProxy extends CommonProxy
 {
@@ -27,7 +27,8 @@ public class ClientProxy extends CommonProxy
 	public void registerDisplayInformation()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityMinedBlock.class, new RenderMinedBlock());
-		// MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove, new ItemEnderGloveRenderer());
+		// MinecraftForgeClient.registerItemRenderer(ConfigItems.itemEnderGlove,
+		// new ItemEnderGloveRenderer());
 	}
 
 	@Override

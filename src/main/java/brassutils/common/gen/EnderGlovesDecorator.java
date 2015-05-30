@@ -32,7 +32,7 @@ public class EnderGlovesDecorator extends BiomeDecorator
 
 	public void decorate(World par1World, Random par2Random, int par3, int par4)
 	{
-		if(this.currentWorld != null)
+		if (this.currentWorld != null)
 		{
 			throw new RuntimeException("Already decorating!!");
 		}
@@ -52,14 +52,14 @@ public class EnderGlovesDecorator extends BiomeDecorator
 	public void decorate()
 	{
 		int j, k, l, i1;
-		for(j = 0; j < 100; ++j)
+		for (j = 0; j < 100; ++j)
 		{
 			k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
 			l = this.chunk_Z + this.randomGenerator.nextInt(16) + 8;
 			i1 = this.randomGenerator.nextInt(128);
 			this.totemGen.generate(this.currentWorld, this.randomGenerator, k, i1, l);
 		}
-		for(j = 0; j < 100; ++j)
+		for (j = 0; j < 100; ++j)
 		{
 			k = this.chunk_X + this.randomGenerator.nextInt(16) + 8;
 			l = this.randomGenerator.nextInt(128);

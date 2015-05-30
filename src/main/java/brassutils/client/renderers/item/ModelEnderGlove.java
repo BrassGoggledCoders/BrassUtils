@@ -11,12 +11,13 @@ package brassutils.client.renderers.item;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author Surseance
- * 
+ *
  */
 @SideOnly(Side.CLIENT)
 public class ModelEnderGlove extends ModelBase
@@ -197,12 +198,18 @@ public class ModelEnderGlove extends ModelBase
 		this.setRotation(this.palm2, 0F, 0F, 0F);
 		// Add Children
 		/*
-		 * this.wrist.addChild(palm); this.wrist.addChild(finger1); this.wrist.addChild(finger2); this.wrist.addChild(finger3); this.wrist.addChild(lfinger1);
-		 * this.wrist.addChild(lfinger2); this.wrist.addChild(lfinger3); this.wrist.addChild(eyebase); this.wrist.addChild(llfinger1);
-		 * this.wrist.addChild(llfinger2); this.wrist.addChild(llfinger3); this.wrist.addChild(thumb); this.wrist.addChild(thumb2);
-		 * this.wrist.addChild(eyeholder); this.wrist.addChild(eyeholder1); this.wrist.addChild(eyeholder2); this.wrist.addChild(eyeholder3);
-		 * this.wrist.addChild(wrist2); this.wrist.addChild(wrist2); this.wrist.addChild(finger4); this.wrist.addChild(lfinger4);
-		 * this.wrist.addChild(llfinger4); this.wrist.addChild(palm2);
+		 * this.wrist.addChild(palm); this.wrist.addChild(finger1);
+		 * this.wrist.addChild(finger2); this.wrist.addChild(finger3);
+		 * this.wrist.addChild(lfinger1); this.wrist.addChild(lfinger2);
+		 * this.wrist.addChild(lfinger3); this.wrist.addChild(eyebase);
+		 * this.wrist.addChild(llfinger1); this.wrist.addChild(llfinger2);
+		 * this.wrist.addChild(llfinger3); this.wrist.addChild(thumb);
+		 * this.wrist.addChild(thumb2); this.wrist.addChild(eyeholder);
+		 * this.wrist.addChild(eyeholder1); this.wrist.addChild(eyeholder2);
+		 * this.wrist.addChild(eyeholder3); this.wrist.addChild(wrist2);
+		 * this.wrist.addChild(wrist2); this.wrist.addChild(finger4);
+		 * this.wrist.addChild(lfinger4); this.wrist.addChild(llfinger4);
+		 * this.wrist.addChild(palm2);
 		 */
 	}
 

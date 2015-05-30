@@ -21,8 +21,8 @@ public class BlockGrassCover extends Block
 	public BlockGrassCover(Material p_i45394_1_)
 	{
 		super(p_i45394_1_);
-		setBlockName("blockGrassCover");
-		setCreativeTab(BrassUtils.tabBU);
+		this.setBlockName("blockGrassCover");
+		this.setCreativeTab(BrassUtils.tabBU);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -30,14 +30,14 @@ public class BlockGrassCover extends Block
 	public void registerBlockIcons(IIconRegister par1IconRegister)
 
 	{
-		icon = par1IconRegister.registerIcon("grass_top");
+		this.icon = par1IconRegister.registerIcon("grass_top");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
 	{
-		return icon;
+		return this.icon;
 	}
 
 	@Override
@@ -79,12 +79,12 @@ public class BlockGrassCover extends Block
 				int i2 = p_149720_1_.getBiomeGenForCoords(p_149720_2_ + l1, p_149720_4_ + k1).getBiomeGrassColor(p_149720_2_ + l1, p_149720_3_,
 						p_149720_4_ + k1);
 				l += (i2 & 16711680) >> 16;
-				i1 += (i2 & 65280) >> 8;
-				j1 += i2 & 255;
+			i1 += (i2 & 65280) >> 8;
+			j1 += i2 & 255;
 			}
 		}
 
-		return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
+		return (((l / 9) & 255) << 16) | (((i1 / 9) & 255) << 8) | ((j1 / 9) & 255);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class BlockGrassCover extends Block
 		byte b0 = 0;
 		float f = 0.0625F;
 		return AxisAlignedBB.getBoundingBox(p_149668_2_ + this.minX, p_149668_3_ + this.minY, p_149668_4_ + this.minZ, p_149668_2_ + this.maxX,
-				p_149668_3_ + b0 * f, p_149668_4_ + this.maxZ);
+				p_149668_3_ + (b0 * f), p_149668_4_ + this.maxZ);
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class BlockGrassCover extends Block
 	protected void func_150089_b(int p_150089_1_)
 	{
 		byte b0 = 0;
-		float f = 1 * (1 + b0) / 16.0F;
+		float f = (1 * (1 + b0)) / 16.0F;
 		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
 	}
 

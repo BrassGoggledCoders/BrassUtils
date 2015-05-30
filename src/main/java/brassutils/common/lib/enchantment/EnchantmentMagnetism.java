@@ -17,7 +17,7 @@ import brassutils.common.item.ItemEnderGlove;
 
 /**
  * @author Surseance
- * 
+ *
  */
 public class EnchantmentMagnetism extends Enchantment
 {
