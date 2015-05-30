@@ -164,9 +164,9 @@ public class Config
 
 		entMinedBlockId = config.get("Entities", "minedblock", eIdx++).getInt();
 
-		String[] admins = config.get("groups", "admins", "").getStringList();
-		String[] mods = config.get("groups", "mods", "").getStringList();
-		config.addCustomCategoryComment("groups", "Lists of people who can issue admin/mod commands");
+		adminArray = config.get("groups", "admins", new String[] {}).getStringList();
+		modArray = config.get("groups", "mods", new String[] {}).getStringList();
+		config.addCustomCategoryComment("groups", "Comma seperated lists of people who can issue admin/mod commands");
 
 		config.save();
 	}

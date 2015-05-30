@@ -1,5 +1,7 @@
 package brassutils.common.commands;
 
+import java.util.Arrays;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -47,18 +49,17 @@ public class BaseCommand extends CommandBase implements ICommand
 	@Override
 	public void processCommand(ICommandSender sender, String[] stringarray)
 	{
-		// TODO
 		if (getUserLevelRequired() == 1)
 		{
-			if (isUserLevelSufficient(sender.getCommandSenderName(), Config.modArray)
-					|| isUserLevelSufficient(sender.getCommandSenderName(), Config.adminArray))
+			if (isUserLevelSufficient(sender.getCommandSenderName(), getUserLevelRequired())
+					|| isUserLevelSufficient(sender.getCommandSenderName(), getUserLevelRequired()))
 				executeCommand(sender, stringarray);
 			else
 				throw new PermissionsException("No Permissions", new Object[0]);
 		}
 		else if (getUserLevelRequired() == 2)
 		{
-			if (isUserLevelSufficient(sender.getCommandSenderName(), Config.adminArray))
+			if (isUserLevelSufficient(sender.getCommandSenderName(), getUserLevelRequired()))
 				executeCommand(sender, stringarray);
 			else
 				throw new PermissionsException("No Permissions", new Object[0]);
@@ -79,14 +80,21 @@ public class BaseCommand extends CommandBase implements ICommand
 
 	}
 
-	public static boolean isUserLevelSufficient(String inputString, String[] items)
+	public static boolean isUserLevelSufficient(String playerName, int userLevel)
 	{
-		for (int i = 0; i < items.length; i++)
+		if (userLevel == 1)
 		{
-			if (inputString.equals(items[i]))
-			{
+			if (Config.modArray == null)
+				return false;
+			if (Arrays.asList(Config.modArray).contains(playerName))
 				return true;
-			}
+		}
+		else if (userLevel == 2)
+		{
+			if (Config.adminArray == null)
+				return false;
+			if (Arrays.asList(Config.adminArray).contains(playerName))
+				return true;
 		}
 		return false;
 	}

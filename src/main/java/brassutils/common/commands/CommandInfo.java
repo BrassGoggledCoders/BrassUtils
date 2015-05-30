@@ -12,6 +12,8 @@ public class CommandInfo extends BaseCommand implements ICommand
 	@Override
 	public void executeCommand(ICommandSender sender, String[] stringarray)
 	{
+		if (stringarray.length == 0)
+			throw new WrongUsageException("Command usage is /info <target>", new Object[0]);
 		if (stringarray[0].contains("player"))
 		{
 			EntityPlayerMP user = getCommandSenderAsPlayer(sender);

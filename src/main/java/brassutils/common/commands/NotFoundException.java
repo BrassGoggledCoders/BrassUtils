@@ -4,11 +4,10 @@ import net.minecraft.command.CommandException;
 
 public class NotFoundException extends CommandException
 {
-
 	/**
-	 *
+	 * 
 	 */
-	private static final long serialVersionUID = 6212780796339958335L;
+	private static final long serialVersionUID = 1018671632502477344L;
 
 	public NotFoundException()
 	{
