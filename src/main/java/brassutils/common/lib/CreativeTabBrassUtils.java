@@ -19,9 +19,9 @@ import brassutils.common.InitItems;
  */
 public class CreativeTabBrassUtils extends CreativeTabBase
 {
-	public CreativeTabBrassUtils(int id, String name)
+	public CreativeTabBrassUtils(String name)
 	{
-		super(id, name);
+		super(name);
 	}
 
 	@Override

@@ -84,7 +84,7 @@ public class BrassUtils
 	@Instance(LibInfo.ID)
 	public static BrassUtils instance;
 
-	public static CreativeTabs tabBU = new CreativeTabBrassUtils(CreativeTabs.getNextID(), LibInfo.ID);
+	public static CreativeTabs tabBU = new CreativeTabBrassUtils(LibInfo.ID);
 
 	public BrassUtilsWorldGenerator worldGen;
 
