@@ -78,6 +78,7 @@ public class BrassUtils
 	 * Iron Knuckles? - Slime in a Bucket :D - Antigrav field - Ender Pearl
 	 * storage block - Nether Brick Chest. Because.
 	 */
+	// http://pastebin.com/3pk16QgA
 	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
 	public static CommonProxy proxy;
 

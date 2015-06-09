@@ -25,6 +25,8 @@ public class InitRecipes
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 6), new Object[] { Blocks.quartz_stairs });
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.quartz, 2), new Object[] { new ItemStack(Blocks.stone_slab, 1, 7) });
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.string, 2), new Object[] { new ItemStack(Blocks.wool) });
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.dye, 6, 15), new Object[] { Items.bone, Items.rotten_flesh });
+
 		GameRegistry.addRecipe(new ItemStack(Blocks.packed_ice), new Object[] { "III", "III", "III", 'I', Blocks.ice });
 
 		if (InitConfig.recipeEnderGlove)
