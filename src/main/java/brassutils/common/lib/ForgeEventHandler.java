@@ -108,6 +108,11 @@ public class ForgeEventHandler
 				event.drops.add(items[random]);
 			}
 		}
+		else if (event.block == Blocks.leaves || event.block == Blocks.leaves2)
+		{
+			if (rand.nextInt(10) == 0)
+				event.drops.add(new ItemStack(Items.stick, rand.nextInt(3)));
+		}
 		EntityPlayer player = event.harvester;
 
 		if ((event.drops != null) && (event.drops.size() > 0) && (Utils.isCarryingGlove(player)))
