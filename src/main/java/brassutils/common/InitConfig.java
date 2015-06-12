@@ -79,6 +79,8 @@ public class InitConfig
 
 	public static boolean endPortalRecipe;
 	public static boolean creativeCommandBlock;
+	public static boolean extraMobDrops;
+	public static boolean extraBlockDrops;
 
 	public static void initialize(File file)
 	{
@@ -175,6 +177,9 @@ public class InitConfig
 				"Enables/Disables (Expensive) End Portal Recipe");
 		creativeCommandBlock = config.getBoolean("CommandBlock Creative Tab", Configuration.CATEGORY_GENERAL, true,
 				"Enables/Disables adding command block to redstone creative tab");
+
+		extraMobDrops = config.getBoolean("Add extra mob drops", Configuration.CATEGORY_GENERAL, true, "");
+		extraBlockDrops = config.getBoolean("Add extra block drops", Configuration.CATEGORY_GENERAL, true, "");
 
 		config.save();
 	}

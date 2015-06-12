@@ -39,24 +39,27 @@ public class ForgeEventHandler
 	@SubscribeEvent
 	public void onLivingDrops(LivingDropsEvent event)
 	{
-		if (event.entityLiving instanceof EntityAnimal)
+		if (InitConfig.extraBlockDrops)
 		{
-			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
-					new ItemStack(Items.bone, this.rand.nextInt(3) * event.lootingLevel, 1)));
-		}
-		else if (event.entityLiving instanceof EntityCreeper)
-		{
-			if (this.rand.nextInt(50) > 5)
+			if (event.entityLiving instanceof EntityAnimal)
 			{
 				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY,
-						event.entityLiving.posZ, new ItemStack(Blocks.tnt, this.rand.nextInt(1) + event.lootingLevel, 1)));
+						event.entityLiving.posZ, new ItemStack(Items.bone, this.rand.nextInt(3) * event.lootingLevel, 1)));
 			}
-		}
-		else if (event.entityLiving instanceof EntityEnderman)
-		{
-			EntityEnderman enderman = (EntityEnderman) event.entityLiving;
-			event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
-					enderman.getHeldItem()));
+			else if (event.entityLiving instanceof EntityCreeper)
+			{
+				if (this.rand.nextInt(50) > 5)
+				{
+					event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY,
+							event.entityLiving.posZ, new ItemStack(Blocks.tnt, this.rand.nextInt(1) + event.lootingLevel, 1)));
+				}
+			}
+			else if (event.entityLiving instanceof EntityEnderman)
+			{
+				EntityEnderman enderman = (EntityEnderman) event.entityLiving;
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY,
+						event.entityLiving.posZ, enderman.getHeldItem()));
+			}
 		}
 		else if (event.entityLiving instanceof EntityDragon && InitConfig.dragonDrop)
 		{
@@ -94,24 +97,27 @@ public class ForgeEventHandler
 	@SubscribeEvent
 	public void harvestBlockDrops(BlockEvent.HarvestDropsEvent event)
 	{
-		if (event.block == Blocks.mob_spawner)
+		if (InitConfig.extraBlockDrops)
 		{
-			event.drops.add(new ItemStack(Items.skull, 1, this.rand.nextInt(5)));
-		}
-		else if ((event.block == Blocks.dirt) || (event.block == Blocks.grass))
-		{
-			int random = this.rand.nextInt(80);
-			ItemStack[] items = new ItemStack[] { new ItemStack(Items.bone), new ItemStack(Items.flint), new ItemStack(Items.bowl),
-					new ItemStack(Items.map), new ItemStack(Items.stick), new ItemStack(Blocks.planks), new ItemStack(Items.skull) };
-			if (random < items.length)
+			if (event.block == Blocks.mob_spawner)
 			{
-				event.drops.add(items[random]);
+				event.drops.add(new ItemStack(Items.skull, 1, this.rand.nextInt(5)));
 			}
-		}
-		else if (event.block == Blocks.leaves || event.block == Blocks.leaves2)
-		{
-			if (rand.nextInt(10) == 0)
-				event.drops.add(new ItemStack(Items.stick, rand.nextInt(3)));
+			else if ((event.block == Blocks.dirt) || (event.block == Blocks.grass))
+			{
+				int random = this.rand.nextInt(80);
+				ItemStack[] items = new ItemStack[] { new ItemStack(Items.bone), new ItemStack(Items.flint), new ItemStack(Items.bowl),
+						new ItemStack(Items.map), new ItemStack(Items.stick), new ItemStack(Blocks.planks), new ItemStack(Items.skull) };
+				if (random < items.length)
+				{
+					event.drops.add(items[random]);
+				}
+			}
+			else if (event.block == Blocks.leaves || event.block == Blocks.leaves2)
+			{
+				if (rand.nextInt(10) == 0)
+					event.drops.add(new ItemStack(Items.stick, rand.nextInt(3)));
+			}
 		}
 		EntityPlayer player = event.harvester;
 
