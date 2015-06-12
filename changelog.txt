@@ -1,0 +1,13 @@
+Key:
+++ Major Feature
++ Addition
+- Removal
+* Change
+# Bugfix
+
+1.0.0: 
+++ This mod includes TurfMod and EnderGlove.
++ Add some utility commands, some of which are only usable by users set in the config.
++ Add configurable alternative obtainability to some items, through extra block and mob drops
+
+
