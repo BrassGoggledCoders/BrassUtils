@@ -48,3 +48,13 @@ Thumbs.db
 /crash-reports
 options.txt
 screenshots/
+/world
+/ClientStart.java
+/banned-ips.json
+/banned-players.json
+/eula.txt
+/ops.json
+/server.properties
+/usercache.json
+/usernamecache.json
+/whitelist.json
