@@ -50,34 +50,7 @@ import brassutils.common.lib.LibInfo;
 @Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION, dependencies = "required-after:boilerplate")
 public class BrassUtils
 {
-	/*
-	 * Ideas: - Rocks - Splitter TNT - Flamethrower - Slime Block: Bouncy! -
-	 * Jump Pad: Increases Jump height, slime block + piston - Sticky Slime
-	 * Block: Slime Block + water. No Jumping. - Pile of Bones block: Gravity,
-	 * acts like old bonemeal+ other buff somehow? 4x4 or 9x9 Bones? -
-	 * Compressed Bone Block: Like Pile of bones, but with no gravity. 4x4 pile
-	 * o bones. - Gunpowder + String = Fuses. Place like redstone, light one
-	 * end, and fire will quickyl travel down it - Enchanting water bottle =
-	 * Bottle of Enchanting - Enderman head. When looked at emits a redstone
-	 * signal - Bundle of Sugar Cane: Looks like bamboo - Smelt Glowstone into
-	 * Smooth glowstone? - Polished Endstone and Obsidian. 4x4. - Bedroll from
-	 * Hay Bales/Feather Block. Durability, somehow? Won't set spawn. - Paper
-	 * Pane lets light through, but not transparent? TRANSLUCENT???! - Splash
-	 * Water bottle for fire extinguishing. Fire Extinguisher?? - Desert Golem
-	 * that throws sand, giving you blindness? - Smoothstone Stairs!! - Liquid
-	 * Concrete: Hardenes into concrete, or stone? - Rebar: Makes solid concrete
-	 * harder - Ping sound when your name is said in chat? - Stone Pillars! -
-	 * Brick + Netherbrick in 4x4 is special brick texture
-	 * http://imgur.com/a/PVvHP#4 - Low Gravity Field: Higher Jump in a radius
-	 * (5x5x5?) around block - Weighted Boots: Causes player to fall very fast,
-	 * but allows them to sink quickly in water? If you fall on something it
-	 * damages it - damages entities, breaks glass. - Underwater visor type
-	 * thing that improves vision in water - Some way to turn off rain. -
-	 * Mutton! - Spear: Throw with right, stab with left - Cable: Like lead, but
-	 * can go from fencepost to fencepost. Decoration only. (Telephone wires!) -
-	 * Iron Knuckles? - Slime in a Bucket :D - Antigrav field - Ender Pearl
-	 * storage block - Nether Brick Chest. Because.
-	 */
+
 	// http://pastebin.com/3pk16QgA
 	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
 	public static CommonProxy proxy;
@@ -118,6 +91,8 @@ public class BrassUtils
 		InitItems.init();
 		// Gui
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		// Sending IMC
+		VanillaHandler.addSmelting();
 	}
 
 	@EventHandler

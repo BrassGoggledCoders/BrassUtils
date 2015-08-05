@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -21,7 +22,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -43,8 +46,8 @@ public class ForgeEventHandler
 		{
 			if (event.entityLiving instanceof EntityAnimal)
 			{
-				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY,
-						event.entityLiving.posZ, new ItemStack(Items.bone, this.rand.nextInt(3) * event.lootingLevel, 1)));
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						new ItemStack(Items.bone, this.rand.nextInt(3) * event.lootingLevel, 1)));
 			}
 			else if (event.entityLiving instanceof EntityCreeper)
 			{
@@ -57,8 +60,8 @@ public class ForgeEventHandler
 			else if (event.entityLiving instanceof EntityEnderman)
 			{
 				EntityEnderman enderman = (EntityEnderman) event.entityLiving;
-				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY,
-						event.entityLiving.posZ, enderman.getHeldItem()));
+				event.drops.add(new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ,
+						enderman.getHeldItem()));
 			}
 		}
 		else if (event.entityLiving instanceof EntityDragon && InitConfig.dragonDrop)
@@ -193,12 +196,45 @@ public class ForgeEventHandler
 			{
 				is.damageItem(2, event.entityPlayer);
 				InventoryUtils.addItemStackToInventory(InventoryUtils.getPlayerEnderChest(event.entityPlayer), is);
-				PlayerUtils.sendMessage(event.entityPlayer, EnumChatFormatting.DARK_PURPLE + is.getDisplayName()
-						+ " was succesfully saved to your Ender Chest!");
+				PlayerUtils.sendMessage(event.entityPlayer,
+						EnumChatFormatting.DARK_PURPLE + is.getDisplayName() + " was succesfully saved to your Ender Chest!");
 				boilerplate.common.utils.Utils.playSFX(event.entityPlayer.worldObj, (int) entItem.prevPosX, (int) entItem.prevPosY,
 						(int) entItem.prevPosZ, "mob.endermen.portal");
 				entItem.setDead();
 			}
+		}
+	}
+
+	public int ticksSinceLastKill;
+	public int entitiesKilled;
+
+	public void onLivingDeath(LivingDeathEvent event)
+	{
+		if (event.source.getDamageType() == "player")
+		{
+			EntityPlayer cause = (EntityPlayer) event.source.getEntity();
+			ticksSinceLastKill = 0;
+			entitiesKilled++;
+			cause.addExperienceLevel(300);
+		}
+	}
+
+	public void onPlayerUpdate(LivingUpdateEvent event)
+	{
+		if (event.entityLiving instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer) event.entityLiving;
+			ticksSinceLastKill++;
+			System.out.print(ticksSinceLastKill);
+			System.out.print(entitiesKilled);
+			if (ticksSinceLastKill == 0 && entitiesKilled == 2)
+			{
+				player.addChatMessage(new ChatComponentText("Works"));
+				System.out.print("Works");
+			}
+			/*
+			 * else { entitiesKilled--; }
+			 */
 		}
 	}
 }
