@@ -2,7 +2,6 @@ package brassutils.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
@@ -14,7 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import brassutils.common.BrassUtils;
 
-public class BlockGrassCover extends Block
+public class BlockGrassCover extends BaseBlock
 {
 	IIcon icon;
 
@@ -23,21 +22,6 @@ public class BlockGrassCover extends Block
 		super(p_i45394_1_);
 		this.setBlockName("blockGrassCover");
 		this.setCreativeTab(BrassUtils.tabBU);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister par1IconRegister)
-
-	{
-		this.icon = par1IconRegister.registerIcon("grass_top");
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
-	{
-		return this.icon;
 	}
 
 	@Override
@@ -79,8 +63,8 @@ public class BlockGrassCover extends Block
 				int i2 = p_149720_1_.getBiomeGenForCoords(p_149720_2_ + l1, p_149720_4_ + k1).getBiomeGrassColor(p_149720_2_ + l1, p_149720_3_,
 						p_149720_4_ + k1);
 				l += (i2 & 16711680) >> 16;
-			i1 += (i2 & 65280) >> 8;
-			j1 += i2 & 255;
+				i1 += (i2 & 65280) >> 8;
+				j1 += i2 & 255;
 			}
 		}
 

@@ -17,7 +17,6 @@
  */
 package brassutils.common.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -29,7 +28,7 @@ import net.minecraft.world.World;
  *
  *         6 Apr 201420:34:16
  */
-public class BlockFeathers extends Block
+public class BlockFeathers extends BaseBlock
 {
 
 	/**

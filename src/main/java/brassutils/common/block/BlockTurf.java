@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import brassutils.common.BrassUtils;
 import brassutils.common.lib.LibInfo;
 
-public class BlockTurf extends Block
+public class BlockTurf extends BaseBlock
 {
 	private IIcon[] icons = new IIcon[7];
 
