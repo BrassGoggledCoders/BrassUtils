@@ -1,8 +1,13 @@
 package brassutils.common.block;
 
+import java.util.List;
+
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
@@ -48,5 +53,16 @@ public class BlockRedstoneSand extends BlockSand
 	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
 	{
 		return this.blockIcon;
+	}
+
+	/**
+	 * returns a list of blocks with the same ID, but different meta (eg: wood
+	 * returns 4 blocks)
+	 */
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+	{
+		p_149666_3_.add(new ItemStack(p_149666_1_, 1, 0));
 	}
 }

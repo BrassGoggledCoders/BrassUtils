@@ -68,7 +68,7 @@ public class InitBlocks
 		blockTotemTop = new BlockTotemTop().setBlockName("blockEnderTotemTop");
 		GameRegistry.registerBlock(blockEnderTotem, "BlockEnderTotem");
 		GameRegistry.registerBlock(blockTotemTop, "BlockEnderTotemTop");
-		blockFeathers = new BlockFeathers(Material.cloth);
+		blockFeathers = new BlockFeathers(Material.cloth).setBlockName("blockFeathers");
 		GameRegistry.registerBlock(blockFeathers, "BlockFeathers");
 		OreDictionary.registerOre("wool", blockFeathers);
 		OreDictionary.registerOre("wool", Blocks.wool);
