@@ -69,9 +69,10 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockEnderTotem, "BlockEnderTotem");
 		GameRegistry.registerBlock(blockTotemTop, "BlockEnderTotemTop");
 		blockFeathers = new BlockFeathers(Material.cloth);
-		GameRegistry.registerBlock(blockFeathers, "blockFeathers");
+		GameRegistry.registerBlock(blockFeathers, "BlockFeathers");
 		OreDictionary.registerOre("wool", blockFeathers);
 		OreDictionary.registerOre("wool", Blocks.wool);
 		blockRedstoneSand = new BlockRedstoneSand(Material.sand).setBlockName("blockRedstoneSand").setCreativeTab(BrassUtils.tabBU);
+		GameRegistry.registerBlock(blockRedstoneSand, "BlockRedstoneSand");
 	}
 }

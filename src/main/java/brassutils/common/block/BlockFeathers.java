@@ -37,7 +37,6 @@ public class BlockFeathers extends BaseBlock
 	public BlockFeathers(Material par2Material)
 	{
 		super(par2Material);
-		this.setBlockName("featherBlock");
 		this.setResistance(0);
 		this.setHardness(0.4F);
 	}
@@ -46,12 +45,6 @@ public class BlockFeathers extends BaseBlock
 	public void onFallenUpon(World par1World, int par2, int par3, int par4, Entity par5Entity, float par6)
 	{
 		par5Entity.fallDistance = 0;
-	}
-
-	@Override
-	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
-	{
-		par1World.spawnParticle("snowballpoof", par2, par3, par4, 0, 0, 0);
 	}
 
 	@Override

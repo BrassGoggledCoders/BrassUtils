@@ -35,6 +35,8 @@ tile.blockLeafCover.8.name=Opaque Jungle Leaf Covering
 tile.blockLeafCover.9.name=Opaque Birch Leaf Covering
 tile.blockLeafCover.10.name=Opaque Acacia Leaf Covering
 tile.blockLeafCover.11.name=Opaque Dark Oak Leaf Covering
+tile.blockFeathers.name=Feather Block
+tile.blockRedstoneSand.name=Redstone Sand
 #
 # Items
 item.itemEnderglove.name=Ender Glove
