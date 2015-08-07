@@ -2,6 +2,7 @@ package brassutils.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerGrass;
@@ -15,13 +16,22 @@ import brassutils.common.BrassUtils;
 
 public class BlockGrassCover extends BaseBlock
 {
-	IIcon icon;
 
 	public BlockGrassCover(Material p_i45394_1_)
 	{
 		super(p_i45394_1_);
 		this.setBlockName("blockGrassCover");
 		this.setCreativeTab(BrassUtils.tabBU);
+	}
+
+	/**
+	 * Gets the block's texture. Args: side, meta
+	 */
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+	{
+		return Blocks.grass.getIcon(p_149691_1_, p_149691_2_);
 	}
 
 	@Override
