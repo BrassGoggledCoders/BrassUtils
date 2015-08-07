@@ -53,7 +53,7 @@ public class InitRecipes
 					new Object[] { "S", "L", 'S', Blocks.sand, 'L', new ItemStack(InitBlocks.blockLeafCover, 1, i) });
 		}
 
-		GameRegistry.addRecipe(new ItemStack(InitBlocks.featherBlock), new Object[] { "XX", "XX", 'X', Items.feather });
+		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockFeathers), new Object[] { "XX", "XX", 'X', Items.feather });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitBlocks.blockRedstoneSand), new Object[] { Blocks.sand, Items.redstone });
 	}
 }

@@ -36,7 +36,7 @@ public class InitBlocks
 	public static Block blockTurf;
 	public static Block blockLeafCover;
 	public static Block blockGrassCover;
-	public static Block featherBlock;
+	public static Block blockFeathers;
 	public static Block blockRedstoneSand;
 	/*
 	 * public static Block modularTNT; Block splitterTNT; Block jumpPad,
@@ -68,9 +68,9 @@ public class InitBlocks
 		blockTotemTop = new BlockTotemTop().setBlockName("blockEnderTotemTop");
 		GameRegistry.registerBlock(blockEnderTotem, "BlockEnderTotem");
 		GameRegistry.registerBlock(blockTotemTop, "BlockEnderTotemTop");
-		featherBlock = new BlockFeathers(Material.cloth);
-		GameRegistry.registerBlock(featherBlock, "featherBlock");
-		OreDictionary.registerOre("wool", featherBlock);
+		blockFeathers = new BlockFeathers(Material.cloth);
+		GameRegistry.registerBlock(blockFeathers, "blockFeathers");
+		OreDictionary.registerOre("wool", blockFeathers);
 		OreDictionary.registerOre("wool", Blocks.wool);
 		blockRedstoneSand = new BlockRedstoneSand(Material.sand).setBlockName("blockRedstoneSand").setCreativeTab(BrassUtils.tabBU);
 	}

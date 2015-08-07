@@ -18,7 +18,6 @@
 package brassutils.common.block;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -39,7 +38,6 @@ public class BlockFeathers extends BaseBlock
 	{
 		super(par2Material);
 		this.setBlockName("featherBlock");
-		this.setCreativeTab(CreativeTabs.tabMisc);
 		this.setResistance(0);
 		this.setHardness(0.4F);
 	}
