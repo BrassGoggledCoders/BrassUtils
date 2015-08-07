@@ -21,6 +21,7 @@ import brassutils.common.block.BlockEnderTotem;
 import brassutils.common.block.BlockFeathers;
 import brassutils.common.block.BlockGrassCover;
 import brassutils.common.block.BlockLeafCover;
+import brassutils.common.block.BlockRedstoneSand;
 import brassutils.common.block.BlockTotemTop;
 import brassutils.common.block.BlockTurf;
 import brassutils.common.item.ItemBlockLeafCover;
@@ -36,6 +37,7 @@ public class InitBlocks
 	public static Block blockLeafCover;
 	public static Block blockGrassCover;
 	public static Block featherBlock;
+	public static Block blockRedstoneSand;
 	/*
 	 * public static Block modularTNT; Block splitterTNT; Block jumpPad,
 	 * stickyBlock; Block fuse; Block bonePile, boneBlock; Block
@@ -70,5 +72,6 @@ public class InitBlocks
 		GameRegistry.registerBlock(featherBlock, "featherBlock");
 		OreDictionary.registerOre("wool", featherBlock);
 		OreDictionary.registerOre("wool", Blocks.wool);
+		blockRedstoneSand = new BlockRedstoneSand(Material.sand).setBlockName("blockRedstoneSand").setCreativeTab(BrassUtils.tabBU);
 	}
 }
