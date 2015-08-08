@@ -160,8 +160,8 @@ public class CommandRTD extends CommandBase
 			else if (r == 21)
 			{
 				player.inventory.addItemStackToInventory(new ItemStack(Blocks.tnt, 1));
-				PlayerUtils.sendChatToServer("Player " + player.getCommandSenderName()
-						+ " rolled the dice and was given some dynamite! Watch out for them!");
+				PlayerUtils.sendChatToServer(
+						"Player " + player.getCommandSenderName() + " rolled the dice and was given some dynamite! Watch out for them!");
 			}
 			else if (r == 22)
 			{
@@ -219,7 +219,8 @@ public class CommandRTD extends CommandBase
 		// }
 		// else{
 		// EntityPlayer player = (EntityPlayer ) icommandsender;
-		// player.addChatMessage("You can't roll the dice again yet. Wait another"
+		// player.addChatMessage("You can't roll the dice again yet. Wait
+		// another"
 		// + cooldown.getTimeLeft() + "seconds");
 		// }
 	}

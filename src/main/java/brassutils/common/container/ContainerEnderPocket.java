@@ -29,18 +29,18 @@ public class ContainerEnderPocket extends Container
 	{
 		int var3;
 
-		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player), this.random.nextInt(InventoryUtils.getPlayerEnderChest(
-				player.player).getSizeInventory()), 63, 25));
-		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player), this.random.nextInt(InventoryUtils.getPlayerEnderChest(
-				player.player).getSizeInventory()), 81, 25));
-		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player), this.random.nextInt(InventoryUtils.getPlayerEnderChest(
-				player.player).getSizeInventory()), 99, 25));
-		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player), this.random.nextInt(InventoryUtils.getPlayerEnderChest(
-				player.player).getSizeInventory()), 63, 43));
-		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player), this.random.nextInt(InventoryUtils.getPlayerEnderChest(
-				player.player).getSizeInventory()), 81, 43));
-		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player), this.random.nextInt(InventoryUtils.getPlayerEnderChest(
-				player.player).getSizeInventory()), 99, 43));
+		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player),
+				this.random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 63, 25));
+		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player),
+				this.random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 81, 25));
+		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player),
+				this.random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 99, 25));
+		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player),
+				this.random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 63, 43));
+		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player),
+				this.random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 81, 43));
+		this.addSlotToContainer(new Slot(InventoryUtils.getPlayerEnderChest(player.player),
+				this.random.nextInt(InventoryUtils.getPlayerEnderChest(player.player).getSizeInventory()), 99, 43));
 
 		// Inv
 		for (var3 = 0; var3 < 3; ++var3)

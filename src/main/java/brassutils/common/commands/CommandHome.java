@@ -29,8 +29,8 @@ public class CommandHome extends BaseCommand implements ICommand
 		EntityPlayerMP user = getCommandSenderAsPlayer(sender);
 		if (user.getBedLocation(0) != null)
 		{
-			user.playerNetServerHandler
-			.setPlayerLocation(user.getBedLocation(0).posX, user.getBedLocation(0).posY, user.getBedLocation(0).posZ, 0, 0);
+			user.playerNetServerHandler.setPlayerLocation(user.getBedLocation(0).posX, user.getBedLocation(0).posY, user.getBedLocation(0).posZ, 0,
+					0);
 		}
 		else
 		{

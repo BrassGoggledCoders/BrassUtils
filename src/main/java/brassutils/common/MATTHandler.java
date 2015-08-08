@@ -29,14 +29,16 @@ public class MATTHandler
 	{
 		IMCHelper.addNewSmeltable(Items.bucket, 0, Blocks.iron_block, new FluidStack(moltenIronFluid, ingotLiquidValue * 3), 600);
 		IMCHelper.addNewSmeltable(Item.getItemFromBlock(Blocks.anvil), 0, Blocks.anvil,
-				new FluidStack(moltenIronFluid, blockLiquidValue * 3 + ingotLiquidValue * 4), 600);
+				new FluidStack(moltenIronFluid, (blockLiquidValue * 3) + (ingotLiquidValue * 4)), 600);
 		IMCHelper.addNewSmeltable(Items.golden_apple, 0, Blocks.gold_block, new FluidStack(moltenGoldFluid, ingotLiquidValue * 4), 540);
 		IMCHelper.addNewSmeltable(Items.clock, 0, Blocks.gold_block, new FluidStack(moltenGoldFluid, ingotLiquidValue * 4), 400);
 		IMCHelper.addNewSmeltable(Item.getItemFromBlock(Blocks.hopper), 0, Blocks.hopper, new FluidStack(moltenIronFluid, ingotLiquidValue * 5), 600);
 		IMCHelper.addNewSmeltable(Items.iron_door, 0, Blocks.iron_block, new FluidStack(moltenIronFluid, ingotLiquidValue * 6), 600);
 		for (int i = 0; i < 16; i++)
+		{
 			IMCHelper.addNewSmeltable(Item.getItemFromBlock(Blocks.stained_glass), i, Blocks.stained_glass,
 					new FluidStack(moltenGlassFluid, blockLiquidValue), 100);
+		}
 		IMCHelper.addNewSmeltable(Item.getItemFromBlock(Blocks.rail), 0, Blocks.rail, new FluidStack(moltenIronFluid, ingotLiquidValue * 6), 600);
 		IMCHelper.addNewSmeltable(Item.getItemFromBlock(Blocks.iron_bars), 0, Blocks.iron_bars, new FluidStack(moltenIronFluid, ingotLiquidValue * 6),
 				600);
@@ -52,7 +54,7 @@ public class MATTHandler
 		{
 			Block block = null;
 			Fluid fluid = null;
-			if (i < equip.length / 2)
+			if (i < (equip.length / 2))
 			{
 				block = Blocks.iron_block;
 				fluid = moltenIronFluid;

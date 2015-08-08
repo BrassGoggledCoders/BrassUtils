@@ -93,7 +93,9 @@ public class BrassUtils
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		// Sending IMC
 		if (Loader.isModLoaded("TConstruct"))
+		{
 			MATTHandler.addVanillaSmelting();
+		}
 	}
 
 	@EventHandler

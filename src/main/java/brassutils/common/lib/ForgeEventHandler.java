@@ -64,7 +64,7 @@ public class ForgeEventHandler
 						enderman.getHeldItem()));
 			}
 		}
-		else if (event.entityLiving instanceof EntityDragon && InitConfig.dragonDrop)
+		else if ((event.entityLiving instanceof EntityDragon) && InitConfig.dragonDrop)
 		{
 			event.entityLiving.dropItem(InitItems.itemEnderGlove, 1);
 		}
@@ -116,10 +116,12 @@ public class ForgeEventHandler
 					event.drops.add(items[random]);
 				}
 			}
-			else if (event.block == Blocks.leaves || event.block == Blocks.leaves2)
+			else if ((event.block == Blocks.leaves) || (event.block == Blocks.leaves2))
 			{
-				if (rand.nextInt(10) == 0)
-					event.drops.add(new ItemStack(Items.stick, rand.nextInt(3)));
+				if (this.rand.nextInt(10) == 0)
+				{
+					event.drops.add(new ItemStack(Items.stick, this.rand.nextInt(3)));
+				}
 			}
 		}
 		EntityPlayer player = event.harvester;
@@ -213,8 +215,8 @@ public class ForgeEventHandler
 		if (event.source.getDamageType() == "player")
 		{
 			EntityPlayer cause = (EntityPlayer) event.source.getEntity();
-			ticksSinceLastKill = 0;
-			entitiesKilled++;
+			this.ticksSinceLastKill = 0;
+			this.entitiesKilled++;
 			cause.addExperienceLevel(300);
 		}
 	}
@@ -224,10 +226,10 @@ public class ForgeEventHandler
 		if (event.entityLiving instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.entityLiving;
-			ticksSinceLastKill++;
-			System.out.print(ticksSinceLastKill);
-			System.out.print(entitiesKilled);
-			if (ticksSinceLastKill == 0 && entitiesKilled == 2)
+			this.ticksSinceLastKill++;
+			System.out.print(this.ticksSinceLastKill);
+			System.out.print(this.entitiesKilled);
+			if ((this.ticksSinceLastKill == 0) && (this.entitiesKilled == 2))
 			{
 				player.addChatMessage(new ChatComponentText("Works"));
 				System.out.print("Works");

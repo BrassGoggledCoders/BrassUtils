@@ -26,10 +26,10 @@ public class DungeonLootHandler
 		// Ender Gloves
 		if (InitConfig.chestGen)
 		{
-			ChestGenHooks
-					.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
-			ChestGenHooks
-					.addItem(ChestGenHooks.STRONGHOLD_CROSSING, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CORRIDOR,
+					new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
+			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_CROSSING,
+					new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 1));
 			ChestGenHooks.addItem(ChestGenHooks.STRONGHOLD_LIBRARY, new WeightedRandomChestContent(new ItemStack(InitItems.itemEnderGlove), 1, 1, 2));
 		}
 	}

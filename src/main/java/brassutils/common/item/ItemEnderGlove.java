@@ -34,8 +34,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import com.google.common.collect.Sets;
-
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -49,6 +47,7 @@ import brassutils.common.InitConfig;
 import brassutils.common.InitItems;
 import brassutils.common.lib.LibInfo;
 import brassutils.common.lib.Utils;
+import com.google.common.collect.Sets;
 
 /**
  * @author Surseance
