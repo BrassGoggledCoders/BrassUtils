@@ -3,7 +3,6 @@ package brassutils.common.block;
 import java.util.List;
 
 import net.minecraft.block.BlockSand;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -17,9 +16,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockRedstoneSand extends BlockSand
 {
 
-	public BlockRedstoneSand(Material sand)
+	public BlockRedstoneSand()
 	{
-
+		super();
 	}
 
 	/**

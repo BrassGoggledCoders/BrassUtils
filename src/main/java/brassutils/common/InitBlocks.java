@@ -19,6 +19,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import brassutils.common.block.BlockEnderTotem;
 import brassutils.common.block.BlockFeathers;
+import brassutils.common.block.BlockFusedQuartz;
 import brassutils.common.block.BlockGrassCover;
 import brassutils.common.block.BlockLeafCover;
 import brassutils.common.block.BlockRedstoneSand;
@@ -36,8 +37,7 @@ public class InitBlocks
 	public static Block blockTurf;
 	public static Block blockLeafCover;
 	public static Block blockGrassCover;
-	public static Block blockFeathers;
-	public static Block blockRedstoneSand;
+	public static Block blockFeathers, blockRedstoneSand, blockFusedQuartz;
 	/*
 	 * public static Block modularTNT; Block splitterTNT; Block jumpPad,
 	 * stickyBlock; Block fuse; Block bonePile, boneBlock; Block
@@ -72,7 +72,9 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockFeathers, "BlockFeathers");
 		OreDictionary.registerOre("wool", blockFeathers);
 		OreDictionary.registerOre("wool", Blocks.wool);
-		blockRedstoneSand = new BlockRedstoneSand(Material.sand).setBlockName("blockRedstoneSand").setCreativeTab(BrassUtils.tabBU);
+		blockRedstoneSand = new BlockRedstoneSand().setBlockName("blockRedstoneSand").setCreativeTab(BrassUtils.tabBU);
 		GameRegistry.registerBlock(blockRedstoneSand, "BlockRedstoneSand");
+		blockFusedQuartz = new BlockFusedQuartz(Material.glass).setBlockName("blockFusedQuartz");
+		GameRegistry.registerBlock(blockFusedQuartz, "BlockFusedQuartz");
 	}
 }
