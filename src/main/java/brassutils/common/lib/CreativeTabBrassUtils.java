@@ -10,14 +10,14 @@ package brassutils.common.lib;
 
 import net.minecraft.item.Item;
 
-import boilerplate.common.baseclasses.CreativeTabBase;
+import boilerplate.common.baseclasses.BaseCreativeTab;
 import brassutils.common.InitItems;
 
 /**
  * @author Surseance
  *
  */
-public class CreativeTabBrassUtils extends CreativeTabBase
+public class CreativeTabBrassUtils extends BaseCreativeTab
 {
 	public CreativeTabBrassUtils(String name)
 	{
