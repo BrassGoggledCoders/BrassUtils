@@ -82,6 +82,11 @@ public class InitConfig
 	public static boolean extraMobDrops;
 	public static boolean extraBlockDrops;
 
+	public static int etheriumMaterialID;
+
+	public static int netherEtheriumCrystalCluster;
+	public static int endEtheriumCrystalCluster;
+
 	public static void initialize(File file)
 	{
 		config = new Configuration(file);
@@ -180,6 +185,11 @@ public class InitConfig
 
 		extraMobDrops = config.getBoolean("Add extra mob drops", Configuration.CATEGORY_GENERAL, true, "");
 		extraBlockDrops = config.getBoolean("Add extra block drops", Configuration.CATEGORY_GENERAL, true, "");
+
+		etheriumMaterialID = config.get(Configuration.CATEGORY_GENERAL, "Etherium Tool Material ID for Tinker's Construct Intergration", 66).getInt();
+
+		netherEtheriumCrystalCluster = config.get(Configuration.CATEGORY_GENERAL, "Etheruim Crystal (Nether)", 5).getInt();
+		endEtheriumCrystalCluster = config.get(Configuration.CATEGORY_GENERAL, "Etheruim Crystal (End)", 10).getInt();
 
 		config.save();
 	}

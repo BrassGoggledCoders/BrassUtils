@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import brassutils.common.InitBlocks;
 import brassutils.common.InitItems;
-import brassutils.common.lib.LibInfo;
+import brassutils.common.lib.ModInfo;
 
 /**
  * @author Surseance
@@ -30,7 +30,7 @@ public class BlockTotemTop extends BlockEnderTotem
 	@Override
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		this.blockIcon = ir.registerIcon(LibInfo.PREFIX + "endertotem");
+		this.blockIcon = ir.registerIcon(ModInfo.PREFIX + "endertotem");
 	}
 
 	public BlockTotemTop()

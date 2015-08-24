@@ -12,7 +12,7 @@ package brassutils.common.lib;
  * @author Surseance
  *
  */
-public class LibInfo
+public class ModInfo
 {
 	public static final String ID = "brassutils";
 	public static final String NAME = "BrassUtils";

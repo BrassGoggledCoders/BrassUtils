@@ -45,7 +45,7 @@ import boilerplate.common.utils.PlayerUtils;
 import brassutils.common.BrassUtils;
 import brassutils.common.InitConfig;
 import brassutils.common.InitItems;
-import brassutils.common.lib.LibInfo;
+import brassutils.common.lib.ModInfo;
 import brassutils.common.lib.Utils;
 import com.google.common.collect.Sets;
 
@@ -62,7 +62,7 @@ public class ItemEnderGlove extends ItemTool
 	@Override
 	public void registerIcons(IIconRegister ir)
 	{
-		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderglove");
+		this.itemIcon = ir.registerIcon(ModInfo.PREFIX + "enderglove");
 	}
 
 	public ItemEnderGlove()

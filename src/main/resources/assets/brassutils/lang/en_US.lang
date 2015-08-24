@@ -37,11 +37,41 @@ tile.blockLeafCover.10.name=Opaque Acacia Leaf Covering
 tile.blockLeafCover.11.name=Opaque Dark Oak Leaf Covering
 tile.blockFeathers.name=Feather Block
 tile.blockRedstoneSand.name=Redstone Sand
+tile.blockEtherium.name=Etherium Block
+tile.blockCrystal.name=Etherium Crystal Block
 #
 # Items
 item.itemEnderglove.name=Ender Glove
 item.itemEnderpocket.name=Ender Pocket
 item.itemTurfKnife.name=Turf Knife
-#
+item.itemEtherium.name=Etherium Crystal
+item.itemEtheriumCrystalShard.name=Etherium Crystal Shard
+item.itemObsidianSlate.name=Obsidian Slate
+item.itemPickaxeEtherium.name=Etherium Pickaxe
+item.itemSwordEtherium.name=Etherium Sword
+item.itemAxeEtherium.name=Etherium Axe
+item.itemHoeEtherium.name=Etherium Hoe
+item.itemShovelEtherium.name=Etherium Shovel
+item.itemPickaxeObsidian.name=Obsidian Pickaxe
+item.itemSwordObsidian.name=Obsidian Sword
+item.itemAxeObsidian.name=Obsidian Axe
+item.itemHoeObsidian.name=Obsidian Hoe
+item.itemShovelObsidian.name=Obsidian Shovel
+item.itemHelmetEtherium.name=Etherium Helmet
+item.itemChestplateEtherium.name=Etherium Chestplate
+item.itemLegsEtherium.name=Etherium Leggings
+item.itemBootsEtherium.name=Etherium Boots
+item.itemHelmetObsidian.name=Obsidian Helmet
+item.itemChestplateObsidian.name=Obsidian Chestplate
+item.itemLegsObsidian.name=Obsidian Leggings
+item.itemBootsObsidian.name=Obsidian Boots
+item.itemHelmetObsidian.desc=Heavy! Slows you down, and don't try swimming with it! But it does make you fireproof
+item.itemChestplateObsidian.desc=Heavy! Slows you down, and don't try swimming with it! But it does make you fireproof
+item.itemLegsObsidian.desc=Heavy! Slows you down, and don't try swimming with it! But it does make you fireproof
+item.itemBootsObsidian.desc=Heavy! Slows you down, and don't try swimming with it! But it does make you fireproof
+
+#TiCon Material
+material.etherium=Etherium
+
 # Tab
 itemGroup.brassutils=Brass Utils

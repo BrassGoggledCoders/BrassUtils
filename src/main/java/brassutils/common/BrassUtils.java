@@ -41,24 +41,24 @@ import brassutils.common.gen.BrassUtilsWorldGenerator;
 import brassutils.common.lib.CreativeTabBrassUtils;
 import brassutils.common.lib.FMLEventHandler;
 import brassutils.common.lib.ForgeEventHandler;
-import brassutils.common.lib.LibInfo;
+import brassutils.common.lib.ModInfo;
 
 /**
  * @author Surseance
  *
  */
-@Mod(modid = LibInfo.ID, name = LibInfo.NAME, version = LibInfo.VERSION, dependencies = "required-after:boilerplate")
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:boilerplate")
 public class BrassUtils
 {
 
 	// http://pastebin.com/3pk16QgA
-	@SidedProxy(clientSide = LibInfo.CLIENT_PROXY, serverSide = LibInfo.COMMON_PROXY)
+	@SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
 	public static CommonProxy proxy;
 
-	@Instance(LibInfo.ID)
+	@Instance(ModInfo.ID)
 	public static BrassUtils instance;
 
-	public static CreativeTabs tabBU = new CreativeTabBrassUtils(LibInfo.ID);
+	public static CreativeTabs tabBU = new CreativeTabBrassUtils(ModInfo.ID);
 
 	public BrassUtilsWorldGenerator worldGen;
 
@@ -88,6 +88,7 @@ public class BrassUtils
 		InitConfig.save();
 		// Blocks & Items
 		InitBlocks.init();
+		InitMaterials.initializeMaterials();
 		InitItems.init();
 		// Gui
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
@@ -145,58 +146,58 @@ public class BrassUtils
 			{
 				if (m.name.equals("EnderGlove:BlockEnderTotem"))
 				{
-					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem"));
+					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotem"));
 				}
 				else if (m.name.equals("EnderGlove:blockTotemTop"))
 				{
-					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotemTop"));
+					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotemTop"));
 				}
 				else if (m.name.equals("TurfMod:BlockTurf"))
 				{
-					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockTurf"));
+					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockTurf"));
 				}
 				else if (m.name.equals("TurfMod:BlockLeafCover"))
 				{
-					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockLeafCover"));
+					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockLeafCover"));
 				}
 				else if (m.name.equals("TurfMod:BlockGrassCover"))
 				{
-					m.remap(GameRegistry.findBlock(LibInfo.ID, "BlockGrassCover"));
+					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover"));
 				}
 			}
 			else if (m.type == Type.ITEM)
 			{
 				if (m.name.equals("EnderGlove:ItemEnderGlove"))
 				{
-					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderGlove"));
+					m.remap(GameRegistry.findItem(ModInfo.ID, "ItemEnderGlove"));
 				}
 				else if (m.name.equals("EnderGlove:ItemEnderPocket"))
 				{
-					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemEnderPocket"));
+					m.remap(GameRegistry.findItem(ModInfo.ID, "ItemEnderPocket"));
 				}
 				else if (m.name.equals("EnderGlove:BlockEnderTotem"))
 				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotem")));
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotem")));
 				}
 				else if (m.name.equals("EnderGlove:blockTotemTop"))
 				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockEnderTotemTop")));
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotemTop")));
 				}
 				else if (m.name.equals("TurfMod:ItemTurfKnife"))
 				{
-					m.remap(GameRegistry.findItem(LibInfo.ID, "ItemTurfKnife"));
+					m.remap(GameRegistry.findItem(ModInfo.ID, "ItemTurfKnife"));
 				}
 				else if (m.name.equals("TurfMod:BlockTurf"))
 				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockTurf")));
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockTurf")));
 				}
 				else if (m.name.equals("TurfMod:BlockLeafCover"))
 				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockLeafCover")));
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockLeafCover")));
 				}
 				else if (m.name.equals("TurfMod:BlockGrassCover"))
 				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(LibInfo.ID, "BlockGrassCover")));
+					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover")));
 				}
 			}
 		}

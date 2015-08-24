@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.common.baseclasses.items.RootItem;
 import brassutils.common.BrassUtils;
-import brassutils.common.lib.LibInfo;
+import brassutils.common.lib.ModInfo;
 
 /**
  * @author Surseance
@@ -42,7 +42,7 @@ public class ItemEnderPocket extends RootItem
 	@Override
 	public void registerIcons(IIconRegister ir)
 	{
-		this.itemIcon = ir.registerIcon(LibInfo.PREFIX + "enderpocket");
+		this.itemIcon = ir.registerIcon(ModInfo.PREFIX + "enderpocket");
 	}
 
 	@Override

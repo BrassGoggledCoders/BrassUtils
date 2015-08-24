@@ -12,7 +12,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-import brassutils.common.lib.LibInfo;
+import brassutils.common.lib.ModInfo;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -21,7 +21,7 @@ import org.lwjgl.opengl.GL11;
  */
 public class GuiEnderPocket extends GuiContainer
 {
-	private static ResourceLocation guitexture = new ResourceLocation(LibInfo.PREFIX + "textures/gui/enderpocket.png");
+	private static ResourceLocation guitexture = new ResourceLocation(ModInfo.PREFIX + "textures/gui/enderpocket.png");
 
 	public GuiEnderPocket(Container p_i1072_1_)
 	{

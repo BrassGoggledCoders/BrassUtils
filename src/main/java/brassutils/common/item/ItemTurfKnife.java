@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraftforge.common.BiomeDictionary;
 
 import brassutils.common.InitBlocks;
-import brassutils.common.lib.LibInfo;
+import brassutils.common.lib.ModInfo;
 
 public class ItemTurfKnife extends Item
 {
@@ -77,7 +77,7 @@ public class ItemTurfKnife extends Item
 	@Override
 	public void registerIcons(IIconRegister par1IconRegister)
 	{
-		this.itemIcon = par1IconRegister.registerIcon(LibInfo.PREFIX + "itemTurfKnife");
+		this.itemIcon = par1IconRegister.registerIcon(ModInfo.PREFIX + "itemTurfKnife");
 	}
 
 	/**

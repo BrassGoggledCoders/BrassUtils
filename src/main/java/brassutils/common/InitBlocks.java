@@ -17,7 +17,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 
+import boilerplate.common.utils.helpers.RegistryHelper;
+import brassutils.common.block.BlockCrystal;
 import brassutils.common.block.BlockEnderTotem;
+import brassutils.common.block.BlockEtherium;
 import brassutils.common.block.BlockFeathers;
 import brassutils.common.block.BlockFusedQuartz;
 import brassutils.common.block.BlockGrassCover;
@@ -25,6 +28,7 @@ import brassutils.common.block.BlockLeafCover;
 import brassutils.common.block.BlockRedstoneSand;
 import brassutils.common.block.BlockTotemTop;
 import brassutils.common.block.BlockTurf;
+import brassutils.common.block.TileCrystal;
 import brassutils.common.item.ItemBlockLeafCover;
 import brassutils.common.item.ItemBlockTurf;
 
@@ -51,6 +55,10 @@ public class InitBlocks
 
 	public static Block blockEnderTotem, blockTotemTop;
 
+	public static Block blockCrystal;
+
+	public static Block blockEtherium;
+
 	public static void init()
 	{
 		initializeBlocks();
@@ -76,5 +84,12 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockRedstoneSand, "BlockRedstoneSand");
 		blockFusedQuartz = new BlockFusedQuartz(Material.glass).setBlockName("blockFusedQuartz");
 		GameRegistry.registerBlock(blockFusedQuartz, "BlockFusedQuartz");
+
+		blockCrystal = new BlockCrystal().setBlockName("blockCrystal");
+
+		RegistryHelper.registerContainerBlock(blockCrystal, TileCrystal.class, "BlockCrystal");
+
+		blockEtherium = new BlockEtherium(Material.iron).setBlockName("blockEtherium");
+		GameRegistry.registerBlock(blockEtherium, "BlockEtherium");
 	}
 }

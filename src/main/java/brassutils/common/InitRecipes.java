@@ -8,6 +8,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import boilerplate.common.utils.recipe.RecipeUtils;
+
 public class InitRecipes
 {
 	public static void init()
@@ -55,5 +57,24 @@ public class InitRecipes
 
 		GameRegistry.addRecipe(new ItemStack(InitBlocks.blockFeathers), new Object[] { "XX", "XX", 'X', Items.feather });
 		GameRegistry.addShapelessRecipe(new ItemStack(InitBlocks.blockRedstoneSand), new Object[] { Blocks.sand, Items.redstone });
+
+		// Etherium
+		RecipeUtils.addArmorSet(new ItemStack(InitItems.itemEtherium), new ItemStack[] { new ItemStack(InitItems.helmetEtherium),
+				new ItemStack(InitItems.chestplateEtherium), new ItemStack(InitItems.legsEtherium), new ItemStack(InitItems.bootsEtherium) });
+
+		// Obsidian
+		RecipeUtils.addArmorSet(new ItemStack(InitItems.itemObsidianSlate), new ItemStack[] { new ItemStack(InitItems.helmetObsidian),
+				new ItemStack(InitItems.chestplateObsidian), new ItemStack(InitItems.legsObsidian), new ItemStack(InitItems.bootsObsidian) });
+
+		// Etherium
+		RecipeUtils.addToolSet(new ItemStack(InitItems.itemEtherium),
+				new ItemStack[] { new ItemStack(InitItems.pickaxeEtherium), new ItemStack(InitItems.shovelEtherium),
+						new ItemStack(InitItems.axeEtherium), new ItemStack(InitItems.hoeEtherium), new ItemStack(InitItems.swordEtherium) });
+		// Obsidian
+		RecipeUtils.addToolSet(new ItemStack(InitItems.itemObsidianSlate),
+				new ItemStack[] { new ItemStack(InitItems.pickaxeObsidian), new ItemStack(InitItems.shovelObsidian),
+						new ItemStack(InitItems.axeObsidian), new ItemStack(InitItems.hoeObsidian), new ItemStack(InitItems.swordObsidian) });
+
+		GameRegistry.addShapedRecipe(new ItemStack(InitBlocks.blockEtherium), "UUU", "UUU", "UUU", 'U', new ItemStack(InitItems.itemEtherium));
 	}
 }
