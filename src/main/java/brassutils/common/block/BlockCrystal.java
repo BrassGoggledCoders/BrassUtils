@@ -31,7 +31,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import brassutils.client.RenderIDs;
 import brassutils.common.BrassUtils;
 import brassutils.common.InitItems;
-import brassutils.common.lib.ModInfo;
 
 /**
  * @author Surseance
@@ -102,6 +101,6 @@ public class BlockCrystal extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister ir)
 	{
-		this.blockIcon = ir.registerIcon(ModInfo.PREFIX + "blockCrystal");
+		// this.blockIcon = ir.registerIcon(ModInfo.PREFIX + "blockCrystal");
 	}
 }
