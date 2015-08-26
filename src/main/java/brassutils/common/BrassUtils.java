@@ -199,6 +199,15 @@ public class BrassUtils
 				{
 					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover")));
 				}
+				String[] toRemap = new String[] {
+						"ItemObsidianHelmet, ItemObsidianChestplate, ItemObsidianLegs, ItemObsidianBoots, ItemEtheriumHelmet, ItemEtheriumChestplate, ItemEtheriumLegs, ItemEtheriumBoots, ItemObsidianSword, ItemObsidianPickaxe, ItemObsidianShovel, ItemObsidianAxe, ItemObsidianHoe, ItemEtheriumSword, ItemEtheriumPickaxe, ItemEtheriumShovel, ItemEtheriumAxe, ItemEtheriumHoe" };
+				for (int i = 0; i < toRemap.length; i++)
+				{
+					if (m.name.equals("steamcraft:" + toRemap[i]))
+					{
+						m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, toRemap[i])));
+					}
+				}
 			}
 		}
 	}
