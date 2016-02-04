@@ -39,8 +39,17 @@ tile.blockFeathers.name=Feather Block
 tile.blockRedstoneSand.name=Redstone Sand
 tile.blockEtherium.name=Etherium Block
 tile.blockCrystal.name=Etherium Crystal Block
+tile.blockEngravedVanilla.0.name=Engraved Diamond Block
+tile.blockEngravedVanilla.1.name=Engraved Gold Block
+tile.blockEngravedVanilla.2.name=Engraved Iron Block
+tile.blockEngravedVanilla.3.name=Engraved Lapis Lazuli Block
+tile.blockEngravedVanilla.4.name=Engraved Stone
+tile.blockEngravedVanilla.5.name=Engraved Emerald Block
+tile.blockEngravedVanilla.6.name=Engraved Redstone Block
 #
 # Items
+item.itemChisel.name=Engraving Tool
+item.itemChisel.desc=Right-Click to engrave mineral blocks
 item.itemEnderglove.name=Ender Glove
 item.itemEnderpocket.name=Ender Pocket
 item.itemTurfKnife.name=Turf Knife

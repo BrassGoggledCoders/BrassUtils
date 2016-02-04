@@ -164,6 +164,10 @@ public class BrassUtils
 				{
 					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover"));
 				}
+				else if (m.name.equals("steamcraft:BlockEngravedVanilla"))
+				{
+					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockEngravedVanilla"));
+				}
 			}
 			else if (m.type == Type.ITEM)
 			{
@@ -200,7 +204,8 @@ public class BrassUtils
 					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover")));
 				}
 				String[] toRemap = new String[] {
-						"ItemObsidianHelmet, ItemObsidianChestplate, ItemObsidianLegs, ItemObsidianBoots, ItemEtheriumHelmet, ItemEtheriumChestplate, ItemEtheriumLegs, ItemEtheriumBoots, ItemObsidianSword, ItemObsidianPickaxe, ItemObsidianShovel, ItemObsidianAxe, ItemObsidianHoe, ItemEtheriumSword, ItemEtheriumPickaxe, ItemEtheriumShovel, ItemEtheriumAxe, ItemEtheriumHoe" };
+						"ItemObsidianHelmet, ItemObsidianChestplate, ItemObsidianLegs, ItemObsidianBoots, ItemEtheriumHelmet, ItemEtheriumChestplate, ItemEtheriumLegs, ItemEtheriumBoots, ItemObsidianSword, ItemObsidianPickaxe, ItemObsidianShovel, ItemObsidianAxe, ItemObsidianHoe, ItemEtheriumSword, ItemEtheriumPickaxe, ItemEtheriumShovel, ItemEtheriumAxe, ItemEtheriumHoe",
+						"ItemChisel" };
 				for (int i = 0; i < toRemap.length; i++)
 				{
 					if (m.name.equals("steamcraft:" + toRemap[i]))
