@@ -17,13 +17,16 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 
+import boilerplate.common.baseclasses.items.BaseItemBlockWithMetadata;
 import boilerplate.common.utils.helpers.RegistryHelper;
 import brassutils.common.block.BlockCrystal;
 import brassutils.common.block.BlockEnderTotem;
+import brassutils.common.block.BlockEngravedVanilla;
 import brassutils.common.block.BlockEtherium;
 import brassutils.common.block.BlockFeathers;
 import brassutils.common.block.BlockFusedQuartz;
 import brassutils.common.block.BlockGrassCover;
+import brassutils.common.block.BlockLamp;
 import brassutils.common.block.BlockLeafCover;
 import brassutils.common.block.BlockRedstoneSand;
 import brassutils.common.block.BlockTotemTop;
@@ -59,6 +62,10 @@ public class InitBlocks
 
 	public static Block blockEtherium;
 
+	public static Block blockEngravedVanilla;
+
+	public static Block blockLamp, blockLampOn;
+
 	public static void init()
 	{
 		initializeBlocks();
@@ -84,6 +91,14 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockRedstoneSand, "BlockRedstoneSand");
 		blockFusedQuartz = new BlockFusedQuartz(Material.glass).setBlockName("blockFusedQuartz");
 		GameRegistry.registerBlock(blockFusedQuartz, "BlockFusedQuartz");
+
+		blockEngravedVanilla = new BlockEngravedVanilla().setBlockName("blockEngravedVanilla");
+		GameRegistry.registerBlock(blockEngravedVanilla, BaseItemBlockWithMetadata.class, "BlockEngravedVanilla", 5);
+
+		blockLamp = new BlockLamp(false).setBlockName("blockLamp");
+		blockLampOn = new BlockLamp(true).setBlockName("blockLamp");
+		GameRegistry.registerBlock(blockLamp, "BlockLamp");
+		GameRegistry.registerBlock(blockLampOn, "BlockLampOn");
 
 		blockCrystal = new BlockCrystal().setBlockName("blockCrystal");
 

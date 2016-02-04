@@ -22,6 +22,7 @@ import boilerplate.common.baseclasses.items.tools.BaseSword;
 import boilerplate.common.utils.helpers.IMCHelper;
 import boilerplate.common.utils.helpers.RegistryHelper;
 import brassutils.common.item.BaseItem;
+import brassutils.common.item.ItemChisel;
 import brassutils.common.item.ItemEnderGlove;
 import brassutils.common.item.ItemEnderPocket;
 import brassutils.common.item.ItemNormalArmor;
@@ -46,6 +47,8 @@ public class InitItems
 	public static Item pickaxeObsidian, swordObsidian, shovelObsidian, axeObsidian, hoeObsidian;
 
 	public static Item itemEtherium, itemEtheriumShard, itemObsidianSlate;
+
+	public static Item itemChisel;
 
 	public static void init()
 	{
@@ -113,5 +116,8 @@ public class InitItems
 
 		IMCHelper.addNewPartBuilderMaterial(InitConfig.etheriumMaterialID, new ItemStack(InitItems.itemEtherium),
 				new ItemStack(InitItems.itemEtheriumShard), 2);
+
+		itemChisel = new ItemChisel().setUnlocalizedName("itemChisel").setFull3D();
+		GameRegistry.registerItem(itemChisel, "ItemChisel");
 	}
 }
