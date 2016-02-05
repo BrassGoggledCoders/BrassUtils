@@ -93,7 +93,7 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockFusedQuartz, "BlockFusedQuartz");
 
 		blockEngravedVanilla = new BlockEngravedVanilla().setBlockName("blockEngravedVanilla");
-		GameRegistry.registerBlock(blockEngravedVanilla, BaseItemBlockWithMetadata.class, "BlockEngravedVanilla", 5);
+		GameRegistry.registerBlock(blockEngravedVanilla, BaseItemBlockWithMetadata.class, "BlockEngravedVanilla");
 
 		blockLamp = new BlockLamp(false).setBlockName("blockLamp");
 		blockLampOn = new BlockLamp(true).setBlockName("blockLamp");
