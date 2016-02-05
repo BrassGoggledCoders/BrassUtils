@@ -1,3 +1,4 @@
+
 package brassutils.common.commands;
 
 import net.minecraft.command.CommandException;
