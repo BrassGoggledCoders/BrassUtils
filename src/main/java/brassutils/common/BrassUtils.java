@@ -30,6 +30,7 @@ import cpw.mods.fml.common.registry.GameRegistry.Type;
 
 import net.minecraftforge.common.MinecraftForge;
 
+import boilerplate.common.IBoilerplateMod;
 import brassutils.client.gui.GuiHandler;
 import brassutils.common.commands.CommandDeathNote;
 import brassutils.common.commands.CommandFeed;
@@ -48,7 +49,7 @@ import brassutils.common.lib.ModInfo;
  *
  */
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:boilerplate; after:TConstruct")
-public class BrassUtils
+public class BrassUtils implements IBoilerplateMod
 {
 
 	// http://pastebin.com/3pk16QgA
@@ -216,5 +217,17 @@ public class BrassUtils
 				}
 			}
 		}
+	}
+
+	@Override
+	public String getModID()
+	{
+		return ModInfo.ID;
+	}
+
+	@Override
+	public Object getInstance()
+	{
+		return BrassUtils.instance;
 	}
 }
