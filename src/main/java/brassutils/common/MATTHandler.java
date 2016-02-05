@@ -27,6 +27,9 @@ public class MATTHandler
 
 	public static void addVanillaSmelting()
 	{
+		if (moltenIronFluid == null || moltenGoldFluid == null || moltenGlassFluid == null)
+			return;
+
 		IMCHelper.addNewSmeltable(Items.bucket, 0, Blocks.iron_block, new FluidStack(moltenIronFluid, ingotLiquidValue * 3), 600);
 		IMCHelper.addNewSmeltable(Item.getItemFromBlock(Blocks.anvil), 0, Blocks.anvil,
 				new FluidStack(moltenIronFluid, (blockLiquidValue * 3) + (ingotLiquidValue * 4)), 600);

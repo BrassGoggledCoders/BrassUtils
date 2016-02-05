@@ -47,7 +47,7 @@ import brassutils.common.lib.ModInfo;
  * @author Surseance
  *
  */
-@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:boilerplate")
+@Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION, dependencies = "required-after:boilerplate; after:TConstruct")
 public class BrassUtils
 {
 
@@ -92,11 +92,6 @@ public class BrassUtils
 		InitItems.init();
 		// Gui
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		// Sending IMC
-		if (Loader.isModLoaded("TConstruct"))
-		{
-			MATTHandler.addVanillaSmelting();
-		}
 	}
 
 	@EventHandler
@@ -112,6 +107,12 @@ public class BrassUtils
 		}
 		Blocks.dragon_egg.setCreativeTab(CreativeTabs.tabDecorations);
 		Blocks.farmland.setCreativeTab(CreativeTabs.tabBlock);
+
+		// Sending IMC
+		if (Loader.isModLoaded("TConstruct"))
+		{
+			MATTHandler.addVanillaSmelting();
+		}
 	}
 
 	@EventHandler
