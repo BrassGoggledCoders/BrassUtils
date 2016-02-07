@@ -7,6 +7,7 @@ import net.minecraft.util.EnumChatFormatting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
+import boilerplate.common.baseclasses.items.BaseItem;
 import boilerplate.common.baseclasses.items.tools.BaseAxe;
 import boilerplate.common.baseclasses.items.tools.BaseHoe;
 import boilerplate.common.baseclasses.items.tools.BasePickaxe;
@@ -14,7 +15,6 @@ import boilerplate.common.baseclasses.items.tools.BaseShovel;
 import boilerplate.common.baseclasses.items.tools.BaseSword;
 import boilerplate.common.utils.helpers.IMCHelper;
 import boilerplate.common.utils.helpers.RegistryHelper;
-import brassutils.common.item.BaseItem;
 import brassutils.common.item.ItemChisel;
 import brassutils.common.item.ItemEnderGlove;
 import brassutils.common.item.ItemEnderPocket;
@@ -75,40 +75,43 @@ public class InitItems
 		RegistryHelper.registerArmorSet(helmetObsidian, chestplateObsidian, legsObsidian, bootsObsidian, "Obsidian", ModInfo.ID);
 
 		// Etherium
-		pickaxeEtherium = new BasePickaxe(InitMaterials.TOOL_ETHERIUM, ModInfo.PREFIX).setUnlocalizedName("itemPickaxeEtherium")
+		pickaxeEtherium = new BasePickaxe(InitMaterials.TOOL_ETHERIUM, BrassUtils.instance).setUnlocalizedName("itemPickaxeEtherium")
 				.setCreativeTab(BrassUtils.tabBU);
-		swordEtherium = new BaseSword(InitMaterials.TOOL_ETHERIUM, ModInfo.PREFIX).setUnlocalizedName("itemSwordEtherium")
+		swordEtherium = new BaseSword(InitMaterials.TOOL_ETHERIUM, BrassUtils.instance).setUnlocalizedName("itemSwordEtherium")
 				.setCreativeTab(BrassUtils.tabBU);
-		shovelEtherium = new BaseShovel(InitMaterials.TOOL_ETHERIUM, ModInfo.PREFIX).setUnlocalizedName("itemShovelEtherium")
+		shovelEtherium = new BaseShovel(InitMaterials.TOOL_ETHERIUM, BrassUtils.instance).setUnlocalizedName("itemShovelEtherium")
 				.setCreativeTab(BrassUtils.tabBU);
-		axeEtherium = new BaseAxe(InitMaterials.TOOL_ETHERIUM, ModInfo.PREFIX).setUnlocalizedName("itemAxeEtherium").setCreativeTab(BrassUtils.tabBU);
-		hoeEtherium = new BaseHoe(InitMaterials.TOOL_ETHERIUM, ModInfo.PREFIX).setUnlocalizedName("itemHoeEtherium").setCreativeTab(BrassUtils.tabBU);
+		axeEtherium = new BaseAxe(InitMaterials.TOOL_ETHERIUM, BrassUtils.instance).setUnlocalizedName("itemAxeEtherium")
+				.setCreativeTab(BrassUtils.tabBU);
+		hoeEtherium = new BaseHoe(InitMaterials.TOOL_ETHERIUM, BrassUtils.instance).setUnlocalizedName("itemHoeEtherium")
+				.setCreativeTab(BrassUtils.tabBU);
 
 		RegistryHelper.registerToolSet(swordEtherium, shovelEtherium, pickaxeEtherium, axeEtherium, hoeEtherium, "Etherium", ModInfo.ID);
 
 		// Obsidian
-		pickaxeObsidian = new BasePickaxe(InitMaterials.TOOL_OBSIDIAN, ModInfo.PREFIX).setUnlocalizedName("itemPickaxeObsidian")
+		pickaxeObsidian = new BasePickaxe(InitMaterials.TOOL_OBSIDIAN, BrassUtils.instance).setUnlocalizedName("itemPickaxeObsidian")
 				.setCreativeTab(BrassUtils.tabBU);
-		swordObsidian = new BaseSword(InitMaterials.TOOL_OBSIDIAN, ModInfo.PREFIX).setUnlocalizedName("itemSwordObsidian")
+		swordObsidian = new BaseSword(InitMaterials.TOOL_OBSIDIAN, BrassUtils.instance).setUnlocalizedName("itemSwordObsidian")
 				.setCreativeTab(BrassUtils.tabBU);
-		shovelObsidian = new BaseShovel(InitMaterials.TOOL_OBSIDIAN, ModInfo.PREFIX).setUnlocalizedName("itemShovelObsidian")
+		shovelObsidian = new BaseShovel(InitMaterials.TOOL_OBSIDIAN, BrassUtils.instance).setUnlocalizedName("itemShovelObsidian")
 				.setCreativeTab(BrassUtils.tabBU);
-		axeObsidian = new BaseAxe(InitMaterials.TOOL_OBSIDIAN, ModInfo.PREFIX).setUnlocalizedName("itemAxeObsidian").setCreativeTab(BrassUtils.tabBU);
-		hoeObsidian = new BaseHoe(InitMaterials.TOOL_OBSIDIAN, ModInfo.PREFIX).setUnlocalizedName("itemHoeObsidian").setCreativeTab(BrassUtils.tabBU);
+		axeObsidian = new BaseAxe(InitMaterials.TOOL_OBSIDIAN, BrassUtils.instance).setUnlocalizedName("itemAxeObsidian")
+				.setCreativeTab(BrassUtils.tabBU);
+		hoeObsidian = new BaseHoe(InitMaterials.TOOL_OBSIDIAN, BrassUtils.instance).setUnlocalizedName("itemHoeObsidian")
+				.setCreativeTab(BrassUtils.tabBU);
 
 		RegistryHelper.registerToolSet(swordObsidian, shovelObsidian, pickaxeObsidian, axeObsidian, hoeObsidian, "Obsidian", ModInfo.ID);
 
-		itemEtherium = new BaseItem().setUnlocalizedName("itemEtherium");
+		itemEtherium = new BaseItem(BrassUtils.instance).setUnlocalizedName("itemEtherium");
 		GameRegistry.registerItem(itemEtherium, "itemEtherium");
-		itemEtheriumShard = new BaseItem().setUnlocalizedName("itemEtheriumShard");
+		itemEtheriumShard = new BaseItem(BrassUtils.instance).setUnlocalizedName("itemEtheriumShard");
 		GameRegistry.registerItem(itemEtheriumShard, "itemEtheriumShard");
-		itemObsidianSlate = new BaseItem().setUnlocalizedName("itemObsidianSlate");
+		itemObsidianSlate = new BaseItem(BrassUtils.instance).setUnlocalizedName("itemObsidianSlate");
 		GameRegistry.registerItem(itemObsidianSlate, "itemObsidianSlate");
 
 		IMCHelper.addNewToolMaterial(InitConfig.etheriumMaterialID, "Etherium", 2000, 500, 5, 0.1F, 1, EnumChatFormatting.RED.toString(), 16711935);
 
-		IMCHelper.addNewPartBuilderMaterial(InitConfig.etheriumMaterialID, new ItemStack(InitItems.itemEtherium),
-				new ItemStack(InitItems.itemEtheriumShard), 2);
+		IMCHelper.addNewPartBuilderMaterial(InitConfig.etheriumMaterialID, new ItemStack(itemEtherium), new ItemStack(itemEtheriumShard), 2);
 
 		itemChisel = new ItemChisel().setUnlocalizedName("itemChisel").setFull3D();
 		GameRegistry.registerItem(itemChisel, "ItemChisel");

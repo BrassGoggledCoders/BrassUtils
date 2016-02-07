@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import boilerplate.common.baseclasses.items.RootItem;
+import boilerplate.common.baseclasses.items.BaseItem;
 import brassutils.common.BrassUtils;
 import brassutils.common.lib.ModInfo;
 
@@ -21,11 +21,11 @@ import brassutils.common.lib.ModInfo;
  * @author Surseance
  *
  */
-public class ItemEnderPocket extends RootItem
+public class ItemEnderPocket extends BaseItem
 {
 	public ItemEnderPocket()
 	{
-		super();
+		super(BrassUtils.instance);
 		this.setFull3D();
 		this.setCreativeTab(BrassUtils.tabBU);
 		this.setNoRepair();

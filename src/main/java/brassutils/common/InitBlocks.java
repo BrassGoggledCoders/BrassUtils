@@ -10,7 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 
-import boilerplate.common.baseclasses.items.BaseItemBlockWithMetadata;
+import boilerplate.common.baseclasses.items.BaseMetadataItemBlock;
 import boilerplate.common.utils.helpers.RegistryHelper;
 import brassutils.common.block.BlockCrystal;
 import brassutils.common.block.BlockEnderTotem;
@@ -86,7 +86,7 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockFusedQuartz, "BlockFusedQuartz");
 
 		blockEngravedVanilla = new BlockEngravedVanilla().setBlockName("blockEngravedVanilla");
-		GameRegistry.registerBlock(blockEngravedVanilla, BaseItemBlockWithMetadata.class, "BlockEngravedVanilla");
+		GameRegistry.registerBlock(blockEngravedVanilla, BaseMetadataItemBlock.class, "BlockEngravedVanilla");
 
 		blockLamp = new BlockLamp(false).setBlockName("blockLamp");
 		blockLampOn = new BlockLamp(true).setBlockName("blockLamp");
