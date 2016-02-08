@@ -15,7 +15,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 import boilerplate.common.baseclasses.items.BaseItem;
 import brassutils.api.IEngravable;
-import brassutils.common.BrassUtils;
 import brassutils.common.InitBlocks;
 import brassutils.common.lib.ModInfo;
 
@@ -34,7 +33,7 @@ public class ItemChisel extends BaseItem
 
 	public ItemChisel()
 	{
-		super(BrassUtils.instance);
+		super();
 		this.setMaxStackSize(1);
 		this.setMaxDamage(20);
 	}

@@ -24,7 +24,6 @@ import cpw.mods.fml.common.registry.GameRegistry.Type;
 import net.minecraftforge.common.MinecraftForge;
 
 import boilerplate.common.IBoilerplateMod;
-import boilerplate.common.IModInfo;
 import brassutils.client.gui.GuiHandler;
 import brassutils.common.commands.CommandDeathNote;
 import brassutils.common.commands.CommandFeed;
@@ -220,14 +219,44 @@ public class BrassUtils implements IBoilerplateMod
 	}
 
 	@Override
-	public IModInfo getModInfo()
-	{
-		return new ModInfo();
-	}
-
-	@Override
 	public CreativeTabs getCreativeTab()
 	{
 		return BrassUtils.tabBU;
+	}
+
+	@Override
+	public String getID()
+	{
+		return ModInfo.ID;
+	}
+
+	@Override
+	public String getName()
+	{
+		return ModInfo.NAME;
+	}
+
+	@Override
+	public String getVersion()
+	{
+		return ModInfo.VERSION;
+	}
+
+	@Override
+	public String getPrefix()
+	{
+		return ModInfo.PREFIX;
+	}
+
+	@Override
+	public String getClientProxyPath()
+	{
+		return ModInfo.CLIENT_PROXY;
+	}
+
+	@Override
+	public String getCommonProxyPath()
+	{
+		return ModInfo.COMMON_PROXY;
 	}
 }

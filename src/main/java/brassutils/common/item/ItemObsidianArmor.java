@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import boilerplate.common.baseclasses.items.BaseArmor;
 import brassutils.common.BrassUtils;
 import brassutils.common.InitMaterials;
-import brassutils.common.lib.ModInfo;
 
 /**
  * @author Decebaldecebal
@@ -20,7 +19,7 @@ public class ItemObsidianArmor extends BaseArmor
 {
 	public ItemObsidianArmor(int armorType)
 	{
-		super(InitMaterials.ARMOR_OBSIDIAN, armorType, "obsidian", ModInfo.PREFIX);
+		super(InitMaterials.ARMOR_OBSIDIAN, armorType, "obsidian");
 		this.setCreativeTab(BrassUtils.tabBU);
 	}
 

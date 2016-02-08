@@ -25,7 +25,7 @@ public class ItemEnderPocket extends BaseItem
 {
 	public ItemEnderPocket()
 	{
-		super(BrassUtils.instance);
+		super();
 		this.setFull3D();
 		this.setCreativeTab(BrassUtils.tabBU);
 		this.setNoRepair();
