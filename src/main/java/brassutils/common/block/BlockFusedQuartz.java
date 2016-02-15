@@ -2,10 +2,13 @@
 package brassutils.common.block;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import net.minecraftforge.common.util.ForgeDirection;
+import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
 
 public class BlockFusedQuartz extends BaseBlock
 {
@@ -21,12 +24,12 @@ public class BlockFusedQuartz extends BaseBlock
 	}
 
 	@Override
-	public int isProvidingStrongPower(IBlockAccess p_149748_1_, int p_149748_2_, int p_149748_3_, int p_149748_4_, int p_149748_5_)
+	public int getStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side)
 	{
 		return 0;
 	}
 
-	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
+	public boolean isBlockSolidOnSide(World world, int x, int y, int z, EnumFacing side)
 	{
 		return true;
 	}

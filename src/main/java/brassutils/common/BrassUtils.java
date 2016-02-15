@@ -3,27 +3,21 @@ package brassutils.common;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent.MissingMapping;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.Type;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import boilerplate.common.IBoilerplateMod;
 import brassutils.client.gui.GuiHandler;
 import brassutils.common.commands.CommandDeathNote;
 import brassutils.common.commands.CommandFeed;
@@ -36,6 +30,9 @@ import brassutils.common.lib.CreativeTabBrassUtils;
 import brassutils.common.lib.FMLEventHandler;
 import brassutils.common.lib.ForgeEventHandler;
 import brassutils.common.lib.ModInfo;
+import xyz.brassgoggledcoders.boilerplate.lib.common.IBoilerplateMod;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ModLogger;
+import xyz.brassgoggledcoders.boilerplate.mod.Boilerplate;
 
 /**
  * @author Surseance
@@ -59,17 +56,6 @@ public class BrassUtils implements IBoilerplateMod
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		// Dirty, but it works
-		if (Loader.isModLoaded("EnderGlove"))
-		{
-			throw new RuntimeException(
-					"Please uninstall EnderGlove to continue. EnderGlove has been merged into this mod, and so cannot be used alongside it. Old EnderGlove items will be transferred safely");
-		}
-		if (Loader.isModLoaded("TurfMod"))
-		{
-			throw new RuntimeException(
-					"Please uninstall TurfMod to continue. TurfMod has been merged into this mod, and so cannot be used alongside it. Old TurfMod items will be transferred safely");
-		}
 		// Config
 		InitConfig.initialize(event.getSuggestedConfigurationFile());
 		// Event Handlers
@@ -131,87 +117,6 @@ public class BrassUtils implements IBoilerplateMod
 		// event.registerServerCommand(new CommandViewInv());
 	}
 
-	// Remap old items from merged in mods
-	@EventHandler
-	public void missingMapping(FMLMissingMappingsEvent event)
-	{
-		for (MissingMapping m : event.getAll())
-		{
-			if (m.type == Type.BLOCK)
-			{
-				if (m.name.equals("EnderGlove:BlockEnderTotem"))
-				{
-					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotem"));
-				}
-				else if (m.name.equals("EnderGlove:blockTotemTop"))
-				{
-					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotemTop"));
-				}
-				else if (m.name.equals("TurfMod:BlockTurf"))
-				{
-					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockTurf"));
-				}
-				else if (m.name.equals("TurfMod:BlockLeafCover"))
-				{
-					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockLeafCover"));
-				}
-				else if (m.name.equals("TurfMod:BlockGrassCover"))
-				{
-					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover"));
-				}
-				else if (m.name.equals("steamcraft:BlockEngravedVanilla"))
-				{
-					m.remap(GameRegistry.findBlock(ModInfo.ID, "BlockEngravedVanilla"));
-				}
-			}
-			else if (m.type == Type.ITEM)
-			{
-				if (m.name.equals("EnderGlove:ItemEnderGlove"))
-				{
-					m.remap(GameRegistry.findItem(ModInfo.ID, "ItemEnderGlove"));
-				}
-				else if (m.name.equals("EnderGlove:ItemEnderPocket"))
-				{
-					m.remap(GameRegistry.findItem(ModInfo.ID, "ItemEnderPocket"));
-				}
-				else if (m.name.equals("EnderGlove:BlockEnderTotem"))
-				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotem")));
-				}
-				else if (m.name.equals("EnderGlove:blockTotemTop"))
-				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockEnderTotemTop")));
-				}
-				else if (m.name.equals("TurfMod:ItemTurfKnife"))
-				{
-					m.remap(GameRegistry.findItem(ModInfo.ID, "ItemTurfKnife"));
-				}
-				else if (m.name.equals("TurfMod:BlockTurf"))
-				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockTurf")));
-				}
-				else if (m.name.equals("TurfMod:BlockLeafCover"))
-				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockLeafCover")));
-				}
-				else if (m.name.equals("TurfMod:BlockGrassCover"))
-				{
-					m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, "BlockGrassCover")));
-				}
-				String[] toRemap = new String[] {
-						"ItemObsidianHelmet, ItemObsidianChestplate, ItemObsidianLegs, ItemObsidianBoots, ItemEtheriumHelmet, ItemEtheriumChestplate, ItemEtheriumLegs, ItemEtheriumBoots, ItemObsidianSword, ItemObsidianPickaxe, ItemObsidianShovel, ItemObsidianAxe, ItemObsidianHoe, ItemEtheriumSword, ItemEtheriumPickaxe, ItemEtheriumShovel, ItemEtheriumAxe, ItemEtheriumHoe",
-						"ItemChisel" };
-				for (int i = 0; i < toRemap.length; i++)
-				{
-					if (m.name.equals("steamcraft:" + toRemap[i]))
-					{
-						m.remap(Item.getItemFromBlock(GameRegistry.findBlock(ModInfo.ID, toRemap[i])));
-					}
-				}
-			}
-		}
-	}
-
 	@Override
 	public Object getInstance()
 	{
@@ -258,5 +163,12 @@ public class BrassUtils implements IBoilerplateMod
 	public String getCommonProxyPath()
 	{
 		return ModInfo.COMMON_PROXY;
+	}
+
+	@Override
+	public ModLogger getLogger()
+	{
+		// TODO
+		return Boilerplate.logger;
 	}
 }

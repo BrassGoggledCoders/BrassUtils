@@ -20,10 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -32,12 +28,15 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import boilerplate.common.utils.InventoryUtils;
-import boilerplate.common.utils.PlayerUtils;
 import brassutils.common.InitConfig;
 import brassutils.common.InitItems;
 import brassutils.common.item.ItemEnderGlove;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.InventoryUtils;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.PlayerUtils;
 
 public class ForgeEventHandler
 {

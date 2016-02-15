@@ -7,7 +7,6 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRedstoneOre;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -27,20 +26,20 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import boilerplate.common.entity.EntityMinedBlock;
-import boilerplate.common.utils.InventoryUtils;
-import boilerplate.common.utils.ItemStackUtils;
-import boilerplate.common.utils.PlayerUtils;
 import brassutils.common.BrassUtils;
 import brassutils.common.InitConfig;
 import brassutils.common.InitItems;
 import brassutils.common.lib.ModInfo;
 import brassutils.common.lib.Utils;
 import com.google.common.collect.Sets;
+import xyz.brassgoggledcoders.boilerplate.lib.common.entity.EntityMinedBlock;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.InventoryUtils;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.ItemStackUtils;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.PlayerUtils;
 
 /**
  * @author Surseance

@@ -3,15 +3,8 @@ package brassutils.client;
 
 import net.minecraft.world.World;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-
-import boilerplate.client.renderers.block.BlockTESRRenderer;
-import boilerplate.client.renderers.block.RenderMinedBlock;
-import boilerplate.client.utils.EffectUtils;
-import boilerplate.common.entity.EntityMinedBlock;
 import brassutils.common.CommonProxy;
-import brassutils.common.block.TileCrystal;
+import xyz.brassgoggledcoders.boilerplate.lib.client.utils.EffectUtils;
 
 /**
  * @author Surseance
@@ -22,11 +15,15 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerDisplayInformation()
 	{
-		RenderingRegistry.registerEntityRenderingHandler(EntityMinedBlock.class, new RenderMinedBlock());
+		// TODO
+		// RenderingRegistry.registerEntityRenderingHandler(EntityMinedBlock.class,
+		// new RenderMinedBlock());
 
 		// Crystal
-		ClientRegistry.bindTileEntitySpecialRenderer(TileCrystal.class, new TileCrystalRenderer());
-		RenderingRegistry.registerBlockHandler(new BlockTESRRenderer(new TileCrystal(), RenderIDs.blockCrystalRI));
+		// ClientRegistry.bindTileEntitySpecialRenderer(TileCrystal.class, new
+		// TileCrystalRenderer());
+		// RenderingRegistry.registerBlockHandler(new BlockTESRRenderer(new
+		// TileCrystal(), RenderIDs.blockCrystalRI));
 	}
 
 	@Override

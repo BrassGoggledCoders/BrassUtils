@@ -3,8 +3,11 @@ package brassutils.common.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+
+import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
 
 /**
  * @author warlordjones
@@ -26,15 +29,14 @@ public class BlockFeathers extends BaseBlock
 	}
 
 	@Override
-	public void onFallenUpon(World par1World, int par2, int par3, int par4, Entity par5Entity, float par6)
+	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
 	{
-		par5Entity.fallDistance = 0;
+		entityIn.fallDistance = 0;
 	}
 
 	@Override
-	public void velocityToAddToEntity(World par1World, int par2, int par3, int par4, Entity par5Entity, Vec3 par6Vec3)
+	public Vec3 modifyAcceleration(World worldIn, BlockPos pos, Entity entityIn, Vec3 motion)
 	{
-		par6Vec3.xCoord = par5Entity.motionX - 10;
-		par6Vec3.zCoord = par5Entity.motionZ - 10;
+		return motion.addVector(entityIn.motionX - 10, 0, entityIn.motionZ - 10);
 	}
 }

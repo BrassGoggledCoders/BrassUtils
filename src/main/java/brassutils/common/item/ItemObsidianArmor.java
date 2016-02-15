@@ -7,9 +7,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-import boilerplate.common.baseclasses.items.BaseArmor;
 import brassutils.common.BrassUtils;
 import brassutils.common.InitMaterials;
+import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseArmor;
 
 /**
  * @author Decebaldecebal

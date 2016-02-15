@@ -3,8 +3,8 @@ package brassutils.common.lib;
 
 import net.minecraft.item.Item;
 
-import boilerplate.common.baseclasses.BaseCreativeTab;
 import brassutils.common.InitItems;
+import xyz.brassgoggledcoders.boilerplate.lib.common.BaseCreativeTab;
 
 /**
  * @author Surseance

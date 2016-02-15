@@ -2,7 +2,10 @@
 package brassutils.common.block;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
+
+import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
 
 /**
  * @author Surseance
@@ -17,7 +20,7 @@ public class BlockEtherium extends BaseBlock
 	}
 
 	@Override
-	public boolean isBeaconBase(IBlockAccess worldObj, int x, int y, int z, int beaconX, int beaconY, int beaconZ)
+	public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon)
 	{
 		return true;
 	}

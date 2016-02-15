@@ -1,9 +1,9 @@
 
 package brassutils.common;
 
-import cpw.mods.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 
-import boilerplate.common.entity.EntityMinedBlock;
+import xyz.brassgoggledcoders.boilerplate.lib.common.entity.EntityMinedBlock;
 
 /**
  * @author Surseance

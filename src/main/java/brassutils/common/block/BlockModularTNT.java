@@ -12,8 +12,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import brassutils.common.EntityModularTNTPrimed;
-
 /**
  * @author warlordjones
  *

@@ -8,7 +8,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 
-import boilerplate.common.utils.InventoryUtils;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.InventoryUtils;
 
 /**
  * @author Surseance

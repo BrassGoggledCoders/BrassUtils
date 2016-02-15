@@ -34,8 +34,8 @@ public class InitMaterials
 
 	private static void initArmorMaterials()
 	{
-		ARMOR_OBSIDIAN = EnumHelper.addArmorMaterial("ARMOR_OBSIDIAN", -1, new int[] { 5, 8, 8, 5 }, 5);
-		ARMOR_ETHERIUM = EnumHelper.addArmorMaterial("ARMOR_ETHERIUM", 40, new int[] { 4, 8, 7, 3 }, 18);
+		ARMOR_OBSIDIAN = EnumHelper.addArmorMaterial("ARMOR_OBSIDIAN", /* TODO */"obsidian", -1, new int[] { 5, 8, 8, 5 }, 5);
+		ARMOR_ETHERIUM = EnumHelper.addArmorMaterial("ARMOR_ETHERIUM", /* TODO */"etherium", 40, new int[] { 4, 8, 7, 3 }, 18);
 	}
 
 }

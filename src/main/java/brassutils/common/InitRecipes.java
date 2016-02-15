@@ -5,12 +5,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-import boilerplate.common.utils.recipe.RecipeUtils;
+import xyz.brassgoggledcoders.boilerplate.lib.common.recipes.RecipeUtils;
 
 public class InitRecipes
 {

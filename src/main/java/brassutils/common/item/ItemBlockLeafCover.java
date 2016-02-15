@@ -2,7 +2,6 @@
 package brassutils.common.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.item.ItemStack;
 
 public class ItemBlockLeafCover extends ItemBlockWithMetadata

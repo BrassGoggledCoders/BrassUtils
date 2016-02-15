@@ -13,8 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 
-import boilerplate.common.utils.PlayerUtils;
-import boilerplate.common.utils.Utils;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.PlayerUtils;
 
 /**
  * @author warlordjones

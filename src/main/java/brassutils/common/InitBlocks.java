@@ -5,15 +5,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-import boilerplate.common.baseclasses.items.BaseMetadataItemBlock;
-import boilerplate.common.utils.helpers.RegistryHelper;
 import brassutils.common.block.BlockCrystal;
-import brassutils.common.block.BlockEnderTotem;
 import brassutils.common.block.BlockEngravedVanilla;
 import brassutils.common.block.BlockEtherium;
 import brassutils.common.block.BlockFeathers;
@@ -27,6 +23,9 @@ import brassutils.common.block.BlockTurf;
 import brassutils.common.block.TileCrystal;
 import brassutils.common.item.ItemBlockLeafCover;
 import brassutils.common.item.ItemBlockTurf;
+import xyz.brassgoggledcoders.boilerplate.lib.common.blocks.BaseBlock;
+import xyz.brassgoggledcoders.boilerplate.lib.common.items.BaseMetadataItemBlock;
+import xyz.brassgoggledcoders.boilerplate.lib.common.utils.helpers.RegistryHelper;
 
 /**
  * @author Surseance
@@ -72,7 +71,7 @@ public class InitBlocks
 		GameRegistry.registerBlock(blockTurf, ItemBlockTurf.class, "BlockTurf");
 		GameRegistry.registerBlock(blockLeafCover, ItemBlockLeafCover.class, "BlockLeafCover");
 		GameRegistry.registerBlock(blockGrassCover, "BlockGrassCover");
-		blockEnderTotem = new BlockEnderTotem().setBlockName("blockEnderTotem");
+		blockEnderTotem = new BaseBlock(Material.rock).setBlockName("blockEnderTotem").setHardness(3.5F).setResistance(6.0F);
 		blockTotemTop = new BlockTotemTop().setBlockName("blockEnderTotemTop");
 		GameRegistry.registerBlock(blockEnderTotem, "BlockEnderTotem");
 		GameRegistry.registerBlock(blockTotemTop, "BlockEnderTotemTop");
