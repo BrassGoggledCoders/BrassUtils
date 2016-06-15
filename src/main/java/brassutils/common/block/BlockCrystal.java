@@ -3,6 +3,10 @@ package brassutils.common.block;
 
 import java.util.Random;
 
+import brassutils.client.RenderIDs;
+import brassutils.common.InitItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -14,16 +18,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import brassutils.client.RenderIDs;
-import brassutils.common.BrassUtils;
-import brassutils.common.InitItems;
-
 /**
  * @author Surseance
- *
  */
 public class BlockCrystal extends BlockContainer
 {
@@ -33,7 +29,7 @@ public class BlockCrystal extends BlockContainer
 		this.setHardness(8.5F);
 		this.setResistance(-1);
 		this.setStepSound(Block.soundTypeGlass);
-		this.setCreativeTab(BrassUtils.tabBU);
+		// this.setCreativeTab(BrassUtils.tabBU);
 	}
 
 	@Override
@@ -61,7 +57,8 @@ public class BlockCrystal extends BlockContainer
 	}
 
 	@Override
-	public boolean canCreatureSpawn(final EnumCreatureType type, final IBlockAccess world, final int x, final int y, final int z)
+	public boolean canCreatureSpawn(final EnumCreatureType type, final IBlockAccess world, final int x, final int y,
+			final int z)
 	{
 		return false;
 	}
