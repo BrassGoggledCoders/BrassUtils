@@ -9,6 +9,10 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+	maven {
+        	name "K4Repo"
+        	url "http://maven.k-4u.nl"
+    	}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
@@ -27,7 +31,7 @@ minecraft {
 }
 
 dependencies {
-compile files("lib/boilerplate.jar")
+	compile "brassgoggledcoders:boilerplate:1.7.10-6.3.0.81:deobf"
 }
 
 processResources
