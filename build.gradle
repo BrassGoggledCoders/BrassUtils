@@ -9,10 +9,6 @@ buildscript {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
-	maven {
-        	name "K4Repo"
-        	url "http://maven.k-4u.nl"
-    	}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
@@ -28,6 +24,13 @@ archivesBaseName = "brassutils"
 minecraft {
     version = "1.7.10-10.13.2.1240"
     runDir = "eclipse"
+}
+
+repositories {
+    maven {
+        name "K4Repo"
+        url "http://maven.k-4u.nl"
+    }
 }
 
 dependencies {
